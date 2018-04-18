@@ -6,8 +6,7 @@
 - Comunicazione del gruppo su Slack
 - Accettazione progetto e creazione team su GitHub Classroom
 - Configurazione Travis CI
-- Configurazione Codecov
-- Aggiunta badges in GitHub
+- Aggiornamento badge in GitHub
 - Configurazione locale del progetto
 - Lavoro sul codice dell’applicazione
 - Test automatici e Controlli di Qualità
@@ -26,7 +25,6 @@ Di seguito si riportano le istruzioni dettagliate per attivare la pipeline.
 - Adesione al workspace Slack di progetto (ingsw1718) mediante link mostrato dal docente a lezione
 - Iscrizione a [**github.com**](https://github.com)
 - Iscrizione a [**education.travis-ci.com**](https://education.travis-ci.com/) (tramite account GitHub)
-- Iscrizione a [**codecov.io**](https://codecov.io/) (tramite account GitHub)
 - Iscrizione a [**docker.com**](https://www.docker.com) (un account per gruppo)
 
 In aggiunta, occorre installare i seguenti strumenti:
@@ -38,23 +36,30 @@ In aggiunta, occorre installare i seguenti strumenti:
 Si suppone che lo studente abbia già installato sulla sua macchina l’ultima versione di **Eclipse  for Java Developers** disponibile.
 
 ## Comunicazione del gruppo su Slack
-Comunicazione del nome del gruppo al docente per la creazione di un «channel» di gruppo (inizialmente un *public channel*; a partire dalla prima iterazione sarà convertito in *private channel*)
-– Nome del gruppo = cognome di un vincitore del Turing Award
-- Nome del gruppo tutto in minuscolo e senza spazi se composto
-- Il nome del gruppo sarà lo stesso anche su GitHub Classroom, Travis CI e docker.com –
-- Sottoscrizione del proprio «channel» di gruppo
+Uno dei componenti del gruppo
+* crea un «channel» di gruppo e lo comunica sul channel #general
+  -  Nome del gruppo = cognome di un vincitore del Turing Award
+  - Nome del gruppo tutto in minuscolo, senza caratteri speciali o spazi se composto
+* edita la descrizione del gruppo con solo i cognomi dei componenti (aggiungere i nomi solo in caso di omonimie)
+* aggiunge l'id Docker come messaggio nel proprio channel di gruppo
+Ogni componente del gruppo
+* sottoscrive il proprio channel di gruppo
+* aggiunge il proprio id GitHub come messaggio nel proprio channel di gruppo
+
+Il nome del gruppo sarà il nome del repository su GitHub Classroom, Travis CI, docker.com.
 
 
-## Accettazione progetto e creazione team su GitHub Classroom
-Mediante *Slack*, verrà comunicato un link di *GitHub Classroom* attraverso cui accettare l’assegnazione del progetto e creare, o partecipare, a un team di lavoro. La schermata che apparirà all’apertura del link sarà simile a questa:
+## Accettazione progetto e accesso al repository di team su GitHub
+Mediante *Slack*, verrà comunicato un link di *GitHub Classroom* attraverso cui accettare l’assegnazione del progetto e partecipare, tramite pulsante *Join*, a un team di lavoro associato a un repository privato di GitHub.
+La schermata che apparirà all’apertura del link sarà simile a questa:
 
 ![](res/img/guida-studente/Schermata1.png)
 
-Uno dei membri, per ogni gruppo, si prenderà carico di creare un nuovo team, inserendo il nome usato precedentemente per il channel di Slack. A quel punto gli altri membri potranno aggiungersi tramite il pulsante *Join*.
-Questa procedura creerà automaticamente una repository privata nell’organizzazione “Ingegneria del Software, Cdl Informatica, UNIBA” con tutti i membri del gruppo all’interno.
+Sarà necessario aspettare che il docente convalidi la richiesta su GitHub Classroom.  
+Questo passo terminerà con successo se tutti i membri del gruppo potranno accedere al repository con URL ``` https://github.com/softeng-inf-uniba/progetto1718-<nome del gruppo> ```
 
 ## Configurazione Travis CI
-Dopo aver effettuato l’iscrizione e il login su *education.travis-ci.com* ed aver accettato l’assegnazione del progetto, occorrerà che uno dei componenti del gruppo esegua i seguenti passi di configurazione.
+Su invito esplicito del docente, dopo aver effettuato l’iscrizione e il login su *education.travis-ci.com* ed aver accettato l’assegnazione del progetto, occorrerà che uno dei componenti del gruppo esegua i seguenti passi di configurazione.
 
 - Recarsi sulla propria pagina personale (cliccare sul proprio nome e foto di Github in alto a destra)
 - Nella parte sinistra dell’interfaccia dovrebbe essere visibile l’organizzazione “Ingegneria del Software, Cdl Informatica, UNIBA”. In caso positivo, selezionarla. In caso negativo provare a premere il bottone *Sync Account*.
@@ -72,54 +77,27 @@ Dopo aver effettuato l’iscrizione e il login su *education.travis-ci.com* ed a
 
 - Nella sezione *Environment Variables*, tramite il tasto *Add*, definire le seguenti 4 Variabili d’ambiente:
 
-	- **DOCKER\_ORGANIZATION**: il nome dell’organizzazione su *docker.com*
-	- **DOCKER\_REPO**: il nome della repository del proprio gruppo su *docker.com*
-	- **DOCKER\_USERNAME**: l'username dell’account di gruppo su *docker.com*
+	- **DOCKER\_ORGANIZATION**: il nome dell’organizzazione: **softenginfuniba**
 	- **DOCKER\_PASSWORD**: la password dell'account di gruppo su *docker.com*
+	- **DOCKER\_REPO**: il nome del repository di gruppo *(coincide con il nome del gruppo su Slack)*
+	- **DOCKER\_USERNAME**: l'id dell’account di gruppo su *docker.com*
 
 ![](res/img/guida-studente/agiove3_SNA4Slack_-_Travis_CI.png)
 
 **N.B.:** è fondamentale che i nomi delle variabili d’ambiente siano scritti esattamente come sono riportati in questa guida.
 
-Si desidera un feedback immediato dello stato della build in Travis CI, consultando direttamente la pagina principale della repository su Github. A questo scopo, è possibile collocare un piccolo *badge* nel file “README.md” che informi se la compilazione e l’esecuzione dei test su Travis CI siano andati a buon fine. Per soddisfare quest’esigenza, è necessario che uno dei membri del gruppo di lavoro svolga le seguenti azioni:
-
+## Aggiornamento badge in GitHub
+Per aggiungere il badge di build status di Travis CI nel file README.md del repository su GitHub, a fianco del titolo del progetto (sna4slack), seguire le istruzioni seguenti (vedi anche https://docs.travis-ci.com/user/status-images/):
 - Cliccare sul *badge* accanto al nome della repository nella pagina del progetto su Travis CI (quello in grigio con su scritto (build|unknown)).
 - Selezionare *Markdown*, anziché *Image URL*, nel secondo dropdown.
-- Copiare il codice generato in cima al file "README.md" nella cartella di progetto. Questo può essere fatto sia andando a modificare il file direttamente da Github, sia con una *commit* in locale, seguita da una push per aggiornare la repository remota.
+- Copiare il codice generato per aggiornare la riga del titolo nel file "README.md" nella cartella di progetto (potete anche usare direttamente l'editor di GitHub).
+- Eliminate dalla riga del titolo nel file "README.md" il riferimento al badge di Codecov.
 
-## Configurazione Codecov
-Dopo aver effettuato l’iscrizione e il login su *codecov.io*, occorrerà che uno dei componenti del gruppo esegua i seguenti passi di configurazione:
+Il titolo del README.md dovrà apparire come nella seguente figura:
 
-1. Cliccare su *Add a repository*
-2. Cliccare sul nome del repository *<nomegruppo>*
-3. Cliccare su *Settings* in alto a destra
-4. Cliccare su *Activate Repository* nella sezione Activation
+![](res/img/guida-studente/Badge.png)
 
-## Aggiunta badges in GitHub
-Per aggiungere il badge di build status di Travis CI nel README.md del repository su GitHub, a fianco del titolo del progetto (sna4slack), seguire le istruzioni seguenti: https://docs.travis-ci.com/user/status-images/
-
-La riga del titolo nel README.md sarà editata (usare direttamente l'editor di GitHub) come segue:
-```
-
-# sna4slack [![Build Status](https://travis-ci.com/softeng-inf-uniba/<nomegruppo>.svg?token=<tokenvalue>&branch=master)](https://travis-ci.com/softeng-inf-uniba/<nomegruppo>
-
-```
-
-Per aggiungere il badge di copertura del testing di Codecov nel README.md del repository su GitHub, a fianco del titolo, seguire le seguenti istruzioni:
-
-1. Andare sul sito di [Codecov](https://codecov.io/) con l'id di GitHub
-2. CLiccare sul repository *<nomegruppo>*
-3. Cliccare sul pulsante *Copy* per copiare il token
-4. Cliccare su *Settings* in alto a destra
-5. Cliccare su *Badge* a sinistra
-6. Cliccare a destra sul pulsante *Copy* nella sezione Markdown
-7. Incollare (paste) la stringa copiata alla fine della riga del titolo in README.md
-
-Il titolo del README.md apparirà come nella seguente figura:
-
-![](res/img/guida-studente/Badges.png)
-
-I badge cambieranno dopo ogni build riflettendo lo stato del progetto.
+Il colore e lo stato del badge potranno cambiare dopo ogni build riflettendo lo stato del progetto.
 
 ## Configurazione locale del progetto
 Per rendersi operativi con il progetto in locale, occorre seguire questi passi.
@@ -218,7 +196,3 @@ A questo punto l’applicazione verrà eseguita in un container sul computer loc
 
 1. Si omette di specificare esplicitamente il `<version_number>` poiché si assume per default la versione *:latest* dell'immagine caricata su *docker.com*.
 2. l’opzione `—-rm` serve per far sì che docker fermi l’esecuzione del container nel momento in cui l’applicazione eseguita al suo interno termina.
-
-## Riferimenti
-
-- [Guida](https://chris.beams.io/posts/git-commit/#separate) a come scrivere la descrizione di una commit.
