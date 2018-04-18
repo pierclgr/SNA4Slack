@@ -1,4 +1,4 @@
-# sna4slack [![Build Status](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie.svg?token=bUDdGhespuiKseaaysck&branch=master)](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie) [![codecov](https://codecov.io/gh/softeng-inf-uniba/base1718/branch/master/graph/badge.svg?token=KwXhgTMYEj)](https://codecov.io/gh/softeng-inf-uniba/base1718)
+# sna4slack [![Build Status](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie.svg?token=bUDdGhespuiKseaaysck&branch=master)](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie)
 La struttura della repository si presenta nel seguente modo:
 ```
 |–– config
