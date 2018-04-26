@@ -76,7 +76,7 @@ dependencies {
     compile 'com.google.guava:guava:21.0'
     
     // Compile all jars in the lib directory of the project
-    //compile fileTree(dir:'lib', include: ['*.jar'])
+    compile fileTree(dir:'lib', include: ['*.jar'])
     
     // JUnit Jupiter API and TestEngine implementation
     testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0")
