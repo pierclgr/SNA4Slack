@@ -1,6 +1,5 @@
 package it.uniba.cli;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -8,7 +7,7 @@ import java.util.ListIterator;
 public class Commands {
 	private List<Command> commands;
 
-	public Commands() throws IOException{
+	public Commands() {
 		this.commands = new LinkedList<Command>();
 		commands.add(new Command("members","-f fileName","Get all members from \"fileName\" zip file"));
 		commands.add(new Command("channels","-f fileName","Get all channels from \"fileName\" zip file"));
