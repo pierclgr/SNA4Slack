@@ -1,4 +1,4 @@
-package it.uniba.enity;
+package it.uniba.entity;
 
 import java.io.IOException;
 import java.util.LinkedList;

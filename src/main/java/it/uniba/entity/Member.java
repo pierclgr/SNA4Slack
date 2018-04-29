@@ -1,4 +1,4 @@
-package it.uniba.enity;
+package it.uniba.entity;
 
 import java.util.LinkedList;
 import java.util.List;
