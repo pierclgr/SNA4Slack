@@ -1,5 +1,7 @@
 package it.uniba.main;
 
+import it.uniba.cli.CommandManager;
+
 /**
  * The main class for the project. It must be customized to meet the project
  * assignment specifications.
@@ -22,7 +24,8 @@ public final class AppMain {
 	 *            The command-line arguments.
 	 */
 	public static void main(final String[] args) {
-		System.out.println("Hello world.");
+		if( args.length >= 0)
+			CommandManager.Gestione(args);
 	}
 
 }
