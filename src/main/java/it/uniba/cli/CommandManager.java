@@ -12,6 +12,7 @@ import it.uniba.entity.Workspace;
 import it.uniba.file.PathManager;
 import it.uniba.file.zip.FileNotInZipException;
 import it.uniba.file.zip.NotValidWorkspaceException;
+import it.uniba.file.zip.NotZipFileException;
 
 public class CommandManager {
 	public static void help(){
@@ -54,7 +55,7 @@ public class CommandManager {
 			}else {
 				e.printStackTrace();
 			}
-		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+		} catch (FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -73,7 +74,7 @@ public class CommandManager {
 			}else {
 				e.printStackTrace();
 			}
-		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+		} catch (FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
 			System.out.println(e.getMessage());
 
 		}
@@ -93,7 +94,7 @@ public class CommandManager {
 			}else {
 				e.printStackTrace();
 			}
-		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+		} catch (FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -121,7 +122,7 @@ public class CommandManager {
 			}else {
 				e.printStackTrace();
 			}
-		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+		} catch (FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
 	}
