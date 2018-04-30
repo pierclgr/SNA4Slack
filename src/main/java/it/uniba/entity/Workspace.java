@@ -54,6 +54,10 @@ public class Workspace {
 		}
 		return member;
 	}
+  
+	public LinkedList<Channel> getAllChannels() {
+		return (LinkedList<Channel>) this.channels;
+	}
 	
 	public LinkedList<Member> getAllMembers() {
 		return (LinkedList<Member>) this.members;
