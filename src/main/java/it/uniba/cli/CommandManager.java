@@ -15,41 +15,41 @@ import it.uniba.file.zip.NotValidWorkspaceException;
 
 
 public class CommandManager {
-  public static void getChannels(String workspace) {
-    try {
-      Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
-      LinkedList<Channel> workspaceChannels=slackWorkspace.getAllChannels();
-      ListIterator<Channel> channelsIterator=(ListIterator<Channel>) workspaceChannels.iterator();
-      while(channelsIterator.hasNext()) {
-        System.out.println(channelsIterator.next().getName());
-      }
-    } catch (IOException e) {
-      if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
-        System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
-      }else {
-        e.printStackTrace();
-      }
-    } catch (FileNotInZipException|NotValidWorkspaceException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-  
-  public static void getMembers(String workspace) {
-    try {
-      Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
-      LinkedList<Member> workspaceMembers=slackWorkspace.getAllMembers();
-      ListIterator<Member> membersIterator=(ListIterator<Member>) workspaceMembers.iterator();
-      while(membersIterator.hasNext()) {
-        System.out.println(membersIterator.next().getRealName());
-      }
-    } catch (IOException e) {
-      if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
-        System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
-      }else {
-        e.printStackTrace();
-      }
-    } catch (FileNotInZipException|NotValidWorkspaceException e) {
-      System.out.println(e.getMessage());
-    }
-  }
+	public static void getChannels(String workspace) {
+		try {
+			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Channel> workspaceChannels=slackWorkspace.getAllChannels();
+			ListIterator<Channel> channelsIterator=(ListIterator<Channel>) workspaceChannels.iterator();
+			while(channelsIterator.hasNext()) {
+				System.out.println(channelsIterator.next().getName());
+			}
+		} catch (IOException e) {
+			if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
+			}else {
+				e.printStackTrace();
+			}
+		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static void getMembers(String workspace) {
+		try {
+			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Member> workspaceMembers=slackWorkspace.getAllMembers();
+			ListIterator<Member> membersIterator=(ListIterator<Member>) workspaceMembers.iterator();
+			while(membersIterator.hasNext()) {
+				System.out.println(membersIterator.next().getRealName());
+			}
+		} catch (IOException e) {
+			if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
+			}else {
+				e.printStackTrace();
+			}
+		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }
