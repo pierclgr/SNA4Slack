@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 public class Zip {
@@ -14,7 +15,7 @@ public class Zip {
 		this.zipFile=new ZipFile(zipFilePath);
 	}
 	
-	public String getFileContent(String fileName) throws IOException, FileNotInZipException{
+	public String getFileContent(String fileName) throws IOException, FileNotInZipException, ZipException {
 		if(contains(fileName)) {
 			InputStream stream = zipFile.getInputStream(zipFile.getEntry(fileName));
 			BufferedReader br = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
