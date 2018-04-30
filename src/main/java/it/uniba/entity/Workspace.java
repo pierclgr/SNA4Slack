@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import it.uniba.file.zip.FileNotInZipException;
 import it.uniba.file.zip.NotValidWorkspaceException;
 import it.uniba.file.zip.Zip;
@@ -54,5 +53,9 @@ public class Workspace {
 			}
 		}
 		return member;
+	}
+	
+	public LinkedList<Member> getAllMembers() {
+		return (LinkedList<Member>) this.members;
 	}
 }
