@@ -78,4 +78,23 @@ public class CommandManager {
 
 		}
 	}
+	
+	public static void getMembersOfChannel(String workspace, String channel) {
+		try {
+			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Member> channelMembers=slackWorkspace.getMembersOfChannel(channel);
+			ListIterator<Member> membersIterator=(ListIterator<Member>) channelMembers.iterator();
+			while(membersIterator.hasNext()) {
+				System.out.println(membersIterator.next().getRealName());
+			}
+		} catch (IOException e) {
+			if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
+			}else {
+				e.printStackTrace();
+			}
+		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

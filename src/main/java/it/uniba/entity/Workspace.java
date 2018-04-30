@@ -3,6 +3,7 @@ package it.uniba.entity;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -61,5 +62,19 @@ public class Workspace {
 	
 	public LinkedList<Member> getAllMembers() {
 		return (LinkedList<Member>) this.members;
+	}
+	
+	public LinkedList<Member> getMembersOfChannel(String channel) {  
+		boolean found=false;  
+		LinkedList<Member> membersOfChannel=null;  
+		ListIterator<Channel> channelsIterator=(ListIterator<Channel>) channels.iterator();  
+		while(channelsIterator.hasNext()&&!found) {   
+			Channel curr=channelsIterator.next();   
+			if(curr.getName().equals(channel)) {    
+				membersOfChannel=curr.getMembers();    
+				found=true;   
+			}  
+		}  
+		return membersOfChannel; 
 	}
 }
