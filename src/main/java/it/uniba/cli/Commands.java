@@ -9,10 +9,10 @@ public class Commands {
 
 	public Commands() {
 		this.commands = new LinkedList<Command>();
-		commands.add(new Command("members","-f fileName","Get all members from \"fileName\" zip file"));
-		commands.add(new Command("channels","-f fileName","Get all channels from \"fileName\" zip file"));
-		commands.add(new Command("members","-ch channelName -f fileName","Get all members of \"channelName\" channel from \"fileName\" zip file"));
-		commands.add(new Command("members","-ch -f fileName","Get all members for all channels from \"fileName\" zip file"));
+		commands.add(new Command("members","-f \"fileName\"","Get all members from \"fileName\" zip file"));
+		commands.add(new Command("channels","-f \"fileName\"","Get all channels from \"fileName\" zip file"));
+		commands.add(new Command("members","-ch \"channelName\" -f \"fileName\"","Get all members of \"channelName\" channel from \"fileName\" zip file"));
+		commands.add(new Command("members","-ch -f \"fileName\"","Get all members for all channels from \"fileName\" zip file"));
 	}
 	
 	public LinkedList<Command> getCommands(){
