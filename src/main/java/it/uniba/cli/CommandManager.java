@@ -125,4 +125,44 @@ public class CommandManager {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public static void Gestione(String[] args) {
+		switch(args.length) {
+			case 0 : 
+				CommandManager.help();
+				break;
+			case 1:
+				if(args[0].equals("help"))
+					CommandManager.help();
+				else 
+					System.out.println("'" + args[0] + "'" + " is not a valid command, see 'help'.");
+				break;
+			case 2 :
+				System.out.println("'" + args[0]+ " " + args[1] + "'" + " is not a valid command, see 'help'.");
+				break;
+			case 3 : 
+				if(args[0].equals("members")&& args[1].equals("-f"))
+					CommandManager.getMembers(args[2]);
+				else if(args[0].equals("channels") && args[1].equals("-f"))
+					CommandManager.getChannels(args[2]);
+				else
+					System.out.println("'" + args[0] + " " + args[1] + "'" + " is not a valid command, see 'help'.");
+				break;
+			case 4:
+				if(args[0].equals("members")&&args[1].equals("-ch")&&args[2].equals("-f"))
+					CommandManager.getMembersForChannels(args[3]);
+				else
+					System.out.println("'" + args[0] + " " + args[1] + "'" + " is not a valid command, see 'help'.");
+				break;
+			case 5: 
+				if(args[0].equals("members")&&args[1].equals("-ch")&&args[3].equals("-f"))
+					CommandManager.getMembersOfChannel(args[4], args[2]);
+				else
+					System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + "'" + " is not a valid command, see 'help'.");
+				break;
+			default:
+				System.out.println("Command not found, see 'help'.");
+				break;
+		}
+	}
 }
