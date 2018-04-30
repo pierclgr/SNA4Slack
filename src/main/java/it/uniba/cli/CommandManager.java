@@ -36,8 +36,8 @@ public class CommandManager {
 			Command curr=commandsIterator.next();
 			System.out.format("%"+maxNumCharCommand+"s\t%"+maxNumCharDescription+"s",curr.getName()+" "+curr.getOptions(),curr.getDescription());
 			System.out.println();
-    }
-  }
+	    }
+	  }
 
 
 	public static void getChannels(String workspace) {
@@ -86,6 +86,34 @@ public class CommandManager {
 			ListIterator<Member> membersIterator=(ListIterator<Member>) channelMembers.iterator();
 			while(membersIterator.hasNext()) {
 				System.out.println(membersIterator.next().getRealName());
+			}
+		} catch (IOException e) {
+			if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
+			}else {
+				e.printStackTrace();
+			}
+		} catch (FileNotInZipException|NotValidWorkspaceException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static void getMembersForChannels(String workspace) {
+		try {
+			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Channel> workspaceChannels=slackWorkspace.getAllChannels();
+			ListIterator<Channel> channelsIterator=(ListIterator<Channel>) workspaceChannels.iterator();
+			while(channelsIterator.hasNext()) {
+				Channel curr=channelsIterator.next();
+				LinkedList<Member> channelMembers=slackWorkspace.getMembersOfChannel(curr.getName());
+				ListIterator<Member> membersIterator=(ListIterator<Member>) channelMembers.iterator();
+				System.out.println("Members of \""+curr.getName()+"\":");
+				while(membersIterator.hasNext()) {
+					System.out.println("\t"+membersIterator.next().getRealName());
+				}
+				if(channelsIterator.hasNext()) {
+					System.out.println();
+				}
 			}
 		} catch (IOException e) {
 			if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
