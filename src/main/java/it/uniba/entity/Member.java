@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Member {
 	private String id;
-	private String realName;
+	private String name;
 	private List<Channel> channels;
 	
-	public Member(String id, String realName) {
+	public Member(String id, String name) {
 		this.id=id;
-		this.realName=realName;
+		this.name=name;
 		this.channels=new LinkedList<Channel>();
 	}
 	
@@ -18,8 +18,8 @@ public class Member {
 		return id;
 	}
 	
-	public String getRealName() {
-		return realName;
+	public String getName() {
+		return name;
 	}
 	
 	public LinkedList<Channel> getChannels(){

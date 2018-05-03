@@ -31,7 +31,7 @@ public class Workspace {
 				JSONArray membersRootArray = new JSONArray(workspaceZip.getFileContent("users.json"));
 				for(int i=0; i < membersRootArray.length(); i++) {
 					JSONObject member = membersRootArray.getJSONObject(i);
-					Member currMember=new Member(member.getString("id"),member.getString("real_name"));
+					Member currMember=new Member(member.getString("id"),member.getString("name"));
 					members.add(currMember);
 				}
 				JSONArray channelsRootArray = new JSONArray(workspaceZip.getFileContent("channels.json"));
