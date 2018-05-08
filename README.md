@@ -1,8 +1,8 @@
 # sna4slack [![Build Status](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie.svg?token=bUDdGhespuiKseaaysck&branch=master)](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie)
 La struttura della repository si presenta nel seguente modo:
 ```
-|-- build
-|    |-- reports
+|–– build
+|    |–– reports
 |–– config
 |    |–– checkstyle
 |–– doc
