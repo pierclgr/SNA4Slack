@@ -1,6 +1,8 @@
 # sna4slack [![Build Status](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie.svg?token=bUDdGhespuiKseaaysck&branch=master)](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie)
 La struttura della repository si presenta nel seguente modo:
 ```
+|-- build
+|    |-- reports
 |–– config
 |    |–– checkstyle
 |–– doc
@@ -25,6 +27,7 @@ La struttura della repository si presenta nel seguente modo:
 ```
 
 Nel seguito si dettagliano i ruoli dei diversi componenti:
+- **build**: ospita la sottocartella *reports*, contenente gli output dei tool automatici di test e controllo di qualità;
 - **config**: ospita i file di configurazione. L’unica configurazione di base richiesta è quella per il tool checkstyle;
 - **doc**: in questa cartella deve essere inserita tutta la documentazione relativa al progetto. In particolare, in *drawings* dovranno essere salvati i diagrammi UML e *javadoc* ospiterà la documentazione generata automaticamente per il codice Java. Il file *Report.md* rappresenta la relazione finale del progetto;
 - **gradle**: contiene il jar per il sistema di gestione delle dipendenze *Gradle*.
