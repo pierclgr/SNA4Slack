@@ -18,13 +18,18 @@ public class Mention {
 	public Member getTo() {
 		return to;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		boolean out= false;
 		if(obj instanceof Mention&&from.equals(((Mention) obj).getFrom())&&to.equals(((Mention) obj).getTo())) {
-				out= true;
+			out= true;
 		}
 		return out;
+	}
+
+	@Override
+	public String toString() {
+		return "("+this.getFrom().getName()+","+this.getTo().getName()+")";
 	}
 }
