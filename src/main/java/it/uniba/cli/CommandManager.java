@@ -3,6 +3,9 @@ package it.uniba.cli;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -44,8 +47,9 @@ public class CommandManager {
 	public static void getChannels(String workspace) {
 		try {
 			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Channel> workspaceChannels=slackWorkspace.getAllChannels();
-			ListIterator<Channel> channelsIterator=(ListIterator<Channel>) workspaceChannels.iterator();
+			LinkedHashMap<String, Channel> workspaceChannels=slackWorkspace.getAllChannels();
+			Collection<Channel> c = workspaceChannels.values();
+			Iterator<Channel> channelsIterator = c.iterator(); 
 			while(channelsIterator.hasNext()) {
 				System.out.println(channelsIterator.next().getName());
 			}
@@ -63,8 +67,9 @@ public class CommandManager {
 	public static void getMembers(String workspace) {
 		try {
 			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Member> workspaceMembers=slackWorkspace.getAllMembers();
-			ListIterator<Member> membersIterator=(ListIterator<Member>) workspaceMembers.iterator();
+			LinkedHashMap<String, Member> workspaceMembers=slackWorkspace.getAllMembers();
+			Collection<Member> c = workspaceMembers.values();
+			Iterator<Member> membersIterator = c.iterator();
 			while(membersIterator.hasNext()) {
 				System.out.println(membersIterator.next().getName());
 			}
@@ -102,8 +107,9 @@ public class CommandManager {
 	public static void getMembersForChannels(String workspace) {
 		try {
 			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Channel> workspaceChannels=slackWorkspace.getAllChannels();
-			ListIterator<Channel> channelsIterator=(ListIterator<Channel>) workspaceChannels.iterator();
+			LinkedHashMap<String, Channel> workspaceChannels=slackWorkspace.getAllChannels();
+			Collection<Channel> c = workspaceChannels.values();
+			Iterator<Channel> channelsIterator = c.iterator(); 
 			while(channelsIterator.hasNext()) {
 				Channel curr=channelsIterator.next();
 				LinkedList<Member> channelMembers=slackWorkspace.getMembersOfChannel(curr.getName());
