@@ -2,11 +2,15 @@ package it.uniba.entity;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 
 import org.json.JSONArray;
@@ -52,6 +56,46 @@ public class Workspace {
 					}
 					channels.put(currChannel.getName(),currChannel);
 				}
+				Enumeration<? extends ZipEntry> e = workspaceZip.getZipFile().entries();
+				while (e.hasMoreElements()) {
+					ZipEntry ze = (ZipEntry) e.nextElement();
+					if(!ze.isDirectory()) {
+						String curFileName = ze.getName();
+						String currChannel=curFileName.split("/")[0];
+						Pattern patternDate = Pattern.compile("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))");
+						String channelCont=workspaceZip.getFileContent(curFileName);
+						if(channels.get(currChannel)!=null) {
+							if (patternDate.matcher(curFileName.split("/")[1].split("\\.")[0]).matches()&&curFileName.split("/")[1].split("\\.")[1].equals("json")) {	
+								JSONArray messagesRootArray = new JSONArray(channelCont);
+								for(int i=0; i < messagesRootArray.length(); i++) {
+									JSONObject message = messagesRootArray.getJSONObject(i);
+									if(!message.isNull("user")) {
+										String currSender = message.getString("user");
+										String currMessage = message.getString("text");
+										Pattern pattern = Pattern.compile("[<@]+[A-Z0-9]+[>]");
+										Matcher matcher = pattern.matcher(currMessage);
+										List<String> allMatches = new LinkedList<String>();
+										while (matcher.find()) {
+											String curr=matcher.group().replaceAll("<@", "").replaceAll(">", "");
+											if(!curr.equals(currSender)) {
+												allMatches.add(curr);
+											}
+										}
+										ListIterator<String> it=(ListIterator<String>) allMatches.iterator();
+										while(it.hasNext()) {
+											String currReceiver=it.next();
+											Mention currMention = new Mention(getMemberById(currSender),getMemberById(currReceiver));
+											if(!channels.get(currChannel).containsMention(currMention)) {
+												channels.get(currChannel).getMentions().add(currMention);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
 			}
 		}catch(ZipException e) {
 			throw new NotZipFileException(workspaceZipFile);

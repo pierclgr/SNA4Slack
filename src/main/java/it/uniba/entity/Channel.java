@@ -2,6 +2,9 @@ package it.uniba.entity;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+
+import it.uniba.entity.Mention;
 
 public class Channel {
 	private String id;
@@ -30,5 +33,16 @@ public class Channel {
 	
 	public LinkedList<Mention> getMentions(){
 		return (LinkedList<Mention>) this.mentions;
+	}
+	
+	public boolean containsMention(Mention m) {
+		ListIterator<Mention> mentionsIterator=(ListIterator<Mention>) mentions.iterator();  
+		while(mentionsIterator.hasNext()) {   
+			Mention curr=mentionsIterator.next();   
+			if(curr.equals(m)) {     
+				return true;
+			}  
+		}
+		return false;
 	}
 }
