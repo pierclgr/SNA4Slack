@@ -27,4 +27,9 @@ public class Mention {
 		}
 		return out;
 	}
+	
+	@Override
+	public String toString() {
+		return "("+this.getFrom().getName()+","+this.getTo().getName()+")";
+	}
 }
