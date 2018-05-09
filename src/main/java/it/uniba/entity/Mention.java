@@ -1,5 +1,7 @@
 package it.uniba.entity;
 
+import it.uniba.entity.Mention;
+
 public class Mention {
 	private Member from;
 	private Member to;
@@ -15,5 +17,14 @@ public class Mention {
 
 	public Member getTo() {
 		return to;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		boolean out= false;
+		if(obj instanceof Mention&&from.equals(((Mention) obj).getFrom())&&to.equals(((Mention) obj).getTo())) {
+				out= true;
+		}
+		return out;
 	}
 }
