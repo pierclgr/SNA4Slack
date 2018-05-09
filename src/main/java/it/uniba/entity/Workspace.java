@@ -1,6 +1,9 @@
 package it.uniba.entity;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -8,6 +11,9 @@ import java.util.zip.ZipException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import it.uniba.entity.Channel;
+import it.uniba.entity.Member;
 import it.uniba.file.zip.FileNotInZipException;
 import it.uniba.file.zip.NotValidWorkspaceException;
 import it.uniba.file.zip.NotZipFileException;
@@ -15,8 +21,8 @@ import it.uniba.file.zip.Zip;
 
 public class Workspace {
 	public Zip workspaceZip;
-	List<Channel> channels;
-	List<Member> members;
+	LinkedHashMap<String, Channel> channels;
+	LinkedHashMap<String, Member> members;
 	
 	public Workspace(String workspaceZipFile) throws IOException,NotValidWorkspaceException,FileNotInZipException,NotZipFileException {
 		try {
@@ -25,14 +31,14 @@ public class Workspace {
 				throw new NotValidWorkspaceException(workspaceZipFile);
 			}else {
 				this.workspaceZip=workspaceZip;
-				this.channels=new LinkedList<Channel>();
-				this.members=new LinkedList<Member>();
+				this.channels=new LinkedHashMap<String, Channel>();
+				this.members=new LinkedHashMap<String, Member>();
 	
 				JSONArray membersRootArray = new JSONArray(workspaceZip.getFileContent("users.json"));
 				for(int i=0; i < membersRootArray.length(); i++) {
 					JSONObject member = membersRootArray.getJSONObject(i);
 					Member currMember=new Member(member.getString("id"),member.getString("name"));
-					members.add(currMember);
+					members.put(currMember.getName(),currMember);
 				}
 				JSONArray channelsRootArray = new JSONArray(workspaceZip.getFileContent("channels.json"));
 				for(int j=0; j<channelsRootArray.length(); j++) {
@@ -44,7 +50,7 @@ public class Workspace {
 						currChannel.getMembers().add(getMemberById(memberId));
 						getMemberById(memberId).getChannels().add(currChannel);
 					}
-					channels.add(currChannel);
+					channels.put(currChannel.getName(),currChannel);
 				}
 			}
 		}catch(ZipException e) {
@@ -53,34 +59,26 @@ public class Workspace {
 	}
 	
 	private Member getMemberById(String id) {
-		Member member = null;
-		for(int i=0; i<members.size();i++) {
-			if(this.members.get(i).getId().equals(id)) {
-				member= this.members.get(i);
+		Collection<Member> c = this.members.values();
+		Iterator<Member> itr = c.iterator();
+		while (itr.hasNext()){
+			Member itrNext = itr.next();
+			if(itrNext.getId().equals(id)) {
+				return itrNext;
 			}
 		}
-		return member;
+		return null;
 	}
   
-	public LinkedList<Channel> getAllChannels() {
-		return (LinkedList<Channel>) this.channels;
+	public LinkedHashMap<String, Channel> getAllChannels() {
+		return (LinkedHashMap<String, Channel>) this.channels;
 	}
 	
-	public LinkedList<Member> getAllMembers() {
-		return (LinkedList<Member>) this.members;
+	public LinkedHashMap<String, Member> getAllMembers() {
+		return (LinkedHashMap<String, Member>) this.members;
 	}
 	
-	public LinkedList<Member> getMembersOfChannel(String channel) {  
-		boolean found=false;  
-		LinkedList<Member> membersOfChannel=null;  
-		ListIterator<Channel> channelsIterator=(ListIterator<Channel>) channels.iterator();  
-		while(channelsIterator.hasNext()&&!found) {   
-			Channel curr=channelsIterator.next();   
-			if(curr.getName().equals(channel)) {    
-				membersOfChannel=curr.getMembers();    
-				found=true;   
-			}  
-		}  
-		return membersOfChannel; 
+	public LinkedList<Member> getMembersOfChannel(String channelId) {  
+		return channels.get(channelId).getMembers();
 	}
 }
