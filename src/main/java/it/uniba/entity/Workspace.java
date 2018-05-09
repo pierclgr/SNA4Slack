@@ -129,4 +129,25 @@ public class Workspace {
 			throw new ChannelNotValidException(channelName);
 		}
 	}
+	
+	public LinkedList<Mention> getMentionsToUser(String channelInput, String memberInput)  throws ChannelNotValidException,MemberNotValidException {	
+		if(channels.containsKey(channelInput)) {
+			if(members.containsKey(memberInput)) {
+				LinkedList<Mention> out = new LinkedList<Mention>();
+				LinkedList<Mention> mentions = channels.get(channelInput).getMentions();
+				ListIterator<Mention> it=(ListIterator<Mention>) mentions.iterator();
+				while(it.hasNext()) {
+					Mention curMention = it.next();
+					if(curMention.getTo().equals(members.get(memberInput))) {
+						out.add(curMention);
+					}
+				}
+				return out;
+			}else {
+				throw new MemberNotValidException(memberInput);
+			}
+		}else {
+			throw new ChannelNotValidException(channelInput);
+		}
+	}
 }
