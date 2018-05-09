@@ -38,9 +38,4 @@ local.properties
 
 ### Gradle ###
 .gradle
-/build/classes
-/build/distributions
-/build/jacoco
-/build/libs
-/build/scripts
-/build/test-results
+/build/
