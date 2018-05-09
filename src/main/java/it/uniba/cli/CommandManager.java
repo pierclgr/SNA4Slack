@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 import it.uniba.entity.Channel;
+import it.uniba.entity.ChannelNotValidException;
 import it.uniba.entity.Member;
 import it.uniba.entity.Workspace;
 import it.uniba.file.PathManager;
@@ -99,7 +100,7 @@ public class CommandManager {
 			}else {
 				e.printStackTrace();
 			}
-		} catch (FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
+		} catch (ChannelNotValidException|FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -130,6 +131,8 @@ public class CommandManager {
 			}
 		} catch (FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
 			System.out.println(e.getMessage());
+		} catch (ChannelNotValidException e) {
+			e.printStackTrace();
 		}
 	}
 	
