@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.8.1" timestamp="2018-05-09T15:52:39.913">
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\Command.java">
+<violation beginline="8" endline="8" begincolumn="46" endcolumn="63" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="Command" method="Command" variable="description" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'description' is not assigned and could be declared final
+</violation>
+<violation beginline="8" endline="8" begincolumn="17" endcolumn="27" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="Command" method="Command" variable="name" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'name' is not assigned and could be declared final
+</violation>
+<violation beginline="8" endline="8" begincolumn="30" endcolumn="43" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="Command" method="Command" variable="options" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'options' is not assigned and could be declared final
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\CommandManager.java">
+<violation beginline="1" endline="175" begincolumn="1" endcolumn="3" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
+Possible God class (WMC=48, ATFD=30, TCC=0.0)
+</violation>
+<violation beginline="20" endline="175" begincolumn="29" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#UseUtilityClass" priority="3">
+All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="20" endline="175" begincolumn="8" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'CommandManager' has a Cyclomatic Complexity of 8 (Highest = 18).
+</violation>
+<violation beginline="20" endline="175" begincolumn="8" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'CommandManager' has a Standard Cyclomatic Complexity of 7 (Highest = 12).
+</violation>
+<violation beginline="22" endline="22" begincolumn="17" endcolumn="48" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="help" variable="commands" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'commands' could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="21" endcolumn="41" rule="LongVariable" ruleset="Naming" package="it.uniba.cli" class="CommandManager" method="help" variable="maxNumCharDescription" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#LongVariable" priority="3">
+Avoid excessively long variable names like maxNumCharDescription
+</violation>
+<violation beginline="25" endline="25" begincolumn="80" endcolumn="112" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="27" endline="27" begincolumn="25" endcolumn="60" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="help" variable="curr" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'curr' could be declared final
+</violation>
+<violation beginline="28" endline="28" begincolumn="29" endcolumn="42" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="28" endline="28" begincolumn="48" endcolumn="64" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="29" endline="29" begincolumn="52" endcolumn="65" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="29" endline="29" begincolumn="71" endcolumn="87" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="31" endline="31" begincolumn="28" endcolumn="57" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="31" endline="31" begincolumn="28" endcolumn="57" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="32" endline="32" begincolumn="55" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="32" endline="32" begincolumn="55" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="38" endline="38" begincolumn="58" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="40" endline="40" begincolumn="25" endcolumn="60" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="help" variable="curr" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'curr' could be declared final
+</violation>
+<violation beginline="41" endline="41" begincolumn="98" endcolumn="111" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="41" endline="41" begincolumn="117" endcolumn="133" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="41" endline="41" begincolumn="135" endcolumn="155" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="47" endline="47" begincolumn="40" endcolumn="55" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getChannels" variable="workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'workspace' is not assigned and could be declared final
+</violation>
+<violation beginline="49" endline="49" begincolumn="25" endcolumn="102" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getChannels" variable="slackWorkspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'slackWorkspace' could be declared final
+</violation>
+<violation beginline="50" endline="50" begincolumn="25" endcolumn="104" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getChannels" variable="workspaceChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'workspaceChannels' could be declared final
+</violation>
+<violation beginline="51" endline="51" begincolumn="45" endcolumn="45" rule="ShortVariable" ruleset="Naming" package="it.uniba.cli" class="CommandManager" method="getChannels" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like c
+</violation>
+<violation beginline="51" endline="51" begincolumn="25" endcolumn="74" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getChannels" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'c' could be declared final
+</violation>
+<violation beginline="51" endline="51" begincolumn="49" endcolumn="74" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="52" endline="52" begincolumn="25" endcolumn="73" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getChannels" variable="channelsIterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'channelsIterator' could be declared final
+</violation>
+<violation beginline="52" endline="52" begincolumn="62" endcolumn="73" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="54" endline="54" begincolumn="33" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="54" endline="54" begincolumn="52" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="57" endline="57" begincolumn="28" endcolumn="28" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="57" endline="57" begincolumn="64" endcolumn="64" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="58" endline="58" begincolumn="91" endcolumn="102" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot; not found&quot; appears 4 times in this file; the first occurrence is on line 58
+</violation>
+<violation beginline="67" endline="67" begincolumn="39" endcolumn="54" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembers" variable="workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'workspace' is not assigned and could be declared final
+</violation>
+<violation beginline="69" endline="69" begincolumn="25" endcolumn="102" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembers" variable="slackWorkspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'slackWorkspace' could be declared final
+</violation>
+<violation beginline="70" endline="70" begincolumn="25" endcolumn="101" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembers" variable="workspaceMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'workspaceMembers' could be declared final
+</violation>
+<violation beginline="71" endline="71" begincolumn="44" endcolumn="44" rule="ShortVariable" ruleset="Naming" package="it.uniba.cli" class="CommandManager" method="getMembers" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like c
+</violation>
+<violation beginline="71" endline="71" begincolumn="25" endcolumn="72" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembers" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'c' could be declared final
+</violation>
+<violation beginline="71" endline="71" begincolumn="48" endcolumn="72" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="72" endline="72" begincolumn="25" endcolumn="71" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembers" variable="membersIterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'membersIterator' could be declared final
+</violation>
+<violation beginline="72" endline="72" begincolumn="60" endcolumn="71" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="74" endline="74" begincolumn="33" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="74" endline="74" begincolumn="52" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="77" endline="77" begincolumn="28" endcolumn="28" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="77" endline="77" begincolumn="64" endcolumn="64" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="88" endline="88" begincolumn="66" endcolumn="79" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" variable="channel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'channel' is not assigned and could be declared final
+</violation>
+<violation beginline="88" endline="88" begincolumn="48" endcolumn="63" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" variable="workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'workspace' is not assigned and could be declared final
+</violation>
+<violation beginline="90" endline="90" begincolumn="25" endcolumn="102" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" variable="slackWorkspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'slackWorkspace' could be declared final
+</violation>
+<violation beginline="91" endline="91" begincolumn="25" endcolumn="101" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" variable="channelMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'channelMembers' could be declared final
+</violation>
+<violation beginline="92" endline="92" begincolumn="25" endcolumn="109" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" variable="membersIterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'membersIterator' could be declared final
+</violation>
+<violation beginline="92" endline="92" begincolumn="85" endcolumn="109" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="94" endline="94" begincolumn="33" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="94" endline="94" begincolumn="52" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="97" endline="97" begincolumn="28" endcolumn="28" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="97" endline="97" begincolumn="64" endcolumn="64" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="107" endline="107" begincolumn="50" endcolumn="65" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'workspace' is not assigned and could be declared final
+</violation>
+<violation beginline="109" endline="109" begincolumn="25" endcolumn="102" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="slackWorkspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'slackWorkspace' could be declared final
+</violation>
+<violation beginline="110" endline="110" begincolumn="25" endcolumn="104" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="workspaceChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'workspaceChannels' could be declared final
+</violation>
+<violation beginline="111" endline="111" begincolumn="45" endcolumn="45" rule="ShortVariable" ruleset="Naming" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like c
+</violation>
+<violation beginline="111" endline="111" begincolumn="25" endcolumn="74" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'c' could be declared final
+</violation>
+<violation beginline="111" endline="111" begincolumn="49" endcolumn="74" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="112" endline="112" begincolumn="25" endcolumn="73" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="channelsIterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'channelsIterator' could be declared final
+</violation>
+<violation beginline="112" endline="112" begincolumn="62" endcolumn="73" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="114" endline="114" begincolumn="33" endcolumn="68" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="curr" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'curr' could be declared final
+</violation>
+<violation beginline="115" endline="115" begincolumn="33" endcolumn="116" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="channelMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'channelMembers' could be declared final
+</violation>
+<violation beginline="115" endline="115" begincolumn="102" endcolumn="115" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="116" endline="116" begincolumn="33" endcolumn="117" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" variable="membersIterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'membersIterator' could be declared final
+</violation>
+<violation beginline="116" endline="116" begincolumn="93" endcolumn="117" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="117" endline="117" begincolumn="68" endcolumn="81" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="119" endline="119" begincolumn="41" endcolumn="97" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="119" endline="119" begincolumn="65" endcolumn="96" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="126" endline="126" begincolumn="28" endcolumn="28" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="126" endline="126" begincolumn="64" endcolumn="64" rule="AvoidInstanceofChecksInCatchClause" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidInstanceofChecksInCatchClause" priority="3">
+An instanceof check is being performed on the caught exception.  Create a separate catch clause for this exception type.
+</violation>
+<violation beginline="136" endline="136" begincolumn="37" endcolumn="49" rule="UseVarargs" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="Gestione" variable="args" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#UseVarargs" priority="4">
+Consider using varargs for methods or constructors which take an array the last parameter.
+</violation>
+<violation beginline="136" endline="136" begincolumn="28" endcolumn="50" rule="MethodNamingConventions" ruleset="Naming" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#MethodNamingConventions" priority="1">
+Method names should not start with capital letters
+</violation>
+<violation beginline="136" endline="136" begincolumn="37" endcolumn="49" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="CommandManager" method="Gestione" variable="args" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'args' is not assigned and could be declared final
+</violation>
+<violation beginline="136" endline="174" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The method 'Gestione' has a Cyclomatic Complexity of 18.
+</violation>
+<violation beginline="136" endline="174" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The method 'Gestione' has a Standard Cyclomatic Complexity of 12.
+</violation>
+<violation beginline="142" endline="142" begincolumn="36" endcolumn="57" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="142" endline="142" begincolumn="36" endcolumn="57" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="143" endline="143" begincolumn="41" endcolumn="62" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="145" endline="145" begincolumn="41" endcolumn="121" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="145" endline="145" begincolumn="41" endcolumn="120" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="145" endline="145" begincolumn="82" endcolumn="119" rule="AvoidDuplicateLiterals" ruleset="String and StringBuffer" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strings.html#AvoidDuplicateLiterals" priority="3">
+The String literal &quot; is not a valid command, see 'help'.&quot; appears 5 times in this file; the first occurrence is on line 145
+</violation>
+<violation beginline="148" endline="148" begincolumn="33" endcolumn="127" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="148" endline="148" begincolumn="33" endcolumn="127" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="151" endline="151" begincolumn="36" endcolumn="60" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="151" endline="151" begincolumn="36" endcolumn="60" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="151" endline="151" begincolumn="64" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="151" endline="151" begincolumn="64" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="152" endline="152" begincolumn="41" endcolumn="75" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="152" endline="152" begincolumn="41" endcolumn="74" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="153" endline="153" begincolumn="41" endcolumn="66" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="153" endline="153" begincolumn="41" endcolumn="66" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="153" endline="153" begincolumn="71" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="153" endline="153" begincolumn="71" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="154" endline="154" begincolumn="41" endcolumn="76" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="154" endline="154" begincolumn="41" endcolumn="75" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="156" endline="156" begincolumn="41" endcolumn="137" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="156" endline="156" begincolumn="41" endcolumn="136" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="156" endline="156" begincolumn="41" endcolumn="136" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="159" endline="159" begincolumn="36" endcolumn="60" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="159" endline="159" begincolumn="36" endcolumn="60" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="159" endline="159" begincolumn="63" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="159" endline="159" begincolumn="63" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="159" endline="159" begincolumn="86" endcolumn="105" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="159" endline="159" begincolumn="86" endcolumn="105" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="160" endline="160" begincolumn="41" endcolumn="86" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="160" endline="160" begincolumn="41" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="162" endline="162" begincolumn="41" endcolumn="137" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="162" endline="162" begincolumn="41" endcolumn="136" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="162" endline="162" begincolumn="41" endcolumn="136" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="165" endline="165" begincolumn="36" endcolumn="60" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="165" endline="165" begincolumn="36" endcolumn="60" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="165" endline="165" begincolumn="63" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="165" endline="165" begincolumn="63" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="165" endline="165" begincolumn="86" endcolumn="105" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="165" endline="165" begincolumn="86" endcolumn="105" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="166" endline="166" begincolumn="41" endcolumn="93" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="166" endline="166" begincolumn="41" endcolumn="92" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="166" endline="166" begincolumn="41" endcolumn="92" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="168" endline="168" begincolumn="41" endcolumn="153" rule="IfElseStmtsMustUseBraces" ruleset="Braces" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfElseStmtsMustUseBraces" priority="3">
+Avoid using if...else statements without curly braces
+</violation>
+<violation beginline="168" endline="168" begincolumn="41" endcolumn="152" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="168" endline="168" begincolumn="41" endcolumn="152" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="168" endline="168" begincolumn="41" endcolumn="152" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="Gestione" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\Commands.java">
+<violation beginline="8" endline="8" begincolumn="17" endcolumn="39" rule="AvoidFieldNameMatchingTypeName" ruleset="Naming" package="it.uniba.cli" class="Commands" variable="commands" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#AvoidFieldNameMatchingTypeName" priority="3">
+It is somewhat confusing to have a field name matching the declaring class name
+</violation>
+<violation beginline="8" endline="8" begincolumn="31" endcolumn="38" rule="ImmutableField" ruleset="Design" package="it.uniba.cli" class="Commands" variable="commands" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'commands' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="18" endline="18" begincolumn="16" endcolumn="34" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.cli" class="Commands" method="getCommands" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="18" endline="18" begincolumn="16" endcolumn="34" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.cli" class="Commands" method="getCommands" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="22" endline="22" begincolumn="34" endcolumn="34" rule="ShortVariable" ruleset="Naming" package="it.uniba.cli" class="Commands" method="contains" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like c
+</violation>
+<violation beginline="22" endline="22" begincolumn="26" endcolumn="34" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="Commands" method="contains" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'c' is not assigned and could be declared final
+</violation>
+<violation beginline="24" endline="24" begincolumn="17" endcolumn="90" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="Commands" method="contains" variable="iterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'iterator' could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="25" endcolumn="52" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.cli" class="Commands" method="contains" variable="curr" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'curr' could be declared final
+</violation>
+<violation beginline="27" endline="27" begincolumn="28" endcolumn="61" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="Commands" method="contains" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="27" endline="27" begincolumn="28" endcolumn="61" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="Commands" method="contains" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Channel.java">
+<violation beginline="7" endline="7" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Channel" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="7" endline="7" begincolumn="24" endcolumn="25" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Channel" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'id' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="8" endline="8" begincolumn="24" endcolumn="27" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Channel" variable="name" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'name' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="9" endline="9" begincolumn="30" endcolumn="36" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Channel" variable="members" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'members' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="10" endline="10" begincolumn="31" endcolumn="38" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Channel" variable="mentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'mentions' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="12" endline="12" begincolumn="31" endcolumn="32" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Channel" method="Channel" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="12" endline="12" begincolumn="24" endcolumn="32" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Channel" method="Channel" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'id' is not assigned and could be declared final
+</violation>
+<violation beginline="12" endline="12" begincolumn="35" endcolumn="45" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Channel" method="Channel" variable="name" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'name' is not assigned and could be declared final
+</violation>
+<violation beginline="27" endline="27" begincolumn="16" endcolumn="33" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Channel" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="27" endline="27" begincolumn="16" endcolumn="33" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Channel" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="31" endline="31" begincolumn="16" endcolumn="34" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Channel" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="31" endline="31" begincolumn="16" endcolumn="34" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Channel" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Member.java">
+<violation beginline="7" endline="7" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Member" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="7" endline="7" begincolumn="24" endcolumn="25" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Member" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'id' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="8" endline="8" begincolumn="24" endcolumn="27" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Member" variable="name" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'name' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="9" endline="9" begincolumn="31" endcolumn="38" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Member" variable="channels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'channels' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="11" endline="11" begincolumn="30" endcolumn="31" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Member" method="Member" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="11" endline="11" begincolumn="23" endcolumn="31" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Member" method="Member" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'id' is not assigned and could be declared final
+</violation>
+<violation beginline="11" endline="11" begincolumn="34" endcolumn="44" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Member" method="Member" variable="name" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'name' is not assigned and could be declared final
+</violation>
+<violation beginline="25" endline="25" begincolumn="16" endcolumn="34" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Member" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="25" endline="25" begincolumn="16" endcolumn="34" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Member" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Mention.java">
+<violation beginline="4" endline="4" begincolumn="24" endcolumn="27" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Mention" variable="from" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'from' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="5" endline="5" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Mention" variable="to" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like to
+</violation>
+<violation beginline="5" endline="5" begincolumn="24" endcolumn="25" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Mention" variable="to" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'to' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="7" endline="7" begincolumn="44" endcolumn="45" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Mention" method="Mention" variable="to" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like to
+</violation>
+<violation beginline="7" endline="7" begincolumn="24" endcolumn="34" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Mention" method="Mention" variable="from" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'from' is not assigned and could be declared final
+</violation>
+<violation beginline="7" endline="7" begincolumn="37" endcolumn="45" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Mention" method="Mention" variable="to" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'to' is not assigned and could be declared final
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Workspace.java">
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="22" rule="UnusedImports" ruleset="Type Resolution" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.List'
+</violation>
+<violation beginline="8" endline="8" begincolumn="1" endcolumn="22" rule="UnusedImports" ruleset="Import Statements" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.List'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="30" rule="UnusedImports" ruleset="Type Resolution" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.ListIterator'
+</violation>
+<violation beginline="9" endline="9" begincolumn="1" endcolumn="30" rule="UnusedImports" ruleset="Import Statements" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.ListIterator'
+</violation>
+<violation beginline="15" endline="15" begincolumn="1" endcolumn="31" rule="ImportFromSamePackage" ruleset="Import Statements" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/imports.html#ImportFromSamePackage" priority="3">
+No need to import a type that lives in the same package
+</violation>
+<violation beginline="16" endline="16" begincolumn="1" endcolumn="30" rule="ImportFromSamePackage" ruleset="Import Statements" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/imports.html#ImportFromSamePackage" priority="3">
+No need to import a type that lives in the same package
+</violation>
+<violation beginline="24" endline="24" begincolumn="9" endcolumn="38" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="24" endline="24" begincolumn="9" endcolumn="38" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="25" endline="25" begincolumn="9" endcolumn="37" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="25" endline="25" begincolumn="9" endcolumn="37" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="27" endline="27" begincolumn="26" endcolumn="48" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="workspaceZipFile" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'workspaceZipFile' is not assigned and could be declared final
+</violation>
+<violation beginline="29" endline="29" begincolumn="25" endcolumn="66" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="workspaceZip" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'workspaceZip' could be declared final
+</violation>
+<violation beginline="30" endline="55" begincolumn="25" endcolumn="25" rule="ConfusingTernary" ruleset="Design" package="it.uniba.entity" class="Workspace" method="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="37" endline="37" begincolumn="33" endcolumn="117" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="membersRootArray" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'membersRootArray' could be declared final
+</violation>
+<violation beginline="39" endline="39" begincolumn="41" endcolumn="93" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="member" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'member' could be declared final
+</violation>
+<violation beginline="40" endline="40" begincolumn="59" endcolumn="117" rule="AvoidInstantiatingObjectsInLoops" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#AvoidInstantiatingObjectsInLoops" priority="3">
+Avoid instantiating new objects inside loops
+</violation>
+<violation beginline="40" endline="40" begincolumn="41" endcolumn="117" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="currMember" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'currMember' could be declared final
+</violation>
+<violation beginline="43" endline="43" begincolumn="33" endcolumn="121" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="channelsRootArray" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'channelsRootArray' could be declared final
+</violation>
+<violation beginline="45" endline="45" begincolumn="41" endcolumn="94" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="channel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'channel' could be declared final
+</violation>
+<violation beginline="46" endline="46" begincolumn="61" endcolumn="122" rule="AvoidInstantiatingObjectsInLoops" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#AvoidInstantiatingObjectsInLoops" priority="3">
+Avoid instantiating new objects inside loops
+</violation>
+<violation beginline="46" endline="46" begincolumn="41" endcolumn="122" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="currChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'currChannel' could be declared final
+</violation>
+<violation beginline="47" endline="47" begincolumn="41" endcolumn="96" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="membersArray" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'membersArray' could be declared final
+</violation>
+<violation beginline="49" endline="49" begincolumn="49" endcolumn="89" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="Workspace" variable="memberId" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'memberId' could be declared final
+</violation>
+<violation beginline="57" endline="57" begincolumn="25" endcolumn="72" rule="PreserveStackTrace" ruleset="Design" package="it.uniba.entity" class="Workspace" method="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#PreserveStackTrace" priority="3">
+New exception is thrown in catch block, original stack trace may be lost
+</violation>
+<violation beginline="61" endline="61" begincolumn="45" endcolumn="46" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Workspace" method="getMemberById" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like id
+</violation>
+<violation beginline="61" endline="61" begincolumn="38" endcolumn="46" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="getMemberById" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'id' is not assigned and could be declared final
+</violation>
+<violation beginline="62" endline="62" begincolumn="36" endcolumn="36" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Workspace" method="getMemberById" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like c
+</violation>
+<violation beginline="62" endline="62" begincolumn="17" endcolumn="60" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="getMemberById" variable="c" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'c' could be declared final
+</violation>
+<violation beginline="63" endline="63" begincolumn="17" endcolumn="51" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="getMemberById" variable="itr" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'itr' could be declared final
+</violation>
+<violation beginline="63" endline="63" begincolumn="40" endcolumn="51" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMemberById" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="65" endline="65" begincolumn="25" endcolumn="51" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="getMemberById" variable="itrNext" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'itrNext' could be declared final
+</violation>
+<violation beginline="66" endline="66" begincolumn="28" endcolumn="53" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMemberById" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+<violation beginline="66" endline="66" begincolumn="28" endcolumn="53" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMemberById" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (object not created locally)
+</violation>
+<violation beginline="73" endline="73" begincolumn="16" endcolumn="45" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Workspace" method="getAllChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="73" endline="73" begincolumn="16" endcolumn="45" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getAllChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="77" endline="77" begincolumn="16" endcolumn="44" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Workspace" method="getAllMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="77" endline="77" begincolumn="16" endcolumn="44" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getAllMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedHashMap'; use the interface instead
+</violation>
+<violation beginline="81" endline="81" begincolumn="16" endcolumn="33" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.entity" class="Workspace" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="81" endline="81" begincolumn="16" endcolumn="33" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
+Avoid using implementation types like 'LinkedList'; use the interface instead
+</violation>
+<violation beginline="81" endline="81" begincolumn="55" endcolumn="70" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="Workspace" method="getMembersOfChannel" variable="channelId" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'channelId' is not assigned and could be declared final
+</violation>
+<violation beginline="82" endline="82" begincolumn="24" endcolumn="59" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
+Potential violation of Law of Demeter (method chain calls)
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\PathManager.java">
+<violation beginline="5" endline="10" begincolumn="26" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="it.uniba.file" class="PathManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#UseUtilityClass" priority="3">
+All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="6" endline="6" begincolumn="46" endcolumn="62" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.file" class="PathManager" method="getAbsolutePath" variable="pathOfFile" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'pathOfFile' is not assigned and could be declared final
+</violation>
+<violation beginline="7" endline="7" begincolumn="22" endcolumn="22" rule="ShortVariable" ruleset="Naming" package="it.uniba.file" class="PathManager" method="getAbsolutePath" variable="f" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like f
+</violation>
+<violation beginline="7" endline="7" begincolumn="17" endcolumn="43" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.file" class="PathManager" method="getAbsolutePath" variable="f" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'f' could be declared final
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\FileNotInZipException.java">
+<violation beginline="9" endline="9" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.file.zip" class="FileNotInZipException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'message' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="11" endline="11" begincolumn="38" endcolumn="48" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="FileNotInZipException" method="FileNotInZipException" variable="file" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'file' is not assigned and could be declared final
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\NotValidWorkspaceException.java">
+<violation beginline="9" endline="9" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.file.zip" class="NotValidWorkspaceException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'message' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="11" endline="11" begincolumn="43" endcolumn="53" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="NotValidWorkspaceException" method="NotValidWorkspaceException" variable="file" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'file' is not assigned and could be declared final
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\NotZipFileException.java">
+<violation beginline="9" endline="9" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.file.zip" class="NotZipFileException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'message' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="11" endline="11" begincolumn="36" endcolumn="46" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="NotZipFileException" method="NotZipFileException" variable="file" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'file' is not assigned and could be declared final
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\Zip.java">
+<violation beginline="11" endline="48" begincolumn="8" endcolumn="1" rule="ShortClassName" ruleset="Naming" package="it.uniba.file.zip" class="Zip" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortClassName" priority="4">
+Avoid short class names like Zip
+</violation>
+<violation beginline="12" endline="12" begincolumn="25" endcolumn="31" rule="ImmutableField" ruleset="Design" package="it.uniba.file.zip" class="Zip" variable="zipFile" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
+Private field 'zipFile' could be made final; it is only initialized in the declaration or constructor.
+</violation>
+<violation beginline="14" endline="14" begincolumn="20" endcolumn="37" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="Zip" method="Zip" variable="zipFilePath" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'zipFilePath' is not assigned and could be declared final
+</violation>
+<violation beginline="18" endline="18" begincolumn="38" endcolumn="52" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="Zip" method="getFileContent" variable="fileName" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'fileName' is not assigned and could be declared final
+</violation>
+<violation beginline="20" endline="20" begincolumn="25" endcolumn="95" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="Zip" method="getFileContent" variable="stream" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'stream' could be declared final
+</violation>
+<violation beginline="21" endline="21" begincolumn="40" endcolumn="41" rule="ShortVariable" ruleset="Naming" package="it.uniba.file.zip" class="Zip" method="getFileContent" variable="br" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like br
+</violation>
+<violation beginline="21" endline="21" begincolumn="25" endcolumn="102" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="Zip" method="getFileContent" variable="br" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'br' could be declared final
+</violation>
+<violation beginline="22" endline="22" begincolumn="43" endcolumn="44" rule="ShortVariable" ruleset="Naming" package="it.uniba.file.zip" class="Zip" method="getFileContent" variable="sb" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like sb
+</violation>
+<violation beginline="22" endline="22" begincolumn="29" endcolumn="66" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="Zip" method="getFileContent" variable="sb" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'sb' could be declared final
+</violation>
+<violation beginline="36" endline="36" begincolumn="33" endcolumn="47" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="Zip" method="contains" variable="fileName" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'fileName' is not assigned and could be declared final
+</violation>
+<violation beginline="37" endline="37" begincolumn="17" endcolumn="68" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.file.zip" class="Zip" method="contains" variable="entry" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'entry' could be declared final
+</violation>
+<violation beginline="38" endline="42" begincolumn="17" endcolumn="17" rule="ConfusingTernary" ruleset="Design" package="it.uniba.file.zip" class="Zip" method="contains" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+<violation beginline="38" endline="42" begincolumn="17" endcolumn="17" rule="SimplifyBooleanReturns" ruleset="Design" package="it.uniba.file.zip" class="Zip" method="contains" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#SimplifyBooleanReturns" priority="3">
+Avoid unnecessary if..then..else statements when returning booleans
+</violation>
+</file>
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\main\AppMain.java">
+<violation beginline="27" endline="28" begincolumn="17" endcolumn="54" rule="IfStmtsMustUseBraces" ruleset="Braces" package="it.uniba.main" class="AppMain" method="main" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
+</file>
+</pmd>
