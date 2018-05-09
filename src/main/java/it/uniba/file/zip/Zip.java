@@ -45,4 +45,8 @@ public class Zip {
 	public void close() throws IOException {
 		zipFile.close();
 	}
+
+	public ZipFile getZipFile() {
+		return zipFile;
+	}
 }
