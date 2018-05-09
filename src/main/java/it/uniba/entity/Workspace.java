@@ -122,7 +122,11 @@ public class Workspace {
 		return (LinkedHashMap<String, Member>) this.members;
 	}
 	
-	public LinkedList<Member> getMembersOfChannel(String channelId) {  
-		return channels.get(channelId).getMembers();
+	public LinkedList<Member> getMembersOfChannel(String channelName) throws ChannelNotValidException {
+		if(channels.containsKey(channelName)) {
+			return channels.get(channelName).getMembers();
+		}else {
+			throw new ChannelNotValidException(channelName);
+		}
 	}
 }
