@@ -13,6 +13,8 @@ public class Commands {
 		commands.add(new Command("channels","-f \"fileName\"","Get all channels from \"fileName\" zip file"));
 		commands.add(new Command("members","-ch \"channelName\" -f \"fileName\"","Get all members of \"channelName\" channel from \"fileName\" zip file"));
 		commands.add(new Command("members","-ch -f \"fileName\"","Get all members for all channels from \"fileName\" zip file"));
+	    commands.add(new Command("mentions","-f \"fileName\"","Get all mentions from \"fileName\" zip file"));
+	    commands.add(new Command("mentions","-ch \"channelName\" -f \"fileName\"","Get all mentions in \"channelName\" channel from \"fileName\" zip file"));
 	}
 	
 	public LinkedList<Command> getCommands(){

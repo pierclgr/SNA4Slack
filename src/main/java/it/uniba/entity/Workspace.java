@@ -129,4 +129,12 @@ public class Workspace {
 			throw new ChannelNotValidException(channelName);
 		}
 	}
+	
+	public LinkedList<Mention> getMentions(String channelName) throws ChannelNotValidException {
+		if(channels.containsKey(channelName)) {
+			return channels.get(channelName).getMentions();
+		}else {
+			throw new ChannelNotValidException(channelName);
+		}
+	}
 }
