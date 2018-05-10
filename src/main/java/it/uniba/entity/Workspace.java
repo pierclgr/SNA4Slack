@@ -148,6 +148,14 @@ public class Workspace {
 			}
 		}else {
 			throw new ChannelNotValidException(channelInput);
+    }
+  }
+
+	public LinkedList<Mention> getMentions(String channelName) throws ChannelNotValidException {
+		if(channels.containsKey(channelName)) {
+			return channels.get(channelName).getMentions();
+		}else {
+			throw new ChannelNotValidException(channelName);
 		}
 	}
 }
