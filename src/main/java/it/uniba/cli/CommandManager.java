@@ -12,6 +12,8 @@ import java.util.ListIterator;
 import it.uniba.entity.Channel;
 import it.uniba.entity.ChannelNotValidException;
 import it.uniba.entity.Member;
+import it.uniba.entity.MemberNotValidException;
+import it.uniba.entity.Mention;
 import it.uniba.entity.Workspace;
 import it.uniba.file.PathManager;
 import it.uniba.file.zip.FileNotInZipException;
@@ -173,6 +175,51 @@ public class CommandManager {
 			default:
 				System.out.println("Command not found, see 'help'.");
 				break;
+		}
+	}
+	
+	public static void getMentionsFromUser(String workspace, String member) {
+		try {
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			Collection<Channel> coll_Channel = slackWorkspace.getAllChannels().values();
+			Iterator<Channel> it_channel = coll_Channel.iterator();
+			while (it_channel.hasNext()) {
+				LinkedList<Mention> l_mention = slackWorkspace.getMentionsFromUser(it_channel.next().getName(), member);
+				ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
+				while (it.hasNext()) {
+					Mention m = it.next();
+					System.out.println("(" + m.getFrom().getName() + " ," + m.getTo().getName() + ")");
+				}
+			}
+		} catch (IOException | ChannelNotValidException e) {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
+				e.printStackTrace();
+			}
+		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public static void getMentionsFromUser(String workspace, String channel, String member) {
+		try {
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Mention> l_mention = slackWorkspace.getMentionsFromUser(channel, member);
+			ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
+			while (it.hasNext()) {
+				Mention m = it.next();
+				System.out.println("(" + m.getFrom().getName() + " ," + m.getTo().getName() + ")");
+			}
+		} catch (IOException e) {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
+				e.printStackTrace();
+			}
+		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException
+				| NotZipFileException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }
