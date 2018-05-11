@@ -141,15 +141,20 @@ public class CommandManager {
 
 	public static void getMentionsFromUser(String workspace, String member) {
 		try {
+			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> coll_Channel = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> it_channel = coll_Channel.iterator();
-			while (it_channel.hasNext()) {
-				LinkedList<Mention> l_mention = slackWorkspace.getMentionsFromUser(it_channel.next().getName(), member);
-				ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
-				while (it.hasNext()) {
-					Mention m = it.next();
-					System.out.println(m);
+			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
+			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
+			while (channelsIeretor.hasNext()) {
+				LinkedList<Mention> currChannelMentions = slackWorkspace.getMentionsFromUser(channelsIeretor.next().getName(), member);
+				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
+				while (mentionsIterator.hasNext()) {
+					Mention currMention = mentionsIterator.next();
+					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
+					if(!out.containsKey(currMentionKey)) {
+						out.put(currMentionKey, currMention);
+						System.out.println(currMention);
+					}
 				}
 			}
 		} catch (IOException | ChannelNotValidException e) {
@@ -166,11 +171,10 @@ public class CommandManager {
 	public static void getMentionsFromUser(String workspace, String channel, String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> l_mention = slackWorkspace.getMentionsFromUser(channel, member);
-			ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
-			while (it.hasNext()) {
-				Mention m = it.next();
-				System.out.println(m);
+			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsFromUser(channel, member);
+			ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+			while (mentionsIterator.hasNext()) {
+				System.out.println(mentionsIterator.next());
 			}
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
@@ -186,15 +190,20 @@ public class CommandManager {
 
 	public static void getMentionsToUser(String workspace, String member) {
 		try {
+			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> coll_Channel = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> it_channel = coll_Channel.iterator();
-			while (it_channel.hasNext()) {
-				LinkedList<Mention> l_mention = slackWorkspace.getMentionsToUser(it_channel.next().getName(), member);
-				ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
-				while (it.hasNext()) {
-					Mention m = it.next();
-					System.out.println(m);
+			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
+			Iterator<Channel> channelsIterator = channelsCollection.iterator();
+			while (channelsIterator.hasNext()) {
+				LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channelsIterator.next().getName(), member);
+				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+				while (mentionsIterator.hasNext()) {
+					Mention currMention = mentionsIterator.next();
+					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
+					if(!out.containsKey(currMentionKey)) {
+						out.put(currMentionKey, currMention);
+						System.out.println(currMention);
+					}
 				}
 			}
 		} catch (IOException | ChannelNotValidException e) {
@@ -211,11 +220,10 @@ public class CommandManager {
 	public static void getMentionsToUser(String workspace, String channel, String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> l_mention = slackWorkspace.getMentionsToUser(channel, member);
-			ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
-			while (it.hasNext()) {
-				Mention m = it.next();
-				System.out.println(m);
+			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
+			ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+			while (mentionsIterator.hasNext()) {
+				System.out.println(mentionsIterator.next());
 			}
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
@@ -235,8 +243,7 @@ public class CommandManager {
 			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
 			Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
-				Mention curr = mentionsIterator.next();
-				System.out.println(curr);
+				System.out.println(mentionsIterator.next());
 			}
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
@@ -252,17 +259,21 @@ public class CommandManager {
 
 	public static void getMentions(String workspace) {
 		try {
+			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
-			Collection<Channel> c = workspaceChannels.values();
-			Iterator<Channel> channelsIterator = c.iterator();
+			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
+			Iterator<Channel> channelsIterator = channelsCollection.iterator();
 			while (channelsIterator.hasNext()) {
 				Channel currchannel = channelsIterator.next();
 				LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(currchannel.getName());
 				Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
-					Mention currmention = mentionsIterator.next();
-					System.out.println(currmention);
+					Mention currMention = mentionsIterator.next();
+					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
+					if(!out.containsKey(currMentionKey)) {
+						out.put(currMentionKey, currMention);
+						System.out.println(currMention);
+					}
 				}
 			}
 		} catch (IOException e) {
