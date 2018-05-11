@@ -30,6 +30,6 @@ public class Mention {
 
 	@Override
 	public String toString() {
-		return "("+this.getFrom().getName()+","+this.getTo().getName()+")";
+		return "("+this.getFrom().getName()+", "+this.getTo().getName()+")";
 	}
 }

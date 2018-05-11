@@ -138,8 +138,8 @@ public class CommandManager {
 			e.printStackTrace();
 		}
 	}
-  
-    	public static void getMentionsFromUser(String workspace, String member) {
+
+	public static void getMentionsFromUser(String workspace, String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			Collection<Channel> coll_Channel = slackWorkspace.getAllChannels().values();
@@ -149,7 +149,7 @@ public class CommandManager {
 				ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
 				while (it.hasNext()) {
 					Mention m = it.next();
-					System.out.println("(" + m.getFrom().getName() + " ," + m.getTo().getName() + ")");
+					System.out.println(m);
 				}
 			}
 		} catch (IOException | ChannelNotValidException e) {
@@ -170,7 +170,7 @@ public class CommandManager {
 			ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
 			while (it.hasNext()) {
 				Mention m = it.next();
-				System.out.println("(" + m.getFrom().getName() + " ," + m.getTo().getName() + ")");
+				System.out.println(m);
 			}
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
@@ -194,7 +194,7 @@ public class CommandManager {
 				ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
 				while (it.hasNext()) {
 					Mention m = it.next();
-					System.out.println("(" + m.getFrom().getName() + " ," + m.getTo().getName() + ")");
+					System.out.println(m);
 				}
 			}
 		} catch (IOException | ChannelNotValidException e) {
@@ -215,7 +215,7 @@ public class CommandManager {
 			ListIterator<Mention> it = (ListIterator<Mention>) l_mention.iterator();
 			while (it.hasNext()) {
 				Mention m = it.next();
-				System.out.println("(" + m.getFrom().getName() + " ," + m.getTo().getName() + ")");
+				System.out.println(m);
 			}
 		} catch (IOException e) {
 			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
@@ -228,49 +228,50 @@ public class CommandManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public static void getMentions(String workspace, String channel) {
-	    try {
-	      Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
-	      LinkedList<Mention> workspaceMentions=slackWorkspace.getMentions(channel);
-	      Iterator<Mention> mentionsIterator = workspaceMentions.iterator(); 
-	      while(mentionsIterator.hasNext()) {
-	        Mention curr=mentionsIterator.next();
-	        System.out.println(curr);
-	      }
-	    } catch (IOException e) {
-	      if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
-	        System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
-	      }else {
-	        e.printStackTrace();
-	      }
-	    } catch (ChannelNotValidException|FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
-	      System.out.println(e.getMessage());
-	    }
-    }
-	
+		try {
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
+			Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+			while (mentionsIterator.hasNext()) {
+				Mention curr = mentionsIterator.next();
+				System.out.println(curr);
+			}
+		} catch (IOException e) {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
+				e.printStackTrace();
+			}
+		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException
+				| NotZipFileException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 	public static void getMentions(String workspace) {
 		try {
-			Workspace slackWorkspace=new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedHashMap<String, Channel> workspaceChannels=slackWorkspace.getAllChannels();
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
 			Collection<Channel> c = workspaceChannels.values();
-			Iterator<Channel> channelsIterator = c.iterator(); 
-			while(channelsIterator.hasNext()) {
-				Channel currchannel=channelsIterator.next();
-				LinkedList<Mention> workspaceMentions=slackWorkspace.getMentions(currchannel.getName());
-				Iterator<Mention> mentionsIterator = workspaceMentions.iterator(); 
-				while(mentionsIterator.hasNext()) {
-					Mention currmention=mentionsIterator.next();
+			Iterator<Channel> channelsIterator = c.iterator();
+			while (channelsIterator.hasNext()) {
+				Channel currchannel = channelsIterator.next();
+				LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(currchannel.getName());
+				Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+				while (mentionsIterator.hasNext()) {
+					Mention currmention = mentionsIterator.next();
 					System.out.println(currmention);
 				}
 			}
 		} catch (IOException e) {
-			if(e instanceof FileNotFoundException||e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace)+" not found");
-			}else {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
 				e.printStackTrace();
 			}
-		} catch (FileNotInZipException|NotValidWorkspaceException|NotZipFileException e) {
+		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		} catch (ChannelNotValidException e) {
 			e.printStackTrace();
@@ -296,21 +297,41 @@ public class CommandManager {
 				CommandManager.getMembers(args[2]);
 			else if (args[0].equals("channels") && args[1].equals("-f"))
 				CommandManager.getChannels(args[2]);
+			else if (args[0].equals("mentions") && args[1].equals("-f"))
+				CommandManager.getMentions(args[2]);
 			else
-				System.out.println("'" + args[0] + " " + args[1] + "'" + " is not a valid command, see 'help'.");
+				System.out.println(
+						"'" + args[0] + " " + args[1] + " " + args[2] + "'" + " is not a valid command, see 'help'.");
 			break;
 		case 4:
 			if (args[0].equals("members") && args[1].equals("-ch") && args[2].equals("-f"))
 				CommandManager.getMembersForChannels(args[3]);
 			else
-				System.out.println("'" + args[0] + " " + args[1] + "'" + " is not a valid command, see 'help'.");
+				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + "'"
+						+ " is not a valid command, see 'help'.");
 			break;
 		case 5:
 			if (args[0].equals("members") && args[1].equals("-ch") && args[3].equals("-f"))
 				CommandManager.getMembersOfChannel(args[4], args[2]);
+			else if (args[0].equals("mentions") && args[1].equals("-ch") && args[3].equals("-f"))
+				CommandManager.getMentions(args[4], args[2]);
+			else if (args[0].equals("mentions") && args[1].equals("-to") && args[3].equals("-f"))
+				CommandManager.getMentionsToUser(args[4], args[2]);
+			else if (args[0].equals("mentions") && args[1].equals("-from") && args[3].equals("-f"))
+				CommandManager.getMentionsFromUser(args[4], args[2]);
 			else
-				System.out.println(
-						"'" + args[0] + " " + args[1] + " " + args[2] + "'" + " is not a valid command, see 'help'.");
+				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + "'"
+						+ " is not a valid command, see 'help'.");
+			break;
+		case 7:
+			if (args[0].equals("mentions") && args[1].equals("-to") && args[3].equals("-ch") && args[5].equals("-f"))
+				CommandManager.getMentionsToUser(args[6], args[4], args[2]);
+			else if (args[0].equals("mentions") && args[1].equals("-from") && args[3].equals("-ch")
+					&& args[5].equals("-f"))
+				CommandManager.getMentionsFromUser(args[6], args[4], args[2]);
+			else
+				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + " "
+						+ args[5] + " " + args[6] + "'" + " is not a valid command, see 'help'.");
 			break;
 		default:
 			System.out.println("Command not found, see 'help'.");
