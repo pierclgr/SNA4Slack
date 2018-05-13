@@ -27,65 +27,77 @@ public class Workspace {
 	public Zip workspaceZip;
 	LinkedHashMap<String, Channel> channels;
 	LinkedHashMap<String, Member> members;
-	
-	public Workspace(String workspaceZipFile) throws IOException,NotValidWorkspaceException,FileNotInZipException,NotZipFileException {
+
+	public Workspace(String workspaceZipFile)
+			throws IOException, NotValidWorkspaceException, FileNotInZipException, NotZipFileException {
 		try {
-			Zip workspaceZip=new Zip(workspaceZipFile);
-			if(!workspaceZip.contains("channels.json")||!workspaceZip.contains("users.json")) {
+			Zip workspaceZip = new Zip(workspaceZipFile);
+			if (!workspaceZip.contains("channels.json") || !workspaceZip.contains("users.json")) {
 				throw new NotValidWorkspaceException(workspaceZipFile);
-			}else {
-				this.workspaceZip=workspaceZip;
-				this.channels=new LinkedHashMap<String, Channel>();
-				this.members=new LinkedHashMap<String, Member>();
-	
+			} else {
+				this.workspaceZip = workspaceZip;
+				this.channels = new LinkedHashMap<String, Channel>();
+				this.members = new LinkedHashMap<String, Member>();
+				String real_name = "";
+				String display_name = "";
+
 				JSONArray membersRootArray = new JSONArray(workspaceZip.getFileContent("users.json"));
-				for(int i=0; i < membersRootArray.length(); i++) {
+				for (int i = 0; i < membersRootArray.length(); i++) {
 					JSONObject member = membersRootArray.getJSONObject(i);
-					Member currMember=new Member(member.getString("id"),member.getString("name"));
-					members.put(currMember.getName(),currMember);
+					if (member.getJSONObject("profile").has("real_name")) {
+						real_name = member.getJSONObject("profile").getString("real_name");
+					}
+					if (member.getJSONObject("profile").has("display_name")) {
+						display_name = member.getJSONObject("profile").getString("display_name");
+					}
+					Member currMember = new Member(member.getString("id"), member.getString("name"), real_name,
+							display_name);
+					members.put(member.getString("name"), currMember);
 				}
 				JSONArray channelsRootArray = new JSONArray(workspaceZip.getFileContent("channels.json"));
-				for(int j=0; j<channelsRootArray.length(); j++) {
-					JSONObject channel= channelsRootArray.getJSONObject(j);
-					Channel currChannel=new Channel(channel.getString("id"),channel.getString("name"));
+				for (int j = 0; j < channelsRootArray.length(); j++) {
+					JSONObject channel = channelsRootArray.getJSONObject(j);
+					Channel currChannel = new Channel(channel.getString("id"), channel.getString("name"));
 					JSONArray membersArray = channel.getJSONArray("members");
-					for(int k=0; k<membersArray.length(); k++){
-						String memberId=membersArray.getString(k);
+					for (int k = 0; k < membersArray.length(); k++) {
+						String memberId = membersArray.getString(k);
 						currChannel.getMembers().add(getMemberById(memberId));
 						getMemberById(memberId).getChannels().add(currChannel);
 					}
-					channels.put(currChannel.getName(),currChannel);
+					channels.put(currChannel.getName(), currChannel);
 				}
 				Enumeration<? extends ZipEntry> e = workspaceZip.getZipFile().entries();
 				while (e.hasMoreElements()) {
 					ZipEntry ze = (ZipEntry) e.nextElement();
-					if(!ze.isDirectory()) {
+					if (!ze.isDirectory()) {
 						String curFileName = ze.getName();
-						String currChannel=curFileName.split("/")[0];
+						String currChannel = curFileName.split("/")[0];
 						Pattern patternDate = Pattern.compile("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))");
-						String channelCont=workspaceZip.getFileContent(curFileName);
-						if(channels.get(currChannel)!=null) {
-							if (patternDate.matcher(curFileName.split("/")[1].split("\\.")[0]).matches()&&curFileName.split("/")[1].split("\\.")[1].equals("json")) {	
+						String channelCont = workspaceZip.getFileContent(curFileName);
+						if (channels.get(currChannel) != null) {
+							if (patternDate.matcher(curFileName.split("/")[1].split("\\.")[0]).matches()
+									&& curFileName.split("/")[1].split("\\.")[1].equals("json")) {
 								JSONArray messagesRootArray = new JSONArray(channelCont);
-								for(int i=0; i < messagesRootArray.length(); i++) {
+								for (int i = 0; i < messagesRootArray.length(); i++) {
 									JSONObject message = messagesRootArray.getJSONObject(i);
-									if(!message.isNull("user")) {
+									if (!message.isNull("user")) {
 										String currSender = message.getString("user");
 										String currMessage = message.getString("text");
 										Pattern pattern = Pattern.compile("[<@]+[A-Z0-9]+[>]");
 										Matcher matcher = pattern.matcher(currMessage);
 										List<String> allMatches = new LinkedList<String>();
 										while (matcher.find()) {
-											String curr=matcher.group().replaceAll("<@", "").replaceAll(">", "");
-											if(!curr.equals(currSender)) {
+											String curr = matcher.group().replaceAll("<@", "").replaceAll(">", "");
+											if (!curr.equals(currSender)) {
 												allMatches.add(curr);
 											}
 										}
-										ListIterator<String> it=(ListIterator<String>) allMatches.iterator();
-										while(it.hasNext()) {
-											String currReceiver=it.next();
-											Mention currMention = new Mention(getMemberById(currSender),getMemberById(currReceiver));
-											if(!channels.get(currChannel).containsMention(currMention)) {
+										ListIterator<String> it = (ListIterator<String>) allMatches.iterator();
+										while (it.hasNext()) {
+											String currReceiver = it.next();
+											Mention currMention = new Mention(getMemberById(currSender),
+													getMemberById(currReceiver));
+											if (!channels.get(currChannel).containsMention(currMention)) {
 												channels.get(currChannel).getMentions().add(currMention);
 											}
 										}
@@ -97,85 +109,108 @@ public class Workspace {
 				}
 
 			}
-		}catch(ZipException e) {
+		} catch (ZipException e) {
 			throw new NotZipFileException(workspaceZipFile);
 		}
 	}
-	
+
 	private Member getMemberById(String id) {
 		Collection<Member> c = this.members.values();
 		Iterator<Member> itr = c.iterator();
-		while (itr.hasNext()){
+		while (itr.hasNext()) {
 			Member itrNext = itr.next();
-			if(itrNext.getId().equals(id)) {
+			if (itrNext.getId().equals(id)) {
 				return itrNext;
 			}
 		}
 		return null;
 	}
-  
+
 	public LinkedHashMap<String, Channel> getAllChannels() {
 		return (LinkedHashMap<String, Channel>) this.channels;
 	}
-	
+
 	public LinkedHashMap<String, Member> getAllMembers() {
 		return (LinkedHashMap<String, Member>) this.members;
 	}
-	
+
 	public LinkedList<Member> getMembersOfChannel(String channelName) throws ChannelNotValidException {
-		if(channels.containsKey(channelName)) {
+		if (channels.containsKey(channelName)) {
 			return channels.get(channelName).getMembers();
-		}else {
+		} else {
 			throw new ChannelNotValidException(channelName);
 		}
 	}
-  
-   public LinkedList<Mention> getMentionsFromUser(String channelInput, String memberInput)  throws ChannelNotValidException,MemberNotValidException {		
-		if(channels.containsKey(channelInput)) {
-			if(members.containsKey(memberInput)) {
+
+	public LinkedList<Mention> getMentionsFromUser(String channelInput, String memberInput)
+			throws ChannelNotValidException, MemberNotValidException {
+		Collection<Member> membersCollection = members.values();
+		Iterator<Member> membersIterator = membersCollection.iterator();
+		boolean found = false;
+		while (membersIterator.hasNext()&&!found) {
+			Member currMember = membersIterator.next();
+			if(currMember.isUser(memberInput)) {
+				memberInput = currMember.getUserName();
+				found = true;
+			}
+		}
+		if (found) {
+			if (channels.containsKey(channelInput)) {
 				LinkedList<Mention> out = new LinkedList<Mention>();
 				LinkedList<Mention> mentions = channels.get(channelInput).getMentions();
-				ListIterator<Mention> it=(ListIterator<Mention>) mentions.iterator();
-				while(it.hasNext()) {
+				ListIterator<Mention> it = (ListIterator<Mention>) mentions.iterator();
+				while (it.hasNext()) {
 					Mention curMention = it.next();
-          if(curMention.getFrom().equals(members.get(memberInput))) {
+					if (curMention.getFrom().equals(members.get(memberInput))) {
 						out.add(curMention);
 					}
 				}
 				return out;
-			}else {
-				throw new MemberNotValidException(memberInput);
+			} else {
+				throw new ChannelNotValidException(channelInput);
 			}
-		}else {
-			throw new ChannelNotValidException(channelInput);
-    }
-  }
-	
-	public LinkedList<Mention> getMentionsToUser(String channelInput, String memberInput)  throws ChannelNotValidException,MemberNotValidException {	
-		if(channels.containsKey(channelInput)) {
-			if(members.containsKey(memberInput)) {
+		} else {
+			throw new MemberNotValidException(memberInput);
+		}
+		
+	}
+
+	public LinkedList<Mention> getMentionsToUser(String channelInput, String memberInput)
+			throws ChannelNotValidException, MemberNotValidException {
+		Collection<Member> membersCollection = members.values();
+		Iterator<Member> membersIterator = membersCollection.iterator();
+		boolean found = false;
+		while (membersIterator.hasNext()&&!found) {
+			Member currMember = membersIterator.next();
+			if(currMember.isUser(memberInput)) {
+				memberInput = currMember.getUserName();
+				found = true;
+			}
+		}
+		if (found) {
+			if (channels.containsKey(channelInput)) {
 				LinkedList<Mention> out = new LinkedList<Mention>();
 				LinkedList<Mention> mentions = channels.get(channelInput).getMentions();
-				ListIterator<Mention> it=(ListIterator<Mention>) mentions.iterator();
-				while(it.hasNext()) {
+				ListIterator<Mention> it = (ListIterator<Mention>) mentions.iterator();
+				while (it.hasNext()) {
 					Mention curMention = it.next();
-					if(curMention.getTo().equals(members.get(memberInput))) {
+					if (curMention.getTo().equals(members.get(memberInput))) {
 						out.add(curMention);
 					}
 				}
 				return out;
-			}else {
-				throw new MemberNotValidException(memberInput);
+			} else {
+				throw new ChannelNotValidException(channelInput);
 			}
-		}else {
-			throw new ChannelNotValidException(channelInput);
-    }
-  }
+		} else {
+			throw new MemberNotValidException(memberInput);
+		}
+	}
 
 	public LinkedList<Mention> getMentions(String channelName) throws ChannelNotValidException {
-		if(channels.containsKey(channelName)) {
+		if (channels.containsKey(channelName)) {
 			return channels.get(channelName).getMentions();
-		}else {
+		} else {
 			throw new ChannelNotValidException(channelName);
 		}
 	}
