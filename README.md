@@ -15,6 +15,7 @@ La struttura della repository si presenta nel seguente modo:
 |–– src
 |    |–– main
 |    |–– test
+|–– .coveralls.yml
 |–– .gitignore
 |–– .travis.yml
 |–– build.gradle
@@ -34,6 +35,7 @@ Nel seguito si dettagliano i ruoli dei diversi componenti:
 - **lib**: creata per includere eventuali *jar* di librerie esterne utilizzate dal progetto.
 - **res**: la cartella deve contenere tutte le risorse usate dal sistema (immagini, testi ecc.)
 - **src**: la cartella principale del progetto, in cui scrivere tutto il codice dell’applicazione. In *main* ci saranno i file sorgente e *test* conterrà i test di unità previsti.
+- **.coveralls.yml**: specifica il servizio travis-ci e il token del repository (privato) per il quale visualizzare la percentuale di code coverage dei casi test generata dal tool _JaCoCo_;
 - **.gitignore**: specifica tutti i file che devono essere esclusi dal sistema di controllo versione.
 - **.travis.yml**: dettaglia le direttive per assicurare la *continuous integration* attraverso l’uso di Travis CI;
 - **build.gradle**: esplicita le direttive e la configurazione per *Gradle*. 
