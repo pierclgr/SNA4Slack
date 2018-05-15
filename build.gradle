@@ -24,6 +24,10 @@ buildscript {
 		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
 	}
 }
+plugins {   
+  id 'jacoco'   
+  id 'com.github.kt3k.coveralls' version '2.6.3'    
+}
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java'
@@ -105,7 +109,7 @@ pmd {
   //pmdTest.enabled=false
   toolVersion = '5.8.1'
   consoleOutput = true
-  sourceSets = [sourceSets.main]
+  sourceSets = [sourceSets.main, sourceSets.test]
   ruleSets = [
             'java-basic',
             'java-braces',
@@ -122,7 +126,7 @@ pmd {
             'java-naming',
             'java-optimizations',
             'java-strictexception',
-             'java-strings',
+            'java-strings',
             'java-sunsecure',
             'java-typeresolution',
             'java-unnecessary',
