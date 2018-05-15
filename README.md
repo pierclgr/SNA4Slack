@@ -23,7 +23,7 @@ La struttura della repository si presenta nel seguente modo:
 |–– Guida per lo studente.md
 |–– README.md
 |–– gradlew
-|–– gradle.bat
+|–– gradlew.bat
 |–– settings.gradle
 ```
 
