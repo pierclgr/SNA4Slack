@@ -1,7 +1,7 @@
 env:  
   global:
     - CI_NAME:travis-pro
-    - COVERALLS_REPO_TOKEN=
+    - COVERALLS_REPO_TOKEN=nC7YlHnucF3gPRXFiLguQnSc76LnKs1LM
 
 sudo: required
 
