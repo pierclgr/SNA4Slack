@@ -99,6 +99,14 @@ public class Workspace {
 													getMemberById(currReceiver));
 											if (!channels.get(currChannel).containsMention(currMention)) {
 												channels.get(currChannel).getMentions().add(currMention);
+											}else {
+												ListIterator<Mention> mentionIterator = channels.get(currChannel).getMentions().listIterator();
+												while (mentionIterator.hasNext()) {
+													Mention curr = mentionIterator.next();
+													if(curr.equals(currMention)) {
+														curr.setWeight(curr.getWeight()+1);
+													}
+												}
 											}
 										}
 									}
