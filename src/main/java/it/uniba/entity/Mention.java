@@ -5,10 +5,12 @@ import it.uniba.entity.Mention;
 public class Mention {
 	private Member from;
 	private Member to;
+	private int weight;
 
 	public Mention(Member from, Member to) {
 		this.from = from;
 		this.to = to;
+		this.weight=1;
 	}
 
 	public Member getFrom() {
@@ -28,8 +30,19 @@ public class Mention {
 		return out;
 	}
 
-	@Override
 	public String toString() {
 		return "("+this.getFrom().getName()+", "+this.getTo().getName()+")";
+	}
+	
+	public String toFullString() {
+		return "("+this.getFrom().getName()+", "+this.getTo().getName()+", "+this.getWeight()+")";
+	}
+	
+	public int getWeight() {
+		return weight;
+	}
+	
+	public void setWeight(int weight) {
+		this.weight=weight;
 	}
 }
