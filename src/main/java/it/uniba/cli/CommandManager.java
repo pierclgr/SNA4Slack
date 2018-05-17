@@ -407,6 +407,63 @@ public class CommandManager {
 		}
 	}
 	
+	
+	public static void getMentionsToUserWeighed(String workspace, String member) {
+		try {
+			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
+			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
+			while (channelsIeretor.hasNext()) {
+				LinkedList<Mention> currChannelMentions = slackWorkspace.getMentionsToUser(channelsIeretor.next().getName(), member);
+				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
+				while (mentionsIterator.hasNext()) {
+					Mention currMention = mentionsIterator.next();
+					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
+					if(!out.containsKey(currMentionKey)) {
+						out.put(currMentionKey, currMention);
+					}else {
+						out.get(currMentionKey).setWeight(out.get(currMentionKey).getWeight()+currMention.getWeight());
+					}
+				}
+			}
+			Iterator<Mention> outIterator = out.values().iterator();
+			while(outIterator.hasNext()) {
+				System.out.println(outIterator.next().toFullString());
+			}
+		} catch (IOException | ChannelNotValidException e) {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
+				e.printStackTrace();
+			}
+		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+
+public static void getMentionsToUserWeighed(String workspace, String channel, String member) {
+		try {
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
+			ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+			while (mentionsIterator.hasNext()) {
+				System.out.println(mentionsIterator.next().toFullString());
+			}
+		} catch (IOException e) {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
+				e.printStackTrace();
+			}
+		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException
+				| NotZipFileException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
 	public static void Gestione(String[] args) {
 		switch (args.length) {
 		case 0:
@@ -459,6 +516,8 @@ public class CommandManager {
 			    CommandManager.getMentionsFromUserWeighed(args[5],args[3]);
 			else if (args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-ch") && args[4].equals("-f"))
 				CommandManager.getMentionsWeighed(args[5], args[3]);
+			else if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-to") && args[4].equals("-f"))
+        CommandManager.getMentionsToUserWeighed(args[5],args[3]);
 			else
 				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + "'" + args[5] + "'"
 						+ " is not a valid command, see 'help'.");
@@ -474,8 +533,13 @@ public class CommandManager {
 						+ args[5] + " " + args[6] + "'" + " is not a valid command, see 'help'.");
 			break;
 		case 8:
-			if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-from") && args[4].equals("-ch") && args[6].equals("-f"))
+			if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-to") && args[4].equals("-ch") && args[6].equals("-f"))
+			  CommandManager.getMentionsToUserWeighed(args[7], args[5], args[3]);
+			else if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-from") && args[4].equals("-ch") && args[6].equals("-f"))
 				CommandManager.getMentionsFromUserWeighed(args[7], args[5], args[3]);
+      else
+        System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + " "
+						+ args[5] + " " + args[6] + " " + args[7] + "'" + " is not a valid command, see 'help'.");
 			break;
 		default:
 			System.out.println("Command not found, see 'help'.");
