@@ -83,7 +83,7 @@ public class Workspace {
 									if (!message.isNull("user")) {
 										String currSender = message.getString("user");
 										String currMessage = message.getString("text");
-										Pattern pattern = Pattern.compile("[<@]+[A-Z0-9]+[>]");
+										Pattern pattern = Pattern.compile("[<@]+(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)+[>]");
 										Matcher matcher = pattern.matcher(currMessage);
 										List<String> allMatches = new LinkedList<String>();
 										while (matcher.find()) {
