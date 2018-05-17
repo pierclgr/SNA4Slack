@@ -21,6 +21,8 @@ public class Commands {
 		commands.add(new Command("mentions","-w -f \"fileName\"","Get all mentions weighed from \"fileName\" zip file"));
 		commands.add(new Command("mentions","-ch \"channelName\" -f \"fileName\"","Get all mentions in \"channelName\" channel from \"fileName\" zip file"));
 		commands.add(new Command("mentions","-w -ch \"channelName\" -f \"fileName\"","Get all mentions weighed in \"channelName\" channel from \"fileName\" zip file"));
+		commands.add(new Command("mentions","-w -to \"memberName\" -f \"fileName\"","Get all mentions weighed to \"memberName\" member from \"fileName\" zip file"));
+		commands.add(new Command("mentions","-w -to \"memberName\" -ch \"channelName\" -f \"fileName\"","Get all mentions weighed to \"memberName\" member in \"channelName\" channel from \"fileName\" zip file"));
 	}
 
 	public LinkedList<Command> getCommands(){
