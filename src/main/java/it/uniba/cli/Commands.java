@@ -14,7 +14,9 @@ public class Commands {
 		commands.add(new Command("members","-ch \"channelName\" -f \"fileName\"","Get all members of \"channelName\" channel from \"fileName\" zip file"));
 		commands.add(new Command("members","-ch -f \"fileName\"","Get all members for all channels from \"fileName\" zip file"));
 		commands.add(new Command("mentions","-from \"memberName\" -f \"fileName\"","Get all mentions from \"memberName\" member from \"fileName\" zip file"));
+		commands.add(new Command("mentions","-w -from \"memberName\" -f \"fileName\"","Get all mentions weighed from \"memberName\" member from \"fileName\" zip file"));
 		commands.add(new Command("mentions","-from \"memberName\" -ch \"channelName\" -f \"fileName\"","Get all mentions from \"memberName\" member in \"channelName\" channel from \"fileName\" zip file"));
+		commands.add(new Command("mentions","-w -from \"memberName\" -ch \"channelName\" -f \"fileName\"","Get all mentions weighed from \"memberName\" member in \"channelName\" channel from \"fileName\" zip file"));
 		commands.add(new Command("mentions","-to \"memberName\" -f \"fileName\"","Get all mentions to \"memberName\" member from \"fileName\" zip file"));
 		commands.add(new Command("mentions","-to \"memberName\" -ch \"channelName\" -f \"fileName\"","Get all mentions to \"memberName\" member in \"channelName\" channel from \"fileName\" zip file"));
     commands.add(new Command("mentions","-f \"fileName\"","Get all mentions from \"fileName\" zip file"));
