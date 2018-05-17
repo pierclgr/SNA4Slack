@@ -289,6 +289,70 @@ public class CommandManager {
 		}
 	}
 
+	public static void getMentionsWeighed(String workspace) {
+		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+		try {
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
+			Iterator<Channel> channelsIterator = channelsCollection.iterator();
+			while (channelsIterator.hasNext()) {
+				Channel currchannel = channelsIterator.next();
+				LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(currchannel.getName());
+				Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+				while (mentionsIterator.hasNext()) {
+					Mention currMention = mentionsIterator.next();
+					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
+					if(!out.containsKey(currMentionKey)) {
+						out.put(currMentionKey, currMention);
+					}else {
+						out.get(currMentionKey).setWeight(currMention.getWeight()+out.get(currMentionKey).getWeight());;
+					}
+				}
+			}
+			Iterator<Mention> outIterator = out.values().iterator();
+			while(outIterator.hasNext()) {
+				System.out.println(outIterator.next().toFullString());
+			}
+		} catch (IOException e) {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
+				e.printStackTrace();
+			}
+		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {
+			System.out.println(e.getMessage());
+		} catch (ChannelNotValidException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void getMentionsWeighed(String workspace, String channel) {
+		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+		try {
+			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
+			Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+			while (mentionsIterator.hasNext()) {
+				Mention currMention = mentionsIterator.next();
+				String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
+				out.put(currMentionKey, currMention);
+			}
+			Iterator<Mention> outIterator = out.values().iterator();
+			while(outIterator.hasNext()) {
+				System.out.println(outIterator.next().toFullString());
+			}
+		} catch (IOException e) {
+			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
+				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
+			} else {
+				e.printStackTrace();
+			}
+		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException
+				| NotZipFileException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	public static void Gestione(String[] args) {
 		switch (args.length) {
 		case 0:
@@ -317,6 +381,8 @@ public class CommandManager {
 		case 4:
 			if (args[0].equals("members") && args[1].equals("-ch") && args[2].equals("-f"))
 				CommandManager.getMembersForChannels(args[3]);
+			else if (args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-f"))
+				CommandManager.getMentionsWeighed(args[3]);
 			else
 				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + "'"
 						+ " is not a valid command, see 'help'.");
@@ -332,6 +398,13 @@ public class CommandManager {
 				CommandManager.getMentionsFromUser(args[4], args[2]);
 			else
 				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + "'"
+						+ " is not a valid command, see 'help'.");
+			break;
+		case 6:
+			if (args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-ch") && args[4].equals("-f"))
+				CommandManager.getMentionsWeighed(args[5], args[3]);
+			else
+				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + "'" + args[5] + "'"
 						+ " is not a valid command, see 'help'.");
 			break;
 		case 7:
