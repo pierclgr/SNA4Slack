@@ -52,7 +52,7 @@ public class Workspace {
 					}
 					Member currMember = new Member(member.getString("id"), member.getString("name"), real_name,
 							display_name);
-					members.put(member.getString("name"), currMember);
+					members.put(member.getString("id"), currMember);
 				}
 				JSONArray channelsRootArray = new JSONArray(workspaceZip.getFileContent("channels.json"));
 				for (int j = 0; j < channelsRootArray.length(); j++) {
@@ -61,8 +61,8 @@ public class Workspace {
 					JSONArray membersArray = channel.getJSONArray("members");
 					for (int k = 0; k < membersArray.length(); k++) {
 						String memberId = membersArray.getString(k);
-						currChannel.getMembers().add(getMemberById(memberId));
-						getMemberById(memberId).getChannels().add(currChannel);
+						currChannel.getMembers().add(members.get(memberId));
+						members.get(memberId).getChannels().add(currChannel);
 					}
 					channels.put(currChannel.getName(), currChannel);
 				}
@@ -83,20 +83,21 @@ public class Workspace {
 									if (!message.isNull("user")) {
 										String currSender = message.getString("user");
 										String currMessage = message.getString("text");
-										Pattern pattern = Pattern.compile("[<@]+(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)+[>]");
+										Pattern pattern = Pattern.compile("[<@]+(?=.*[0-9])(?=.*[A-Z])([A-Z0-9]+)+[>]");
 										Matcher matcher = pattern.matcher(currMessage);
 										List<String> allMatches = new LinkedList<String>();
 										while (matcher.find()) {
 											String curr = matcher.group().replaceAll("<@", "").replaceAll(">", "");
-											if (!curr.equals(currSender)) {
-												allMatches.add(curr);
-											}
+											if(members.containsKey(curr)) {
+												if (!curr.equals(currSender)) {
+													allMatches.add(curr);
+												}
+											}	
 										}
 										ListIterator<String> it = (ListIterator<String>) allMatches.iterator();
 										while (it.hasNext()) {
 											String currReceiver = it.next();
-											Mention currMention = new Mention(getMemberById(currSender),
-													getMemberById(currReceiver));
+											Mention currMention = new Mention(members.get(currSender),members.get(currReceiver));
 											if (!channels.get(currChannel).containsMention(currMention)) {
 												channels.get(currChannel).getMentions().add(currMention);
 											}else {
@@ -120,18 +121,6 @@ public class Workspace {
 		} catch (ZipException e) {
 			throw new NotZipFileException(workspaceZipFile);
 		}
-	}
-
-	private Member getMemberById(String id) {
-		Collection<Member> c = this.members.values();
-		Iterator<Member> itr = c.iterator();
-		while (itr.hasNext()) {
-			Member itrNext = itr.next();
-			if (itrNext.getId().equals(id)) {
-				return itrNext;
-			}
-		}
-		return null;
 	}
 
 	public LinkedHashMap<String, Channel> getAllChannels() {
@@ -158,7 +147,7 @@ public class Workspace {
 		while (membersIterator.hasNext()&&!found) {
 			Member currMember = membersIterator.next();
 			if(currMember.isUser(memberInput)) {
-				memberInput = currMember.getUserName();
+				memberInput = currMember.getId();
 				found = true;
 			}
 		}
@@ -180,7 +169,7 @@ public class Workspace {
 		} else {
 			throw new MemberNotValidException(memberInput);
 		}
-		
+
 	}
 
 	public LinkedList<Mention> getMentionsToUser(String channelInput, String memberInput)
@@ -191,7 +180,7 @@ public class Workspace {
 		while (membersIterator.hasNext()&&!found) {
 			Member currMember = membersIterator.next();
 			if(currMember.isUser(memberInput)) {
-				memberInput = currMember.getUserName();
+				memberInput = currMember.getId();
 				found = true;
 			}
 		}
