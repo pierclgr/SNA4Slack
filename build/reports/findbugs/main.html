@@ -78,8 +78,8 @@
 <br/>
 </p>
 <h2>Metrics</h2>
-<p>320 lines of code analyzed,
-	in 13 classes, 
+<p>781 lines of code analyzed,
+	in 15 classes, 
 	in 5 packages.</p>
 <table width="500" cellpadding="5" cellspacing="2">
 <tr class="tableheader">
@@ -94,18 +94,18 @@
 </tr>
 <tr class="tablerow1">
 <td>Medium Priority Warnings</td>
-<td align="right">6</td>
-<td align="right">18.75</td>
+<td align="right"/>
+<td align="right">0.00</td>
 </tr>
 <tr class="$totalClass">
 <td>
 <b>Total Warnings</b>
 </td>
 <td align="right">
-<b>6</b>
+<b>0</b>
 </td>
 <td align="right">
-<b>18.75</b>
+<b>0.00</b>
 </td>
 </tr>
 </table>
@@ -119,15 +119,6 @@
 <h2>Contents</h2>
 <ul>
 <li>
-<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
-</li>
-<li>
-<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
-</li>
-<li>
-<a href="#Warnings_STYLE">Dodgy code Warnings</a>
-</li>
-<li>
 <a href="#Details">Details</a>
 </li>
 </ul>
@@ -139,180 +130,17 @@
 </tr>
 <tr class="tablerow0">
 <td>
-<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
-</td>
-<td align="right">4</td>
-</tr>
-<tr class="tablerow1">
-<td>
-<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
-</td>
-<td align="right">1</td>
-</tr>
-<tr class="tablerow0">
-<td>
-<a href="#Warnings_STYLE">Dodgy code Warnings</a>
-</td>
-<td align="right">1</td>
-</tr>
-<tr class="tablerow1">
-<td>
 <b>Total</b>
 </td>
 <td align="right">
-<b>6</b>
+<b>0</b>
 </td>
 </tr>
 </table>
 <h1>Warnings</h1>
 <p>Click on a warning row to see full context information.</p>
-<h2>
-<a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
-</h2>
-<table class="warningtable" width="100%" cellspacing="0">
-<tr class="tableheader">
-<th align="left">Code</th>
-<th align="left">Warning</th>
-</tr>
-<tr class="tablerow1" onclick="toggleRow('N65578');">
-<td>
-<span class="priority-2">Nm</span>
-</td>
-<td>The method name it.uniba.cli.CommandManager.Gestione(String[]) doesn't start with a lower case letter</td>
-</tr>
-<tr class="detailrow1">
-<td/>
-<td>
-<p id="N65578" style="display: none;">
-<a href="#NM_METHOD_NAMING_CONVENTION">Bug type NM_METHOD_NAMING_CONVENTION (click for details)</a>
-<br/>In class it.uniba.cli.CommandManager<br/>In method it.uniba.cli.CommandManager.Gestione(String[])<br/>At CommandManager.java:[lines 137-174]</p>
-</td>
-</tr>
-<tr class="tablerow0" onclick="toggleRow('N65682');">
-<td>
-<span class="priority-2">Nm</span>
-</td>
-<td>Class it.uniba.file.zip.FileNotInZipException is not derived from an Exception, even though it is named as such</td>
-</tr>
-<tr class="detailrow0">
-<td/>
-<td>
-<p id="N65682" style="display: none;">
-<a href="#NM_CLASS_NOT_EXCEPTION">Bug type NM_CLASS_NOT_EXCEPTION (click for details)</a>
-<br/>In class it.uniba.file.zip.FileNotInZipException<br/>At FileNotInZipException.java:[lines 9-16]</p>
-</td>
-</tr>
-<tr class="tablerow1" onclick="toggleRow('N65717');">
-<td>
-<span class="priority-2">Nm</span>
-</td>
-<td>Class it.uniba.file.zip.NotValidWorkspaceException is not derived from an Exception, even though it is named as such</td>
-</tr>
-<tr class="detailrow1">
-<td/>
-<td>
-<p id="N65717" style="display: none;">
-<a href="#NM_CLASS_NOT_EXCEPTION">Bug type NM_CLASS_NOT_EXCEPTION (click for details)</a>
-<br/>In class it.uniba.file.zip.NotValidWorkspaceException<br/>At NotValidWorkspaceException.java:[lines 9-16]</p>
-</td>
-</tr>
-<tr class="tablerow0" onclick="toggleRow('N65752');">
-<td>
-<span class="priority-2">Nm</span>
-</td>
-<td>Class it.uniba.file.zip.NotZipFileException is not derived from an Exception, even though it is named as such</td>
-</tr>
-<tr class="detailrow0">
-<td/>
-<td>
-<p id="N65752" style="display: none;">
-<a href="#NM_CLASS_NOT_EXCEPTION">Bug type NM_CLASS_NOT_EXCEPTION (click for details)</a>
-<br/>In class it.uniba.file.zip.NotZipFileException<br/>At NotZipFileException.java:[lines 9-16]</p>
-</td>
-</tr>
-</table>
-<h2>
-<a name="Warnings_CORRECTNESS">Correctness Warnings</a>
-</h2>
-<table class="warningtable" width="100%" cellspacing="0">
-<tr class="tableheader">
-<th align="left">Code</th>
-<th align="left">Warning</th>
-</tr>
-<tr class="tablerow1" onclick="toggleRow('N65787');">
-<td>
-<span class="priority-2">INT</span>
-</td>
-<td>Bad comparison of nonnegative value with 0 in it.uniba.main.AppMain.main(String[])</td>
-</tr>
-<tr class="detailrow1">
-<td/>
-<td>
-<p id="N65787" style="display: none;">
-<a href="#INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">Bug type INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE (click for details)</a>
-<br/>In class it.uniba.main.AppMain<br/>In method it.uniba.main.AppMain.main(String[])<br/>Value 0<br/>At AppMain.java:[line 27]</p>
-</td>
-</tr>
-</table>
-<h2>
-<a name="Warnings_STYLE">Dodgy code Warnings</a>
-</h2>
-<table class="warningtable" width="100%" cellspacing="0">
-<tr class="tableheader">
-<th align="left">Code</th>
-<th align="left">Warning</th>
-</tr>
-<tr class="tablerow1" onclick="toggleRow('N65631');">
-<td>
-<span class="priority-2">UrF</span>
-</td>
-<td>Unread public/protected field: it.uniba.entity.Workspace.workspaceZip</td>
-</tr>
-<tr class="detailrow1">
-<td/>
-<td>
-<p id="N65631" style="display: none;">
-<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
-<br/>In class it.uniba.entity.Workspace<br/>Field it.uniba.entity.Workspace.workspaceZip<br/>At Workspace.java:[line 33]</p>
-</td>
-</tr>
-</table>
 <h1>
 <a name="Details">Details</a>
 </h1>
-<h2>
-<a name="INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE">INT_BAD_COMPARISON_WITH_NONNEGATIVE_VALUE: Bad comparison of nonnegative value with negative constant or zero</a>
-</h2>
-
-<p> This code compares a value that is guaranteed to be non-negative with a negative constant or zero.
-</p>
-
-    
-<h2>
-<a name="NM_CLASS_NOT_EXCEPTION">NM_CLASS_NOT_EXCEPTION: Class is not derived from an Exception, even though it is named as such</a>
-</h2>
-
-<p> This class is not derived from another exception, but ends with 'Exception'. This will
-be confusing to users of this class.</p>
-
-    
-<h2>
-<a name="NM_METHOD_NAMING_CONVENTION">NM_METHOD_NAMING_CONVENTION: Method names should start with a lower case letter</a>
-</h2>
-
-  <p>
-Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized.
-</p>
-
-    
-<h2>
-<a name="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD: Unread public/protected field</a>
-</h2>
-
-  <p> This field is never read.&nbsp;
-The field is public or protected, so perhaps
-    it is intended to be used with classes not seen as part of the analysis. If not,
-consider removing it from the class.</p>
-
-    </body>
+</body>
 </html>

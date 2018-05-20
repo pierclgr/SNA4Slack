@@ -24,7 +24,7 @@ import it.uniba.file.zip.NotZipFileException;
 import it.uniba.file.zip.Zip;
 
 public class Workspace {
-	public Zip workspaceZip;
+	private Zip workspaceZip;
 	LinkedHashMap<String, Channel> channels;
 	LinkedHashMap<String, Member> members;
 
@@ -210,5 +210,9 @@ public class Workspace {
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
+	}
+	
+	public Zip getWorkspaceZip() {
+		return workspaceZip;
 	}
 }

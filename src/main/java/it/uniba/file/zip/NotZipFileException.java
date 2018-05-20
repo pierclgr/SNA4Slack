@@ -1,6 +1,6 @@
 package it.uniba.file.zip;
 
-public class NotZipFileException extends Throwable{
+public class NotZipFileException extends Exception {
 
 	/**
 	 * 
