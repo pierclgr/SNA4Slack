@@ -24,6 +24,6 @@ public final class AppMain {
 	 *            The command-line arguments.
 	 */
 	public static void main(final String[] args) {
-				CommandManager.manage(args);
+		CommandManager.manage(args);
 	}
 }

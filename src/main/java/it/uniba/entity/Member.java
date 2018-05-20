@@ -3,19 +3,20 @@ package it.uniba.entity;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Member {
+public final class Member {
 	private String id;
 	private String name;
-	private String real_name;
-	private String display_name;
+	private String realName;
+	private String displayName;
 	private List<Channel> channels;
 
-	public Member(String id, String name, String real_name, String display_name) {
-		this.id=id;
-		this.name=name;
-		this.real_name=real_name;
-		this.display_name=display_name;
-		this.channels=new LinkedList<Channel>();
+	public Member(final String memberId, final String memberName,
+			final String memberRealName, final String memberDisplayName) {
+		this.id = memberId;
+		this.name = memberName;
+		this.realName = memberRealName;
+		this.displayName = memberDisplayName;
+		this.channels = new LinkedList<Channel>();
 	}
 
 	public String getId() {
@@ -23,36 +24,26 @@ public class Member {
 	}
 
 	public String getName() {
-		if(!display_name.equals("")) {
-			return display_name;
-		}else if(!real_name.equals("")) {
-			return real_name;
-		}else  if(!name.equals("")) {
+		if (!displayName.equals("")) {
+			return displayName;
+		} else if (!realName.equals("")) {
+			return realName;
+		} else if (!name.equals("")) {
 			return name;
-		}else {
+		} else {
 			return id;
 		}
 	}
 
-	public boolean isUser(String member) {
-		if(display_name.equals(member)) {
-			return true;
-		}else if(real_name.equals(member)) {
-			return true;
-		}else if(name.equals(member)) {
-			return true;
-		}else if(id.equals(member)) {
-			return true;
-		}else {
-			return false;
-		}
+	public boolean isUser(final String member) {
+		return displayName.equals(member) || realName.equals(member) || name.equals(member) || id.equals(member);
 	}
 
 	public String getUserName() {
 		return name;
 	}
 
-	public LinkedList<Channel> getChannels(){
+	public LinkedList<Channel> getChannels() {
 		return (LinkedList<Channel>) channels;
 	}
 }
