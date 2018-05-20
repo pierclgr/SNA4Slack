@@ -1,6 +1,6 @@
 package it.uniba.entity;
 
-public class MemberNotValidException extends Throwable{
+public class MemberNotValidException extends Exception {
 
 	/**
 	 * 

@@ -1,6 +1,6 @@
 package it.uniba.entity;
 
-public class ChannelNotValidException extends Throwable {
+public class ChannelNotValidException extends Exception {
 
 	/**
 	 * 

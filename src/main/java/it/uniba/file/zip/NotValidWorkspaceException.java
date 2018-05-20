@@ -1,6 +1,6 @@
 package it.uniba.file.zip;
 
-public class NotValidWorkspaceException extends Throwable {
+public class NotValidWorkspaceException extends Exception {
 
 	/**
 	 * 

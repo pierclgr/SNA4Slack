@@ -22,6 +22,16 @@ public class Mention {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((from == null) ? 0 : from.hashCode());
+		result = prime * result + ((to == null) ? 0 : to.hashCode());
+		result = prime * result + weight;
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		boolean out= false;
 		if(obj instanceof Mention&&from.equals(((Mention) obj).getFrom())&&to.equals(((Mention) obj).getTo())) {
@@ -29,7 +39,8 @@ public class Mention {
 		}
 		return out;
 	}
-
+	
+	@Override
 	public String toString() {
 		return "("+this.getFrom().getName()+", "+this.getTo().getName()+")";
 	}

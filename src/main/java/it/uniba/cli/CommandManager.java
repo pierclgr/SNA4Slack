@@ -464,7 +464,7 @@ public static void getMentionsToUserWeighed(String workspace, String channel, St
 	}
 	
 	
-	public static void Gestione(String[] args) {
+	public static void manage(String[] args) {
 		switch (args.length) {
 		case 0:
 			CommandManager.help();
