@@ -4,9 +4,19 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Classe che modella l'insieme di comandi possibili.
+ */
 public final class Commands {
+	/**
+	 * Lista di comandi possibili.
+	 */
 	private List<Command> commands;
 
+	/**
+	 * Metodo costruttore della classe Commands, permette di creare oggetti istanze
+	 * della classe Commands.
+	 */
 	public Commands() {
 		this.commands = new LinkedList<Command>();
 		commands.add(new Command("members", "-f \"fileName\"", "Get all members from \"fileName\" zip file"));
@@ -32,20 +42,36 @@ public final class Commands {
 				"Get all mentions from \"memberName\" member in \"channelName\" channel from \"fileName\" zip file"));
 		commands.add(new Command("mentions", "-w -from \"memberName\" -ch \"channelName\" -f \"fileName\"",
 				"Get all mentions weighed from \"memberName\" member in \"channelName\" channel from "
-				+ "\"fileName\" zip file"));
+						+ "\"fileName\" zip file"));
 		commands.add(new Command("mentions", "-to \"memberName\" -f \"fileName\"",
 				"Get all mentions to \"memberName\" member from \"fileName\" zip file"));
 		commands.add(new Command("mentions", "-to \"memberName\" -ch \"channelName\" -f \"fileName\"",
 				"Get all mentions to \"memberName\" member in \"channelName\" channel from \"fileName\" zip file"));
 		commands.add(new Command("mentions", "-w -to \"memberName\" -ch \"channelName\" -f \"fileName\"",
 				"Get all mentions weighed to \"memberName\" member in \"channelName\" channel from "
-				+ "\"fileName\" zip file"));
+						+ "\"fileName\" zip file"));
 	}
 
+	/**
+	 * Restituisce la lista contenente i comandi possibili.
+	 * 
+	 * @return riferimento ad una LinkedList<Command> ovvero la lista di comandi
+	 *         possibili.
+	 */
 	public LinkedList<Command> getCommands() {
 		return (LinkedList<Command>) this.commands;
 	}
 
+	/**
+	 * Permette di verificare la presenza di un comando all'interno della lista di
+	 * comandi possibili.
+	 * 
+	 * @param c
+	 *            istanza della clsse Command che rappresenta il comando di cui
+	 *            verificare la presenza.
+	 * @return boolen che vale true se il comando in input alla funzione è presente
+	 *         nella lista di comandi possibili, false altrimenti.
+	 */
 	boolean contains(final Command c) {
 		boolean found = false;
 		ListIterator<Command> iterator = (ListIterator<Command>) commands.iterator();

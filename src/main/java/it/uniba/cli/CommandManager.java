@@ -19,21 +19,57 @@ import it.uniba.file.zip.FileNotInZipException;
 import it.uniba.file.zip.NotValidWorkspaceException;
 import it.uniba.file.zip.NotZipFileException;
 
+/**
+ * Classe che contiene l'implementazione dei possibili comandi.
+ */
 public final class CommandManager {
-	static final int ZERO = 0;
-	static final int ONE = 1;
-	static final int TWO = 2;
-	static final int THREE = 3;
-	static final int FOUR = 4;
-	static final int FIVE = 5;
-	static final int SIX = 6;
-	static final int SEVEN = 7;
-	static final int EIGHT = 8;
-	static final int NINE = 9;
+	/**
+	 * Attributo di classe che rappresenta il valore 0.
+	 */
+	private static final int ZERO = 0;
+	/**
+	 * Attributo di classe che rappresenta il valore 1.
+	 */
+	private static final int ONE = 1;
+	/**
+	 * Attributo di classe che rappresenta il valore 2.
+	 */
+	private static final int TWO = 2;
+	/**
+	 * Attributo di classe che rappresenta il valore 3.
+	 */
+	private static final int THREE = 3;
+	/**
+	 * Attributo di classe che rappresenta il valore 4.
+	 */
+	private static final int FOUR = 4;
+	/**
+	 * Attributo di classe che rappresenta il valore 5.
+	 */
+	private static final int FIVE = 5;
+	/**
+	 * Attributo di classe che rappresenta il valore 6.
+	 */
+	private static final int SIX = 6;
+	/**
+	 * Attributo di classe che rappresenta il valore 7.
+	 */
+	private static final int SEVEN = 7;
+	/**
+	 * Attributo di classe che rappresenta il valore 8.
+	 */
+	private static final int EIGHT = 8;
 
+	/**
+	 * Metodo costruttore della classe CommandManager, permette di costruire oggetti
+	 * istanze della classe CommandManager.
+	 */
 	private CommandManager() {
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista di tutti i possibili comandi.
+	 */
 	public static void help() {
 		Commands commands = new Commands();
 		int maxNumCharCommand = ZERO;
@@ -60,6 +96,13 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream tutti i channels presenti nel workspace
+	 * passatogli in input.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
 	public static void getChannels(final String workspace) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -80,6 +123,13 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream tutti i members presenti nel workspace
+	 * pasatogli in input.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
 	public static void getMembers(final String workspace) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -101,6 +151,15 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream tutti i members di uno specifico channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono ottenere i
+	 *            Members.
+	 */
 	public static void getMembersOfChannel(final String workspace, final String channel) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -121,6 +180,12 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream tutti i member raggruppati per channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
 	public static void getMembersForChannels(final String workspace) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -152,6 +217,16 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream tutte le mentions effettuate da uno
+	 * specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
 	public static void getMentionsFromUser(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
@@ -182,6 +257,16 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista pesata di mentions effettuate da
+	 * uno specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
 	public static void getMentionsFromUserWeighed(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
@@ -218,6 +303,19 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista di mentions effettuate da uno
+	 * specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
 	public static void getMentionsFromUser(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -238,6 +336,19 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista pesata di mentions effettuate da
+	 * uno specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
 	public static void getMentionsFromUserWeighed(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -258,6 +369,16 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista di mentions riferite ad uno
+	 * specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
 	public static void getMentionsToUser(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
@@ -288,6 +409,19 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista di mentions riferite ad uno
+	 * specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
 	public static void getMentionsToUser(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -308,6 +442,16 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista di mentions in un determinato
+	 * channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere lee
+	 *            mention.
+	 */
 	public static void getMentions(final String workspace, final String channel) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -328,6 +472,12 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista di tutte le mentions.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
 	public static void getMentions(final String workspace) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
@@ -360,6 +510,12 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
 	public static void getMentionsWeighed(final String workspace) {
 		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 		try {
@@ -398,6 +554,16 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions
+	 * prenti in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 */
 	public static void getMentionsWeighed(final String workspace, final String channel) {
 		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 		try {
@@ -425,6 +591,16 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentios
+	 * riferite ad un particolare member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta un particolare member di cui si vogliono
+	 *            conoscere le mention.
+	 */
 	public static void getMentionsToUserWeighed(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
@@ -461,6 +637,19 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions
+	 * prenti in un determinato channel riferite ad un detereminato member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta un particolare channel di cui si vogliono
+	 *            conoscere le mention.
+	 * @param member
+	 *            String che rappresenta un particolare member di cui si vogliono
+	 *            conoscere le mention.
+	 */
 	public static void getMentionsToUserWeighed(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -481,6 +670,14 @@ public final class CommandManager {
 		}
 	}
 
+	/**
+	 * Permette di richiamare il giusto metodo associato al comando specificato
+	 * dall'utente attraverso la riga di comando.
+	 * 
+	 * @param args
+	 *            array di String ciascuno dei quali contiene un singolo elemento
+	 *            del comando digitato dall'utente da riga di comando.
+	 */
 	public static void manage(final String[] args) {
 		switch (args.length) {
 		case ZERO:
