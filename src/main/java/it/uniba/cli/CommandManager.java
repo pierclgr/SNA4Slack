@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.ListIterator;
-
 import it.uniba.entity.Channel;
 import it.uniba.entity.ChannelNotValidException;
 import it.uniba.entity.Member;
@@ -20,11 +19,61 @@ import it.uniba.file.zip.FileNotInZipException;
 import it.uniba.file.zip.NotValidWorkspaceException;
 import it.uniba.file.zip.NotZipFileException;
 
-public class CommandManager {
+/**
+ * Classe che contiene l'implementazione dei possibili comandi.
+ */
+public final class CommandManager {
+	/**
+	 * Attributo di classe che rappresenta il valore 0.
+	 */
+	private static final int ZERO = 0;
+	/**
+	 * Attributo di classe che rappresenta il valore 1.
+	 */
+	private static final int ONE = 1;
+	/**
+	 * Attributo di classe che rappresenta il valore 2.
+	 */
+	private static final int TWO = 2;
+	/**
+	 * Attributo di classe che rappresenta il valore 3.
+	 */
+	private static final int THREE = 3;
+	/**
+	 * Attributo di classe che rappresenta il valore 4.
+	 */
+	private static final int FOUR = 4;
+	/**
+	 * Attributo di classe che rappresenta il valore 5.
+	 */
+	private static final int FIVE = 5;
+	/**
+	 * Attributo di classe che rappresenta il valore 6.
+	 */
+	private static final int SIX = 6;
+	/**
+	 * Attributo di classe che rappresenta il valore 7.
+	 */
+	private static final int SEVEN = 7;
+	/**
+	 * Attributo di classe che rappresenta il valore 8.
+	 */
+	private static final int EIGHT = 8;
+
+	/**
+	 * Metodo costruttore della classe CommandManager, permette di costruire oggetti
+	 * istanze della classe CommandManager.
+	 */
+	private CommandManager() {
+	}
+
+	/**
+	 * Scrive sullo standard output stream la lista di tutti i possibili comandi.
+	 */
 	public static void help() {
 		Commands commands = new Commands();
-		int maxNumCharCommand = 0;
-		int maxNumCharDescription = 0;
+		int maxNumCharCommand = ZERO;
+		int maxNumCharDescription = ZERO;
 		ListIterator<Command> commandsIterator = (ListIterator<Command>) commands.getCommands().iterator();
 		while (commandsIterator.hasNext()) {
 			Command curr = commandsIterator.next();
@@ -47,7 +96,14 @@ public class CommandManager {
 		}
 	}
 
-	public static void getChannels(String workspace) {
+	/**
+	 * Scrive sullo standard output stream tutti i channels presenti nel workspace
+	 * passatogli in input.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getChannels(final String workspace) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
@@ -67,7 +123,14 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMembers(String workspace) {
+	/**
+	 * Scrive sullo standard output stream tutti i members presenti nel workspace
+	 * pasatogli in input.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMembers(final String workspace) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedHashMap<String, Member> workspaceMembers = slackWorkspace.getAllMembers();
@@ -88,7 +151,16 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMembersOfChannel(String workspace, String channel) {
+	/**
+	 * Scrive sullo standard output stream tutti i members di uno specifico channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono ottenere i
+	 *            Members.
+	 */
+	public static void getMembersOfChannel(final String workspace, final String channel) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedList<Member> channelMembers = slackWorkspace.getMembersOfChannel(channel);
@@ -108,7 +180,13 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMembersForChannels(String workspace) {
+	/**
+	 * Scrive sullo standard output stream tutti i member raggruppati per channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMembersForChannels(final String workspace) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
@@ -139,19 +217,30 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMentionsFromUser(String workspace, String member) {
+	/**
+	 * Scrive sullo standard output stream tutte le mentions effettuate da uno
+	 * specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUser(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
 			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
 			while (channelsIeretor.hasNext()) {
-				LinkedList<Mention> currChannelMentions = slackWorkspace.getMentionsFromUser(channelsIeretor.next().getName(), member);
+				LinkedList<Mention> currChannelMentions = slackWorkspace
+						.getMentionsFromUser(channelsIeretor.next().getName(), member);
 				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
-					if(!out.containsKey(currMentionKey)) {
+					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
 					}
@@ -167,28 +256,40 @@ public class CommandManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	public static void getMentionsFromUserWeighed(String workspace, String member) {
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di mentions effettuate da
+	 * uno specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUserWeighed(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
 			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
 			while (channelsIeretor.hasNext()) {
-				LinkedList<Mention> currChannelMentions = slackWorkspace.getMentionsFromUser(channelsIeretor.next().getName(), member);
+				LinkedList<Mention> currChannelMentions = slackWorkspace
+						.getMentionsFromUser(channelsIeretor.next().getName(), member);
 				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
-					if(!out.containsKey(currMentionKey)) {
+					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
-					}else {
-						out.get(currMentionKey).setWeight(out.get(currMentionKey).getWeight()+currMention.getWeight());
+					} else {
+						out.get(currMentionKey)
+								.setWeight(out.get(currMentionKey).getWeight() + currMention.getWeight());
 					}
 				}
 			}
 			Iterator<Mention> outIterator = out.values().iterator();
-			while(outIterator.hasNext()) {
+			while (outIterator.hasNext()) {
 				System.out.println(outIterator.next().toFullString());
 			}
 		} catch (IOException | ChannelNotValidException e) {
@@ -202,7 +303,20 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMentionsFromUser(String workspace, String channel, String member) {
+	/**
+	 * Scrive sullo standard output stream la lista di mentions effettuate da uno
+	 * specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUser(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsFromUser(channel, member);
@@ -221,8 +335,21 @@ public class CommandManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	public static void getMentionsFromUserWeighed(String workspace, String channel, String member) {
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di mentions effettuate da
+	 * uno specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUserWeighed(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsFromUser(channel, member);
@@ -242,19 +369,30 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMentionsToUser(String workspace, String member) {
+	/**
+	 * Scrive sullo standard output stream la lista di mentions riferite ad uno
+	 * specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsToUser(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
 			Iterator<Channel> channelsIterator = channelsCollection.iterator();
 			while (channelsIterator.hasNext()) {
-				LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channelsIterator.next().getName(), member);
+				LinkedList<Mention> workspaceMentions = slackWorkspace
+						.getMentionsToUser(channelsIterator.next().getName(), member);
 				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
-					if(!out.containsKey(currMentionKey)) {
+					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
 					}
@@ -271,7 +409,20 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMentionsToUser(String workspace, String channel, String member) {
+	/**
+	 * Scrive sullo standard output stream la lista di mentions riferite ad uno
+	 * specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsToUser(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
@@ -291,7 +442,17 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMentions(String workspace, String channel) {
+	/**
+	 * Scrive sullo standard output stream la lista di mentions in un determinato
+	 * channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere lee
+	 *            mention.
+	 */
+	public static void getMentions(final String workspace, final String channel) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
@@ -311,7 +472,13 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMentions(String workspace) {
+	/**
+	 * Scrive sullo standard output stream la lista di tutte le mentions.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMentions(final String workspace) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -323,8 +490,8 @@ public class CommandManager {
 				Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
-					if(!out.containsKey(currMentionKey)) {
+					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
 					}
@@ -343,7 +510,13 @@ public class CommandManager {
 		}
 	}
 
-	public static void getMentionsWeighed(String workspace) {
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMentionsWeighed(final String workspace) {
 		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -355,16 +528,17 @@ public class CommandManager {
 				Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
-					if(!out.containsKey(currMentionKey)) {
+					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
-					}else {
-						out.get(currMentionKey).setWeight(currMention.getWeight()+out.get(currMentionKey).getWeight());;
+					} else {
+						out.get(currMentionKey)
+								.setWeight(currMention.getWeight() + out.get(currMentionKey).getWeight());
 					}
 				}
 			}
 			Iterator<Mention> outIterator = out.values().iterator();
-			while(outIterator.hasNext()) {
+			while (outIterator.hasNext()) {
 				System.out.println(outIterator.next().toFullString());
 			}
 		} catch (IOException e) {
@@ -379,8 +553,18 @@ public class CommandManager {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void getMentionsWeighed(String workspace, String channel) {
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions
+	 * prenti in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsWeighed(final String workspace, final String channel) {
 		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
@@ -388,11 +572,11 @@ public class CommandManager {
 			Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				Mention currMention = mentionsIterator.next();
-				String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
+				String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
 				out.put(currMentionKey, currMention);
 			}
 			Iterator<Mention> outIterator = out.values().iterator();
-			while(outIterator.hasNext()) {
+			while (outIterator.hasNext()) {
 				System.out.println(outIterator.next().toFullString());
 			}
 		} catch (IOException e) {
@@ -406,29 +590,40 @@ public class CommandManager {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	
-	public static void getMentionsToUserWeighed(String workspace, String member) {
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentios
+	 * riferite ad un particolare member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta un particolare member di cui si vogliono
+	 *            conoscere le mention.
+	 */
+	public static void getMentionsToUserWeighed(final String workspace, final String member) {
 		try {
 			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
 			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
 			while (channelsIeretor.hasNext()) {
-				LinkedList<Mention> currChannelMentions = slackWorkspace.getMentionsToUser(channelsIeretor.next().getName(), member);
+				LinkedList<Mention> currChannelMentions = slackWorkspace
+						.getMentionsToUser(channelsIeretor.next().getName(), member);
 				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId()+","+currMention.getTo().getId();
-					if(!out.containsKey(currMentionKey)) {
+					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
-					}else {
-						out.get(currMentionKey).setWeight(out.get(currMentionKey).getWeight()+currMention.getWeight());
+					} else {
+						out.get(currMentionKey)
+								.setWeight(out.get(currMentionKey).getWeight() + currMention.getWeight());
 					}
 				}
 			}
 			Iterator<Mention> outIterator = out.values().iterator();
-			while(outIterator.hasNext()) {
+			while (outIterator.hasNext()) {
 				System.out.println(outIterator.next().toFullString());
 			}
 		} catch (IOException | ChannelNotValidException e) {
@@ -442,8 +637,20 @@ public class CommandManager {
 		}
 	}
 
-
-public static void getMentionsToUserWeighed(String workspace, String channel, String member) {
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions
+	 * prenti in un determinato channel riferite ad un detereminato member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta un particolare channel di cui si vogliono
+	 *            conoscere le mention.
+	 * @param member
+	 *            String che rappresenta un particolare member di cui si vogliono
+	 *            conoscere le mention.
+	 */
+	public static void getMentionsToUserWeighed(final String workspace, final String channel, final String member) {
 		try {
 			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
 			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
@@ -462,84 +669,106 @@ public static void getMentionsToUserWeighed(String workspace, String channel, St
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	
-	public static void manage(String[] args) {
+
+	/**
+	 * Permette di richiamare il giusto metodo associato al comando specificato
+	 * dall'utente attraverso la riga di comando.
+	 * 
+	 * @param args
+	 *            array di String ciascuno dei quali contiene un singolo elemento
+	 *            del comando digitato dall'utente da riga di comando.
+	 */
+	public static void manage(final String[] args) {
 		switch (args.length) {
-		case 0:
+		case ZERO:
 			CommandManager.help();
 			break;
-		case 1:
-			if (args[0].equals("help"))
+		case ONE:
+			if (args[ZERO].equals("help")) {
 				CommandManager.help();
-			else
-				System.out.println("'" + args[0] + "'" + " is not a valid command, see 'help'.");
+			} else {
+				System.out.println("'" + args[ZERO] + "'" + " is not a valid command, see 'help'.");
+			}
 			break;
-		case 2:
-			System.out.println("'" + args[0] + " " + args[1] + "'" + " is not a valid command, see 'help'.");
+		case TWO:
+			System.out.println("'" + args[ZERO] + " " + args[ONE] + "'" + " is not a valid command, see 'help'.");
 			break;
-		case 3:
-			if (args[0].equals("members") && args[1].equals("-f"))
-				CommandManager.getMembers(args[2]);
-			else if (args[0].equals("channels") && args[1].equals("-f"))
-				CommandManager.getChannels(args[2]);
-			else if (args[0].equals("mentions") && args[1].equals("-f"))
-				CommandManager.getMentions(args[2]);
-			else
+		case THREE:
+			if (args[ZERO].equals("members") && args[ONE].equals("-f")) {
+				CommandManager.getMembers(args[TWO]);
+			} else if (args[ZERO].equals("channels") && args[ONE].equals("-f")) {
+				CommandManager.getChannels(args[TWO]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-f")) {
+				CommandManager.getMentions(args[TWO]);
+			} else {
+				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + "'"
+						+ " is not a valid command, see 'help'.");
+			}
+			break;
+		case FOUR:
+			if (args[ZERO].equals("members") && args[ONE].equals("-ch") && args[TWO].equals("-f")) {
+				CommandManager.getMembersForChannels(args[THREE]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-f")) {
+				CommandManager.getMentionsWeighed(args[THREE]);
+			} else {
+				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + "'"
+						+ " is not a valid command, see 'help'.");
+			}
+			break;
+		case FIVE:
+			if (args[ZERO].equals("members") && args[ONE].equals("-ch") && args[THREE].equals("-f")) {
+				CommandManager.getMembersOfChannel(args[FOUR], args[TWO]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-ch") && args[THREE].equals("-f")) {
+				CommandManager.getMentions(args[FOUR], args[TWO]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-to") && args[THREE].equals("-f")) {
+				CommandManager.getMentionsToUser(args[FOUR], args[TWO]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-from") && args[THREE].equals("-f")) {
+				CommandManager.getMentionsFromUser(args[FOUR], args[TWO]);
+			} else {
+				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " "
+						+ args[FOUR] + "'" + " is not a valid command, see 'help'.");
+			}
+			break;
+		case SIX:
+			if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-from")
+					&& args[FOUR].equals("-f")) {
+				CommandManager.getMentionsFromUserWeighed(args[FIVE], args[THREE]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-ch")
+					&& args[FOUR].equals("-f")) {
+				CommandManager.getMentionsWeighed(args[FIVE], args[THREE]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-to")
+					&& args[FOUR].equals("-f")) {
+				CommandManager.getMentionsToUserWeighed(args[FIVE], args[THREE]);
+			} else {
+				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " "
+						+ args[FOUR] + "'" + args[FIVE] + "'" + " is not a valid command, see 'help'.");
+			}
+			break;
+		case SEVEN:
+			if (args[ZERO].equals("mentions") && args[ONE].equals("-to") && args[THREE].equals("-ch")
+					&& args[FIVE].equals("-f")) {
+				CommandManager.getMentionsToUser(args[SIX], args[FOUR], args[TWO]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-from") && args[THREE].equals("-ch")
+					&& args[FIVE].equals("-f")) {
+				CommandManager.getMentionsFromUser(args[SIX], args[FOUR], args[TWO]);
+			} else {
 				System.out.println(
-						"'" + args[0] + " " + args[1] + " " + args[2] + "'" + " is not a valid command, see 'help'.");
+						"'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " " + args[FOUR]
+								+ " " + args[FIVE] + " " + args[SIX] + "'" + " is not a valid command, see 'help'.");
+			}
 			break;
-		case 4:
-			if (args[0].equals("members") && args[1].equals("-ch") && args[2].equals("-f"))
-				CommandManager.getMembersForChannels(args[3]);
-			else if (args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-f"))
-				CommandManager.getMentionsWeighed(args[3]);
-			else
-				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + "'"
+		case EIGHT:
+			if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-to")
+					&& args[FOUR].equals("-ch") && args[SIX].equals("-f")) {
+				CommandManager.getMentionsToUserWeighed(args[SEVEN], args[FIVE], args[THREE]);
+			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-from")
+					&& args[FOUR].equals("-ch") && args[SIX].equals("-f")) {
+				CommandManager.getMentionsFromUserWeighed(args[SEVEN], args[FIVE], args[THREE]);
+			} else {
+				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " "
+						+ args[FOUR] + " " + args[FIVE] + " " + args[SIX] + " " + args[SEVEN] + "'"
 						+ " is not a valid command, see 'help'.");
-			break;
-		case 5:
-			if (args[0].equals("members") && args[1].equals("-ch") && args[3].equals("-f"))
-				CommandManager.getMembersOfChannel(args[4], args[2]);
-			else if (args[0].equals("mentions") && args[1].equals("-ch") && args[3].equals("-f"))
-				CommandManager.getMentions(args[4], args[2]);
-			else if (args[0].equals("mentions") && args[1].equals("-to") && args[3].equals("-f"))
-				CommandManager.getMentionsToUser(args[4], args[2]);
-			else if (args[0].equals("mentions") && args[1].equals("-from") && args[3].equals("-f"))
-				CommandManager.getMentionsFromUser(args[4], args[2]);
-			else
-				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + "'"
-						+ " is not a valid command, see 'help'.");
-			break;
-		case 6:
-			if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-from") && args[4].equals("-f"))
-			    CommandManager.getMentionsFromUserWeighed(args[5],args[3]);
-			else if (args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-ch") && args[4].equals("-f"))
-				CommandManager.getMentionsWeighed(args[5], args[3]);
-			else if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-to") && args[4].equals("-f"))
-        CommandManager.getMentionsToUserWeighed(args[5],args[3]);
-			else
-				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + "'" + args[5] + "'"
-						+ " is not a valid command, see 'help'.");
-			break;
-		case 7:
-			if (args[0].equals("mentions") && args[1].equals("-to") && args[3].equals("-ch") && args[5].equals("-f"))
-				CommandManager.getMentionsToUser(args[6], args[4], args[2]);
-			else if (args[0].equals("mentions") && args[1].equals("-from") && args[3].equals("-ch")
-					&& args[5].equals("-f"))
-				CommandManager.getMentionsFromUser(args[6], args[4], args[2]);
-			else
-				System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + " "
-						+ args[5] + " " + args[6] + "'" + " is not a valid command, see 'help'.");
-			break;
-		case 8:
-			if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-to") && args[4].equals("-ch") && args[6].equals("-f"))
-			  CommandManager.getMentionsToUserWeighed(args[7], args[5], args[3]);
-			else if(args[0].equals("mentions") && args[1].equals("-w") && args[2].equals("-from") && args[4].equals("-ch") && args[6].equals("-f"))
-				CommandManager.getMentionsFromUserWeighed(args[7], args[5], args[3]);
-      else
-        System.out.println("'" + args[0] + " " + args[1] + " " + args[2] + " " + args[3] + " " + args[4] + " "
-						+ args[5] + " " + args[6] + " " + args[7] + "'" + " is not a valid command, see 'help'.");
+			}
 			break;
 		default:
 			System.out.println("Command not found, see 'help'.");

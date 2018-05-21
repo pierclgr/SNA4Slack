@@ -16,42 +16,70 @@ import java.util.zip.ZipException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import it.uniba.entity.Channel;
-import it.uniba.entity.Member;
 import it.uniba.file.zip.FileNotInZipException;
 import it.uniba.file.zip.NotValidWorkspaceException;
 import it.uniba.file.zip.NotZipFileException;
 import it.uniba.file.zip.Zip;
 
-public class Workspace {
+/**
+ * Classe che modella il workspace.
+ */
+public final class Workspace {
+	/**
+	 * zip file.
+	 */
 	private Zip workspaceZip;
-	LinkedHashMap<String, Channel> channels;
-	LinkedHashMap<String, Member> members;
+	/**
+	 * lista di channel nel workspace.
+	 */
+	private LinkedHashMap<String, Channel> channels;
+	/**
+	 * lista di members nel workspace.
+	 */
+	private LinkedHashMap<String, Member> members;
 
-	public Workspace(String workspaceZipFile)
+	/**
+	 * Metodo costruttore della classe workspace. Permette di creare oggetti istanze
+	 * della classe workspace.
+	 * 
+	 * @param workspaceZipFile
+	 *            String che rappresenta il percorso del workspace.
+	 * @throws IOException
+	 *             Lancia IOException se ci sono errori di input/output.
+	 * @throws NotValidWorkspaceException
+	 *             Lancia NotValidWorkspaceException quando il workspace specificato
+	 *             non è valido.
+	 * @throws FileNotInZipException
+	 *             Lancia FileNotInZipException quando il file specificato non è
+	 *             all'interno dello zip file.
+	 * @throws NotZipFileException
+	 *             Lancia NotZipFileException quando il file zip specificato non è
+	 *             valido.
+	 */
+	public Workspace(final String workspaceZipFile)
 			throws IOException, NotValidWorkspaceException, FileNotInZipException, NotZipFileException {
 		try {
-			Zip workspaceZip = new Zip(workspaceZipFile);
-			if (!workspaceZip.contains("channels.json") || !workspaceZip.contains("users.json")) {
+			Zip workspace = new Zip(workspaceZipFile);
+			if (!workspace.contains("channels.json") || !workspace.contains("users.json")) {
 				throw new NotValidWorkspaceException(workspaceZipFile);
 			} else {
-				this.workspaceZip = workspaceZip;
+				this.workspaceZip = workspace;
 				this.channels = new LinkedHashMap<String, Channel>();
 				this.members = new LinkedHashMap<String, Member>();
-				String real_name = "";
-				String display_name = "";
+				String realName = "";
+				String displayName = "";
 
 				JSONArray membersRootArray = new JSONArray(workspaceZip.getFileContent("users.json"));
 				for (int i = 0; i < membersRootArray.length(); i++) {
 					JSONObject member = membersRootArray.getJSONObject(i);
 					if (member.getJSONObject("profile").has("real_name")) {
-						real_name = member.getJSONObject("profile").getString("real_name");
+						realName = member.getJSONObject("profile").getString("real_name");
 					}
 					if (member.getJSONObject("profile").has("display_name")) {
-						display_name = member.getJSONObject("profile").getString("display_name");
+						displayName = member.getJSONObject("profile").getString("display_name");
 					}
-					Member currMember = new Member(member.getString("id"), member.getString("name"), real_name,
-							display_name);
+					Member currMember = new Member(member.getString("id"), member.getString("name"), realName,
+							displayName);
 					members.put(member.getString("id"), currMember);
 				}
 				JSONArray channelsRootArray = new JSONArray(workspaceZip.getFileContent("channels.json"));
@@ -88,24 +116,26 @@ public class Workspace {
 										List<String> allMatches = new LinkedList<String>();
 										while (matcher.find()) {
 											String curr = matcher.group().replaceAll("<@", "").replaceAll(">", "");
-											if(members.containsKey(curr)) {
+											if (members.containsKey(curr)) {
 												if (!curr.equals(currSender)) {
 													allMatches.add(curr);
 												}
-											}	
+											}
 										}
 										ListIterator<String> it = (ListIterator<String>) allMatches.iterator();
 										while (it.hasNext()) {
 											String currReceiver = it.next();
-											Mention currMention = new Mention(members.get(currSender),members.get(currReceiver));
+											Mention currMention = new Mention(members.get(currSender),
+													members.get(currReceiver));
 											if (!channels.get(currChannel).containsMention(currMention)) {
 												channels.get(currChannel).getMentions().add(currMention);
-											}else {
-												ListIterator<Mention> mentionIterator = channels.get(currChannel).getMentions().listIterator();
+											} else {
+												ListIterator<Mention> mentionIterator = channels.get(currChannel)
+														.getMentions().listIterator();
 												while (mentionIterator.hasNext()) {
 													Mention curr = mentionIterator.next();
-													if(curr.equals(currMention)) {
-														curr.setWeight(curr.getWeight()+1);
+													if (curr.equals(currMention)) {
+														curr.setWeight(curr.getWeight() + 1);
 													}
 												}
 											}
@@ -123,15 +153,36 @@ public class Workspace {
 		}
 	}
 
+	/**
+	 * Restituisce la lista di tutti i channels nel workspace corrente.
+	 * 
+	 * @return riferimento ad una LinkedHashMap<String, Channel> che rappresenta la
+	 *         lista di tutti i channels del workspace corrente.
+	 */
 	public LinkedHashMap<String, Channel> getAllChannels() {
 		return (LinkedHashMap<String, Channel>) this.channels;
 	}
 
+	/**
+	 * Restituisce la lista di tutti i members nel workspce corrente.
+	 * 
+	 * @return riferimento ad una LinkedHashMap<String, Member> che rappresenta la
+	 *         lista di tutti i members del workspace corrente.
+	 */
 	public LinkedHashMap<String, Member> getAllMembers() {
 		return (LinkedHashMap<String, Member>) this.members;
 	}
 
-	public LinkedList<Member> getMembersOfChannel(String channelName) throws ChannelNotValidException {
+	/**
+	 * Restituisce la lista dei members di un determinato channel.
+	 * 
+	 * @param channelName
+	 *            String che rappresenta un determinato channel.
+	 * @return riferimento ad una LinkedList<Member> che rappresenta la lista di
+	 *         member di un determinato channel.
+	 * @throws ChannelNotValidException Lancia un eccezione quando il channel specificato non è valido.
+	 */
+	public LinkedList<Member> getMembersOfChannel(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
 			return channels.get(channelName).getMembers();
 		} else {
@@ -139,15 +190,29 @@ public class Workspace {
 		}
 	}
 
-	public LinkedList<Mention> getMentionsFromUser(String channelInput, String memberInput)
+	/**
+	 * Restituisce la lista di mentions fatte da un determinato member in un
+	 * determinato channel.
+	 * 
+	 * @param channelInput
+	 *            String che rappresenta un detrminato channel.
+	 * @param memberInput
+	 *            String che rappresenta un detrminato member.
+	 * @return riferimento ad un LinkedList<Mention> che rappresenta la lista di
+	 *         mention fatte da un determinato member in un detrminato channel.
+	 * @throws ChannelNotValidException Lancia un eccezione quando il channel specificato non è valido.
+	 * @throws MemberNotValidException Lancia un eccezione quando il member specificato non è valido.
+	 */
+	public LinkedList<Mention> getMentionsFromUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
+		String memberID = memberInput;
 		Collection<Member> membersCollection = members.values();
 		Iterator<Member> membersIterator = membersCollection.iterator();
 		boolean found = false;
-		while (membersIterator.hasNext()&&!found) {
+		while (membersIterator.hasNext() && !found) {
 			Member currMember = membersIterator.next();
-			if(currMember.isUser(memberInput)) {
-				memberInput = currMember.getId();
+			if (currMember.isUser(memberID)) {
+				memberID = currMember.getId();
 				found = true;
 			}
 		}
@@ -158,7 +223,7 @@ public class Workspace {
 				ListIterator<Mention> it = (ListIterator<Mention>) mentions.iterator();
 				while (it.hasNext()) {
 					Mention curMention = it.next();
-					if (curMention.getFrom().equals(members.get(memberInput))) {
+					if (curMention.getFrom().equals(members.get(memberID))) {
 						out.add(curMention);
 					}
 				}
@@ -167,20 +232,34 @@ public class Workspace {
 				throw new ChannelNotValidException(channelInput);
 			}
 		} else {
-			throw new MemberNotValidException(memberInput);
+			throw new MemberNotValidException(memberID);
 		}
 
 	}
 
-	public LinkedList<Mention> getMentionsToUser(String channelInput, String memberInput)
+	/**
+	 * Restituisce le mention riferite ad uno specifico member in uno specifico
+	 * channel.
+	 * 
+	 * @param channelInput
+	 *            String che rappresenta un detrminatro channel.
+	 * @param memberInput
+	 *            String che rappresenta un determinato member.
+	 * @return riferimento ad un LinkedList<Mention> che rappresenta la lista di
+	 *         mention fatte in uno specifico channel ad un particolare member.
+	 * @throws ChannelNotValidException Lancia un eccezione quando il channel specificato non è valido.
+	 * @throws MemberNotValidException Lancia un eccezione quando il member specificato non è valido.
+	 */
+	public LinkedList<Mention> getMentionsToUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
+		String memberID = memberInput;
 		Collection<Member> membersCollection = members.values();
 		Iterator<Member> membersIterator = membersCollection.iterator();
 		boolean found = false;
-		while (membersIterator.hasNext()&&!found) {
+		while (membersIterator.hasNext() && !found) {
 			Member currMember = membersIterator.next();
-			if(currMember.isUser(memberInput)) {
-				memberInput = currMember.getId();
+			if (currMember.isUser(memberID)) {
+				memberID = currMember.getId();
 				found = true;
 			}
 		}
@@ -191,7 +270,7 @@ public class Workspace {
 				ListIterator<Mention> it = (ListIterator<Mention>) mentions.iterator();
 				while (it.hasNext()) {
 					Mention curMention = it.next();
-					if (curMention.getTo().equals(members.get(memberInput))) {
+					if (curMention.getTo().equals(members.get(memberID))) {
 						out.add(curMention);
 					}
 				}
@@ -200,18 +279,33 @@ public class Workspace {
 				throw new ChannelNotValidException(channelInput);
 			}
 		} else {
-			throw new MemberNotValidException(memberInput);
+			throw new MemberNotValidException(memberID);
 		}
 	}
 
-	public LinkedList<Mention> getMentions(String channelName) throws ChannelNotValidException {
+	/**
+	 * Restituisce la lista di mention fatte in un determinato channel.
+	 * 
+	 * @param channelName
+	 *            String che rappresenta un detrminatro channel.
+	 * @return riferimento ad un LinkedList<Mention> che rappresenta la lista di
+	 *         mention fatte in un determinato channel.
+	 * @throws ChannelNotValidException Lancia un eccezione quando il channel specificato non è valido.
+	 */
+	public LinkedList<Mention> getMentions(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
 			return channels.get(channelName).getMentions();
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
 	}
-	
+
+	/**
+	 * Restituisce il riferimento all'attributo workspaceZip della classe.
+	 * 
+	 * @return riferimento ad un oggetto istanza della classe zip che rappresenta il
+	 *         workspace corrente.
+	 */
 	public Zip getWorkspaceZip() {
 		return workspaceZip;
 	}
