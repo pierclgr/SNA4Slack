@@ -3,25 +3,24 @@ package it.uniba.main;
 import it.uniba.cli.CommandManager;
 
 /**
- * The main class for the project. It must be customized to meet the project
- * assignment specifications.
- * 
- * <b>DO NOT RENAME</b>
+ * Classe principale del progetto. Contiene il metodo main da cui viene avviata
+ * l'esecuzione dell'applicazione.
  */
 public final class AppMain {
 
 	/**
-	 * Private constructor. Change if needed.
+	 * Costruttore della classe AppMain.
 	 */
 	private AppMain() {
 
 	}
 
 	/**
-	 * This is the main entry of the application.
-	 *
+	 * Metodo da cui viene avviata l'esecuzione dell'applicazione.
+	 * 
 	 * @param args
-	 *            The command-line arguments.
+	 *            array di String in cui ciascuno String rappresenta un singolo
+	 *            argomento passato all'applicazione da riga di comando.
 	 */
 	public static void main(final String[] args) {
 		CommandManager.manage(args);
