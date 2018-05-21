@@ -1,4 +1,4 @@
-# sna4slack [![Build Status](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie.svg?token=bUDdGhespuiKseaaysck&branch=master)](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie) [![Coverage Status](https://coveralls.io/repos/github/softeng-inf-uniba/progetto1718-ritchie/badge.svg?t=lFn3m4)](https://coveralls.io/github/softeng-inf-uniba/progetto1718-ritchie)
+# sna4slack [![Build Status](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie.svg?token=bUDdGhespuiKseaaysck&branch=master)](https://travis-ci.com/softeng-inf-uniba/progetto1718-ritchie) [![Coverage Status](https://coveralls.io/repos/github/softeng-inf-uniba/progetto1718-ritchie/badge.svg?branch=master&service=github&t=lFn3m4)](https://coveralls.io/github/softeng-inf-uniba/progetto1718-ritchie)
 La struttura della repository si presenta nel seguente modo:
 ```
 |–– build
