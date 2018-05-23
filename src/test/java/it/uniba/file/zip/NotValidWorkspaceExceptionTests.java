@@ -9,22 +9,22 @@ import org.junit.jupiter.api.Test;
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class NotValidWorkspaceExceptionTests {
 	static NotValidWorkspaceException e;
-	
+
 	@BeforeAll
-    static void setUpAll(){
+	static void setUpAll() {
 		String file = "Path";
 		e = new NotValidWorkspaceException(file);
-    }
-	
+	}
+
 	@Test
 	@DisplayName("Test NotValidWorkspaceException() di NotValidWorkspaceException")
 	void NotValidWorkspaceExceptionTest() {
 		final String failMsg = "NotValidWorkspaceException() is failed";
 		String file = "Path";
 		assertAll("Check if workspace is valid with lambdas", () -> {
-    		assertNotNull(new NotValidWorkspaceException(file),failMsg);
-    		assertNotNull(new NotValidWorkspaceException(null));	
-         });   	
+			assertNotNull(new NotValidWorkspaceException(file), failMsg);
+			assertNotNull(new NotValidWorkspaceException(null));
+		});
 
 	}
 
@@ -33,7 +33,7 @@ public class NotValidWorkspaceExceptionTests {
 	void getMessageTest() {
 		final String failMsg = "getMessage() is failed";
 		String file = "Path";
-		assertEquals(e.getMessage(),file + " is not a valid Slack workspace",failMsg);
+		assertEquals(e.getMessage(), file + " is not a valid Slack workspace", failMsg);
 	}
-	
+
 }

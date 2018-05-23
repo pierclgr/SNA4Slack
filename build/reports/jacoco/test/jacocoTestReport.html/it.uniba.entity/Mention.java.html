@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Mention.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Mention.java</span></div><h1>Mention.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
+
+/**
+ * Classe che modella una singola mention.
+ */
+public final class Mention {
+	/**
+	 * Member da cui viene effettuata la mention corrente.
+	 */
+	private Member from;
+	/**
+	 * Member a cui è riferita la mention corrente.
+	 */
+	private Member to;
+	/**
+	 * Peso della mention corrente.
+	 */
+	private int weight;
+
+	/**
+	 * Metodo costruttre della classe Mention che permette di creare oggetti istanze
+	 * della classe Mention.
+	 * 
+	 * @param mentionFrom
+	 *            riferimento ad un oggetto istanza della classe Member che
+	 *            rappresenta il member da cui è effettuata la mention corrente.
+	 * @param mentionTo
+	 *            riferimento ad un oggetto istanza della classe Member che
+	 *            rappresenta il member a cui è riferita la mention corrente.
+	 */
+<span class="fc" id="L31">	public Mention(final Member mentionFrom, final Member mentionTo) {</span>
+<span class="fc" id="L32">		this.from = mentionFrom;</span>
+<span class="fc" id="L33">		this.to = mentionTo;</span>
+<span class="fc" id="L34">		this.weight = 1;</span>
+<span class="fc" id="L35">	}</span>
+
+	/**
+	 * Restituisce il member da cui è effettuata la mention corrente.
+	 * 
+	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
+	 *         il member da cui è effettuata la mention corrente.
+	 */
+	public Member getFrom() {
+<span class="fc" id="L44">		return from;</span>
+	}
+
+	/**
+	 * Restituisce il member a cui è riferita la mention corrente.
+	 * 
+	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
+	 *         il member a cui è riferita la mention corrente.
+	 */
+	public Member getTo() {
+<span class="fc" id="L54">		return to;</span>
+	}
+
+	/**
+	 * Override del metodo della superclasse Object.
+	 */
+	@Override
+	public int hashCode() {
+<span class="fc" id="L62">		final int prime = 31;</span>
+<span class="fc" id="L63">		int result = 1;</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		if (from == null) {</span>
+<span class="nc" id="L65">			result = prime * result + 0;</span>
+		} else {
+<span class="fc" id="L67">			result = prime * result + from.hashCode();</span>
+		}
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		if (to == null) {</span>
+<span class="nc" id="L70">			result = prime * result + 0;</span>
+		} else {
+<span class="fc" id="L72">			result = prime * result + to.hashCode();</span>
+		}
+<span class="fc" id="L74">		result = prime * result + weight;</span>
+<span class="fc" id="L75">		return result;</span>
+	}
+
+	/**
+	 * Verifica se la mention corrente e la mention passata in input sono uguali.
+	 * 
+	 * @return boolean che risulta essere true se la mention corrente e la mention
+	 *         in input sono uguali.
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L86">		boolean out = false;</span>
+<span class="pc bpc" id="L87" title="1 of 6 branches missed.">		if (obj instanceof Mention &amp;&amp; from.equals(((Mention) obj).getFrom()) &amp;&amp; to.equals(((Mention) obj).getTo())) {</span>
+<span class="fc" id="L88">			out = true;</span>
+		}
+<span class="fc" id="L90">		return out;</span>
+	}
+
+	/**
+	 * Restituisce una rappresentazione parziale sottoforma di stringa della mention
+	 * corrente escludendo il peso.
+	 * 
+	 * @return String che rappresenta il member da cui parte la mention corrente ed
+	 *         il member a cui è riferita la mention corrente.
+	 */
+	@Override
+	public String toString() {
+<span class="fc" id="L102">		return &quot;(&quot; + this.getFrom().getName() + &quot;, &quot; + this.getTo().getName() + &quot;)&quot;;</span>
+	}
+
+	/**
+	 * Restituisce una rappresentazione completa sottoforma di stringa della mention
+	 * corrente includendo anche il peso.
+	 * 
+	 * @return String che rappresenta lo stato della mention corrente che include il
+	 *         member da cui parte la mention, il member a cui è riferita la mention
+	 *         e il peso della mention.
+	 */
+	public String toFullString() {
+<span class="fc" id="L114">		return &quot;(&quot; + this.getFrom().getName() + &quot;, &quot; + this.getTo().getName() + &quot;, &quot; + this.getWeight() + &quot;)&quot;;</span>
+	}
+
+	/**
+	 * Restituisce il peso della mention corrente.
+	 * 
+	 * @return int che rappresenta il peso della mention corrente.
+	 */
+	public int getWeight() {
+<span class="fc" id="L123">		return weight;</span>
+	}
+
+	/**
+	 * Modifica il peso della mention corrente.
+	 * 
+	 * @param mentionWeight
+	 *            int che rappresenta il valore da assegnare alla mention corrente.
+	 */
+	public void setWeight(final int mentionWeight) {
+<span class="fc" id="L133">		this.weight = mentionWeight;</span>
+<span class="fc" id="L134">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

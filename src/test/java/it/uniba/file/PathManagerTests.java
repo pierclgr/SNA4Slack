@@ -9,8 +9,7 @@ public class PathManagerTests {
 	@DisplayName("Test getAbsoultePath() di Mention")
 	void getAbsolutePathTest() {
 		final String failMsg = "getAbsolutePath() is failed";
-		assertNotNull(PathManager.getAbsolutePath("Path"),failMsg);
+		assertNotNull(PathManager.getAbsolutePath("Path"), failMsg);
 	}
 
 }
-

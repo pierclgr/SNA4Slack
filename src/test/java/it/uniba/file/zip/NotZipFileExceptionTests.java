@@ -5,23 +5,23 @@ import org.junit.jupiter.api.*;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class NotZipFileExceptionTests {
-    static NotZipFileException e;
-	
+	static NotZipFileException e;
+
 	@BeforeAll
-    static void setUpAll(){
+	static void setUpAll() {
 		String file = "Path";
 		e = new NotZipFileException(file);
-    }
-	
+	}
+
 	@Test
 	@DisplayName("Test NotZipFileException() di NotZipFileException")
 	void NotZipFileExceptionTest() {
 		final String failMsg = "NotZipFileException() is failed";
 		String file = "Path";
 		assertAll("Check if file is not a zip file with lambdas", () -> {
-    		assertNotNull(new NotZipFileException(file),failMsg);
-    		assertNotNull(new NotZipFileException(null));	
-         });   	
+			assertNotNull(new NotZipFileException(file), failMsg);
+			assertNotNull(new NotZipFileException(null));
+		});
 
 	}
 
@@ -30,7 +30,7 @@ public class NotZipFileExceptionTests {
 	void getMessageTest() {
 		final String failMsg = "getMessage() is failed";
 		String file = "Path";
-		assertEquals(e.getMessage(),file + " is not a zip file",failMsg);
+		assertEquals(e.getMessage(), file + " is not a zip file", failMsg);
 	}
 
 }

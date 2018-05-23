@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Commands.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.cli</a> &gt; <span class="el_source">Commands.java</span></div><h1>Commands.java</h1><pre class="source lang-java linenums">package it.uniba.cli;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
+/**
+ * Classe che modella l'insieme di comandi possibili.
+ */
+public final class Commands {
+	/**
+	 * Lista di comandi possibili.
+	 */
+	private List&lt;Command&gt; commands;
+
+	/**
+	 * Metodo costruttore della classe Commands, permette di creare oggetti istanze
+	 * della classe Commands.
+	 */
+<span class="fc" id="L20">	public Commands() {</span>
+<span class="fc" id="L21">		this.commands = new LinkedList&lt;Command&gt;();</span>
+<span class="fc" id="L22">		commands.add(new Command(&quot;members&quot;, &quot;-f \&quot;fileName\&quot;&quot;, &quot;Get all members from \&quot;fileName\&quot; zip file&quot;));</span>
+<span class="fc" id="L23">		commands.add(new Command(&quot;channels&quot;, &quot;-f \&quot;fileName\&quot;&quot;, &quot;Get all channels from \&quot;fileName\&quot; zip file&quot;));</span>
+<span class="fc" id="L24">		commands.add(new Command(&quot;members&quot;, &quot;-ch -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all members for all channels from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L26">		commands.add(new Command(&quot;members&quot;, &quot;-ch \&quot;channelName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all members of \&quot;channelName\&quot; channel from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L28">		commands.add(new Command(&quot;mentions&quot;, &quot;-f \&quot;fileName\&quot;&quot;, &quot;Get all mentions from \&quot;fileName\&quot; zip file&quot;));</span>
+<span class="fc" id="L29">		commands.add(</span>
+				new Command(&quot;mentions&quot;, &quot;-w -f \&quot;fileName\&quot;&quot;, &quot;Get all mentions weighed from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L31">		commands.add(new Command(&quot;mentions&quot;, &quot;-ch \&quot;channelName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions in \&quot;channelName\&quot; channel from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L33">		commands.add(new Command(&quot;mentions&quot;, &quot;-w -ch \&quot;channelName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions weighed in \&quot;channelName\&quot; channel from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L35">		commands.add(new Command(&quot;mentions&quot;, &quot;-w -to \&quot;memberName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions weighed to \&quot;memberName\&quot; member from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L37">		commands.add(new Command(&quot;mentions&quot;, &quot;-from \&quot;memberName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions from \&quot;memberName\&quot; member from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L39">		commands.add(new Command(&quot;mentions&quot;, &quot;-w -from \&quot;memberName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions weighed from \&quot;memberName\&quot; member from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L41">		commands.add(new Command(&quot;mentions&quot;, &quot;-from \&quot;memberName\&quot; -ch \&quot;channelName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions from \&quot;memberName\&quot; member in \&quot;channelName\&quot; channel from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L43">		commands.add(new Command(&quot;mentions&quot;, &quot;-w -from \&quot;memberName\&quot; -ch \&quot;channelName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions weighed from \&quot;memberName\&quot; member in \&quot;channelName\&quot; channel from &quot;
+						+ &quot;\&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L46">		commands.add(new Command(&quot;mentions&quot;, &quot;-to \&quot;memberName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions to \&quot;memberName\&quot; member from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L48">		commands.add(new Command(&quot;mentions&quot;, &quot;-to \&quot;memberName\&quot; -ch \&quot;channelName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions to \&quot;memberName\&quot; member in \&quot;channelName\&quot; channel from \&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L50">		commands.add(new Command(&quot;mentions&quot;, &quot;-w -to \&quot;memberName\&quot; -ch \&quot;channelName\&quot; -f \&quot;fileName\&quot;&quot;,</span>
+				&quot;Get all mentions weighed to \&quot;memberName\&quot; member in \&quot;channelName\&quot; channel from &quot;
+						+ &quot;\&quot;fileName\&quot; zip file&quot;));
+<span class="fc" id="L53">	}</span>
+
+	/**
+	 * Restituisce la lista contenente i comandi possibili.
+	 * 
+	 * @return riferimento ad una LinkedList&lt;Command&gt; ovvero la lista di comandi
+	 *         possibili.
+	 */
+	public LinkedList&lt;Command&gt; getCommands() {
+<span class="fc" id="L62">		return (LinkedList&lt;Command&gt;) this.commands;</span>
+	}
+
+	/**
+	 * Permette di verificare la presenza di un comando all'interno della lista di
+	 * comandi possibili.
+	 * 
+	 * @param c
+	 *            istanza della clsse Command che rappresenta il comando di cui
+	 *            verificare la presenza.
+	 * @return boolen che vale true se il comando in input alla funzione è presente
+	 *         nella lista di comandi possibili, false altrimenti.
+	 */
+	boolean contains(final Command c) {
+<span class="nc" id="L76">		boolean found = false;</span>
+<span class="nc" id="L77">		ListIterator&lt;Command&gt; iterator = (ListIterator&lt;Command&gt;) commands.iterator();</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">		while (iterator.hasNext() &amp;&amp; !found) {</span>
+<span class="nc" id="L79">			Command curr = iterator.next();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">			if (curr.getName().equals(c.getName())) {</span>
+<span class="nc" id="L81">				found = true;</span>
+			}
+<span class="nc" id="L83">		}</span>
+<span class="nc" id="L84">		return found;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
