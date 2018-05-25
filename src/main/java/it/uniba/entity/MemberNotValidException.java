@@ -2,7 +2,7 @@ package it.uniba.entity;
 
 /**
  * Classe che modella l'eccezione da generare ogni qualvolta il member
- * specificato non è valido.
+ * specificato non ï¿½ valido.
  */
 public final class MemberNotValidException extends Exception {
 	/**
@@ -12,7 +12,7 @@ public final class MemberNotValidException extends Exception {
 	/**
 	 * Messaggio dell'oggetto eccezione corrente.
 	 */
-	private String message = " is not a valid member";
+	private final String message;
 
 	/**
 	 * Costruisce il messaggio per l'oggetto eccezione corrente.
@@ -21,7 +21,7 @@ public final class MemberNotValidException extends Exception {
 	 *            String che rappresenta un member.
 	 */
 	public MemberNotValidException(final String member) {
-		message = member + message;
+		message = member + " is not a valid member";
 	}
 
 	/**
