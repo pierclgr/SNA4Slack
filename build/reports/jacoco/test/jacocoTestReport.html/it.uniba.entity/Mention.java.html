@@ -61,13 +61,13 @@ public final class Mention {
 	public int hashCode() {
 <span class="fc" id="L62">		final int prime = 31;</span>
 <span class="fc" id="L63">		int result = 1;</span>
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		if (from == null) {</span>
-<span class="nc" id="L65">			result = prime * result + 0;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (from == null) {</span>
+<span class="fc" id="L65">			result = prime * result + 0;</span>
 		} else {
 <span class="fc" id="L67">			result = prime * result + from.hashCode();</span>
 		}
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		if (to == null) {</span>
-<span class="nc" id="L70">			result = prime * result + 0;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		if (to == null) {</span>
+<span class="fc" id="L70">			result = prime * result + 0;</span>
 		} else {
 <span class="fc" id="L72">			result = prime * result + to.hashCode();</span>
 		}

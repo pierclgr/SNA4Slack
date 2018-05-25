@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-05-22T21:47:35.247">
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\Command.java">
+<pmd version="5.8.1" timestamp="2018-05-25T13:06:01.807">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\cli\Command.java">
 <violation beginline="11" endline="11" begincolumn="24" endcolumn="27" rule="ImmutableField" ruleset="Design" package="it.uniba.cli" class="Command" variable="name" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
 Private field 'name' could be made final; it is only initialized in the declaration or constructor.
 </violation>
@@ -14,7 +14,7 @@ Private field 'description' could be made final; it is only initialized in the d
 Avoid excessively long variable names like commandDescription
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\CommandManager.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\cli\CommandManager.java">
 <violation beginline="1" endline="778" begincolumn="1" endcolumn="3" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
 Possible God class (WMC=166, ATFD=89, TCC=0.015151515151515152)
 </violation>
@@ -1387,7 +1387,7 @@ Potential violation of Law of Demeter (method chain calls)
 Potential violation of Law of Demeter (method chain calls)
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\Commands.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\cli\Commands.java">
 <violation beginline="14" endline="14" begincolumn="17" endcolumn="39" rule="AvoidFieldNameMatchingTypeName" ruleset="Naming" package="it.uniba.cli" class="Commands" variable="commands" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#AvoidFieldNameMatchingTypeName" priority="3">
 It is somewhat confusing to have a field name matching the declaring class name
 </violation>
@@ -1419,7 +1419,7 @@ Potential violation of Law of Demeter (method chain calls)
 Potential violation of Law of Demeter (object not created locally)
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Channel.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\entity\Channel.java">
 <violation beginline="14" endline="14" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Channel" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like id
 </violation>
@@ -1460,12 +1460,12 @@ Local variable 'curr' could be declared final
 Potential violation of Law of Demeter (object not created locally)
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\ChannelNotValidException.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\entity\ChannelNotValidException.java">
 <violation beginline="15" endline="15" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="ChannelNotValidException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
 Private field 'message' could be made final; it is only initialized in the declaration or constructor.
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Member.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\entity\Member.java">
 <violation beginline="13" endline="13" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="Member" variable="id" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like id
 </violation>
@@ -1509,12 +1509,12 @@ Avoid using implementation types like 'LinkedList'; use the interface instead
 Avoid using implementation types like 'LinkedList'; use the interface instead
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\MemberNotValidException.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\entity\MemberNotValidException.java">
 <violation beginline="15" endline="15" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="MemberNotValidException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
 Private field 'message' could be made final; it is only initialized in the declaration or constructor.
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Mention.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\entity\Mention.java">
 <violation beginline="10" endline="10" begincolumn="24" endcolumn="27" rule="ImmutableField" ruleset="Design" package="it.uniba.entity" class="Mention" variable="from" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
 Private field 'from' could be made final; it is only initialized in the declaration or constructor.
 </violation>
@@ -1537,7 +1537,7 @@ Potential violation of Law of Demeter (method chain calls)
 Potential violation of Law of Demeter (method chain calls)
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Workspace.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\entity\Workspace.java">
 <violation beginline="27" endline="312" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The class 'Workspace' has a Cyclomatic Complexity of 6 (Highest = 23).
 </violation>
@@ -1830,7 +1830,7 @@ Avoid using implementation types like 'LinkedList'; use the interface instead
 Potential violation of Law of Demeter (method chain calls)
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\PathManager.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\file\PathManager.java">
 <violation beginline="22" endline="22" begincolumn="22" endcolumn="22" rule="ShortVariable" ruleset="Naming" package="it.uniba.file" class="PathManager" method="getAbsolutePath" variable="f" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like f
 </violation>
@@ -1838,22 +1838,22 @@ Avoid variables with short names like f
 Local variable 'f' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\FileNotInZipException.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\file\zip\FileNotInZipException.java">
 <violation beginline="16" endline="16" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.file.zip" class="FileNotInZipException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
 Private field 'message' could be made final; it is only initialized in the declaration or constructor.
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\NotValidWorkspaceException.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\file\zip\NotValidWorkspaceException.java">
 <violation beginline="16" endline="16" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.file.zip" class="NotValidWorkspaceException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
 Private field 'message' could be made final; it is only initialized in the declaration or constructor.
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\NotZipFileException.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\file\zip\NotZipFileException.java">
 <violation beginline="16" endline="16" begincolumn="24" endcolumn="30" rule="ImmutableField" ruleset="Design" package="it.uniba.file.zip" class="NotZipFileException" variable="message" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#ImmutableField" priority="3">
 Private field 'message' could be made final; it is only initialized in the declaration or constructor.
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\file\zip\Zip.java">
+<file name="C:\Users\Luciano Bruno\Documents\progetto1718-ritchie\src\main\java\it\uniba\file\zip\Zip.java">
 <violation beginline="14" endline="95" begincolumn="14" endcolumn="1" rule="ShortClassName" ruleset="Naming" package="it.uniba.file.zip" class="Zip" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortClassName" priority="4">
 Avoid short class names like Zip
 </violation>

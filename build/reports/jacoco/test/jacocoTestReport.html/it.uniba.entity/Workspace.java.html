@@ -60,8 +60,8 @@ public final class Workspace {
 <span class="fc" id="L60">			throws IOException, NotValidWorkspaceException, FileNotInZipException, NotZipFileException {</span>
 		try {
 <span class="fc" id="L62">			Zip workspace = new Zip(workspaceZipFile);</span>
-<span class="pc bpc" id="L63" title="2 of 4 branches missed.">			if (!workspace.contains(&quot;channels.json&quot;) || !workspace.contains(&quot;users.json&quot;)) {</span>
-<span class="nc" id="L64">				throw new NotValidWorkspaceException(workspaceZipFile);</span>
+<span class="pc bpc" id="L63" title="1 of 4 branches missed.">			if (!workspace.contains(&quot;channels.json&quot;) || !workspace.contains(&quot;users.json&quot;)) {</span>
+<span class="fc" id="L64">				throw new NotValidWorkspaceException(workspaceZipFile);</span>
 			} else {
 <span class="fc" id="L66">				this.workspaceZip = workspace;</span>
 <span class="fc" id="L67">				this.channels = new LinkedHashMap&lt;String, Channel&gt;();</span>
@@ -148,8 +148,8 @@ public final class Workspace {
 <span class="fc" id="L148">				}</span>
 
 			}
-<span class="nc" id="L151">		} catch (ZipException e) {</span>
-<span class="nc" id="L152">			throw new NotZipFileException(workspaceZipFile);</span>
+<span class="fc" id="L151">		} catch (ZipException e) {</span>
+<span class="fc" id="L152">			throw new NotZipFileException(workspaceZipFile);</span>
 <span class="fc" id="L153">		}</span>
 <span class="fc" id="L154">	}</span>
 
@@ -183,10 +183,10 @@ public final class Workspace {
 	 * @throws ChannelNotValidException Lancia un eccezione quando il channel specificato non è valido.
 	 */
 	public LinkedList&lt;Member&gt; getMembersOfChannel(final String channelName) throws ChannelNotValidException {
-<span class="pc bpc" id="L186" title="1 of 2 branches missed.">		if (channels.containsKey(channelName)) {</span>
+<span class="fc bfc" id="L186" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
 <span class="fc" id="L187">			return channels.get(channelName).getMembers();</span>
 		} else {
-<span class="nc" id="L189">			throw new ChannelNotValidException(channelName);</span>
+<span class="fc" id="L189">			throw new ChannelNotValidException(channelName);</span>
 		}
 	}
 
@@ -209,15 +209,15 @@ public final class Workspace {
 <span class="fc" id="L209">		Collection&lt;Member&gt; membersCollection = members.values();</span>
 <span class="fc" id="L210">		Iterator&lt;Member&gt; membersIterator = membersCollection.iterator();</span>
 <span class="fc" id="L211">		boolean found = false;</span>
-<span class="pc bpc" id="L212" title="1 of 4 branches missed.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
+<span class="fc bfc" id="L212" title="All 4 branches covered.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
 <span class="fc" id="L213">			Member currMember = membersIterator.next();</span>
 <span class="fc bfc" id="L214" title="All 2 branches covered.">			if (currMember.isUser(memberID)) {</span>
 <span class="fc" id="L215">				memberID = currMember.getId();</span>
 <span class="fc" id="L216">				found = true;</span>
 			}
 <span class="fc" id="L218">		}</span>
-<span class="pc bpc" id="L219" title="1 of 2 branches missed.">		if (found) {</span>
-<span class="pc bpc" id="L220" title="1 of 2 branches missed.">			if (channels.containsKey(channelInput)) {</span>
+<span class="fc bfc" id="L219" title="All 2 branches covered.">		if (found) {</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">			if (channels.containsKey(channelInput)) {</span>
 <span class="fc" id="L221">				LinkedList&lt;Mention&gt; out = new LinkedList&lt;Mention&gt;();</span>
 <span class="fc" id="L222">				LinkedList&lt;Mention&gt; mentions = channels.get(channelInput).getMentions();</span>
 <span class="fc" id="L223">				ListIterator&lt;Mention&gt; it = (ListIterator&lt;Mention&gt;) mentions.iterator();</span>
@@ -229,10 +229,10 @@ public final class Workspace {
 <span class="fc" id="L229">				}</span>
 <span class="fc" id="L230">				return out;</span>
 			} else {
-<span class="nc" id="L232">				throw new ChannelNotValidException(channelInput);</span>
+<span class="fc" id="L232">				throw new ChannelNotValidException(channelInput);</span>
 			}
 		} else {
-<span class="nc" id="L235">			throw new MemberNotValidException(memberID);</span>
+<span class="fc" id="L235">			throw new MemberNotValidException(memberID);</span>
 		}
 
 	}
@@ -256,15 +256,15 @@ public final class Workspace {
 <span class="fc" id="L256">		Collection&lt;Member&gt; membersCollection = members.values();</span>
 <span class="fc" id="L257">		Iterator&lt;Member&gt; membersIterator = membersCollection.iterator();</span>
 <span class="fc" id="L258">		boolean found = false;</span>
-<span class="pc bpc" id="L259" title="1 of 4 branches missed.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
+<span class="fc bfc" id="L259" title="All 4 branches covered.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
 <span class="fc" id="L260">			Member currMember = membersIterator.next();</span>
 <span class="fc bfc" id="L261" title="All 2 branches covered.">			if (currMember.isUser(memberID)) {</span>
 <span class="fc" id="L262">				memberID = currMember.getId();</span>
 <span class="fc" id="L263">				found = true;</span>
 			}
 <span class="fc" id="L265">		}</span>
-<span class="pc bpc" id="L266" title="1 of 2 branches missed.">		if (found) {</span>
-<span class="pc bpc" id="L267" title="1 of 2 branches missed.">			if (channels.containsKey(channelInput)) {</span>
+<span class="fc bfc" id="L266" title="All 2 branches covered.">		if (found) {</span>
+<span class="fc bfc" id="L267" title="All 2 branches covered.">			if (channels.containsKey(channelInput)) {</span>
 <span class="fc" id="L268">				LinkedList&lt;Mention&gt; out = new LinkedList&lt;Mention&gt;();</span>
 <span class="fc" id="L269">				LinkedList&lt;Mention&gt; mentions = channels.get(channelInput).getMentions();</span>
 <span class="fc" id="L270">				ListIterator&lt;Mention&gt; it = (ListIterator&lt;Mention&gt;) mentions.iterator();</span>
@@ -276,10 +276,10 @@ public final class Workspace {
 <span class="fc" id="L276">				}</span>
 <span class="fc" id="L277">				return out;</span>
 			} else {
-<span class="nc" id="L279">				throw new ChannelNotValidException(channelInput);</span>
+<span class="fc" id="L279">				throw new ChannelNotValidException(channelInput);</span>
 			}
 		} else {
-<span class="nc" id="L282">			throw new MemberNotValidException(memberID);</span>
+<span class="fc" id="L282">			throw new MemberNotValidException(memberID);</span>
 		}
 	}
 
@@ -293,10 +293,10 @@ public final class Workspace {
 	 * @throws ChannelNotValidException Lancia un eccezione quando il channel specificato non è valido.
 	 */
 	public LinkedList&lt;Mention&gt; getMentions(final String channelName) throws ChannelNotValidException {
-<span class="pc bpc" id="L296" title="1 of 2 branches missed.">		if (channels.containsKey(channelName)) {</span>
+<span class="fc bfc" id="L296" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
 <span class="fc" id="L297">			return channels.get(channelName).getMentions();</span>
 		} else {
-<span class="nc" id="L299">			throw new ChannelNotValidException(channelName);</span>
+<span class="fc" id="L299">			throw new ChannelNotValidException(channelName);</span>
 		}
 	}
 
