@@ -3,6 +3,7 @@ package it.uniba.entity;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -32,11 +33,11 @@ public final class Workspace {
 	/**
 	 * lista di channel nel workspace.
 	 */
-	private LinkedHashMap<String, Channel> channels;
+	private HashMap<String, Channel> channels;
 	/**
 	 * lista di members nel workspace.
 	 */
-	private LinkedHashMap<String, Member> members;
+	private HashMap<String, Member> members;
 
 	static final String PROFILE = "profile";
 
@@ -161,7 +162,7 @@ public final class Workspace {
 	 * @return riferimento ad una LinkedHashMap<String, Channel> che rappresenta la
 	 *         lista di tutti i channels del workspace corrente.
 	 */
-	public LinkedHashMap<String, Channel> getAllChannels() {
+	public HashMap<String, Channel> getAllChannels() {
 		return (LinkedHashMap<String, Channel>) this.channels;
 	}
 
@@ -171,7 +172,7 @@ public final class Workspace {
 	 * @return riferimento ad una LinkedHashMap<String, Member> che rappresenta la
 	 *         lista di tutti i members del workspace corrente.
 	 */
-	public LinkedHashMap<String, Member> getAllMembers() {
+	public HashMap<String, Member> getAllMembers() {
 		return (LinkedHashMap<String, Member>) this.members;
 	}
 
@@ -185,9 +186,9 @@ public final class Workspace {
 	 * @throws ChannelNotValidException
 	 *             Lancia un eccezione quando il channel specificato non � valido.
 	 */
-	public LinkedList<Member> getMembersOfChannel(final String channelName) throws ChannelNotValidException {
+	public List<Member> getMembersOfChannel(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
-			return channels.get(channelName).getMembers();
+			return (LinkedList<Member>) channels.get(channelName).getMembers();
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
@@ -208,7 +209,7 @@ public final class Workspace {
 	 * @throws MemberNotValidException
 	 *             Lancia un eccezione quando il member specificato non � valido.
 	 */
-	public LinkedList<Mention> getMentionsFromUser(final String channelInput, final String memberInput)
+	public List<Mention> getMentionsFromUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
 		String memberID = memberInput;
 		final Collection<Member> membersCollection = members.values();
@@ -224,7 +225,7 @@ public final class Workspace {
 		if (found) {
 			if (channels.containsKey(channelInput)) {
 				final LinkedList<Mention> out = new LinkedList<Mention>();
-				final LinkedList<Mention> mentions = channels.get(channelInput).getMentions();
+				final LinkedList<Mention> mentions = (LinkedList<Mention>) channels.get(channelInput).getMentions();
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention curMention = mentionsIterator.next();
@@ -257,7 +258,7 @@ public final class Workspace {
 	 * @throws MemberNotValidException
 	 *             Lancia un eccezione quando il member specificato non � valido.
 	 */
-	public LinkedList<Mention> getMentionsToUser(final String channelInput, final String memberInput)
+	public List<Mention> getMentionsToUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
 		String memberID = memberInput;
 		final Collection<Member> membersCollection = members.values();
@@ -273,7 +274,7 @@ public final class Workspace {
 		if (found) {
 			if (channels.containsKey(channelInput)) {
 				final LinkedList<Mention> out = new LinkedList<Mention>();
-				final LinkedList<Mention> mentions = channels.get(channelInput).getMentions();
+				final LinkedList<Mention> mentions = (LinkedList<Mention>) channels.get(channelInput).getMentions();
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention curMention = mentionsIterator.next();
@@ -300,9 +301,9 @@ public final class Workspace {
 	 * @throws ChannelNotValidException
 	 *             Lancia un eccezione quando il channel specificato non � valido.
 	 */
-	public LinkedList<Mention> getMentions(final String channelName) throws ChannelNotValidException {
+	public List<Mention> getMentions(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
-			return channels.get(channelName).getMentions();
+			return (LinkedList<Mention>) channels.get(channelName).getMentions();
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
