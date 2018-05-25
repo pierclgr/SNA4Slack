@@ -65,7 +65,7 @@ public final class Channel {
 	 * @return riferimento ad una LinkedList<Member> che rappresenta la lista di
 	 *         members del channel corrente.
 	 */
-	public LinkedList<Member> getMembers() {
+	public List<Member> getMembers() {
 		return (LinkedList<Member>) this.members;
 	}
 
@@ -75,7 +75,7 @@ public final class Channel {
 	 * @return riferimento ad una LinkedList<Mention> che rappresenta la lista di
 	 *         mention effettuate all'interno del channel corrente.
 	 */
-	public LinkedList<Mention> getMentions() {
+	public List<Mention> getMentions() {
 		return (LinkedList<Mention>) this.mentions;
 	}
 
