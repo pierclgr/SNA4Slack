@@ -11,19 +11,19 @@ public final class Channel {
 	/**
 	 * Id del channel corrente.
 	 */
-	private String id;
+	private final String uID;
 	/**
 	 * Nome del channel corrente.
 	 */
-	private String name;
+	private final String name;
 	/**
 	 * Lista dei members del channel corrente.
 	 */
-	private List<Member> members;
+	private final List<Member> members;
 	/**
 	 * Lista delle metions effettuate nel channel corrente.
 	 */
-	private List<Mention> mentions;
+	private final List<Mention> mentions;
 
 	/**
 	 * Metodo costruttore della classe Channel che permette di creare oggetti
@@ -35,7 +35,7 @@ public final class Channel {
 	 *            String che rappresenta il nome del channel corrente.
 	 */
 	public Channel(final String channelId, final String channelName) {
-		this.id = channelId;
+		this.uID = channelId;
 		this.name = channelName;
 		this.members = new LinkedList<Member>();
 		this.mentions = new LinkedList<Mention>();
@@ -47,7 +47,7 @@ public final class Channel {
 	 * @return String che rappresenta l'id del channel corrente.
 	 */
 	public String getId() {
-		return id;
+		return uID;
 	}
 
 	/**
@@ -83,18 +83,18 @@ public final class Channel {
 	 * Verifica la presenza di una particolare mention all'interno del channel
 	 * corrente.
 	 * 
-	 * @param m
+	 * @param mentionIn
 	 *            riferimento ad un oggetto istanza della classe Mention che
 	 *            rappresenta la mention di cui si vuole verificare la presenza
 	 *            all'interno del channel corrente.
-	 * @return boolean che risulta essere true se la mention in input è presente
+	 * @return boolean che risulta essere true se la mention in input ï¿½ presente
 	 *         all'interno del channel, false altrimenti.
 	 */
-	public boolean containsMention(final Mention m) {
-		ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
+	public boolean containsMention(final Mention mentionIn) {
+		final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
 		while (mentionsIterator.hasNext()) {
-			Mention curr = mentionsIterator.next();
-			if (curr.equals(m)) {
+			final Mention curr = mentionsIterator.next();
+			if (curr.equals(mentionIn)) {
 				return true;
 			}
 		}
