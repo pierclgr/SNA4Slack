@@ -2,7 +2,7 @@ package it.uniba.file.zip;
 
 /**
  * Classe che modella un eccezione generata ogni qualvolta il file specificato
- * non è presente all'interno dello zip.
+ * non ï¿½ presente all'interno dello zip.
  */
 public final class FileNotInZipException extends Exception {
 
@@ -13,7 +13,7 @@ public final class FileNotInZipException extends Exception {
 	/**
 	 * Messaggio dell'oggetto eccezione corrente.
 	 */
-	private String message = " cannot be found in this zip archive";
+	private final String message;
 
 	/**
 	 * Metodo costruttore della classe FileNotInZipException.
@@ -22,7 +22,7 @@ public final class FileNotInZipException extends Exception {
 	 *            String che rappresenta il file.
 	 */
 	public FileNotInZipException(final String file) {
-		message = file + message;
+		message = file + " cannot be found in this zip archive";
 	}
 
 	/**
