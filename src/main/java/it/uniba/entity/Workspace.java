@@ -3,12 +3,12 @@ package it.uniba.entity;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
@@ -33,11 +33,11 @@ public final class Workspace {
 	/**
 	 * lista di channel nel workspace.
 	 */
-	private HashMap<String, Channel> channels;
+	private Map<String, Channel> channels;
 	/**
 	 * lista di members nel workspace.
 	 */
-	private HashMap<String, Member> members;
+	private Map<String, Member> members;
 
 	static final String PROFILE = "profile";
 
@@ -152,7 +152,7 @@ public final class Workspace {
 				throw new NotValidWorkspaceException(workspaceZipFile);
 			}
 		} catch (ZipException e) {
-			throw new NotZipFileException(workspaceZipFile);
+			throw (NotZipFileException)new NotZipFileException(workspaceZipFile).initCause(e);
 		}
 	}
 
@@ -162,7 +162,7 @@ public final class Workspace {
 	 * @return riferimento ad una LinkedHashMap<String, Channel> che rappresenta la
 	 *         lista di tutti i channels del workspace corrente.
 	 */
-	public HashMap<String, Channel> getAllChannels() {
+	public Map<String, Channel> getAllChannels() {
 		return (LinkedHashMap<String, Channel>) this.channels;
 	}
 
@@ -172,7 +172,7 @@ public final class Workspace {
 	 * @return riferimento ad una LinkedHashMap<String, Member> che rappresenta la
 	 *         lista di tutti i members del workspace corrente.
 	 */
-	public HashMap<String, Member> getAllMembers() {
+	public Map<String, Member> getAllMembers() {
 		return (LinkedHashMap<String, Member>) this.members;
 	}
 
