@@ -131,7 +131,7 @@ public final class CommandManager {
 	public static void getChannels(final String workspace) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
+			final LinkedHashMap<String, Channel> workspaceChannels = (LinkedHashMap<String, Channel>) slackWorkspace.getAllChannels();
 			final Collection<Channel> channels = workspaceChannels.values();
 			final Iterator<Channel> channelsIterator = channels.iterator();
 			while (channelsIterator.hasNext()) {
@@ -156,7 +156,7 @@ public final class CommandManager {
 	public static void getMembers(final String workspace) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedHashMap<String, Member> workspaceMembers = slackWorkspace.getAllMembers();
+			final LinkedHashMap<String, Member> workspaceMembers = (LinkedHashMap<String, Member>) slackWorkspace.getAllMembers();
 			final Collection<Member> members = workspaceMembers.values();
 			final Iterator<Member> membersIterator = members.iterator();
 			while (membersIterator.hasNext()) {
@@ -184,7 +184,7 @@ public final class CommandManager {
 	public static void getMembersOfChannel(final String workspace, final String channel) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedList<Member> channelMembers = slackWorkspace.getMembersOfChannel(channel);
+			final LinkedList<Member> channelMembers = (LinkedList<Member>) slackWorkspace.getMembersOfChannel(channel);
 			final ListIterator<Member> membersIterator = (ListIterator<Member>) channelMembers.iterator();
 			while (membersIterator.hasNext()) {
 				System.out.println(membersIterator.next().getName());
@@ -208,12 +208,12 @@ public final class CommandManager {
 	public static void getMembersForChannels(final String workspace) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
+			final LinkedHashMap<String, Channel> workspaceChannels = (LinkedHashMap<String, Channel>) slackWorkspace.getAllChannels();
 			final Collection<Channel> channels = workspaceChannels.values();
 			final Iterator<Channel> channelsIterator = channels.iterator();
 			while (channelsIterator.hasNext()) {
 				final Channel curr = channelsIterator.next();
-				final LinkedList<Member> channelMembers = slackWorkspace.getMembersOfChannel(curr.getName());
+				final LinkedList<Member> channelMembers = (LinkedList<Member>) slackWorkspace.getMembersOfChannel(curr.getName());
 				final ListIterator<Member> membersIterator = (ListIterator<Member>) channelMembers.iterator();
 				System.out.println("Members of \"" + curr.getName() + "\":");
 				while (membersIterator.hasNext()) {
@@ -251,7 +251,7 @@ public final class CommandManager {
 			final Collection<Channel> chCollection = slackWorkspace.getAllChannels().values();
 			final Iterator<Channel> channelsIeretor = chCollection.iterator();
 			while (channelsIeretor.hasNext()) {
-				final LinkedList<Mention> currChMentions = slackWorkspace
+				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
 						.getMentionsFromUser(channelsIeretor.next().getName(), member);
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
@@ -289,7 +289,7 @@ public final class CommandManager {
 			final Collection<Channel> chCollection = slackWorkspace.getAllChannels().values();
 			final Iterator<Channel> channelsIeretor = chCollection.iterator();
 			while (channelsIeretor.hasNext()) {
-				final LinkedList<Mention> currChMentions = slackWorkspace
+				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
 						.getMentionsFromUser(channelsIeretor.next().getName(), member);
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
@@ -332,7 +332,7 @@ public final class CommandManager {
 	public static void getMentionsFromUser(final String workspace, final String channel, final String member) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsFromUser(channel, member);
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentionsFromUser(channel, member);
 			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next());
@@ -363,7 +363,7 @@ public final class CommandManager {
 	public static void getMentionsFromUserWeighed(final String workspace, final String channel, final String member) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsFromUser(channel, member);
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentionsFromUser(channel, member);
 			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next().toFullString());
@@ -395,7 +395,7 @@ public final class CommandManager {
 			final Collection<Channel> chCollection = slackWorkspace.getAllChannels().values();
 			final Iterator<Channel> channelsIterator = chCollection.iterator();
 			while (channelsIterator.hasNext()) {
-				final LinkedList<Mention> workspaceMentions = slackWorkspace
+				final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
 						.getMentionsToUser(channelsIterator.next().getName(), member);
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
@@ -432,7 +432,7 @@ public final class CommandManager {
 	public static void getMentionsToUser(final String workspace, final String channel, final String member) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentionsToUser(channel, member);
 			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next());
@@ -460,7 +460,7 @@ public final class CommandManager {
 	public static void getMentions(final String workspace, final String channel) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentions(channel);
 			final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next());
@@ -489,7 +489,7 @@ public final class CommandManager {
 			final Iterator<Channel> channelsIterator = chCollection.iterator();
 			while (channelsIterator.hasNext()) {
 				final Channel currchannel = channelsIterator.next();
-				final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(currchannel.getName());
+				final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentions(currchannel.getName());
 				final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
@@ -525,7 +525,7 @@ public final class CommandManager {
 			final Iterator<Channel> channelsIterator = chCollection.iterator();
 			while (channelsIterator.hasNext()) {
 				final Channel currChannel = channelsIterator.next();
-				final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(currChannel.getName());
+				final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentions(currChannel.getName());
 				final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
@@ -567,7 +567,7 @@ public final class CommandManager {
 		final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentions(channel);
 			final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				final Mention currMention = mentionsIterator.next();
@@ -605,7 +605,7 @@ public final class CommandManager {
 			final Collection<Channel> chCollection = slackWorkspace.getAllChannels().values();
 			final Iterator<Channel> channelsIterator = chCollection.iterator();
 			while (channelsIterator.hasNext()) {
-				final LinkedList<Mention> currChMentions = slackWorkspace
+				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
 						.getMentionsToUser(channelsIterator.next().getName(), member);
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
@@ -648,7 +648,7 @@ public final class CommandManager {
 	public static void getMentionsToUserWeighed(final String workspace, final String channel, final String member) {
 		try {
 			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			final LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentionsToUser(channel, member);
 			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next().toFullString());
