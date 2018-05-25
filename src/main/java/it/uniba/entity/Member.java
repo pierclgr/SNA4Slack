@@ -10,23 +10,23 @@ public final class Member {
 	/**
 	 * Id del member corrente.
 	 */
-	private String id;
+	private final String uID;
 	/**
 	 * nome del member corrente.
 	 */
-	private String name;
+	private final String name;
 	/**
 	 * RealName del member corrente.
 	 */
-	private String realName;
+	private final String realName;
 	/**
 	 * DisplayName del member corrente.
 	 */
-	private String displayName;
+	private final String displayName;
 	/**
-	 * Lista di channels in cui è presente il member corrente.
+	 * Lista di channels in cui ï¿½ presente il member corrente.
 	 */
-	private List<Channel> channels;
+	private final List<Channel> channels;
 
 	/**
 	 * Metodo costruttore della classe Member. Permette di create oggetti istanze
@@ -43,7 +43,7 @@ public final class Member {
 	 */
 	public Member(final String memberId, final String memberName, final String memberRealName,
 			final String memberDisplayName) {
-		this.id = memberId;
+		this.uID = memberId;
 		this.name = memberName;
 		this.realName = memberRealName;
 		this.displayName = memberDisplayName;
@@ -56,7 +56,7 @@ public final class Member {
 	 * @return String che rappresenta l'id del member corrente.
 	 */
 	public String getId() {
-		return id;
+		return uID;
 	}
 
 	/**
@@ -65,15 +65,15 @@ public final class Member {
 	 * @return String che rappresenta il nome del member corrente.
 	 */
 	public String getName() {
-		if (!displayName.equals("")) {
-			return displayName;
-		} else if (!realName.equals("")) {
+		if ("".equals(displayName)) {
+			if ("".equals(realName) && "".equals(name)) {
+				return uID;
+			} else if ("".equals(realName)) {
+				return name;
+			}
 			return realName;
-		} else if (!name.equals("")) {
-			return name;
-		} else {
-			return id;
 		}
+		return displayName;
 	}
 
 	/**
@@ -85,7 +85,7 @@ public final class Member {
 	 *         identifica un member esistente, false altrimenti.
 	 */
 	public boolean isUser(final String member) {
-		return displayName.equals(member) || realName.equals(member) || name.equals(member) || id.equals(member);
+		return displayName.equals(member) || realName.equals(member) || name.equals(member) || uID.equals(member);
 	}
 
 	/**
@@ -98,10 +98,10 @@ public final class Member {
 	}
 
 	/**
-	 * Restituisce la lista dei channel in cui è presente il member corrente.
+	 * Restituisce la lista dei channel in cui ï¿½ presente il member corrente.
 	 * 
 	 * @return riferimento ad una LinkedList<Channel> che rappresenta la lista dei
-	 *         channel in cui è presente il member corrente.
+	 *         channel in cui ï¿½ presente il member corrente.
 	 */
 	public LinkedList<Channel> getChannels() {
 		return (LinkedList<Channel>) channels;
