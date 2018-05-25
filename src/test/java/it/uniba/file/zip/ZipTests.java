@@ -6,12 +6,12 @@ import it.uniba.file.PathManager;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class ZipTests {
-	static Zip z;
+	static FileZip z;
 
 	@BeforeAll
 	static void setUpAll() throws Exception {
 		String file = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
-		z = new Zip(file);
+		z = new FileZip(file);
 	}
 
 	@AfterAll
@@ -24,7 +24,7 @@ public class ZipTests {
 	void ZipTest() throws Exception {
 		final String failMsg = "Zip() is failed";
 		String file = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
-		assertNotNull(new Zip(file), failMsg);
+		assertNotNull(new FileZip(file), failMsg);
 	}
 
 	@Test
