@@ -103,7 +103,7 @@ public final class Member {
 	 * @return riferimento ad una LinkedList<Channel> che rappresenta la lista dei
 	 *         channel in cui � presente il member corrente.
 	 */
-	public LinkedList<Channel> getChannels() {
+	public List<Channel> getChannels() {
 		return (LinkedList<Channel>) channels;
 	}
 }
