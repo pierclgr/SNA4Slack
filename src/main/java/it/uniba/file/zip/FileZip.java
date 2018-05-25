@@ -11,11 +11,11 @@ import java.util.zip.ZipFile;
 /**
  * Classe che modella un file zip.
  */
-public final class Zip {
+public final class FileZip {
 	/**
 	 * Zip file.
 	 */
-	private ZipFile zipFile;
+	private final ZipFile zipFile;
 
 	/**
 	 * Metodo costruttore della classe Zip.
@@ -25,7 +25,7 @@ public final class Zip {
 	 * @throws IOException
 	 *             Lancia un' eccezone quando si verificano errori di input/output.
 	 */
-	public Zip(final String zipFilePath) throws IOException {
+	public FileZip(final String zipFilePath) throws IOException {
 		this.zipFile = new ZipFile(zipFilePath);
 	}
 
@@ -38,31 +38,31 @@ public final class Zip {
 	 * @throws IOException
 	 *             Lancia un'eccezione quando si verifica un errore di input/output.
 	 * @throws FileNotInZipException
-	 *             Lancia un'eccezione quando il file specificato non è nello zip
+	 *             Lancia un'eccezione quando il file specificato non ï¿½ nello zip
 	 *             file.
 	 * @throws ZipException
-	 *             Lancia un'eccezione quando lo zip file specificato non è valido.
+	 *             Lancia un'eccezione quando lo zip file specificato non ï¿½ valido.
 	 */
 	public String getFileContent(final String fileName) throws IOException, FileNotInZipException, ZipException {
 		if (contains(fileName)) {
-			InputStream stream = zipFile.getInputStream(zipFile.getEntry(fileName));
-			BufferedReader br = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
+			final InputStream stream = zipFile.getInputStream(zipFile.getEntry(fileName));
+			final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
+			final StringBuilder stringBuilder = new StringBuilder();
+			String line = bufferedReader.readLine();
 			while (line != null) {
-				sb.append(line);
-				sb.append(System.lineSeparator());
-				line = br.readLine();
+				stringBuilder.append(line);
+				stringBuilder.append(System.lineSeparator());
+				line = bufferedReader.readLine();
 			}
-			br.close();
-			return sb.toString();
+			bufferedReader.close();
+			return stringBuilder.toString();
 		} else {
 			throw new FileNotInZipException(fileName);
 		}
 	}
 
 	/**
-	 * Verifica se un file è presente nello zip.
+	 * Verifica se un file ï¿½ presente nello zip.
 	 * 
 	 * @param fileName
 	 *            String che rappresenta uno specifico file.
@@ -70,7 +70,7 @@ public final class Zip {
 	 *         allo zip, false altrimenti.
 	 */
 	public boolean contains(final String fileName) {
-		ZipEntry entry = (ZipEntry) zipFile.getEntry(fileName);
+		final ZipEntry entry = (ZipEntry) zipFile.getEntry(fileName);
 		return entry != null;
 	}
 
