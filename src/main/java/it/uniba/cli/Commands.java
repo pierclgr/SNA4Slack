@@ -36,8 +36,6 @@ public final class Commands {
 				"Get all mentions in \"channelName\" channel from \"fileName\" zip file"));
 		allCommands.add(new Command(MENTIONCOMMAND, "-w -ch \"channelName\" -f \"fileName\"",
 				"Get all mentions weighed in \"channelName\" channel from \"fileName\" zip file"));
-		allCommands.add(new Command(MENTIONCOMMAND, "-w -to \"memberName\" -f \"fileName\"",
-				"Get all mentions weighed to \"memberName\" member from \"fileName\" zip file"));
 		allCommands.add(new Command(MENTIONCOMMAND, "-from \"memberName\" -f \"fileName\"",
 				"Get all mentions from \"memberName\" member from \"fileName\" zip file"));
 		allCommands.add(new Command(MENTIONCOMMAND, "-w -from \"memberName\" -f \"fileName\"",
@@ -49,6 +47,8 @@ public final class Commands {
 						+ "\"fileName\" zip file"));
 		allCommands.add(new Command(MENTIONCOMMAND, "-to \"memberName\" -f \"fileName\"",
 				"Get all mentions to \"memberName\" member from \"fileName\" zip file"));
+		allCommands.add(new Command(MENTIONCOMMAND, "-w -to \"memberName\" -f \"fileName\"",
+				"Get all mentions weighed to \"memberName\" member from \"fileName\" zip file"));
 		allCommands.add(new Command(MENTIONCOMMAND, "-to \"memberName\" -ch \"channelName\" -f \"fileName\"",
 				"Get all mentions to \"memberName\" member in \"channelName\" channel from \"fileName\" zip file"));
 		allCommands.add(new Command(MENTIONCOMMAND, "-w -to \"memberName\" -ch \"channelName\" -f \"fileName\"",
