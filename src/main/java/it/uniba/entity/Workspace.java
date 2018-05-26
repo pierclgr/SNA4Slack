@@ -152,7 +152,7 @@ public final class Workspace {
 				throw new NotValidWorkspaceException(workspaceZipFile);
 			}
 		} catch (ZipException e) {
-			throw (NotZipFileException)new NotZipFileException(workspaceZipFile).initCause(e);
+			throw (NotZipFileException) new NotZipFileException(workspaceZipFile).initCause(e);
 		}
 	}
 
@@ -188,7 +188,8 @@ public final class Workspace {
 	 */
 	public List<Member> getMembersOfChannel(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
-			return (LinkedList<Member>) channels.get(channelName).getMembers();
+			final Channel curChannel = channels.get(channelName);
+			return (LinkedList<Member>) curChannel.getMembers();
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
@@ -225,11 +226,13 @@ public final class Workspace {
 		if (found) {
 			if (channels.containsKey(channelInput)) {
 				final LinkedList<Mention> out = new LinkedList<Mention>();
-				final LinkedList<Mention> mentions = (LinkedList<Mention>) channels.get(channelInput).getMentions();
+				final Channel curChannel = channels.get(channelInput);
+				final LinkedList<Mention> mentions = (LinkedList<Mention>) curChannel.getMentions();
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention curMention = mentionsIterator.next();
-					if (curMention.getFrom().equals(members.get(memberID))) {
+					final Member fromMember = curMention.getFrom();
+					if (fromMember.equals(members.get(memberID))) {
 						out.add(curMention);
 					}
 				}
@@ -274,11 +277,13 @@ public final class Workspace {
 		if (found) {
 			if (channels.containsKey(channelInput)) {
 				final LinkedList<Mention> out = new LinkedList<Mention>();
-				final LinkedList<Mention> mentions = (LinkedList<Mention>) channels.get(channelInput).getMentions();
+				final Channel curChannel = channels.get(channelInput);
+				final LinkedList<Mention> mentions = (LinkedList<Mention>) curChannel.getMentions();
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention curMention = mentionsIterator.next();
-					if (curMention.getTo().equals(members.get(memberID))) {
+					final Member toMember = curMention.getTo();
+					if (toMember.equals(members.get(memberID))) {
 						out.add(curMention);
 					}
 				}
@@ -303,7 +308,8 @@ public final class Workspace {
 	 */
 	public List<Mention> getMentions(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
-			return (LinkedList<Mention>) channels.get(channelName).getMentions();
+			final Channel currChannel = channels.get(channelName);
+			return (LinkedList<Mention>) currChannel.getMentions();
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
