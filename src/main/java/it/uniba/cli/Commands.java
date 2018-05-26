@@ -81,7 +81,8 @@ public final class Commands {
 		final ListIterator<Command> iterator = (ListIterator<Command>) allCommands.iterator();
 		while (iterator.hasNext() && !found) {
 			final Command curr = iterator.next();
-			if (curr.getName().equals(command.getName())) {
+			final String currName = curr.getName();
+			if (currName.equals(command.getName())) {
 				found = true;
 			}
 		}
