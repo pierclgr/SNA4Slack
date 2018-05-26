@@ -108,8 +108,8 @@ public final class Mention {
 	 * corrente includendo anche il peso.
 	 * 
 	 * @return String che rappresenta lo stato della mention corrente che include il
-	 *         member da cui parte la mention, il member a cui � riferita la mention
-	 *         e il peso della mention.
+	 *         member da cui parte la mention, il member a cui � riferita la
+	 *         mention e il peso della mention.
 	 */
 	public String toFullString() {
 		return "(" + this.getFrom().getName() + ", " + this.getTo().getName() + ", " + this.getWeight() + ")";
