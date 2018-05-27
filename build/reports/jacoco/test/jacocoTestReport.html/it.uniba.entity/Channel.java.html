@@ -11,19 +11,19 @@ public final class Channel {
 	/**
 	 * Id del channel corrente.
 	 */
-	private String id;
+	private final String uID;
 	/**
 	 * Nome del channel corrente.
 	 */
-	private String name;
+	private final String name;
 	/**
 	 * Lista dei members del channel corrente.
 	 */
-	private List&lt;Member&gt; members;
+	private final List&lt;Member&gt; members;
 	/**
 	 * Lista delle metions effettuate nel channel corrente.
 	 */
-	private List&lt;Mention&gt; mentions;
+	private final List&lt;Mention&gt; mentions;
 
 	/**
 	 * Metodo costruttore della classe Channel che permette di creare oggetti
@@ -35,7 +35,7 @@ public final class Channel {
 	 *            String che rappresenta il nome del channel corrente.
 	 */
 <span class="fc" id="L37">	public Channel(final String channelId, final String channelName) {</span>
-<span class="fc" id="L38">		this.id = channelId;</span>
+<span class="fc" id="L38">		this.uID = channelId;</span>
 <span class="fc" id="L39">		this.name = channelName;</span>
 <span class="fc" id="L40">		this.members = new LinkedList&lt;Member&gt;();</span>
 <span class="fc" id="L41">		this.mentions = new LinkedList&lt;Mention&gt;();</span>
@@ -47,7 +47,7 @@ public final class Channel {
 	 * @return String che rappresenta l'id del channel corrente.
 	 */
 	public String getId() {
-<span class="fc" id="L50">		return id;</span>
+<span class="fc" id="L50">		return uID;</span>
 	}
 
 	/**
@@ -65,7 +65,7 @@ public final class Channel {
 	 * @return riferimento ad una LinkedList&lt;Member&gt; che rappresenta la lista di
 	 *         members del channel corrente.
 	 */
-	public LinkedList&lt;Member&gt; getMembers() {
+	public List&lt;Member&gt; getMembers() {
 <span class="fc" id="L69">		return (LinkedList&lt;Member&gt;) this.members;</span>
 	}
 
@@ -75,7 +75,7 @@ public final class Channel {
 	 * @return riferimento ad una LinkedList&lt;Mention&gt; che rappresenta la lista di
 	 *         mention effettuate all'interno del channel corrente.
 	 */
-	public LinkedList&lt;Mention&gt; getMentions() {
+	public List&lt;Mention&gt; getMentions() {
 <span class="fc" id="L79">		return (LinkedList&lt;Mention&gt;) this.mentions;</span>
 	}
 
@@ -83,18 +83,18 @@ public final class Channel {
 	 * Verifica la presenza di una particolare mention all'interno del channel
 	 * corrente.
 	 * 
-	 * @param m
+	 * @param mentionIn
 	 *            riferimento ad un oggetto istanza della classe Mention che
 	 *            rappresenta la mention di cui si vuole verificare la presenza
 	 *            all'interno del channel corrente.
-	 * @return boolean che risulta essere true se la mention in input è presente
+	 * @return boolean che risulta essere true se la mention in input ï¿½ presente
 	 *         all'interno del channel, false altrimenti.
 	 */
-	public boolean containsMention(final Mention m) {
-<span class="fc" id="L94">		ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) mentions.iterator();</span>
+	public boolean containsMention(final Mention mentionIn) {
+<span class="fc" id="L94">		final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) mentions.iterator();</span>
 <span class="fc bfc" id="L95" title="All 2 branches covered.">		while (mentionsIterator.hasNext()) {</span>
-<span class="fc" id="L96">			Mention curr = mentionsIterator.next();</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">			if (curr.equals(m)) {</span>
+<span class="fc" id="L96">			final Mention curr = mentionsIterator.next();</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">			if (curr.equals(mentionIn)) {</span>
 <span class="fc" id="L98">				return true;</span>
 			}
 <span class="fc" id="L100">		}</span>

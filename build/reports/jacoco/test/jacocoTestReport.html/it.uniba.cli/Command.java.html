@@ -8,16 +8,16 @@ public final class Command {
 	 * Nome del comando corrente.
 	 */
 
-	private String name;
+	private final String name;
 	/**
 	 * Opzioni del comando corrente.
 	 */
-	private String options;
+	private final String options;
 
 	/**
 	 * Descrizione del comando corrente.
 	 */
-	private String description;
+	private final String description;
 
 	/**
 	 * Metodo costruttore della classe Command permette di creare oggetti istanze
@@ -28,13 +28,13 @@ public final class Command {
 	 * @param commandOptions
 	 *            String che indica le possibili opzioni associate al comando
 	 *            corrente.
-	 * @param commandDescription
+	 * @param cmdDescr
 	 *            String che indica la descrizione associata al comando corrente.
 	 */
-<span class="fc" id="L34">	Command(final String commandName, final String commandOptions, final String commandDescription) {</span>
+<span class="fc" id="L34">	Command(final String commandName, final String commandOptions, final String cmdDescr) {</span>
 <span class="fc" id="L35">		this.name = commandName;</span>
 <span class="fc" id="L36">		this.options = commandOptions;</span>
-<span class="fc" id="L37">		this.description = commandDescription;</span>
+<span class="fc" id="L37">		this.description = cmdDescr;</span>
 <span class="fc" id="L38">	}</span>
 
 	/**

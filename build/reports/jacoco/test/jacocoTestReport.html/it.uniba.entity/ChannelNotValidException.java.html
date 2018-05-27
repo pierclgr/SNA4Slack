@@ -2,7 +2,7 @@
 
 /**
  * Classe che modella l'eccezione da generare ogni qualvolta il channel
- * specificato non è valido.
+ * specificato non ï¿½ valido.
  */
 public final class ChannelNotValidException extends Exception {
 	/**
@@ -12,7 +12,7 @@ public final class ChannelNotValidException extends Exception {
 	/**
 	 * Messaggio dell'oggetto eccezione corrente.
 	 */
-<span class="fc" id="L15">	private String message = &quot; is not a valid channel&quot;;</span>
+	private final String message;
 
 	/**
 	 * Costruisce il messaggio per l'oggetto eccezione corrente.
@@ -21,7 +21,7 @@ public final class ChannelNotValidException extends Exception {
 	 *            String che rappresenta uno specifico channel.
 	 */
 <span class="fc" id="L23">	public ChannelNotValidException(final String channel) {</span>
-<span class="fc" id="L24">		message = channel + message;</span>
+<span class="fc" id="L24">		message = channel + &quot; is not a valid channel&quot;;</span>
 <span class="fc" id="L25">	}</span>
 
 	/**

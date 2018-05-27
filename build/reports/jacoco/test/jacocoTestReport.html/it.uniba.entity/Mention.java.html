@@ -7,11 +7,11 @@ public final class Mention {
 	/**
 	 * Member da cui viene effettuata la mention corrente.
 	 */
-	private Member from;
+	private final Member fromUser;
 	/**
-	 * Member a cui è riferita la mention corrente.
+	 * Member a cui ï¿½ riferita la mention corrente.
 	 */
-	private Member to;
+	private final Member toUser;
 	/**
 	 * Peso della mention corrente.
 	 */
@@ -23,35 +23,35 @@ public final class Mention {
 	 * 
 	 * @param mentionFrom
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member da cui è effettuata la mention corrente.
+	 *            rappresenta il member da cui ï¿½ effettuata la mention corrente.
 	 * @param mentionTo
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member a cui è riferita la mention corrente.
+	 *            rappresenta il member a cui ï¿½ riferita la mention corrente.
 	 */
 <span class="fc" id="L31">	public Mention(final Member mentionFrom, final Member mentionTo) {</span>
-<span class="fc" id="L32">		this.from = mentionFrom;</span>
-<span class="fc" id="L33">		this.to = mentionTo;</span>
+<span class="fc" id="L32">		this.fromUser = mentionFrom;</span>
+<span class="fc" id="L33">		this.toUser = mentionTo;</span>
 <span class="fc" id="L34">		this.weight = 1;</span>
 <span class="fc" id="L35">	}</span>
 
 	/**
-	 * Restituisce il member da cui è effettuata la mention corrente.
+	 * Restituisce il member da cui ï¿½ effettuata la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member da cui è effettuata la mention corrente.
+	 *         il member da cui ï¿½ effettuata la mention corrente.
 	 */
 	public Member getFrom() {
-<span class="fc" id="L44">		return from;</span>
+<span class="fc" id="L44">		return fromUser;</span>
 	}
 
 	/**
-	 * Restituisce il member a cui è riferita la mention corrente.
+	 * Restituisce il member a cui ï¿½ riferita la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member a cui è riferita la mention corrente.
+	 *         il member a cui ï¿½ riferita la mention corrente.
 	 */
 	public Member getTo() {
-<span class="fc" id="L54">		return to;</span>
+<span class="fc" id="L54">		return toUser;</span>
 	}
 
 	/**
@@ -61,15 +61,15 @@ public final class Mention {
 	public int hashCode() {
 <span class="fc" id="L62">		final int prime = 31;</span>
 <span class="fc" id="L63">		int result = 1;</span>
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		if (from == null) {</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		if (fromUser == null) {</span>
 <span class="nc" id="L65">			result = prime * result + 0;</span>
 		} else {
-<span class="fc" id="L67">			result = prime * result + from.hashCode();</span>
+<span class="fc" id="L67">			result = prime * result + fromUser.hashCode();</span>
 		}
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		if (to == null) {</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		if (toUser == null) {</span>
 <span class="nc" id="L70">			result = prime * result + 0;</span>
 		} else {
-<span class="fc" id="L72">			result = prime * result + to.hashCode();</span>
+<span class="fc" id="L72">			result = prime * result + toUser.hashCode();</span>
 		}
 <span class="fc" id="L74">		result = prime * result + weight;</span>
 <span class="fc" id="L75">		return result;</span>
@@ -84,10 +84,14 @@ public final class Mention {
 	@Override
 	public boolean equals(final Object obj) {
 <span class="fc" id="L86">		boolean out = false;</span>
-<span class="pc bpc" id="L87" title="1 of 6 branches missed.">		if (obj instanceof Mention &amp;&amp; from.equals(((Mention) obj).getFrom()) &amp;&amp; to.equals(((Mention) obj).getTo())) {</span>
-<span class="fc" id="L88">			out = true;</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">		if (obj instanceof Mention) {</span>
+<span class="fc" id="L88">			final Member fromMember = ((Mention) obj).fromUser;</span>
+<span class="fc" id="L89">			final Member toMember = ((Mention) obj).toUser;</span>
+<span class="fc bfc" id="L90" title="All 4 branches covered.">			if (fromMember.equals(fromUser) &amp;&amp; toMember.equals(toUser)) {</span>
+<span class="fc" id="L91">				out = true;</span>
+			}
 		}
-<span class="fc" id="L90">		return out;</span>
+<span class="fc" id="L94">		return out;</span>
 	}
 
 	/**
@@ -95,11 +99,11 @@ public final class Mention {
 	 * corrente escludendo il peso.
 	 * 
 	 * @return String che rappresenta il member da cui parte la mention corrente ed
-	 *         il member a cui è riferita la mention corrente.
+	 *         il member a cui ï¿½ riferita la mention corrente.
 	 */
 	@Override
 	public String toString() {
-<span class="fc" id="L102">		return &quot;(&quot; + this.getFrom().getName() + &quot;, &quot; + this.getTo().getName() + &quot;)&quot;;</span>
+<span class="fc" id="L106">		return &quot;(&quot; + this.getFrom().getName() + &quot;, &quot; + this.getTo().getName() + &quot;)&quot;;</span>
 	}
 
 	/**
@@ -107,11 +111,11 @@ public final class Mention {
 	 * corrente includendo anche il peso.
 	 * 
 	 * @return String che rappresenta lo stato della mention corrente che include il
-	 *         member da cui parte la mention, il member a cui è riferita la mention
-	 *         e il peso della mention.
+	 *         member da cui parte la mention, il member a cui ï¿½ riferita la
+	 *         mention e il peso della mention.
 	 */
 	public String toFullString() {
-<span class="fc" id="L114">		return &quot;(&quot; + this.getFrom().getName() + &quot;, &quot; + this.getTo().getName() + &quot;, &quot; + this.getWeight() + &quot;)&quot;;</span>
+<span class="fc" id="L118">		return &quot;(&quot; + this.getFrom().getName() + &quot;, &quot; + this.getTo().getName() + &quot;, &quot; + this.getWeight() + &quot;)&quot;;</span>
 	}
 
 	/**
@@ -120,7 +124,7 @@ public final class Mention {
 	 * @return int che rappresenta il peso della mention corrente.
 	 */
 	public int getWeight() {
-<span class="fc" id="L123">		return weight;</span>
+<span class="fc" id="L127">		return weight;</span>
 	}
 
 	/**
@@ -130,7 +134,7 @@ public final class Mention {
 	 *            int che rappresenta il valore da assegnare alla mention corrente.
 	 */
 	public void setWeight(final int mentionWeight) {
-<span class="fc" id="L133">		this.weight = mentionWeight;</span>
-<span class="fc" id="L134">	}</span>
+<span class="fc" id="L137">		this.weight = mentionWeight;</span>
+<span class="fc" id="L138">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

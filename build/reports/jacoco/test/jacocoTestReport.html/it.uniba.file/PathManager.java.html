@@ -19,8 +19,8 @@ public final class PathManager {
 	 * @return String che rappresenta il percorso assoluto di un file.
 	 */
 	public static String getAbsolutePath(final String pathOfFile) {
-<span class="fc" id="L22">		File f = new File(pathOfFile);</span>
-<span class="fc" id="L23">		return f.getAbsolutePath();</span>
+<span class="fc" id="L22">		final File file = new File(pathOfFile);</span>
+<span class="fc" id="L23">		return file.getAbsolutePath();</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

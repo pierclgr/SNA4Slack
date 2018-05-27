@@ -2,7 +2,7 @@
 
 /**
  * Classe che modella l'eccezione da generare ogni qualvolta il member
- * specificato non è valido.
+ * specificato non ï¿½ valido.
  */
 public final class MemberNotValidException extends Exception {
 	/**
@@ -12,7 +12,7 @@ public final class MemberNotValidException extends Exception {
 	/**
 	 * Messaggio dell'oggetto eccezione corrente.
 	 */
-<span class="fc" id="L15">	private String message = &quot; is not a valid member&quot;;</span>
+	private final String message;
 
 	/**
 	 * Costruisce il messaggio per l'oggetto eccezione corrente.
@@ -21,7 +21,7 @@ public final class MemberNotValidException extends Exception {
 	 *            String che rappresenta un member.
 	 */
 <span class="fc" id="L23">	public MemberNotValidException(final String member) {</span>
-<span class="fc" id="L24">		message = member + message;</span>
+<span class="fc" id="L24">		message = member + &quot; is not a valid member&quot;;</span>
 <span class="fc" id="L25">	}</span>
 
 	/**
