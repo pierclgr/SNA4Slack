@@ -84,9 +84,12 @@ public final class Mention {
 	@Override
 	public boolean equals(final Object obj) {
 		boolean out = false;
-		if (obj instanceof Mention && fromUser.equals(((Mention) obj).getFrom())
-				&& toUser.equals(((Mention) obj).getTo())) {
-			out = true;
+		if (obj instanceof Mention) {
+			final Member fromMember = ((Mention) obj).fromUser;
+			final Member toMember = ((Mention) obj).toUser;
+			if (fromMember.equals(fromUser) && toMember.equals(toUser)) {
+				out = true;
+			}
 		}
 		return out;
 	}
