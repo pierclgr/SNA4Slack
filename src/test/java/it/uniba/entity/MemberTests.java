@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class MemberTests {
-	static Member m1;
+	static Member m1, m2, m3, m4;
 
 	@BeforeAll
 	static void setUpAll() {
@@ -14,6 +14,9 @@ public class MemberTests {
 		String realName = "Luciano Bruno";
 		String displayName = "Luciano Bruno";
 		m1 = new Member(id, name, realName, displayName);
+		m2 = new Member(id, name, realName, "");
+		m3 = new Member(id, name, "", "");
+		m4 = new Member(id, "", "", "");
 	}
 
 	@Test
@@ -31,7 +34,7 @@ public class MemberTests {
 	@DisplayName("Test getId() di Member")
 	void getIdTest() {
 		final String failMsg = "getId() is failed";
-		assertAll("Check member Id with lambdas", () -> {
+		assertAll("Check member ID with lambdas", () -> {
 			assertEquals("U9QLDMNDV", m1.getId(), failMsg);
 			assertNotEquals("CA3EZFFGR", m1.getId(), failMsg);
 		});
@@ -39,11 +42,13 @@ public class MemberTests {
 
 	@Test
 	@DisplayName("Test getName() di Member")
-	void getNameTest() {
+	void getNameTest() {	
 		final String failMsg = "getName() is failed";
-		assertAll("Check member displayName, realName or name with lambdas", () -> {
+		assertAll("Check member displayName, realName, name or ID with lambdas", () -> {
 			assertEquals("Luciano Bruno", m1.getName(), failMsg);
-			assertNotEquals("Nunzia Andrulli", m1.getName(), failMsg);
+			assertEquals("Luciano Bruno", m2.getName(), failMsg);
+			assertEquals("luciano_bruno", m3.getName(), failMsg);
+			assertEquals("U9QLDMNDV", m4.getName(), failMsg);
 		});
 	}
 
@@ -62,8 +67,8 @@ public class MemberTests {
 	void getUserNameTest() {
 		final String failMsg = "getUserName() is failed";
 		assertAll("Check member name with lambdas", () -> {
-			assertEquals("Luciano Bruno", m1.getName(), failMsg);
-			assertNotEquals("Nunzia Andrulli", m1.getName(), failMsg);
+			assertEquals("luciano_bruno", m1.getUserName(), failMsg);
+			assertNotEquals("nunziaandrulli", m1.getUserName(), failMsg);
 		});
 	}
 

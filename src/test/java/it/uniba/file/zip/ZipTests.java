@@ -2,6 +2,8 @@ package it.uniba.file.zip;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+
+import it.uniba.entity.ChannelNotValidException;
 import it.uniba.file.PathManager;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
@@ -32,7 +34,12 @@ public class ZipTests {
 	void getFileContentTest() throws Exception {
 		final String failMsg = "getFileContent() is failed";
 		String file = "users.json";
-		assertNotNull(z.getFileContent(file), failMsg);
+		assertAll("Check content of a file in zip with lambdas", () -> {
+		    assertNotNull(z.getFileContent(file), failMsg);
+			assertThrows(FileNotInZipException.class, () -> {
+			    z.getFileContent("wrongchannel.json");
+			});
+		});
 	}
 
 	@Test
@@ -40,7 +47,11 @@ public class ZipTests {
 	void containsTest() {
 		final String failMsg = "contains() is failed";
 		String file = "users.json";
-		assertNotNull(z.contains(file), failMsg);
+		assertAll("Check if zip contains a file with lambdas", () -> {
+			assertNotNull(z.contains(file), failMsg);
+			assertTrue(z.contains(file), failMsg);
+			assertFalse(z.contains("wrongchannel.json"), failMsg);
+		});
 	}
 
 	@Test

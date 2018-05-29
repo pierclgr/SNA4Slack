@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class MentionTests {
-	static Mention ment;
+	static Mention ment, ment2, ment3;
 
 	@BeforeAll
 	static void setUpAll() {
@@ -22,6 +22,8 @@ public class MentionTests {
 		Member to = new Member(id2, name2, realName2, displayName2);
 
 		ment = new Mention(from, to);
+		ment2 = new Mention(null,to);
+		ment3 = new Mention(from,null);
 	}
 
 	@Test
@@ -61,7 +63,11 @@ public class MentionTests {
 	@DisplayName("Test hashCode() di Mention")
 	void hashCodeTest() {
 		final String failMsg = "hashCode() is failed";
-		assertNotNull(ment.hashCode(), failMsg);
+		assertAll("Check hashcode with lambdas", () -> {
+			assertNotNull(ment.hashCode(), failMsg);
+			assertNotNull(ment2.hashCode(), failMsg);
+			assertNotNull(ment3.hashCode(), failMsg);
+		});
 	}
 
 	@Test
