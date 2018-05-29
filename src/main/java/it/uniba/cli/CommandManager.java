@@ -103,12 +103,13 @@ public final class CommandManager {
 		ListIterator<Command> commandsIterator = (ListIterator<Command>) commandList.iterator();
 		while (commandsIterator.hasNext()) {
 			final Command curr = commandsIterator.next();
-			if ((curr.getName() + " " + curr.getOptions()).length() >= maxNumCharCommand) {
-				maxNumCharCommand = (curr.getName() + " " + curr.getOptions()).length();
+			final int currCommLength = (curr.getName() + " " + curr.getOptions()).length();
+			if (currCommLength >= maxNumCharCommand) {
+				maxNumCharCommand = currCommLength;
 			}
-			final String currDesc = curr.getDescription();
-			if (currDesc.length() >= maxNCharDesc) {
-				maxNCharDesc = currDesc.length();
+			final int currDescLength = curr.getDescription().length();
+			if (currDescLength >= maxNCharDesc) {
+				maxNCharDesc = currDescLength;
 			}
 		}
 		System.out.format("%" + maxNumCharCommand + "s\t%" + maxNCharDesc + "s", "COMMAND", "DESCRIPTION");
@@ -220,11 +221,11 @@ public final class CommandManager {
 			final Collection<Channel> channels = workspaceChannels.values();
 			final Iterator<Channel> channelsIterator = channels.iterator();
 			while (channelsIterator.hasNext()) {
-				final Channel curr = channelsIterator.next();
+				final Channel currChannel = channelsIterator.next();
 				final LinkedList<Member> channelMembers = (LinkedList<Member>) slackWorkspace
-						.getMembersOfChannel(curr.getName());
+						.getMembersOfChannel(currChannel.getName());
 				final ListIterator<Member> membersIterator = (ListIterator<Member>) channelMembers.iterator();
-				System.out.println("Members of \"" + curr.getName() + "\":");
+				System.out.println("Members of \"" + currChannel.getName() + "\":");
 				while (membersIterator.hasNext()) {
 					final Member currMember = membersIterator.next();
 					System.out.println("\t" + currMember.getName());
@@ -269,9 +270,7 @@ public final class CommandManager {
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
-					final Member fromMember = currMention.getFrom();
-					final Member toMember = currMention.getTo();
-					final String currMentionKey = fromMember.getId() + "," + toMember.getId();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
@@ -312,9 +311,7 @@ public final class CommandManager {
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
-					final Member fromMember = currMention.getFrom();
-					final Member toMember = currMention.getTo();
-					final String currMentionKey = fromMember.getId() + "," + toMember.getId();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (out.containsKey(currMentionKey)) {
 						final Mention outMent = out.get(currMentionKey);
 						outMent.setWeight(outMent.getWeight() + currMention.getWeight());
@@ -428,9 +425,7 @@ public final class CommandManager {
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
-					final Member fromMember = currMention.getFrom();
-					final Member toMember = currMention.getTo();
-					final String currMentionKey = fromMember.getId() + "," + toMember.getId();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
@@ -527,9 +522,7 @@ public final class CommandManager {
 				final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
-					final Member fromMember = currMention.getFrom();
-					final Member toMember = currMention.getTo();
-					final String currMentionKey = fromMember.getId() + "," + toMember.getId();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
@@ -568,9 +561,7 @@ public final class CommandManager {
 				final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
-					final Member fromMember = currMention.getFrom();
-					final Member toMember = currMention.getTo();
-					final String currMentionKey = fromMember.getId() + "," + toMember.getId();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (out.containsKey(currMentionKey)) {
 						final Mention outMent = out.get(currMentionKey);
 						outMent.setWeight(currMention.getWeight() + outMent.getWeight());
@@ -614,9 +605,7 @@ public final class CommandManager {
 			final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				final Mention currMention = mentionsIterator.next();
-				final Member fromMember = currMention.getFrom();
-				final Member toMember = currMention.getTo();
-				final String currMentionKey = fromMember.getId() + "," + toMember.getId();
+				final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 				out.put(currMentionKey, currMention);
 			}
 			final Collection<Mention> mentionColl = out.values();
@@ -660,9 +649,7 @@ public final class CommandManager {
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
 					final Mention currMention = mentionsIterator.next();
-					final Member fromMember = currMention.getFrom();
-					final Member toMember = currMention.getTo();
-					final String currMentionKey = fromMember.getId() + "," + toMember.getId();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (out.containsKey(currMentionKey)) {
 						final Mention outMent = out.get(currMentionKey);
 						outMent.setWeight(outMent.getWeight() + currMention.getWeight());
