@@ -147,7 +147,6 @@ public final class Workspace {
 						}
 					}
 				}
-
 			} else {
 				throw new NotValidWorkspaceException(workspaceZipFile);
 			}
