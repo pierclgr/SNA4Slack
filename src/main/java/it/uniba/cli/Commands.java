@@ -2,7 +2,6 @@ package it.uniba.cli;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Classe che modella l'insieme di comandi possibili.
@@ -64,28 +63,5 @@ public final class Commands {
 	 */
 	public List<Command> getCommands() {
 		return (LinkedList<Command>) this.allCommands;
-	}
-
-	/**
-	 * Permette di verificare la presenza di un comando all'interno della lista di
-	 * comandi possibili.
-	 * 
-	 * @param command
-	 *            istanza della clsse Command che rappresenta il comando di cui
-	 *            verificare la presenza.
-	 * @return boolen che vale true se il comando in input alla funzione è presente
-	 *         nella lista di comandi possibili, false altrimenti.
-	 */
-	boolean contains(final Command command) {
-		boolean found = false;
-		final ListIterator<Command> iterator = (ListIterator<Command>) allCommands.iterator();
-		while (iterator.hasNext() && !found) {
-			final Command curr = iterator.next();
-			final String currName = curr.getName();
-			if (currName.equals(command.getName())) {
-				found = true;
-			}
-		}
-		return found;
 	}
 }
