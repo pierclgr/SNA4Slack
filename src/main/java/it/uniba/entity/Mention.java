@@ -7,11 +7,11 @@ public final class Mention {
 	/**
 	 * Member da cui viene effettuata la mention corrente.
 	 */
-	private Member from;
+	private final Member fromUser;
 	/**
-	 * Member a cui è riferita la mention corrente.
+	 * Member a cui ï¿½ riferita la mention corrente.
 	 */
-	private Member to;
+	private final Member toUser;
 	/**
 	 * Peso della mention corrente.
 	 */
@@ -23,35 +23,45 @@ public final class Mention {
 	 * 
 	 * @param mentionFrom
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member da cui è effettuata la mention corrente.
+	 *            rappresenta il member da cui ï¿½ effettuata la mention corrente.
 	 * @param mentionTo
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member a cui è riferita la mention corrente.
+	 *            rappresenta il member a cui ï¿½ riferita la mention corrente.
 	 */
 	public Mention(final Member mentionFrom, final Member mentionTo) {
-		this.from = mentionFrom;
-		this.to = mentionTo;
+		this.fromUser = mentionFrom;
+		this.toUser = mentionTo;
 		this.weight = 1;
 	}
 
 	/**
-	 * Restituisce il member da cui è effettuata la mention corrente.
+	 * Restituisce il member da cui ï¿½ effettuata la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member da cui è effettuata la mention corrente.
+	 *         il member da cui ï¿½ effettuata la mention corrente.
 	 */
 	public Member getFrom() {
-		return from;
+		return fromUser;
 	}
 
 	/**
-	 * Restituisce il member a cui è riferita la mention corrente.
+	 * Restituisce l'id del member da cui ï¿½ effettuata la mention corrente.
+	 * 
+	 * @return riferimento ad una stringa della classe Member che rappresenta il
+	 *         member id da cui ï¿½ effettuata la mention corrente.
+	 */
+	public String getFromId() {
+		return fromUser.getId();
+	}
+
+	/**
+	 * Restituisce il member a cui ï¿½ riferita la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member a cui è riferita la mention corrente.
+	 *         il member a cui ï¿½ riferita la mention corrente.
 	 */
 	public Member getTo() {
-		return to;
+		return toUser;
 	}
 
 	/**
@@ -61,15 +71,15 @@ public final class Mention {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		if (from == null) {
+		if (fromUser == null) {
 			result = prime * result + 0;
 		} else {
-			result = prime * result + from.hashCode();
+			result = prime * result + fromUser.hashCode();
 		}
-		if (to == null) {
+		if (toUser == null) {
 			result = prime * result + 0;
 		} else {
-			result = prime * result + to.hashCode();
+			result = prime * result + toUser.hashCode();
 		}
 		result = prime * result + weight;
 		return result;
@@ -84,8 +94,12 @@ public final class Mention {
 	@Override
 	public boolean equals(final Object obj) {
 		boolean out = false;
-		if (obj instanceof Mention && from.equals(((Mention) obj).getFrom()) && to.equals(((Mention) obj).getTo())) {
-			out = true;
+		if (obj instanceof Mention) {
+			final Member fromMember = ((Mention) obj).fromUser;
+			final Member toMember = ((Mention) obj).toUser;
+			if (fromUser.equals(fromMember) && toUser.equals(toMember)) {
+				out = true;
+			}
 		}
 		return out;
 	}
@@ -95,7 +109,7 @@ public final class Mention {
 	 * corrente escludendo il peso.
 	 * 
 	 * @return String che rappresenta il member da cui parte la mention corrente ed
-	 *         il member a cui è riferita la mention corrente.
+	 *         il member a cui ï¿½ riferita la mention corrente.
 	 */
 	@Override
 	public String toString() {
@@ -107,7 +121,7 @@ public final class Mention {
 	 * corrente includendo anche il peso.
 	 * 
 	 * @return String che rappresenta lo stato della mention corrente che include il
-	 *         member da cui parte la mention, il member a cui è riferita la mention
+	 *         member da cui parte la mention, il member a cui ï¿½ riferita la mention
 	 *         e il peso della mention.
 	 */
 	public String toFullString() {
@@ -131,5 +145,15 @@ public final class Mention {
 	 */
 	public void setWeight(final int mentionWeight) {
 		this.weight = mentionWeight;
+	}
+
+	/**
+	 * Restituisce l'id del member a cui ï¿½ riferita la mention corrente.
+	 * 
+	 * @return riferimento ad una stringa della classe Member che rappresenta l'id
+	 *         del member a cui ï¿½ riferita la mention corrente.
+	 */
+	public String getToId() {
+		return toUser.getId();
 	}
 }

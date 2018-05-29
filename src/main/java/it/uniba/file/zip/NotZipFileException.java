@@ -2,7 +2,7 @@ package it.uniba.file.zip;
 
 /**
  * Classe che modella l'eccezione da generare ogni qualvolta il file passato non
- * è uno zip file.
+ * ï¿½ uno zip file.
  */
 public final class NotZipFileException extends Exception {
 
@@ -13,7 +13,7 @@ public final class NotZipFileException extends Exception {
 	/**
 	 * Messaggio dell'oggetto eccezione corrente.
 	 */
-	private String message = " is not a zip file";
+	private final String message;
 
 	/**
 	 * Metodo costruttore della classe NotZipFileException.
@@ -22,7 +22,7 @@ public final class NotZipFileException extends Exception {
 	 *            String che rappresenta il file.
 	 */
 	public NotZipFileException(final String file) {
-		message = file + message;
+		message = file + " is not a zip file";
 	}
 
 	/**

@@ -24,6 +24,31 @@ import it.uniba.file.zip.NotZipFileException;
  */
 public final class CommandManager {
 	/**
+	 * Attributo di classe che rappresenta la stringa di errore di un comando non
+	 * valido.
+	 */
+	public static final String NOTVALIDCOMMAND = " is not a valid command, see 'help'.";
+	/**
+	 * Attributo di classe che rappresenta la stringa del comando mentions.
+	 */
+	public static final String MENTIONSCOMMAND = "mentions";
+	/**
+	 * Attributo di classe che rappresenta la stringa del parametro -ch.
+	 */
+	public static final String CHPARAMETER = "-ch";
+	/**
+	 * Attributo di classe che rappresenta la stringa del parametro -from.
+	 */
+	public static final String FROMPARAMETER = "-from";
+	/**
+	 * Attributo di classe che rappresenta la stringa del parametro -ch.
+	 */
+	public static final String TOPARAMETER = "-to";
+	/**
+	 * Attributo di classe che rappresenta la stringa "not found".
+	 */
+	private static final String NOTFOUND = " not found";
+	/**
 	 * Attributo di classe che rappresenta il valore 0.
 	 */
 	private static final int ZERO = 0;
@@ -71,26 +96,29 @@ public final class CommandManager {
 	 * Scrive sullo standard output stream la lista di tutti i possibili comandi.
 	 */
 	public static void help() {
-		Commands commands = new Commands();
+		final Commands commands = new Commands();
 		int maxNumCharCommand = ZERO;
-		int maxNumCharDescription = ZERO;
-		ListIterator<Command> commandsIterator = (ListIterator<Command>) commands.getCommands().iterator();
+		int maxNCharDesc = ZERO;
+		final LinkedList<Command> commandList = (LinkedList<Command>) commands.getCommands();
+		ListIterator<Command> commandsIterator = (ListIterator<Command>) commandList.iterator();
 		while (commandsIterator.hasNext()) {
-			Command curr = commandsIterator.next();
-			if ((curr.getName() + " " + curr.getOptions()).length() >= maxNumCharCommand) {
-				maxNumCharCommand = (curr.getName() + " " + curr.getOptions()).length();
+			final Command curr = commandsIterator.next();
+			final int currCommLength = (curr.getName() + " " + curr.getOptions()).length();
+			if (currCommLength >= maxNumCharCommand) {
+				maxNumCharCommand = currCommLength;
 			}
-			if (curr.getDescription().length() >= maxNumCharDescription) {
-				maxNumCharDescription = curr.getDescription().length();
+			final int currDescLength = curr.getDescription().length();
+			if (currDescLength >= maxNCharDesc) {
+				maxNCharDesc = currDescLength;
 			}
 		}
-		System.out.format("%" + maxNumCharCommand + "s\t%" + maxNumCharDescription + "s", "COMMAND", "DESCRIPTION");
+		System.out.format("%" + maxNumCharCommand + "s\t%" + maxNCharDesc + "s", "COMMAND", "DESCRIPTION");
 		System.out.println();
 		System.out.println();
-		commandsIterator = (ListIterator<Command>) commands.getCommands().iterator();
+		commandsIterator = (ListIterator<Command>) commandList.iterator();
 		while (commandsIterator.hasNext()) {
-			Command curr = commandsIterator.next();
-			System.out.format("%" + maxNumCharCommand + "s\t%" + maxNumCharDescription + "s",
+			final Command curr = commandsIterator.next();
+			System.out.format("%" + maxNumCharCommand + "s\t%" + maxNCharDesc + "s",
 					curr.getName() + " " + curr.getOptions(), curr.getDescription());
 			System.out.println();
 		}
@@ -105,19 +133,19 @@ public final class CommandManager {
 	 */
 	public static void getChannels(final String workspace) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
-			Collection<Channel> c = workspaceChannels.values();
-			Iterator<Channel> channelsIterator = c.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> workspaceChannels = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> channels = workspaceChannels.values();
+			final Iterator<Channel> channelsIterator = channels.iterator();
 			while (channelsIterator.hasNext()) {
-				System.out.println(channelsIterator.next().getName());
+				final Channel currChannel = channelsIterator.next();
+				System.out.println(currChannel.getName());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
@@ -132,19 +160,19 @@ public final class CommandManager {
 	 */
 	public static void getMembers(final String workspace) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedHashMap<String, Member> workspaceMembers = slackWorkspace.getAllMembers();
-			Collection<Member> c = workspaceMembers.values();
-			Iterator<Member> membersIterator = c.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Member> workspaceMembers = (LinkedHashMap<String, Member>) slackWorkspace
+					.getAllMembers();
+			final Collection<Member> members = workspaceMembers.values();
+			final Iterator<Member> membersIterator = members.iterator();
 			while (membersIterator.hasNext()) {
-				System.out.println(membersIterator.next().getName());
+				final Member currMember = membersIterator.next();
+				System.out.println(currMember.getName());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 
@@ -162,18 +190,17 @@ public final class CommandManager {
 	 */
 	public static void getMembersOfChannel(final String workspace, final String channel) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Member> channelMembers = slackWorkspace.getMembersOfChannel(channel);
-			ListIterator<Member> membersIterator = (ListIterator<Member>) channelMembers.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedList<Member> channelMembers = (LinkedList<Member>) slackWorkspace.getMembersOfChannel(channel);
+			final ListIterator<Member> membersIterator = (ListIterator<Member>) channelMembers.iterator();
 			while (membersIterator.hasNext()) {
-				System.out.println(membersIterator.next().getName());
+				final Member currMember = membersIterator.next();
+				System.out.println(currMember.getName());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException
 				| NotZipFileException e) {
 			System.out.println(e.getMessage());
@@ -188,28 +215,29 @@ public final class CommandManager {
 	 */
 	public static void getMembersForChannels(final String workspace) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedHashMap<String, Channel> workspaceChannels = slackWorkspace.getAllChannels();
-			Collection<Channel> c = workspaceChannels.values();
-			Iterator<Channel> channelsIterator = c.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> workspaceChannels = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> channels = workspaceChannels.values();
+			final Iterator<Channel> channelsIterator = channels.iterator();
 			while (channelsIterator.hasNext()) {
-				Channel curr = channelsIterator.next();
-				LinkedList<Member> channelMembers = slackWorkspace.getMembersOfChannel(curr.getName());
-				ListIterator<Member> membersIterator = (ListIterator<Member>) channelMembers.iterator();
-				System.out.println("Members of \"" + curr.getName() + "\":");
+				final Channel currChannel = channelsIterator.next();
+				final LinkedList<Member> channelMembers = (LinkedList<Member>) slackWorkspace
+						.getMembersOfChannel(currChannel.getName());
+				final ListIterator<Member> membersIterator = (ListIterator<Member>) channelMembers.iterator();
+				System.out.println("Members of \"" + currChannel.getName() + "\":");
 				while (membersIterator.hasNext()) {
-					System.out.println("\t" + membersIterator.next().getName());
+					final Member currMember = membersIterator.next();
+					System.out.println("\t" + currMember.getName());
 				}
 				if (channelsIterator.hasNext()) {
 					System.out.println();
 				}
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		} catch (ChannelNotValidException e) {
@@ -229,29 +257,30 @@ public final class CommandManager {
 	 */
 	public static void getMentionsFromUser(final String workspace, final String member) {
 		try {
-			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
+			final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> chList = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> chCollection = chList.values();
+			final Iterator<Channel> channelsIeretor = chCollection.iterator();
 			while (channelsIeretor.hasNext()) {
-				LinkedList<Mention> currChannelMentions = slackWorkspace
-						.getMentionsFromUser(channelsIeretor.next().getName(), member);
-				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
+				final Channel currChannel = channelsIeretor.next();
+				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
+						.getMentionsFromUser(currChannel.getName(), member);
+				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
-					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					final Mention currMention = mentionsIterator.next();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
 					}
 				}
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException | ChannelNotValidException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
@@ -269,35 +298,38 @@ public final class CommandManager {
 	 */
 	public static void getMentionsFromUserWeighed(final String workspace, final String member) {
 		try {
-			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
+			final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> channelList = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> chCollection = channelList.values();
+			final Iterator<Channel> channelsIeretor = chCollection.iterator();
 			while (channelsIeretor.hasNext()) {
-				LinkedList<Mention> currChannelMentions = slackWorkspace
-						.getMentionsFromUser(channelsIeretor.next().getName(), member);
-				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
+				final Channel curChannel = channelsIeretor.next();
+				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
+						.getMentionsFromUser(curChannel.getName(), member);
+				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
-					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
-					if (!out.containsKey(currMentionKey)) {
-						out.put(currMentionKey, currMention);
+					final Mention currMention = mentionsIterator.next();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
+					if (out.containsKey(currMentionKey)) {
+						final Mention outMent = out.get(currMentionKey);
+						outMent.setWeight(outMent.getWeight() + currMention.getWeight());
 					} else {
-						out.get(currMentionKey)
-								.setWeight(out.get(currMentionKey).getWeight() + currMention.getWeight());
+						out.put(currMentionKey, currMention);
 					}
 				}
 			}
-			Iterator<Mention> outIterator = out.values().iterator();
+			final Collection<Mention> mentColl = out.values();
+			final Iterator<Mention> outIterator = mentColl.iterator();
 			while (outIterator.hasNext()) {
-				System.out.println(outIterator.next().toFullString());
+				final Mention currMent = outIterator.next();
+				System.out.println(currMent.toFullString());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException | ChannelNotValidException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
@@ -318,18 +350,17 @@ public final class CommandManager {
 	 */
 	public static void getMentionsFromUser(final String workspace, final String channel, final String member) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsFromUser(channel, member);
-			ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
+					.getMentionsFromUser(channel, member);
+			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException
 				| NotZipFileException e) {
 			System.out.println(e.getMessage());
@@ -351,18 +382,18 @@ public final class CommandManager {
 	 */
 	public static void getMentionsFromUserWeighed(final String workspace, final String channel, final String member) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsFromUser(channel, member);
-			ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
+					.getMentionsFromUser(channel, member);
+			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
-				System.out.println(mentionsIterator.next().toFullString());
+				final Mention currMention = mentionsIterator.next();
+				System.out.println(currMention.toFullString());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException
 				| NotZipFileException e) {
 			System.out.println(e.getMessage());
@@ -381,29 +412,30 @@ public final class CommandManager {
 	 */
 	public static void getMentionsToUser(final String workspace, final String member) {
 		try {
-			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> channelsIterator = channelsCollection.iterator();
+			final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> channelMap = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> chCollection = channelMap.values();
+			final Iterator<Channel> channelsIterator = chCollection.iterator();
 			while (channelsIterator.hasNext()) {
-				LinkedList<Mention> workspaceMentions = slackWorkspace
-						.getMentionsToUser(channelsIterator.next().getName(), member);
-				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+				final Channel currChannel = channelsIterator.next();
+				final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
+						.getMentionsToUser(currChannel.getName(), member);
+				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
-					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					final Mention currMention = mentionsIterator.next();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
 					}
 				}
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException | ChannelNotValidException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
@@ -424,18 +456,17 @@ public final class CommandManager {
 	 */
 	public static void getMentionsToUser(final String workspace, final String channel, final String member) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
-			ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
+					.getMentionsToUser(channel, member);
+			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException
 				| NotZipFileException e) {
 			System.out.println(e.getMessage());
@@ -454,18 +485,16 @@ public final class CommandManager {
 	 */
 	public static void getMentions(final String workspace, final String channel) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
-			Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentions(channel);
+			final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
 				System.out.println(mentionsIterator.next());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException
 				| NotZipFileException e) {
 			System.out.println(e.getMessage());
@@ -480,29 +509,30 @@ public final class CommandManager {
 	 */
 	public static void getMentions(final String workspace) {
 		try {
-			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> channelsIterator = channelsCollection.iterator();
+			final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> channelMap = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> chCollection = channelMap.values();
+			final Iterator<Channel> channelsIterator = chCollection.iterator();
 			while (channelsIterator.hasNext()) {
-				Channel currchannel = channelsIterator.next();
-				LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(currchannel.getName());
-				Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+				final Channel currchannel = channelsIterator.next();
+				final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
+						.getMentions(currchannel.getName());
+				final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
-					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+					final Mention currMention = mentionsIterator.next();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 					if (!out.containsKey(currMentionKey)) {
 						out.put(currMentionKey, currMention);
 						System.out.println(currMention);
 					}
 				}
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		} catch (ChannelNotValidException e) {
@@ -517,36 +547,39 @@ public final class CommandManager {
 	 *            String che rappresenta il percorso del workspace.
 	 */
 	public static void getMentionsWeighed(final String workspace) {
-		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+		final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> channelsIterator = channelsCollection.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> channelMap = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> chCollection = channelMap.values();
+			final Iterator<Channel> channelsIterator = chCollection.iterator();
 			while (channelsIterator.hasNext()) {
-				Channel currchannel = channelsIterator.next();
-				LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(currchannel.getName());
-				Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+				final Channel currChannel = channelsIterator.next();
+				final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
+						.getMentions(currChannel.getName());
+				final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 				while (mentionsIterator.hasNext()) {
-					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
-					if (!out.containsKey(currMentionKey)) {
-						out.put(currMentionKey, currMention);
+					final Mention currMention = mentionsIterator.next();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
+					if (out.containsKey(currMentionKey)) {
+						final Mention outMent = out.get(currMentionKey);
+						outMent.setWeight(currMention.getWeight() + outMent.getWeight());
 					} else {
-						out.get(currMentionKey)
-								.setWeight(currMention.getWeight() + out.get(currMentionKey).getWeight());
+						out.put(currMentionKey, currMention);
 					}
 				}
 			}
-			Iterator<Mention> outIterator = out.values().iterator();
+			final Collection<Mention> mentionColl = out.values();
+			final Iterator<Mention> outIterator = mentionColl.iterator();
 			while (outIterator.hasNext()) {
-				System.out.println(outIterator.next().toFullString());
+				final Mention currMention = outIterator.next();
+				System.out.println(currMention.toFullString());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		} catch (ChannelNotValidException e) {
@@ -565,26 +598,26 @@ public final class CommandManager {
 	 *            mention.
 	 */
 	public static void getMentionsWeighed(final String workspace, final String channel) {
-		LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+		final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentions(channel);
-			Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace.getMentions(channel);
+			final Iterator<Mention> mentionsIterator = workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
-				Mention currMention = mentionsIterator.next();
-				String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
+				final Mention currMention = mentionsIterator.next();
+				final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
 				out.put(currMentionKey, currMention);
 			}
-			Iterator<Mention> outIterator = out.values().iterator();
+			final Collection<Mention> mentionColl = out.values();
+			final Iterator<Mention> outIterator = mentionColl.iterator();
 			while (outIterator.hasNext()) {
-				System.out.println(outIterator.next().toFullString());
+				final Mention currMention = outIterator.next();
+				System.out.println(currMention.toFullString());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException
 				| NotZipFileException e) {
 			System.out.println(e.getMessage());
@@ -603,35 +636,38 @@ public final class CommandManager {
 	 */
 	public static void getMentionsToUserWeighed(final String workspace, final String member) {
 		try {
-			LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			Collection<Channel> channelsCollection = slackWorkspace.getAllChannels().values();
-			Iterator<Channel> channelsIeretor = channelsCollection.iterator();
-			while (channelsIeretor.hasNext()) {
-				LinkedList<Mention> currChannelMentions = slackWorkspace
-						.getMentionsToUser(channelsIeretor.next().getName(), member);
-				ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChannelMentions.iterator();
+			final LinkedHashMap<String, Mention> out = new LinkedHashMap<String, Mention>();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedHashMap<String, Channel> channelMap = (LinkedHashMap<String, Channel>) slackWorkspace
+					.getAllChannels();
+			final Collection<Channel> chCollection = channelMap.values();
+			final Iterator<Channel> channelsIterator = chCollection.iterator();
+			while (channelsIterator.hasNext()) {
+				final Channel currChannel = channelsIterator.next();
+				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
+						.getMentionsToUser(currChannel.getName(), member);
+				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) currChMentions.iterator();
 				while (mentionsIterator.hasNext()) {
-					Mention currMention = mentionsIterator.next();
-					String currMentionKey = currMention.getFrom().getId() + "," + currMention.getTo().getId();
-					if (!out.containsKey(currMentionKey)) {
-						out.put(currMentionKey, currMention);
+					final Mention currMention = mentionsIterator.next();
+					final String currMentionKey = currMention.getFromId() + "," + currMention.getToId();
+					if (out.containsKey(currMentionKey)) {
+						final Mention outMent = out.get(currMentionKey);
+						outMent.setWeight(outMent.getWeight() + currMention.getWeight());
 					} else {
-						out.get(currMentionKey)
-								.setWeight(out.get(currMentionKey).getWeight() + currMention.getWeight());
+						out.put(currMentionKey, currMention);
 					}
 				}
 			}
-			Iterator<Mention> outIterator = out.values().iterator();
+			final Collection<Mention> mentionColl = out.values();
+			final Iterator<Mention> outIterator = mentionColl.iterator();
 			while (outIterator.hasNext()) {
-				System.out.println(outIterator.next().toFullString());
+				final Mention currMent = outIterator.next();
+				System.out.println(currMent.toFullString());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException | ChannelNotValidException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {
 			System.out.println(e.getMessage());
 		}
@@ -652,18 +688,18 @@ public final class CommandManager {
 	 */
 	public static void getMentionsToUserWeighed(final String workspace, final String channel, final String member) {
 		try {
-			Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
-			LinkedList<Mention> workspaceMentions = slackWorkspace.getMentionsToUser(channel, member);
-			ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
+			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));
+			final LinkedList<Mention> workspaceMentions = (LinkedList<Mention>) slackWorkspace
+					.getMentionsToUser(channel, member);
+			final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) workspaceMentions.iterator();
 			while (mentionsIterator.hasNext()) {
-				System.out.println(mentionsIterator.next().toFullString());
+				final Mention currMention = mentionsIterator.next();
+				System.out.println(currMention.toFullString());
 			}
+		} catch (FileNotFoundException | NoSuchFileException e) {
+			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);
 		} catch (IOException e) {
-			if (e instanceof FileNotFoundException || e instanceof NoSuchFileException) {
-				System.out.println(PathManager.getAbsolutePath(workspace) + " not found");
-			} else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException
 				| NotZipFileException e) {
 			System.out.println(e.getMessage());
@@ -678,96 +714,129 @@ public final class CommandManager {
 	 *            array di String ciascuno dei quali contiene un singolo elemento
 	 *            del comando digitato dall'utente da riga di comando.
 	 */
-	public static void manage(final String[] args) {
+	public static void manage(final String... args) {
+		final String first, second, third, fourth, fifth, sixth, seventh, eighth;
 		switch (args.length) {
 		case ZERO:
-			CommandManager.help();
+			help();
 			break;
 		case ONE:
-			if (args[ZERO].equals("help")) {
-				CommandManager.help();
+			first = args[ZERO];
+			if ("help".equals(first)) {
+				help();
 			} else {
-				System.out.println("'" + args[ZERO] + "'" + " is not a valid command, see 'help'.");
+				System.out.println("'" + first + "'" + NOTVALIDCOMMAND);
 			}
 			break;
 		case TWO:
-			System.out.println("'" + args[ZERO] + " " + args[ONE] + "'" + " is not a valid command, see 'help'.");
+			first = args[ZERO];
+			second = args[ONE];
+			System.out.println("'" + first + " " + second + "'" + NOTVALIDCOMMAND);
 			break;
 		case THREE:
-			if (args[ZERO].equals("members") && args[ONE].equals("-f")) {
-				CommandManager.getMembers(args[TWO]);
-			} else if (args[ZERO].equals("channels") && args[ONE].equals("-f")) {
-				CommandManager.getChannels(args[TWO]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-f")) {
-				CommandManager.getMentions(args[TWO]);
+			first = args[ZERO];
+			second = args[ONE];
+			third = args[TWO];
+			if ("members".equals(first) && "-f".equals(second)) {
+				getMembers(third);
+			} else if ("channels".equals(first) && "-f".equals(second)) {
+				getChannels(third);
+			} else if (MENTIONSCOMMAND.equals(first) && "-f".equals(second)) {
+				getMentions(third);
 			} else {
-				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + "'"
-						+ " is not a valid command, see 'help'.");
+				System.out.println("'" + first + " " + second + " " + third + "'" + NOTVALIDCOMMAND);
 			}
 			break;
 		case FOUR:
-			if (args[ZERO].equals("members") && args[ONE].equals("-ch") && args[TWO].equals("-f")) {
-				CommandManager.getMembersForChannels(args[THREE]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-f")) {
-				CommandManager.getMentionsWeighed(args[THREE]);
+			first = args[ZERO];
+			second = args[ONE];
+			third = args[TWO];
+			fourth = args[THREE];
+			if ("members".equals(first) && CHPARAMETER.equals(second) && "-f".equals(third)) {
+				getMembersForChannels(fourth);
+			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && "-f".equals(third)) {
+				getMentionsWeighed(fourth);
 			} else {
-				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + "'"
-						+ " is not a valid command, see 'help'.");
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + "'" + NOTVALIDCOMMAND);
 			}
 			break;
 		case FIVE:
-			if (args[ZERO].equals("members") && args[ONE].equals("-ch") && args[THREE].equals("-f")) {
-				CommandManager.getMembersOfChannel(args[FOUR], args[TWO]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-ch") && args[THREE].equals("-f")) {
-				CommandManager.getMentions(args[FOUR], args[TWO]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-to") && args[THREE].equals("-f")) {
-				CommandManager.getMentionsToUser(args[FOUR], args[TWO]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-from") && args[THREE].equals("-f")) {
-				CommandManager.getMentionsFromUser(args[FOUR], args[TWO]);
+			first = args[ZERO];
+			second = args[ONE];
+			third = args[TWO];
+			fourth = args[THREE];
+			fifth = args[FOUR];
+			if ("members".equals(first) && CHPARAMETER.equals(second) && "-f".equals(fourth)) {
+				getMembersOfChannel(fifth, third);
+			} else if (MENTIONSCOMMAND.equals(first) && CHPARAMETER.equals(second) && "-f".equals(fourth)) {
+				getMentions(fifth, third);
+			} else if (MENTIONSCOMMAND.equals(first) && TOPARAMETER.equals(second) && "-f".equals(fourth)) {
+				getMentionsToUser(fifth, third);
+			} else if (MENTIONSCOMMAND.equals(first) && FROMPARAMETER.equals(second) && "-f".equals(fourth)) {
+				getMentionsFromUser(fifth, third);
 			} else {
-				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " "
-						+ args[FOUR] + "'" + " is not a valid command, see 'help'.");
+				System.out.println(
+						"'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + NOTVALIDCOMMAND);
 			}
 			break;
 		case SIX:
-			if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-from")
-					&& args[FOUR].equals("-f")) {
-				CommandManager.getMentionsFromUserWeighed(args[FIVE], args[THREE]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-ch")
-					&& args[FOUR].equals("-f")) {
-				CommandManager.getMentionsWeighed(args[FIVE], args[THREE]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-to")
-					&& args[FOUR].equals("-f")) {
-				CommandManager.getMentionsToUserWeighed(args[FIVE], args[THREE]);
+			first = args[ZERO];
+			second = args[ONE];
+			third = args[TWO];
+			fourth = args[THREE];
+			fifth = args[FOUR];
+			sixth = args[FIVE];
+			if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && FROMPARAMETER.equals(third)
+					&& "-f".equals(fifth)) {
+				getMentionsFromUserWeighed(sixth, fourth);
+			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && CHPARAMETER.equals(third)
+					&& "-f".equals(fifth)) {
+				getMentionsWeighed(sixth, fourth);
+			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && TOPARAMETER.equals(third)
+					&& "-f".equals(fifth)) {
+				getMentionsToUserWeighed(sixth, fourth);
 			} else {
-				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " "
-						+ args[FOUR] + "'" + args[FIVE] + "'" + " is not a valid command, see 'help'.");
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth
+						+ "'" + NOTVALIDCOMMAND);
 			}
 			break;
 		case SEVEN:
-			if (args[ZERO].equals("mentions") && args[ONE].equals("-to") && args[THREE].equals("-ch")
-					&& args[FIVE].equals("-f")) {
-				CommandManager.getMentionsToUser(args[SIX], args[FOUR], args[TWO]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-from") && args[THREE].equals("-ch")
-					&& args[FIVE].equals("-f")) {
-				CommandManager.getMentionsFromUser(args[SIX], args[FOUR], args[TWO]);
+			first = args[ZERO];
+			second = args[ONE];
+			third = args[TWO];
+			fourth = args[THREE];
+			fifth = args[FOUR];
+			sixth = args[FIVE];
+			seventh = args[SIX];
+			if (MENTIONSCOMMAND.equals(first) && TOPARAMETER.equals(second) && CHPARAMETER.equals(fourth)
+					&& "-f".equals(sixth)) {
+				getMentionsToUser(seventh, fifth, third);
+			} else if (MENTIONSCOMMAND.equals(first) && FROMPARAMETER.equals(second) && CHPARAMETER.equals(fourth)
+					&& "-f".equals(sixth)) {
+				getMentionsFromUser(seventh, fifth, third);
 			} else {
-				System.out.println(
-						"'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " " + args[FOUR]
-								+ " " + args[FIVE] + " " + args[SIX] + "'" + " is not a valid command, see 'help'.");
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth
+						+ " " + seventh + "'" + NOTVALIDCOMMAND);
 			}
 			break;
 		case EIGHT:
-			if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-to")
-					&& args[FOUR].equals("-ch") && args[SIX].equals("-f")) {
-				CommandManager.getMentionsToUserWeighed(args[SEVEN], args[FIVE], args[THREE]);
-			} else if (args[ZERO].equals("mentions") && args[ONE].equals("-w") && args[TWO].equals("-from")
-					&& args[FOUR].equals("-ch") && args[SIX].equals("-f")) {
-				CommandManager.getMentionsFromUserWeighed(args[SEVEN], args[FIVE], args[THREE]);
+			first = args[ZERO];
+			second = args[ONE];
+			third = args[TWO];
+			fourth = args[THREE];
+			fifth = args[FOUR];
+			sixth = args[FIVE];
+			seventh = args[SIX];
+			eighth = args[SEVEN];
+			if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && TOPARAMETER.equals(third)
+					&& CHPARAMETER.equals(fifth) && "-f".equals(seventh)) {
+				getMentionsToUserWeighed(eighth, sixth, fourth);
+			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && FROMPARAMETER.equals(third)
+					&& CHPARAMETER.equals(fifth) && "-f".equals(seventh)) {
+				getMentionsFromUserWeighed(eighth, sixth, fourth);
 			} else {
-				System.out.println("'" + args[ZERO] + " " + args[ONE] + " " + args[TWO] + " " + args[THREE] + " "
-						+ args[FOUR] + " " + args[FIVE] + " " + args[SIX] + " " + args[SEVEN] + "'"
-						+ " is not a valid command, see 'help'.");
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth
+						+ " " + seventh + " " + eighth + "'" + NOTVALIDCOMMAND);
 			}
 			break;
 		default:
