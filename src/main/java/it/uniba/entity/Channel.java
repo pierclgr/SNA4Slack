@@ -94,7 +94,7 @@ public final class Channel {
 		final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
 		while (mentionsIterator.hasNext()) {
 			final Mention curr = mentionsIterator.next();
-			if (curr.equals(mentionIn)) {
+			if (mentionIn.equals(curr)) {
 				return true;
 			}
 		}
