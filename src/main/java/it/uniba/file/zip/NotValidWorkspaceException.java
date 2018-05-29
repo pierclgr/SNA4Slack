@@ -2,7 +2,7 @@ package it.uniba.file.zip;
 
 /**
  * Classe che modella l'eccezione generata ogni qualvolta il workspace
- * specificato non è valido.
+ * specificato non ï¿½ valido.
  */
 public final class NotValidWorkspaceException extends Exception {
 
@@ -13,7 +13,7 @@ public final class NotValidWorkspaceException extends Exception {
 	/**
 	 * Messaggio dell'oggetto eccezione corrente.
 	 */
-	private String message = " is not a valid Slack workspace";
+	private final String message;
 
 	/**
 	 * Metodo costruttore della classe NotValidWorkspaceException.
@@ -22,7 +22,7 @@ public final class NotValidWorkspaceException extends Exception {
 	 *            String che rappresenta il file.
 	 */
 	public NotValidWorkspaceException(final String file) {
-		message = file + message;
+		message = file + " is not a valid Slack workspace";
 	}
 
 	/**

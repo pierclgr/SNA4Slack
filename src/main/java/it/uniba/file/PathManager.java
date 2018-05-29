@@ -19,7 +19,7 @@ public final class PathManager {
 	 * @return String che rappresenta il percorso assoluto di un file.
 	 */
 	public static String getAbsolutePath(final String pathOfFile) {
-		File f = new File(pathOfFile);
-		return f.getAbsolutePath();
+		final File file = new File(pathOfFile);
+		return file.getAbsolutePath();
 	}
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Member.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Member.java</span></div><h1>Member.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Member.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Member.java</span></div><h1>Member.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,23 +10,23 @@ public final class Member {
 	/**
 	 * Id del member corrente.
 	 */
-	private String id;
+	private final String uID;
 	/**
 	 * nome del member corrente.
 	 */
-	private String name;
+	private final String name;
 	/**
 	 * RealName del member corrente.
 	 */
-	private String realName;
+	private final String realName;
 	/**
 	 * DisplayName del member corrente.
 	 */
-	private String displayName;
+	private final String displayName;
 	/**
-	 * Lista di channels in cui è presente il member corrente.
+	 * Lista di channels in cui � presente il member corrente.
 	 */
-	private List&lt;Channel&gt; channels;
+	private final List&lt;Channel&gt; channels;
 
 	/**
 	 * Metodo costruttore della classe Member. Permette di create oggetti istanze
@@ -43,7 +43,7 @@ public final class Member {
 	 */
 	public Member(final String memberId, final String memberName, final String memberRealName,
 <span class="fc" id="L45">			final String memberDisplayName) {</span>
-<span class="fc" id="L46">		this.id = memberId;</span>
+<span class="fc" id="L46">		this.uID = memberId;</span>
 <span class="fc" id="L47">		this.name = memberName;</span>
 <span class="fc" id="L48">		this.realName = memberRealName;</span>
 <span class="fc" id="L49">		this.displayName = memberDisplayName;</span>
@@ -56,7 +56,7 @@ public final class Member {
 	 * @return String che rappresenta l'id del member corrente.
 	 */
 	public String getId() {
-<span class="fc" id="L59">		return id;</span>
+<span class="fc" id="L59">		return uID;</span>
 	}
 
 	/**
@@ -65,15 +65,15 @@ public final class Member {
 	 * @return String che rappresenta il nome del member corrente.
 	 */
 	public String getName() {
-<span class="pc bpc" id="L68" title="1 of 2 branches missed.">		if (!displayName.equals(&quot;&quot;)) {</span>
-<span class="fc" id="L69">			return displayName;</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">		} else if (!realName.equals(&quot;&quot;)) {</span>
-<span class="nc" id="L71">			return realName;</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">		} else if (!name.equals(&quot;&quot;)) {</span>
-<span class="nc" id="L73">			return name;</span>
-		} else {
-<span class="nc" id="L75">			return id;</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">		if (&quot;&quot;.equals(displayName)) {</span>
+<span class="nc bnc" id="L69" title="All 4 branches missed.">			if (&quot;&quot;.equals(realName) &amp;&amp; &quot;&quot;.equals(name)) {</span>
+<span class="nc" id="L70">				return uID;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">			} else if (&quot;&quot;.equals(realName)) {</span>
+<span class="nc" id="L72">				return name;</span>
+			}
+<span class="nc" id="L74">			return realName;</span>
 		}
+<span class="fc" id="L76">		return displayName;</span>
 	}
 
 	/**
@@ -85,7 +85,7 @@ public final class Member {
 	 *         identifica un member esistente, false altrimenti.
 	 */
 	public boolean isUser(final String member) {
-<span class="pc bpc" id="L88" title="3 of 8 branches missed.">		return displayName.equals(member) || realName.equals(member) || name.equals(member) || id.equals(member);</span>
+<span class="pc bpc" id="L88" title="3 of 8 branches missed.">		return displayName.equals(member) || realName.equals(member) || name.equals(member) || uID.equals(member);</span>
 	}
 
 	/**
@@ -98,12 +98,12 @@ public final class Member {
 	}
 
 	/**
-	 * Restituisce la lista dei channel in cui è presente il member corrente.
+	 * Restituisce la lista dei channel in cui � presente il member corrente.
 	 * 
 	 * @return riferimento ad una LinkedList&lt;Channel&gt; che rappresenta la lista dei
-	 *         channel in cui è presente il member corrente.
+	 *         channel in cui � presente il member corrente.
 	 */
-	public LinkedList&lt;Channel&gt; getChannels() {
+	public List&lt;Channel&gt; getChannels() {
 <span class="fc" id="L107">		return (LinkedList&lt;Channel&gt;) channels;</span>
 	}
 }
