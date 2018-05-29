@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Channel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Channel.java</span></div><h1>Channel.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Channel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Channel.java</span></div><h1>Channel.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -87,14 +87,14 @@ public final class Channel {
 	 *            riferimento ad un oggetto istanza della classe Mention che
 	 *            rappresenta la mention di cui si vuole verificare la presenza
 	 *            all'interno del channel corrente.
-	 * @return boolean che risulta essere true se la mention in input ï¿½ presente
+	 * @return boolean che risulta essere true se la mention in input � presente
 	 *         all'interno del channel, false altrimenti.
 	 */
 	public boolean containsMention(final Mention mentionIn) {
 <span class="fc" id="L94">		final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) mentions.iterator();</span>
 <span class="fc bfc" id="L95" title="All 2 branches covered.">		while (mentionsIterator.hasNext()) {</span>
 <span class="fc" id="L96">			final Mention curr = mentionsIterator.next();</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">			if (curr.equals(mentionIn)) {</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">			if (mentionIn.equals(curr)) {</span>
 <span class="fc" id="L98">				return true;</span>
 			}
 <span class="fc" id="L100">		}</span>

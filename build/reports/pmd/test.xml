@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-05-28T01:35:18.124">
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\cli\CommandManagerTests.java">
+<pmd version="5.8.1" timestamp="2018-05-29T10:11:05.912">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/cli/CommandManagerTests.java">
 <violation beginline="10" endline="11" begincolumn="25" endcolumn="9" rule="UncommentedEmptyMethodBody" ruleset="Design" package="it.uniba.cli" class="CommandManagerTests" method="HelpTest" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#UncommentedEmptyMethodBody" priority="3">
 Document empty method body
 </violation>
@@ -38,7 +38,7 @@ Document empty method body
 Document empty method body
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\cli\CommandTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/cli/CommandTests.java">
 <violation beginline="3" endline="3" begincolumn="1" endcolumn="28" rule="ImportFromSamePackage" ruleset="Import Statements" package="it.uniba.cli" class="CommandTests" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/imports.html#ImportFromSamePackage" priority="3">
 No need to import a type that lives in the same package
 </violation>
@@ -46,7 +46,7 @@ No need to import a type that lives in the same package
 Avoid variables with short names like c
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\cli\CommandsTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/cli/CommandsTests.java">
 <violation beginline="3" endline="3" begincolumn="1" endcolumn="29" rule="ImportFromSamePackage" ruleset="Import Statements" package="it.uniba.cli" class="CommandsTests" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/imports.html#ImportFromSamePackage" priority="3">
 No need to import a type that lives in the same package
 </violation>
@@ -69,7 +69,7 @@ A method/constructor shouldnt explicitly throw java.lang.Exception
 Use assertTrue(x)/assertFalse(x) instead of assertEquals(true, x)/assertEquals(false, x)   or assertEquals(Boolean.TRUE, x)/assertEquals(Boolean.FALSE, x).
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\entity\ChannelNotValidExceptionTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/entity/ChannelNotValidExceptionTests.java">
 <violation beginline="7" endline="7" begincolumn="41" endcolumn="41" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="ChannelNotValidExceptionTests" variable="e" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like e
 </violation>
@@ -83,7 +83,7 @@ Method names should not start with capital letters
 Local variable 'channel' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\entity\ChannelTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/entity/ChannelTests.java">
 <violation beginline="8" endline="8" begincolumn="24" endcolumn="25" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="ChannelTests" variable="c1" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like c1
 </violation>
@@ -133,7 +133,7 @@ JUnit tests should not contain more than 1 assert(s).
 JUnit tests should not contain more than 1 assert(s).
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\entity\MemberNotValidExceptionTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/entity/MemberNotValidExceptionTests.java">
 <violation beginline="7" endline="7" begincolumn="40" endcolumn="40" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="MemberNotValidExceptionTests" variable="e" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like e
 </violation>
@@ -147,7 +147,7 @@ Method names should not start with capital letters
 Local variable 'member' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\entity\MemberTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/entity/MemberTests.java">
 <violation beginline="8" endline="8" begincolumn="23" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="MemberTests" variable="m1" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like m1
 </violation>
@@ -221,7 +221,7 @@ JUnit tests should not contain more than 1 assert(s).
 JUnit tests should not contain more than 1 assert(s).
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\entity\MentionTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/entity/MentionTests.java">
 <violation beginline="12" endline="12" begincolumn="17" endcolumn="40" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="it.uniba.entity" class="MentionTests" method="setUpAll" variable="id1" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
 Local variable 'id1' could be declared final
 </violation>
@@ -334,7 +334,7 @@ Local variable 'ment2' could be declared final
 Local variable 'weight' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\entity\WorkspaceTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/entity/WorkspaceTests.java">
 <violation beginline="9" endline="9" begincolumn="26" endcolumn="26" rule="ShortVariable" ruleset="Naming" package="it.uniba.entity" class="WorkspaceTests" variable="w" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like w
 </violation>
@@ -405,7 +405,7 @@ A method/constructor shouldnt explicitly throw java.lang.Exception
 Local variable 'channel' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\file\zip\FileNotInZipExceptionTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/file/zip/FileNotInZipExceptionTests.java">
 <violation beginline="8" endline="8" begincolumn="38" endcolumn="38" rule="ShortVariable" ruleset="Naming" package="it.uniba.file.zip" class="FileNotInZipExceptionTests" variable="e" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like e
 </violation>
@@ -425,7 +425,7 @@ Local variable 'file' could be declared final
 Local variable 'file' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\file\zip\NotValidWorkspaceExceptionTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/file/zip/NotValidWorkspaceExceptionTests.java">
 <violation beginline="11" endline="11" begincolumn="43" endcolumn="43" rule="ShortVariable" ruleset="Naming" package="it.uniba.file.zip" class="NotValidWorkspaceExceptionTests" variable="e" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like e
 </violation>
@@ -445,7 +445,7 @@ Local variable 'file' could be declared final
 Local variable 'file' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\file\zip\NotZipFileExceptionTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/file/zip/NotZipFileExceptionTests.java">
 <violation beginline="8" endline="8" begincolumn="36" endcolumn="36" rule="ShortVariable" ruleset="Naming" package="it.uniba.file.zip" class="NotZipFileExceptionTests" variable="e" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like e
 </violation>
@@ -465,7 +465,7 @@ Local variable 'file' could be declared final
 Local variable 'file' could be declared final
 </violation>
 </file>
-<file name="C:\Users\Pier\progetto1718-ritchie\src\test\java\it\uniba\file\zip\ZipTests.java">
+<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/test/java/it/uniba/file/zip/ZipTests.java">
 <violation beginline="9" endline="9" begincolumn="24" endcolumn="24" rule="ShortVariable" ruleset="Naming" package="it.uniba.file.zip" class="ZipTests" variable="z" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like z
 </violation>
