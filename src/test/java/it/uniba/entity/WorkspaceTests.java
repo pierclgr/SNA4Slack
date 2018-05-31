@@ -18,7 +18,7 @@ public class WorkspaceTests {
 
 	@Test
 	@DisplayName("Test Workspace() di Workspace")
-	void WorkspaceTest() throws Exception {
+	void WorkspaceTest() {
 		final String failMsg = "Workspace() is failed";
 		String workspace = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
 		String notvalidworkspace = PathManager.getAbsolutePath("res/Slack Workspace no channels no users.zip");

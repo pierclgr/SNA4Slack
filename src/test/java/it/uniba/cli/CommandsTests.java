@@ -6,8 +6,6 @@ import org.junit.jupiter.api.*;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class CommandsTests {
-	String s = "member";
-	String a = "member";
 	static Commands w;
 
 	@BeforeAll
@@ -16,17 +14,9 @@ public class CommandsTests {
 	}
 
 	@Test
-	@DisplayName("Test contains")
-	void containsTest() {
-		final String failMsg = "Test contains is failed";
-		assertEquals(true, s.contains(a), failMsg);
-	}
-
-	@Test
-	@DisplayName("Test getCommands")
+	@DisplayName("Test getCommands() di Commands")
 	void getCommandsTest() {
-
-		final String failMsg = "Test getCommands is failed";
+		final String failMsg = "Test getCommands() is failed";
 		assertNotNull(w.getCommands(), failMsg);
 	}
 }

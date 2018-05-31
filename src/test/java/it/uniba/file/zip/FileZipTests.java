@@ -7,7 +7,7 @@ import it.uniba.entity.ChannelNotValidException;
 import it.uniba.file.PathManager;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
-public class ZipTests {
+public class FileZipTests {
 	static FileZip z;
 
 	@BeforeAll
@@ -22,15 +22,15 @@ public class ZipTests {
 	}
 
 	@Test
-	@DisplayName("Test Zip() di Zip")
-	void ZipTest() throws Exception {
-		final String failMsg = "Zip() is failed";
+	@DisplayName("Test FileZip() di FileZip")
+	void FileZipTest() throws Exception {
+		final String failMsg = "FileZip() is failed";
 		String file = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
 		assertNotNull(new FileZip(file), failMsg);
 	}
 
 	@Test
-	@DisplayName("Test getFileContent() di Zip")
+	@DisplayName("Test getFileContent() di FileZip")
 	void getFileContentTest() throws Exception {
 		final String failMsg = "getFileContent() is failed";
 		String file = "users.json";
@@ -43,7 +43,7 @@ public class ZipTests {
 	}
 
 	@Test
-	@DisplayName("Test contains() di Zip")
+	@DisplayName("Test contains() di FileZip")
 	void containsTest() {
 		final String failMsg = "contains() is failed";
 		String file = "users.json";
@@ -55,13 +55,13 @@ public class ZipTests {
 	}
 
 	@Test
-	@DisplayName("Test close() di Zip")
+	@DisplayName("Test close() di FileZip")
 	void closeTest() throws Exception {
 
 	}
 
 	@Test
-	@DisplayName("Test getZipFile() di Zip")
+	@DisplayName("Test getZipFile() di FileZip")
 	void getZipFileTest() {
 		final String failMsg = "getZipFile() is failed";
 		assertNotNull(z.getZipFile(), failMsg);
