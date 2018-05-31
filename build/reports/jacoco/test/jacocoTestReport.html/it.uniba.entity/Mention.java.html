@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Mention.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Mention.java</span></div><h1>Mention.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Mention.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Mention.java</span></div><h1>Mention.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
 
 /**
  * Classe che modella una singola mention.
@@ -9,7 +9,7 @@ public final class Mention {
 	 */
 	private final Member fromUser;
 	/**
-	 * Member a cui � riferita la mention corrente.
+	 * Member a cui ï¿½ riferita la mention corrente.
 	 */
 	private final Member toUser;
 	/**
@@ -23,10 +23,10 @@ public final class Mention {
 	 * 
 	 * @param mentionFrom
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member da cui � effettuata la mention corrente.
+	 *            rappresenta il member da cui ï¿½ effettuata la mention corrente.
 	 * @param mentionTo
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member a cui � riferita la mention corrente.
+	 *            rappresenta il member a cui ï¿½ riferita la mention corrente.
 	 */
 <span class="fc" id="L31">	public Mention(final Member mentionFrom, final Member mentionTo) {</span>
 <span class="fc" id="L32">		this.fromUser = mentionFrom;</span>
@@ -35,30 +35,30 @@ public final class Mention {
 <span class="fc" id="L35">	}</span>
 
 	/**
-	 * Restituisce il member da cui � effettuata la mention corrente.
+	 * Restituisce il member da cui ï¿½ effettuata la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member da cui � effettuata la mention corrente.
+	 *         il member da cui ï¿½ effettuata la mention corrente.
 	 */
 	public Member getFrom() {
 <span class="fc" id="L44">		return fromUser;</span>
 	}
 
 	/**
-	 * Restituisce l'id del member da cui � effettuata la mention corrente.
+	 * Restituisce l'id del member da cui ï¿½ effettuata la mention corrente.
 	 * 
 	 * @return riferimento ad una stringa della classe Member che rappresenta il
-	 *         member id da cui � effettuata la mention corrente.
+	 *         member id da cui ï¿½ effettuata la mention corrente.
 	 */
 	public String getFromId() {
-<span class="nc" id="L54">		return fromUser.getId();</span>
+<span class="fc" id="L54">		return fromUser.getId();</span>
 	}
 
 	/**
-	 * Restituisce il member a cui � riferita la mention corrente.
+	 * Restituisce il member a cui ï¿½ riferita la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member a cui � riferita la mention corrente.
+	 *         il member a cui ï¿½ riferita la mention corrente.
 	 */
 	public Member getTo() {
 <span class="fc" id="L64">		return toUser;</span>
@@ -109,7 +109,7 @@ public final class Mention {
 	 * corrente escludendo il peso.
 	 * 
 	 * @return String che rappresenta il member da cui parte la mention corrente ed
-	 *         il member a cui � riferita la mention corrente.
+	 *         il member a cui ï¿½ riferita la mention corrente.
 	 */
 	@Override
 	public String toString() {
@@ -121,7 +121,7 @@ public final class Mention {
 	 * corrente includendo anche il peso.
 	 * 
 	 * @return String che rappresenta lo stato della mention corrente che include il
-	 *         member da cui parte la mention, il member a cui � riferita la mention
+	 *         member da cui parte la mention, il member a cui ï¿½ riferita la mention
 	 *         e il peso della mention.
 	 */
 	public String toFullString() {
@@ -148,13 +148,13 @@ public final class Mention {
 <span class="fc" id="L148">	}</span>
 
 	/**
-	 * Restituisce l'id del member a cui � riferita la mention corrente.
+	 * Restituisce l'id del member a cui ï¿½ riferita la mention corrente.
 	 * 
 	 * @return riferimento ad una stringa della classe Member che rappresenta l'id
-	 *         del member a cui � riferita la mention corrente.
+	 *         del member a cui ï¿½ riferita la mention corrente.
 	 */
 	public String getToId() {
-<span class="nc" id="L157">		return toUser.getId();</span>
+<span class="fc" id="L157">		return toUser.getId();</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
