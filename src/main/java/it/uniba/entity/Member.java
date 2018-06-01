@@ -24,7 +24,7 @@ public final class Member {
 	 */
 	private final String displayName;
 	/**
-	 * Lista di channels in cui � presente il member corrente.
+	 * Lista di channels in cui è presente il member corrente.
 	 */
 	private final List<Channel> channels;
 
@@ -98,10 +98,10 @@ public final class Member {
 	}
 
 	/**
-	 * Restituisce la lista dei channel in cui � presente il member corrente.
+	 * Restituisce la lista dei channel in cui è presente il member corrente.
 	 * 
 	 * @return riferimento ad una LinkedList<Channel> che rappresenta la lista dei
-	 *         channel in cui � presente il member corrente.
+	 *         channel in cui è presente il member corrente.
 	 */
 	public List<Channel> getChannels() {
 		return (LinkedList<Channel>) channels;
