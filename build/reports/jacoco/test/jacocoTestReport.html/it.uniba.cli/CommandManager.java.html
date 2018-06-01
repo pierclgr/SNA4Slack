@@ -395,7 +395,7 @@ public final class CommandManager {
 <span class="nc" id="L395">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
 <span class="nc" id="L396">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
 <span class="nc" id="L397">					.getMentionsFromUser(channel, member);</span>
-<span class="nc" id="L398">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getWorkspaceMentionIterator(</span>
+<span class="nc" id="L398">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
 					workspaceMentions);
 <span class="nc bnc" id="L400" title="All 2 branches missed.">			while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L401">				System.out.println(mentionsIterator.next());</span>
@@ -428,7 +428,7 @@ public final class CommandManager {
 <span class="nc" id="L428">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
 <span class="nc" id="L429">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
 <span class="nc" id="L430">					.getMentionsFromUser(channel, member);</span>
-<span class="nc" id="L431">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getWorkspaceMentionIterator(</span>
+<span class="nc" id="L431">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
 					workspaceMentions);
 <span class="nc bnc" id="L433" title="All 2 branches missed.">			while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L434">				final Mention currMention = mentionsIterator.next();</span>
@@ -466,7 +466,7 @@ public final class CommandManager {
 <span class="nc" id="L466">				final Channel currChannel = channelsIterator.next();</span>
 <span class="nc" id="L467">				final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
 <span class="nc" id="L468">						.getMentionsToUser(getChannelName(currChannel), member);</span>
-<span class="nc" id="L469">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getWorkspaceMentionIterator(</span>
+<span class="nc" id="L469">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
 						workspaceMentions);
 <span class="nc bnc" id="L471" title="All 2 branches missed.">				while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L472">					final Mention currMention = mentionsIterator.next();</span>
@@ -504,7 +504,7 @@ public final class CommandManager {
 <span class="nc" id="L504">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
 <span class="nc" id="L505">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
 <span class="nc" id="L506">					.getMentionsToUser(channel, member);</span>
-<span class="nc" id="L507">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getWorkspaceMentionIterator(</span>
+<span class="nc" id="L507">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
 					workspaceMentions);
 <span class="nc bnc" id="L509" title="All 2 branches missed.">			while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L510">				System.out.println(mentionsIterator.next());</span>
@@ -533,7 +533,7 @@ public final class CommandManager {
 		try {
 <span class="nc" id="L534">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
 <span class="nc" id="L535">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace.getMentions(channel);</span>
-<span class="nc" id="L536">			final Iterator&lt;Mention&gt; mentionsIterator = getWorkspaceMentionIterator(workspaceMentions);</span>
+<span class="nc" id="L536">			final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
 <span class="nc bnc" id="L537" title="All 2 branches missed.">			while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L538">				System.out.println(mentionsIterator.next());</span>
 			}
@@ -565,7 +565,7 @@ public final class CommandManager {
 <span class="nc" id="L565">				final Channel currchannel = channelsIterator.next();</span>
 <span class="nc" id="L566">				final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
 <span class="nc" id="L567">						.getMentions(getChannelName(currchannel));</span>
-<span class="nc" id="L568">				final Iterator&lt;Mention&gt; mentionsIterator = getWorkspaceMentionIterator(workspaceMentions);</span>
+<span class="nc" id="L568">				final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
 <span class="nc bnc" id="L569" title="All 2 branches missed.">				while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L570">					final Mention currMention = mentionsIterator.next();</span>
 <span class="nc" id="L571">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
@@ -604,7 +604,7 @@ public final class CommandManager {
 <span class="nc" id="L604">				final Channel currChannel = channelsIterator.next();</span>
 <span class="nc" id="L605">				final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
 <span class="nc" id="L606">						.getMentions(getChannelName(currChannel));</span>
-<span class="nc" id="L607">				final Iterator&lt;Mention&gt; mentionsIterator = getWorkspaceMentionIterator(workspaceMentions);</span>
+<span class="nc" id="L607">				final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
 <span class="nc bnc" id="L608" title="All 2 branches missed.">				while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L609">					final Mention currMention = mentionsIterator.next();</span>
 <span class="nc" id="L610">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
@@ -648,7 +648,7 @@ public final class CommandManager {
 		try {
 <span class="nc" id="L649">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
 <span class="nc" id="L650">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace.getMentions(channel);</span>
-<span class="nc" id="L651">			final Iterator&lt;Mention&gt; mentionsIterator = getWorkspaceMentionIterator(workspaceMentions);</span>
+<span class="nc" id="L651">			final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
 <span class="nc bnc" id="L652" title="All 2 branches missed.">			while (mentionsIterator.hasNext()) {</span>
 <span class="nc" id="L653">				final Mention currMention = mentionsIterator.next();</span>
 <span class="nc" id="L654">				final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
@@ -670,10 +670,6 @@ public final class CommandManager {
 <span class="nc" id="L670">		}</span>
 <span class="nc" id="L671">	}</span>
 
-	private static Iterator&lt;Mention&gt; getWorkspaceMentionIterator(final List&lt;Mention&gt; workspaceMentions) {
-<span class="nc" id="L674">		return workspaceMentions.iterator();</span>
-	}
-
 	/**
 	 * Scrive sullo standard output stream la lista pesata di tutte le mentios
 	 * riferite ad un particolare member.
@@ -686,90 +682,75 @@ public final class CommandManager {
 	 */
 	public static void getMentionsToUserWeighed(final String workspace, final String member) {
 		try {
-<span class="nc" id="L689">			final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
-<span class="nc" id="L690">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
-<span class="nc" id="L691">			final LinkedHashMap&lt;String, Channel&gt; channelMap = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
-<span class="nc" id="L692">					.getAllChannels();</span>
-<span class="nc" id="L693">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(channelMap);</span>
-<span class="nc" id="L694">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(chCollection);</span>
-<span class="nc bnc" id="L695" title="All 2 branches missed.">			while (channelsIterator.hasNext()) {</span>
-<span class="nc" id="L696">				final Channel currChannel = channelsIterator.next();</span>
-<span class="nc" id="L697">				final LinkedList&lt;Mention&gt; currChMentions = (LinkedList&lt;Mention&gt;) getMentionsToUser(slackWorkspace,</span>
-<span class="nc" id="L698">						getChannelName(currChannel), member);</span>
-<span class="nc" id="L699">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+<span class="nc" id="L685">			final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+<span class="nc" id="L686">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="nc" id="L687">			final LinkedHashMap&lt;String, Channel&gt; channelMap = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="nc" id="L688">					.getAllChannels();</span>
+<span class="nc" id="L689">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(channelMap);</span>
+<span class="nc" id="L690">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(chCollection);</span>
+<span class="nc bnc" id="L691" title="All 2 branches missed.">			while (channelsIterator.hasNext()) {</span>
+<span class="nc" id="L692">				final Channel currChannel = channelsIterator.next();</span>
+<span class="nc" id="L693">				final LinkedList&lt;Mention&gt; currChMentions = (LinkedList&lt;Mention&gt;) getMentionsToUser(slackWorkspace,</span>
+<span class="nc" id="L694">						getChannelName(currChannel), member);</span>
+<span class="nc" id="L695">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
 						currChMentions);
-<span class="nc bnc" id="L701" title="All 2 branches missed.">				while (mentionsIterator.hasNext()) {</span>
-<span class="nc" id="L702">					final Mention currMention = mentionsIterator.next();</span>
-<span class="nc" id="L703">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
-<span class="nc bnc" id="L704" title="All 2 branches missed.">					if (out.containsKey(currMentionKey)) {</span>
-<span class="nc" id="L705">						final Mention outMent = out.get(currMentionKey);</span>
-<span class="nc" id="L706">						setMentionWeight(outMent, getMentionWeight(outMent) + getMentionWeight(currMention));</span>
-<span class="nc" id="L707">					} else {</span>
-<span class="nc" id="L708">						out.put(currMentionKey, currMention);</span>
+<span class="nc bnc" id="L697" title="All 2 branches missed.">				while (mentionsIterator.hasNext()) {</span>
+<span class="nc" id="L698">					final Mention currMention = mentionsIterator.next();</span>
+<span class="nc" id="L699">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="nc bnc" id="L700" title="All 2 branches missed.">					if (out.containsKey(currMentionKey)) {</span>
+<span class="nc" id="L701">						final Mention outMent = out.get(currMentionKey);</span>
+<span class="nc" id="L702">						setMentionWeight(outMent, getMentionWeight(outMent) + getMentionWeight(currMention));</span>
+<span class="nc" id="L703">					} else {</span>
+<span class="nc" id="L704">						out.put(currMentionKey, currMention);</span>
 					}
-<span class="nc" id="L710">				}</span>
-<span class="nc" id="L711">			}</span>
-<span class="nc" id="L712">			final Collection&lt;Mention&gt; mentionColl = out.values();</span>
-<span class="nc" id="L713">			final Iterator&lt;Mention&gt; outIterator = getMentionIterator(mentionColl);</span>
-<span class="nc bnc" id="L714" title="All 2 branches missed.">			while (outIterator.hasNext()) {</span>
-<span class="nc" id="L715">				final Mention currMent = outIterator.next();</span>
-<span class="nc" id="L716">				System.out.println(mentionToFullString(currMent));</span>
-<span class="nc" id="L717">			}</span>
-<span class="nc" id="L718">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
-<span class="nc" id="L719">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
-<span class="nc" id="L720">		} catch (IOException | ChannelNotValidException e) {</span>
-<span class="nc" id="L721">			e.printStackTrace();</span>
-<span class="nc" id="L722">		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {</span>
-<span class="nc" id="L723">			System.out.println(e.getMessage());</span>
-<span class="nc" id="L724">		}</span>
-<span class="nc" id="L725">	}</span>
+<span class="nc" id="L706">				}</span>
+<span class="nc" id="L707">			}</span>
+<span class="nc" id="L708">			final Collection&lt;Mention&gt; mentionColl = out.values();</span>
+<span class="nc" id="L709">			final Iterator&lt;Mention&gt; outIterator = getMentionIterator(mentionColl);</span>
+<span class="nc bnc" id="L710" title="All 2 branches missed.">			while (outIterator.hasNext()) {</span>
+<span class="nc" id="L711">				final Mention currMent = outIterator.next();</span>
+<span class="nc" id="L712">				System.out.println(mentionToFullString(currMent));</span>
+<span class="nc" id="L713">			}</span>
+<span class="nc" id="L714">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="nc" id="L715">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L716">		} catch (IOException | ChannelNotValidException e) {</span>
+<span class="nc" id="L717">			e.printStackTrace();</span>
+<span class="nc" id="L718">		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {</span>
+<span class="nc" id="L719">			System.out.println(e.getMessage());</span>
+<span class="nc" id="L720">		}</span>
+<span class="nc" id="L721">	}</span>
 
 	private static String getMentionToID(final Mention currMention) {
-<span class="nc" id="L728">		return currMention.getToId();</span>
+<span class="nc" id="L724">		return currMention.getToId();</span>
 	}
 
 	private static Collection&lt;Channel&gt; getChannelCollection(final Map&lt;String, Channel&gt; channelMap) {
-<span class="nc" id="L732">		return channelMap.values();</span>
+<span class="nc" id="L728">		return channelMap.values();</span>
 	}
 
 	private static Iterator&lt;Channel&gt; getChannelIterator(final Collection&lt;Channel&gt; chCollection) {
-<span class="nc" id="L736">		return chCollection.iterator();</span>
+<span class="nc" id="L732">		return chCollection.iterator();</span>
 	}
 
 	private static List&lt;Mention&gt; getMentionsToUser(final Workspace slackWorkspace, final String currChannel,
 			final String member) throws ChannelNotValidException, MemberNotValidException {
-<span class="nc" id="L741">		return slackWorkspace.getMentionsToUser(currChannel, member);</span>
+<span class="nc" id="L737">		return slackWorkspace.getMentionsToUser(currChannel, member);</span>
 	}
 
 	private static String getChannelName(final Channel currChannel) {
-<span class="nc" id="L745">		return currChannel.getName();</span>
+<span class="nc" id="L741">		return currChannel.getName();</span>
 	}
 
 	private static void setMentionWeight(final Mention outMent, final int newWeight) {
-<span class="nc" id="L749">		outMent.setWeight(newWeight);</span>
-<span class="nc" id="L750">	}</span>
+<span class="nc" id="L745">		outMent.setWeight(newWeight);</span>
+<span class="nc" id="L746">	}</span>
 
-	/**
-	 * Restituisce l'id del member da cui è effettuata la mention corrente.
-	 * 
-	 * @param currMention
-	 *            oggetto di tipo Mention
-	 * @return riferimento ad una stringa della classe Member che rappresenta il
-	 *         member id da cui è effettuata la mention corrente.
-	 */
 	private static String getMentionFromID(final Mention currMention) {
-<span class="nc" id="L761">		return currMention.getFromId();</span>
+<span class="nc" id="L749">		return currMention.getFromId();</span>
 	}
 
-	/**
-	 * Restituisce il peso della mention corrente.
-	 * 
-	 * @param inMention
-	 *            Oggetto di tipo Mention
-	 * @return int che rappresenta il peso della mention corrente.
-	 */
 	private static int getMentionWeight(final Mention inMention) {
-<span class="nc" id="L772">		return inMention.getWeight();</span>
+<span class="nc" id="L753">		return inMention.getWeight();</span>
 	}
 
 	/**
@@ -787,59 +768,35 @@ public final class CommandManager {
 	 */
 	public static void getMentionsToUserWeighed(final String workspace, final String channel, final String member) {
 		try {
-<span class="nc" id="L790">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
-<span class="nc" id="L791">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
-<span class="nc" id="L792">					.getMentionsToUser(channel, member);</span>
-<span class="nc" id="L793">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+<span class="nc" id="L771">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="nc" id="L772">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="nc" id="L773">					.getMentionsToUser(channel, member);</span>
+<span class="nc" id="L774">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
 					workspaceMentions);
-<span class="nc bnc" id="L795" title="All 2 branches missed.">			while (mentionsIterator.hasNext()) {</span>
-<span class="nc" id="L796">				final Mention currMention = mentionsIterator.next();</span>
-<span class="nc" id="L797">				System.out.println(mentionToFullString(currMention));</span>
-<span class="nc" id="L798">			}</span>
-<span class="nc" id="L799">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
-<span class="nc" id="L800">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
-<span class="nc" id="L801">		} catch (IOException e) {</span>
-<span class="nc" id="L802">			e.printStackTrace();</span>
-<span class="nc" id="L803">		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException</span>
+<span class="nc bnc" id="L776" title="All 2 branches missed.">			while (mentionsIterator.hasNext()) {</span>
+<span class="nc" id="L777">				final Mention currMention = mentionsIterator.next();</span>
+<span class="nc" id="L778">				System.out.println(mentionToFullString(currMention));</span>
+<span class="nc" id="L779">			}</span>
+<span class="nc" id="L780">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="nc" id="L781">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L782">		} catch (IOException e) {</span>
+<span class="nc" id="L783">			e.printStackTrace();</span>
+<span class="nc" id="L784">		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException</span>
 				| NotZipFileException e) {
-<span class="nc" id="L805">			System.out.println(e.getMessage());</span>
-<span class="nc" id="L806">		}</span>
-<span class="nc" id="L807">	}</span>
+<span class="nc" id="L786">			System.out.println(e.getMessage());</span>
+<span class="nc" id="L787">		}</span>
+<span class="nc" id="L788">	}</span>
 
-	/**
-	 * Returns an iterator over the elements in this list in proper sequence.
-	 *
-	 * @param workspaceMention
-	 *            oggetto di tipo Lista di Mention
-	 * @return an iterator over the elements in this list in proper sequence
-	 */
 	private static Iterator&lt;Mention&gt; getMentionIterator(final List&lt;Mention&gt; workspaceMentions) {
-<span class="nc" id="L817">		return workspaceMentions.iterator();</span>
+<span class="nc" id="L791">		return workspaceMentions.iterator();</span>
 	}
 
-	/**
-	 * Returns an iterator over the elements in this list in proper sequence.
-	 *
-	 * @param workspaceMention
-	 *            oggetto di tipo Collection di Mention
-	 * @return an iterator over the elements in this list in proper sequence
-	 */
 	private static Iterator&lt;Mention&gt; getMentionIterator(final Collection&lt;Mention&gt; workspaceMentions) {
-<span class="nc" id="L828">		return workspaceMentions.iterator();</span>
+<span class="nc" id="L795">		return workspaceMentions.iterator();</span>
 	}
 
-	/**
-	 * Restituisce una rappresentazione completa sottoforma di stringa della mention
-	 * corrente includendo anche il peso.
-	 * 
-	 * @param currMention
-	 *            Oggetto di tipo mention
-	 * @return String che rappresenta lo stato della mention corrente che include il
-	 *         member da cui parte la mention, il member a cui � riferita la mention
-	 *         e il peso della mention.
-	 */
 	private static String mentionToFullString(final Mention currMention) {
-<span class="nc" id="L842">		return currMention.toFullString();</span>
+<span class="nc" id="L799">		return currMention.toFullString();</span>
 	}
 
 	/**
@@ -852,133 +809,133 @@ public final class CommandManager {
 	 */
 	public static void manage(final String... args) {
 		final String first, second, third, fourth, fifth, sixth, seventh, eighth;
-<span class="nc bnc" id="L855" title="All 10 branches missed.">		switch (args.length) {</span>
+<span class="nc bnc" id="L812" title="All 10 branches missed.">		switch (args.length) {</span>
 		case ZERO:
-<span class="nc" id="L857">			help();</span>
-<span class="nc" id="L858">			break;</span>
+<span class="nc" id="L814">			help();</span>
+<span class="nc" id="L815">			break;</span>
 		case ONE:
-<span class="nc" id="L860">			first = args[ZERO];</span>
-<span class="nc bnc" id="L861" title="All 2 branches missed.">			if (&quot;help&quot;.equals(first)) {</span>
-<span class="nc" id="L862">				help();</span>
+<span class="nc" id="L817">			first = args[ZERO];</span>
+<span class="nc bnc" id="L818" title="All 2 branches missed.">			if (&quot;help&quot;.equals(first)) {</span>
+<span class="nc" id="L819">				help();</span>
 			} else {
-<span class="nc" id="L864">				System.out.println(&quot;'&quot; + first + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+<span class="nc" id="L821">				System.out.println(&quot;'&quot; + first + &quot;'&quot; + NOTVALIDCOMMAND);</span>
 			}
-<span class="nc" id="L866">			break;</span>
+<span class="nc" id="L823">			break;</span>
 		case TWO:
-<span class="nc" id="L868">			first = args[ZERO];</span>
-<span class="nc" id="L869">			second = args[ONE];</span>
-<span class="nc" id="L870">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot;'&quot; + NOTVALIDCOMMAND);</span>
-<span class="nc" id="L871">			break;</span>
+<span class="nc" id="L825">			first = args[ZERO];</span>
+<span class="nc" id="L826">			second = args[ONE];</span>
+<span class="nc" id="L827">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+<span class="nc" id="L828">			break;</span>
 		case THREE:
-<span class="nc" id="L873">			first = args[ZERO];</span>
-<span class="nc" id="L874">			second = args[ONE];</span>
-<span class="nc" id="L875">			third = args[TWO];</span>
-<span class="nc bnc" id="L876" title="All 4 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
-<span class="nc" id="L877">				getMembers(third);</span>
-<span class="nc bnc" id="L878" title="All 4 branches missed.">			} else if (&quot;channels&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
-<span class="nc" id="L879">				getChannels(third);</span>
-<span class="nc bnc" id="L880" title="All 4 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
-<span class="nc" id="L881">				getMentions(third);</span>
+<span class="nc" id="L830">			first = args[ZERO];</span>
+<span class="nc" id="L831">			second = args[ONE];</span>
+<span class="nc" id="L832">			third = args[TWO];</span>
+<span class="nc bnc" id="L833" title="All 4 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="nc" id="L834">				getMembers(third);</span>
+<span class="nc bnc" id="L835" title="All 4 branches missed.">			} else if (&quot;channels&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="nc" id="L836">				getChannels(third);</span>
+<span class="nc bnc" id="L837" title="All 4 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="nc" id="L838">				getMentions(third);</span>
 			} else {
-<span class="nc" id="L883">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+<span class="nc" id="L840">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot;'&quot; + NOTVALIDCOMMAND);</span>
 			}
-<span class="nc" id="L885">			break;</span>
+<span class="nc" id="L842">			break;</span>
 		case FOUR:
-<span class="nc" id="L887">			first = args[ZERO];</span>
-<span class="nc" id="L888">			second = args[ONE];</span>
-<span class="nc" id="L889">			third = args[TWO];</span>
-<span class="nc" id="L890">			fourth = args[THREE];</span>
-<span class="nc bnc" id="L891" title="All 6 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
-<span class="nc" id="L892">				getMembersForChannels(fourth);</span>
-<span class="nc bnc" id="L893" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
-<span class="nc" id="L894">				getMentionsWeighed(fourth);</span>
+<span class="nc" id="L844">			first = args[ZERO];</span>
+<span class="nc" id="L845">			second = args[ONE];</span>
+<span class="nc" id="L846">			third = args[TWO];</span>
+<span class="nc" id="L847">			fourth = args[THREE];</span>
+<span class="nc bnc" id="L848" title="All 6 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
+<span class="nc" id="L849">				getMembersForChannels(fourth);</span>
+<span class="nc bnc" id="L850" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
+<span class="nc" id="L851">				getMentionsWeighed(fourth);</span>
 			} else {
-<span class="nc" id="L896">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+<span class="nc" id="L853">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot;'&quot; + NOTVALIDCOMMAND);</span>
 			}
-<span class="nc" id="L898">			break;</span>
+<span class="nc" id="L855">			break;</span>
 		case FIVE:
-<span class="nc" id="L900">			first = args[ZERO];</span>
-<span class="nc" id="L901">			second = args[ONE];</span>
-<span class="nc" id="L902">			third = args[TWO];</span>
-<span class="nc" id="L903">			fourth = args[THREE];</span>
-<span class="nc" id="L904">			fifth = args[FOUR];</span>
-<span class="nc bnc" id="L905" title="All 6 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L906">				getMembersOfChannel(fifth, third);</span>
-<span class="nc bnc" id="L907" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L908">				getMentions(fifth, third);</span>
-<span class="nc bnc" id="L909" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L910">				getMentionsToUser(fifth, third);</span>
-<span class="nc bnc" id="L911" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L912">				getMentionsFromUser(fifth, third);</span>
+<span class="nc" id="L857">			first = args[ZERO];</span>
+<span class="nc" id="L858">			second = args[ONE];</span>
+<span class="nc" id="L859">			third = args[TWO];</span>
+<span class="nc" id="L860">			fourth = args[THREE];</span>
+<span class="nc" id="L861">			fifth = args[FOUR];</span>
+<span class="nc bnc" id="L862" title="All 6 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
+<span class="nc" id="L863">				getMembersOfChannel(fifth, third);</span>
+<span class="nc bnc" id="L864" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
+<span class="nc" id="L865">				getMentions(fifth, third);</span>
+<span class="nc bnc" id="L866" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
+<span class="nc" id="L867">				getMentionsToUser(fifth, third);</span>
+<span class="nc bnc" id="L868" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
+<span class="nc" id="L869">				getMentionsFromUser(fifth, third);</span>
 			} else {
-<span class="nc" id="L914">				System.out.println(</span>
+<span class="nc" id="L871">				System.out.println(</span>
 						&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + NOTVALIDCOMMAND);
 			}
-<span class="nc" id="L917">			break;</span>
+<span class="nc" id="L874">			break;</span>
 		case SIX:
-<span class="nc" id="L919">			first = args[ZERO];</span>
-<span class="nc" id="L920">			second = args[ONE];</span>
-<span class="nc" id="L921">			third = args[TWO];</span>
-<span class="nc" id="L922">			fourth = args[THREE];</span>
-<span class="nc" id="L923">			fifth = args[FOUR];</span>
-<span class="nc" id="L924">			sixth = args[FIVE];</span>
-<span class="nc bnc" id="L925" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; FROMPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L926" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
-<span class="nc" id="L927">				getMentionsFromUserWeighed(sixth, fourth);</span>
-<span class="nc bnc" id="L928" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; CHPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L929" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
-<span class="nc" id="L930">				getMentionsWeighed(sixth, fourth);</span>
-<span class="nc bnc" id="L931" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; TOPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L932" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
-<span class="nc" id="L933">				getMentionsToUserWeighed(sixth, fourth);</span>
+<span class="nc" id="L876">			first = args[ZERO];</span>
+<span class="nc" id="L877">			second = args[ONE];</span>
+<span class="nc" id="L878">			third = args[TWO];</span>
+<span class="nc" id="L879">			fourth = args[THREE];</span>
+<span class="nc" id="L880">			fifth = args[FOUR];</span>
+<span class="nc" id="L881">			sixth = args[FIVE];</span>
+<span class="nc bnc" id="L882" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; FROMPARAMETER.equals(third)</span>
+<span class="nc bnc" id="L883" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
+<span class="nc" id="L884">				getMentionsFromUserWeighed(sixth, fourth);</span>
+<span class="nc bnc" id="L885" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; CHPARAMETER.equals(third)</span>
+<span class="nc bnc" id="L886" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
+<span class="nc" id="L887">				getMentionsWeighed(sixth, fourth);</span>
+<span class="nc bnc" id="L888" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; TOPARAMETER.equals(third)</span>
+<span class="nc bnc" id="L889" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
+<span class="nc" id="L890">				getMentionsToUserWeighed(sixth, fourth);</span>
 			} else {
-<span class="nc" id="L935">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth</span>
+<span class="nc" id="L892">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth</span>
 						+ &quot;'&quot; + NOTVALIDCOMMAND);
 			}
-<span class="nc" id="L938">			break;</span>
+<span class="nc" id="L895">			break;</span>
 		case SEVEN:
-<span class="nc" id="L940">			first = args[ZERO];</span>
-<span class="nc" id="L941">			second = args[ONE];</span>
-<span class="nc" id="L942">			third = args[TWO];</span>
-<span class="nc" id="L943">			fourth = args[THREE];</span>
-<span class="nc" id="L944">			fifth = args[FOUR];</span>
-<span class="nc" id="L945">			sixth = args[FIVE];</span>
-<span class="nc" id="L946">			seventh = args[SIX];</span>
-<span class="nc bnc" id="L947" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
-<span class="nc bnc" id="L948" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
-<span class="nc" id="L949">				getMentionsToUser(seventh, fifth, third);</span>
-<span class="nc bnc" id="L950" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
-<span class="nc bnc" id="L951" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
-<span class="nc" id="L952">				getMentionsFromUser(seventh, fifth, third);</span>
+<span class="nc" id="L897">			first = args[ZERO];</span>
+<span class="nc" id="L898">			second = args[ONE];</span>
+<span class="nc" id="L899">			third = args[TWO];</span>
+<span class="nc" id="L900">			fourth = args[THREE];</span>
+<span class="nc" id="L901">			fifth = args[FOUR];</span>
+<span class="nc" id="L902">			sixth = args[FIVE];</span>
+<span class="nc" id="L903">			seventh = args[SIX];</span>
+<span class="nc bnc" id="L904" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
+<span class="nc bnc" id="L905" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
+<span class="nc" id="L906">				getMentionsToUser(seventh, fifth, third);</span>
+<span class="nc bnc" id="L907" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
+<span class="nc bnc" id="L908" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
+<span class="nc" id="L909">				getMentionsFromUser(seventh, fifth, third);</span>
 			} else {
-<span class="nc" id="L954">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
+<span class="nc" id="L911">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
 						+ &quot; &quot; + seventh + &quot;'&quot; + NOTVALIDCOMMAND);
 			}
-<span class="nc" id="L957">			break;</span>
+<span class="nc" id="L914">			break;</span>
 		case EIGHT:
-<span class="nc" id="L959">			first = args[ZERO];</span>
-<span class="nc" id="L960">			second = args[ONE];</span>
-<span class="nc" id="L961">			third = args[TWO];</span>
-<span class="nc" id="L962">			fourth = args[THREE];</span>
-<span class="nc" id="L963">			fifth = args[FOUR];</span>
-<span class="nc" id="L964">			sixth = args[FIVE];</span>
-<span class="nc" id="L965">			seventh = args[SIX];</span>
-<span class="nc" id="L966">			eighth = args[SEVEN];</span>
-<span class="nc bnc" id="L967" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; TOPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L968" title="All 4 branches missed.">					&amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
-<span class="nc" id="L969">				getMentionsToUserWeighed(eighth, sixth, fourth);</span>
-<span class="nc bnc" id="L970" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; FROMPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L971" title="All 4 branches missed.">					&amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
-<span class="nc" id="L972">				getMentionsFromUserWeighed(eighth, sixth, fourth);</span>
+<span class="nc" id="L916">			first = args[ZERO];</span>
+<span class="nc" id="L917">			second = args[ONE];</span>
+<span class="nc" id="L918">			third = args[TWO];</span>
+<span class="nc" id="L919">			fourth = args[THREE];</span>
+<span class="nc" id="L920">			fifth = args[FOUR];</span>
+<span class="nc" id="L921">			sixth = args[FIVE];</span>
+<span class="nc" id="L922">			seventh = args[SIX];</span>
+<span class="nc" id="L923">			eighth = args[SEVEN];</span>
+<span class="nc bnc" id="L924" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; TOPARAMETER.equals(third)</span>
+<span class="nc bnc" id="L925" title="All 4 branches missed.">					&amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
+<span class="nc" id="L926">				getMentionsToUserWeighed(eighth, sixth, fourth);</span>
+<span class="nc bnc" id="L927" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; FROMPARAMETER.equals(third)</span>
+<span class="nc bnc" id="L928" title="All 4 branches missed.">					&amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
+<span class="nc" id="L929">				getMentionsFromUserWeighed(eighth, sixth, fourth);</span>
 			} else {
-<span class="nc" id="L974">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
+<span class="nc" id="L931">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
 						+ &quot; &quot; + seventh + &quot; &quot; + eighth + &quot;'&quot; + NOTVALIDCOMMAND);
 			}
-<span class="nc" id="L977">			break;</span>
+<span class="nc" id="L934">			break;</span>
 		default:
-<span class="nc" id="L979">			System.out.println(&quot;Command not found, see 'help'.&quot;);</span>
+<span class="nc" id="L936">			System.out.println(&quot;Command not found, see 'help'.&quot;);</span>
 			break;
 		}
-<span class="nc" id="L982">	}</span>
+<span class="nc" id="L939">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
