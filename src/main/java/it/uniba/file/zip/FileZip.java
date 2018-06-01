@@ -38,10 +38,10 @@ public final class FileZip {
 	 * @throws IOException
 	 *             Lancia un'eccezione quando si verifica un errore di input/output.
 	 * @throws FileNotInZipException
-	 *             Lancia un'eccezione quando il file specificato non � nello zip
+	 *             Lancia un'eccezione quando il file specificato non è nello zip
 	 *             file.
 	 * @throws ZipException
-	 *             Lancia un'eccezione quando lo zip file specificato non � valido.
+	 *             Lancia un'eccezione quando lo zip file specificato non è valido.
 	 */
 	public String getFileContent(final String fileName) throws IOException, FileNotInZipException, ZipException {
 		if (contains(fileName)) {
@@ -62,7 +62,7 @@ public final class FileZip {
 	}
 
 	/**
-	 * Verifica se un file � presente nello zip.
+	 * Verifica se un file è presente nello zip.
 	 * 
 	 * @param fileName
 	 *            String che rappresenta uno specifico file.
