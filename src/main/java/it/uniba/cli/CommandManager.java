@@ -281,7 +281,7 @@ public final class CommandManager {
 		}
 	}
 
-	private static Iterator<Member> getMemberIterator(final LinkedList<Member> channelMembers) {
+	private static Iterator<Member> getMemberIterator(final List<Member> channelMembers) {
 		return channelMembers.iterator();
 	}
 
@@ -808,133 +808,177 @@ public final class CommandManager {
 	 *            del comando digitato dall'utente da riga di comando.
 	 */
 	public static void manage(final String... args) {
-		final String first, second, third, fourth, fifth, sixth, seventh, eighth;
 		switch (args.length) {
 		case ZERO:
 			help();
 			break;
 		case ONE:
-			first = args[ZERO];
-			if ("help".equals(first)) {
-				help();
-			} else {
-				System.out.println("'" + first + "'" + NOTVALIDCOMMAND);
-			}
+			oneArgs(args);
 			break;
 		case TWO:
-			first = args[ZERO];
-			second = args[ONE];
-			System.out.println("'" + first + " " + second + "'" + NOTVALIDCOMMAND);
+			twoArgs(args);
 			break;
 		case THREE:
-			first = args[ZERO];
-			second = args[ONE];
-			third = args[TWO];
-			if ("members".equals(first) && "-f".equals(second)) {
-				getMembers(third);
-			} else if ("channels".equals(first) && "-f".equals(second)) {
-				getChannels(third);
-			} else if (MENTIONSCOMMAND.equals(first) && "-f".equals(second)) {
-				getMentions(third);
-			} else {
-				System.out.println("'" + first + " " + second + " " + third + "'" + NOTVALIDCOMMAND);
-			}
+			threeArgs(args);
 			break;
 		case FOUR:
-			first = args[ZERO];
-			second = args[ONE];
-			third = args[TWO];
-			fourth = args[THREE];
-			if ("members".equals(first) && CHPARAMETER.equals(second) && "-f".equals(third)) {
-				getMembersForChannels(fourth);
-			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && "-f".equals(third)) {
-				getMentionsWeighed(fourth);
-			} else {
-				System.out.println("'" + first + " " + second + " " + third + " " + fourth + "'" + NOTVALIDCOMMAND);
-			}
+			fourArgs(args);
 			break;
 		case FIVE:
-			first = args[ZERO];
-			second = args[ONE];
-			third = args[TWO];
-			fourth = args[THREE];
-			fifth = args[FOUR];
-			if ("members".equals(first) && CHPARAMETER.equals(second) && "-f".equals(fourth)) {
-				getMembersOfChannel(fifth, third);
-			} else if (MENTIONSCOMMAND.equals(first) && CHPARAMETER.equals(second) && "-f".equals(fourth)) {
-				getMentions(fifth, third);
-			} else if (MENTIONSCOMMAND.equals(first) && TOPARAMETER.equals(second) && "-f".equals(fourth)) {
-				getMentionsToUser(fifth, third);
-			} else if (MENTIONSCOMMAND.equals(first) && FROMPARAMETER.equals(second) && "-f".equals(fourth)) {
-				getMentionsFromUser(fifth, third);
-			} else {
-				System.out.println(
-						"'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + NOTVALIDCOMMAND);
-			}
+			fiveArgs(args);
 			break;
 		case SIX:
-			first = args[ZERO];
-			second = args[ONE];
-			third = args[TWO];
-			fourth = args[THREE];
-			fifth = args[FOUR];
-			sixth = args[FIVE];
-			if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && FROMPARAMETER.equals(third)
-					&& "-f".equals(fifth)) {
-				getMentionsFromUserWeighed(sixth, fourth);
-			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && CHPARAMETER.equals(third)
-					&& "-f".equals(fifth)) {
-				getMentionsWeighed(sixth, fourth);
-			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && TOPARAMETER.equals(third)
-					&& "-f".equals(fifth)) {
-				getMentionsToUserWeighed(sixth, fourth);
-			} else {
-				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth
-						+ "'" + NOTVALIDCOMMAND);
-			}
+			sixArgs(args);
 			break;
 		case SEVEN:
-			first = args[ZERO];
-			second = args[ONE];
-			third = args[TWO];
-			fourth = args[THREE];
-			fifth = args[FOUR];
-			sixth = args[FIVE];
-			seventh = args[SIX];
-			if (MENTIONSCOMMAND.equals(first) && TOPARAMETER.equals(second) && CHPARAMETER.equals(fourth)
-					&& "-f".equals(sixth)) {
-				getMentionsToUser(seventh, fifth, third);
-			} else if (MENTIONSCOMMAND.equals(first) && FROMPARAMETER.equals(second) && CHPARAMETER.equals(fourth)
-					&& "-f".equals(sixth)) {
-				getMentionsFromUser(seventh, fifth, third);
-			} else {
-				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth
-						+ " " + seventh + "'" + NOTVALIDCOMMAND);
-			}
+			sevenArgs(args);
 			break;
 		case EIGHT:
-			first = args[ZERO];
-			second = args[ONE];
-			third = args[TWO];
-			fourth = args[THREE];
-			fifth = args[FOUR];
-			sixth = args[FIVE];
-			seventh = args[SIX];
-			eighth = args[SEVEN];
-			if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && TOPARAMETER.equals(third)
-					&& CHPARAMETER.equals(fifth) && "-f".equals(seventh)) {
-				getMentionsToUserWeighed(eighth, sixth, fourth);
-			} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && FROMPARAMETER.equals(third)
-					&& CHPARAMETER.equals(fifth) && "-f".equals(seventh)) {
-				getMentionsFromUserWeighed(eighth, sixth, fourth);
-			} else {
-				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth
-						+ " " + seventh + " " + eighth + "'" + NOTVALIDCOMMAND);
-			}
+			eightArgs(args);
 			break;
 		default:
 			System.out.println("Command not found, see 'help'.");
 			break;
+		}
+	}
+
+	private static void oneArgs(final String... args) {
+		final String first;
+		first = args[ZERO];
+		if ("help".equals(first)) {
+			help();
+		} else {
+			System.out.println("'" + first + "'" + NOTVALIDCOMMAND);
+		}
+	}
+
+	private static void twoArgs(final String... args) {
+		final String first, second;
+		first = args[ZERO];
+		second = args[ONE];
+		System.out.println("'" + first + " " + second + "'" + NOTVALIDCOMMAND);
+	}
+
+	private static void threeArgs(final String... args) {
+		final String first, second, third;
+		first = args[ZERO];
+		second = args[ONE];
+		third = args[TWO];
+		if ("members".equals(first) && "-f".equals(second)) {
+			getMembers(third);
+		} else if ("channels".equals(first) && "-f".equals(second)) {
+			getChannels(third);
+		} else if (MENTIONSCOMMAND.equals(first) && "-f".equals(second)) {
+			getMentions(third);
+		} else {
+			System.out.println("'" + first + " " + second + " " + third + "'" + NOTVALIDCOMMAND);
+		}
+	}
+
+	private static void fourArgs(final String... args) {
+		final String first, second, third, fourth;
+		first = args[ZERO];
+		second = args[ONE];
+		third = args[TWO];
+		fourth = args[THREE];
+		if ("members".equals(first) && CHPARAMETER.equals(second) && "-f".equals(third)) {
+			getMembersForChannels(fourth);
+		} else if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && "-f".equals(third)) {
+			getMentionsWeighed(fourth);
+		} else {
+			System.out.println("'" + first + " " + second + " " + third + " " + fourth + "'" + NOTVALIDCOMMAND);
+		}
+	}
+
+	private static void fiveArgs(final String... args) {
+		final String first, second, third, fourth, fifth;
+		first = args[ZERO];
+		second = args[ONE];
+		third = args[TWO];
+		fourth = args[THREE];
+		fifth = args[FOUR];
+		if ("-f".equals(fourth)) {
+			if (CHPARAMETER.equals(second)) {
+				if ("members".equals(first)) {
+					getMembersOfChannel(fifth, third);
+				} else if (MENTIONSCOMMAND.equals(first)) {
+					getMentions(fifth, third);
+				}
+			} else if (MENTIONSCOMMAND.equals(first)) {
+				if (TOPARAMETER.equals(second)) {
+					getMentionsToUser(fifth, third);
+				} else if (FROMPARAMETER.equals(second)) {
+					getMentionsFromUser(fifth, third);
+				}
+			}
+		} else {
+			System.out.println(
+					"'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + NOTVALIDCOMMAND);
+		}
+	}
+
+	private static void sixArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth;
+		first = args[ZERO];
+		second = args[ONE];
+		third = args[TWO];
+		fourth = args[THREE];
+		fifth = args[FOUR];
+		sixth = args[FIVE];
+		if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && "-f".equals(fifth)) {
+			if (FROMPARAMETER.equals(third)) {
+				getMentionsFromUserWeighed(sixth, fourth);
+			} else if (CHPARAMETER.equals(third)) {
+				getMentionsWeighed(sixth, fourth);
+			} else if (TOPARAMETER.equals(third)) {
+				getMentionsToUserWeighed(sixth, fourth);
+			}
+		} else {
+			System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth + "'"
+					+ NOTVALIDCOMMAND);
+		}
+	}
+
+	private static void sevenArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth, seventh;
+		first = args[ZERO];
+		second = args[ONE];
+		third = args[TWO];
+		fourth = args[THREE];
+		fifth = args[FOUR];
+		sixth = args[FIVE];
+		seventh = args[SIX];
+		if (MENTIONSCOMMAND.equals(first) && TOPARAMETER.equals(second) && CHPARAMETER.equals(fourth)
+				&& "-f".equals(sixth)) {
+			getMentionsToUser(seventh, fifth, third);
+		} else if (MENTIONSCOMMAND.equals(first) && FROMPARAMETER.equals(second) && CHPARAMETER.equals(fourth)
+				&& "-f".equals(sixth)) {
+			getMentionsFromUser(seventh, fifth, third);
+		} else {
+			System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth + " "
+					+ seventh + "'" + NOTVALIDCOMMAND);
+		}
+	}
+
+	private static void eightArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth, seventh, eighth;
+		first = args[ZERO];
+		second = args[ONE];
+		third = args[TWO];
+		fourth = args[THREE];
+		fifth = args[FOUR];
+		sixth = args[FIVE];
+		seventh = args[SIX];
+		eighth = args[SEVEN];
+		if (MENTIONSCOMMAND.equals(first) && "-w".equals(second) && CHPARAMETER.equals(fifth) && "-f".equals(seventh)) {
+			if (TOPARAMETER.equals(third)) {
+				getMentionsToUserWeighed(eighth, sixth, fourth);
+			} else if (FROMPARAMETER.equals(third)) {
+				getMentionsFromUserWeighed(eighth, sixth, fourth);
+			}
+		} else {
+			System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth + " "
+					+ seventh + " " + eighth + "'" + NOTVALIDCOMMAND);
 		}
 	}
 }
