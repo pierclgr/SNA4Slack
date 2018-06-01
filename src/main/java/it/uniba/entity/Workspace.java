@@ -155,8 +155,12 @@ public final class Workspace {
 		}
 	}
 
+	private Iterator<Member> getMembersIterator(final Collection<Member> membersCollection) {
+		return membersCollection.iterator();
+	}
+
 	/**
-	 * Restituisce la lista di tutti i channels nel workspace corrente.
+	 * Restituisce la hashmap di tutti i channels nel workspace corrente.
 	 * 
 	 * @return riferimento ad una LinkedHashMap<String, Channel> che rappresenta la
 	 *         lista di tutti i channels del workspace corrente.
@@ -188,10 +192,24 @@ public final class Workspace {
 	public List<Member> getMembersOfChannel(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
 			final Channel curChannel = channels.get(channelName);
-			return (LinkedList<Member>) curChannel.getMembers();
+			return (LinkedList<Member>) getMemberFromChannel(curChannel);
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
+	}
+
+	/**
+	 * Restituisce la lista dei members di un determinato channel.
+	 * 
+	 * @param channelName
+	 *            String che rappresenta un determinato channel.
+	 * @return riferimento ad una LinkedList<Member> che rappresenta la lista di
+	 *         member di un determinato channel.
+	 * @throws ChannelNotValidException
+	 *             Lancia un eccezione quando il channel specificato non � valido.
+	 */
+	private List<Member> getMemberFromChannel(final Channel curChannel) {
+		return curChannel.getMembers();
 	}
 
 	/**
@@ -213,12 +231,12 @@ public final class Workspace {
 			throws ChannelNotValidException, MemberNotValidException {
 		String memberID = memberInput;
 		final Collection<Member> membersCollection = members.values();
-		final Iterator<Member> membersIterator = membersCollection.iterator();
+		final Iterator<Member> membersIterator = getMembersIterator(membersCollection);
 		boolean found = false;
 		while (membersIterator.hasNext() && !found) {
 			final Member currMember = membersIterator.next();
-			if (currMember.isUser(memberID)) {
-				memberID = currMember.getId();
+			if (memberIsUser(currMember, memberID)) {
+				memberID = getMemberID(currMember);
 				found = true;
 			}
 		}
@@ -226,13 +244,13 @@ public final class Workspace {
 			if (channels.containsKey(channelInput)) {
 				final LinkedList<Mention> out = new LinkedList<Mention>();
 				final Channel curChannel = channels.get(channelInput);
-				final LinkedList<Mention> mentions = (LinkedList<Mention>) curChannel.getMentions();
-				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
+				final LinkedList<Mention> mentions = (LinkedList<Mention>) getMentions(curChannel);
+				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) getMentionsIterator(mentions);
 				while (mentionsIterator.hasNext()) {
-					final Mention curMention = mentionsIterator.next();
-					final Member fromMember = curMention.getFrom();
-					if (fromMember.equals(members.get(memberID))) {
-						out.add(curMention);
+					final Mention currMention = mentionsIterator.next();
+					final Member fromMember = getMentionFrom(currMention);
+					if (memberEquals(fromMember, members.get(memberID))) {
+						out.add(currMention);
 					}
 				}
 				return out;
@@ -242,7 +260,41 @@ public final class Workspace {
 		} else {
 			throw new MemberNotValidException(memberID);
 		}
+	}
 
+	/**
+	 * Restituisce il member da cui è partita una mention
+	 * 
+	 * @param currMention
+	 *            Riferimento ad un oggetto di tipo mention
+	 * @return riferimento ad un oggetto di tipo member da cui è partita la mention 
+	 */
+	private Member getMentionFrom(final Mention currMention) {
+		return currMention.getFrom();
+	}
+
+	/**
+	 * Restituisce l'id di un member
+	 * 
+	 * @param currMember
+	 *            Riferimento ad un oggetto di tipo member
+	 * @return stringa che rappresenta l'id del member in input
+	 */
+	private String getMemberID(final Member currMember) {
+		return currMember.getId();
+	}
+
+	/**
+	 * Restituisce un booleano che indica se la stringa di un ID appartiene ad un member
+	 * 
+	 * @param currMember
+	 *            Riferimento ad un oggetto di tipo member
+	 * @param memberID
+	 *            String che rappresenta l'ID di un potenziale member
+	 * @return booleano: true se è un utente, false altrimenti
+	 */
+	private boolean memberIsUser(final Member currMember, final String memberID) {
+		return currMember.isUser(memberID);
 	}
 
 	/**
@@ -264,25 +316,25 @@ public final class Workspace {
 			throws ChannelNotValidException, MemberNotValidException {
 		String memberID = memberInput;
 		final Collection<Member> membersCollection = members.values();
-		final Iterator<Member> membersIterator = membersCollection.iterator();
+		final Iterator<Member> membersIterator = getMembersIterator(membersCollection);
 		boolean found = false;
 		while (membersIterator.hasNext() && !found) {
 			final Member currMember = membersIterator.next();
-			if (currMember.isUser(memberID)) {
-				memberID = currMember.getId();
+			if (memberIsUser(currMember, memberID)) {
+				memberID = getMemberID(currMember);
 				found = true;
 			}
 		}
 		if (found) {
 			if (channels.containsKey(channelInput)) {
 				final LinkedList<Mention> out = new LinkedList<Mention>();
-				final Channel curChannel = channels.get(channelInput);
-				final LinkedList<Mention> mentions = (LinkedList<Mention>) curChannel.getMentions();
-				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) mentions.iterator();
+				final Channel currChannel = channels.get(channelInput);
+				final LinkedList<Mention> mentions = (LinkedList<Mention>) getMentions(currChannel);
+				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) getMentionsIterator(mentions);
 				while (mentionsIterator.hasNext()) {
 					final Mention curMention = mentionsIterator.next();
-					final Member toMember = curMention.getTo();
-					if (toMember.equals(members.get(memberID))) {
+					final Member toMember = getMentionTo(curMention);
+					if (memberEquals(toMember, getMemberByID(members, memberID))) {
 						out.add(curMention);
 					}
 				}
@@ -293,6 +345,66 @@ public final class Workspace {
 		} else {
 			throw new MemberNotValidException(memberID);
 		}
+	}
+
+	/**
+	 * Restituisce le mention di un cancale
+	 * 
+	 * @param currChannel
+	 *         riferimento ad oggetto di tipo Channel
+	 * @return lista di tipo mention
+	 */
+	private List<Mention> getMentions(final Channel currChannel) {
+		return currChannel.getMentions();
+	}
+
+	/**
+	 * Restituisce l'iterator delle mentions
+	 * 
+	 * @param mentions
+	 *         riferimento ad oggetto Lista di tipo mention
+	 * @return iterator con cui è possibile scandire la lista in ingresso
+	 */
+	private Iterator<Mention> getMentionsIterator(final List<Mention> mentions) {
+		return mentions.iterator();
+	}
+
+	/**
+	 * Restituisce il member a cui è arrivata la mention
+	 * 
+	 * @param curMention
+	 *            riferimento ad un determinato oggetto di tipo mention
+	 * @return riferimento ad oggetto di tipo member a cui è arrivata la mention
+	 */
+	private Member getMentionTo(final Mention curMention) {
+		return curMention.getTo();
+	}
+
+	/**
+	 * Restituisce un booleano per verificare se i due member sono uguali
+	 * 
+	 * @param firstMember
+	 *            String che identifica univocamente un member
+	 * @param secondMember
+	 *            String che identifica univocamente un member
+	 * @return booleano: true se sono uguali, false altrimenti
+	 */
+	private boolean memberEquals(final Member firstMember, final Member secondMember) {
+		return firstMember.equals(secondMember);
+	}
+
+	/**
+	 * Restituisce il member che ha come ID la stringa memberID
+	 * 
+	 * @param members
+	 *            String che rappresenta un detrminatro channel.
+	 * @param members
+	 *            String che identifica univocamente un member
+	 * @return riferimento ad oggetto Member che rappresente il member con id 
+	 *         memberID
+	 */
+	private Member getMemberByID(final Map<String, Member> members, final String memberID) {
+		return members.get(memberID);
 	}
 
 	/**
@@ -308,10 +420,22 @@ public final class Workspace {
 	public List<Mention> getMentions(final String channelName) throws ChannelNotValidException {
 		if (channels.containsKey(channelName)) {
 			final Channel currChannel = channels.get(channelName);
-			return (LinkedList<Mention>) currChannel.getMentions();
+			return getMentionFromChannel(currChannel);
 		} else {
 			throw new ChannelNotValidException(channelName);
 		}
+	}
+
+	/**
+	 * Restituisce la lista di mention fatte in un determinato channel.
+	 * 
+	 * @param currChannel
+	 *         Riferimento ad un detrminatro oggetto di tipo Channel.
+	 * @return riferimento ad un LinkedList<Mention> che rappresenta la lista di
+	 *         mention fatte in un determinato channel.
+	 */
+	private List<Mention> getMentionFromChannel(final Channel currChannel) {
+		return currChannel.getMentions();
 	}
 
 	/**
