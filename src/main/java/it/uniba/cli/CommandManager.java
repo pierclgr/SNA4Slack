@@ -745,25 +745,10 @@ public final class CommandManager {
 		outMent.setWeight(newWeight);
 	}
 
-	/**
-	 * Restituisce l'id del member da cui è effettuata la mention corrente.
-	 * 
-	 * @param currMention
-	 *            oggetto di tipo Mention
-	 * @return riferimento ad una stringa della classe Member che rappresenta il
-	 *         member id da cui è effettuata la mention corrente.
-	 */
 	private static String getMentionFromID(final Mention currMention) {
 		return currMention.getFromId();
 	}
 
-	/**
-	 * Restituisce il peso della mention corrente.
-	 * 
-	 * @param inMention
-	 *            Oggetto di tipo Mention
-	 * @return int che rappresenta il peso della mention corrente.
-	 */
 	private static int getMentionWeight(final Mention inMention) {
 		return inMention.getWeight();
 	}
@@ -802,38 +787,14 @@ public final class CommandManager {
 		}
 	}
 
-	/**
-	 * Returns an iterator over the elements in this list in proper sequence.
-	 *
-	 * @param workspaceMention
-	 *            oggetto di tipo Lista di Mention
-	 * @return an iterator over the elements in this list in proper sequence
-	 */
 	private static Iterator<Mention> getMentionIterator(final List<Mention> workspaceMentions) {
 		return workspaceMentions.iterator();
 	}
 
-	/**
-	 * Returns an iterator over the elements in this list in proper sequence.
-	 *
-	 * @param workspaceMention
-	 *            oggetto di tipo Collection di Mention
-	 * @return an iterator over the elements in this list in proper sequence
-	 */
 	private static Iterator<Mention> getMentionIterator(final Collection<Mention> workspaceMentions) {
 		return workspaceMentions.iterator();
 	}
 
-	/**
-	 * Restituisce una rappresentazione completa sottoforma di stringa della mention
-	 * corrente includendo anche il peso.
-	 * 
-	 * @param currMention
-	 *            Oggetto di tipo mention
-	 * @return String che rappresenta lo stato della mention corrente che include il
-	 *         member da cui parte la mention, il member a cui � riferita la mention
-	 *         e il peso della mention.
-	 */
 	private static String mentionToFullString(final Mention currMention) {
 		return currMention.toFullString();
 	}
