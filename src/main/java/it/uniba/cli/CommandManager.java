@@ -904,8 +904,8 @@ public final class CommandManager {
 				} else if (MENTIONSCOMMAND.equals(first)) {
 					getMentions(fifth, third);
 				} else {
-					System.out.println(
-							"'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + NOTVALIDCOMMAND);
+					System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'"
+							+ NOTVALIDCOMMAND);
 				}
 			} else if (MENTIONSCOMMAND.equals(first)) {
 				if (TOPARAMETER.equals(second)) {
@@ -913,8 +913,8 @@ public final class CommandManager {
 				} else if (FROMPARAMETER.equals(second)) {
 					getMentionsFromUser(fifth, third);
 				} else {
-					System.out.println(
-							"'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + NOTVALIDCOMMAND);
+					System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'"
+							+ NOTVALIDCOMMAND);
 				}
 			}
 		} else {
@@ -939,8 +939,8 @@ public final class CommandManager {
 			} else if (TOPARAMETER.equals(third)) {
 				getMentionsToUserWeighed(sixth, fourth);
 			} else {
-				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth + "'"
-						+ NOTVALIDCOMMAND);
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth
+						+ "'" + NOTVALIDCOMMAND);
 			}
 		} else {
 			System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth + "'"
@@ -985,8 +985,8 @@ public final class CommandManager {
 			} else if (FROMPARAMETER.equals(third)) {
 				getMentionsFromUserWeighed(eighth, sixth, fourth);
 			} else {
-				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth + " "
-						+ seventh + " " + eighth + "'" + NOTVALIDCOMMAND);
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth
+						+ " " + seventh + " " + eighth + "'" + NOTVALIDCOMMAND);
 			}
 		} else {
 			System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth + " "

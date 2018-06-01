@@ -162,8 +162,8 @@ public final class Workspace {
 	/**
 	 * Restituisce la hashmap di tutti i channels nel workspace corrente.
 	 * 
-	 * @return riferimento ad una LinkedHashMap<String, Channel> che rappresenta la
-	 *         lista di tutti i channels del workspace corrente.
+	 * @return riferimento ad una LinkedHashMap che rappresenta la lista di tutti i
+	 *         channels del workspace corrente.
 	 */
 	public Map<String, Channel> getAllChannels() {
 		return (LinkedHashMap<String, Channel>) this.channels;
@@ -172,8 +172,8 @@ public final class Workspace {
 	/**
 	 * Restituisce la lista di tutti i members nel workspce corrente.
 	 * 
-	 * @return riferimento ad una LinkedHashMap<String, Member> che rappresenta la
-	 *         lista di tutti i members del workspace corrente.
+	 * @return riferimento ad una LinkedHashMap che rappresenta la lista di tutti i
+	 *         members del workspace corrente.
 	 */
 	public Map<String, Member> getAllMembers() {
 		return (LinkedHashMap<String, Member>) this.members;
@@ -184,7 +184,7 @@ public final class Workspace {
 	 * 
 	 * @param channelName
 	 *            String che rappresenta un determinato channel.
-	 * @return riferimento ad una LinkedList<Member> che rappresenta la lista di
+	 * @return riferimento ad una LinkedList di Member che rappresenta la lista di
 	 *         member di un determinato channel.
 	 * @throws ChannelNotValidException
 	 *             Lancia un eccezione quando il channel specificato non � valido.
@@ -210,7 +210,7 @@ public final class Workspace {
 	 *            String che rappresenta un detrminato channel.
 	 * @param memberInput
 	 *            String che rappresenta un detrminato member.
-	 * @return riferimento ad un LinkedList<Mention> che rappresenta la lista di
+	 * @return riferimento ad un LinkedList di Mention che rappresenta la lista di
 	 *         mention fatte da un determinato member in un detrminato channel.
 	 * @throws ChannelNotValidException
 	 *             Lancia un eccezione quando il channel specificato non � valido.
@@ -272,7 +272,7 @@ public final class Workspace {
 	 *            String che rappresenta un detrminatro channel.
 	 * @param memberInput
 	 *            String che rappresenta un determinato member.
-	 * @return riferimento ad un LinkedList<Mention> che rappresenta la lista di
+	 * @return riferimento ad un LinkedList di Mention che rappresenta la lista di
 	 *         mention fatte in uno specifico channel ad un particolare member.
 	 * @throws ChannelNotValidException
 	 *             Lancia un eccezione quando il channel specificato non � valido.
@@ -339,7 +339,7 @@ public final class Workspace {
 	 * 
 	 * @param channelName
 	 *            String che rappresenta un detrminatro channel.
-	 * @return riferimento ad un LinkedList<Mention> che rappresenta la lista di
+	 * @return riferimento ad un LinkedList di Mention che rappresenta la lista di
 	 *         mention fatte in un determinato channel.
 	 * @throws ChannelNotValidException
 	 *             Lancia un eccezione quando il channel specificato non � valido.

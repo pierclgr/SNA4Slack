@@ -62,7 +62,7 @@ public final class Channel {
 	/**
 	 * Restituisce la lista dei members del channel corrente.
 	 * 
-	 * @return riferimento ad una LinkedList<Member> che rappresenta la lista di
+	 * @return riferimento ad una LinkedList di Member che rappresenta la lista di
 	 *         members del channel corrente.
 	 */
 	public List<Member> getMembers() {
@@ -72,7 +72,7 @@ public final class Channel {
 	/**
 	 * Restituisce la lista di mention effettuate nel channel corrente.
 	 * 
-	 * @return riferimento ad una LinkedList<Mention> che rappresenta la lista di
+	 * @return riferimento ad una LinkedList di Mention che rappresenta la lista di
 	 *         mention effettuate all'interno del channel corrente.
 	 */
 	public List<Mention> getMentions() {
