@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommandManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.cli</a> &gt; <span class="el_source">CommandManager.java</span></div><h1>CommandManager.java</h1><pre class="source lang-java linenums">package it.uniba.cli;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+
+import it.uniba.entity.Channel;
+import it.uniba.entity.ChannelNotValidException;
+import it.uniba.entity.Member;
+import it.uniba.entity.MemberNotValidException;
+import it.uniba.entity.Mention;
+import it.uniba.entity.Workspace;
+import it.uniba.file.PathManager;
+import it.uniba.file.zip.FileNotInZipException;
+import it.uniba.file.zip.NotValidWorkspaceException;
+import it.uniba.file.zip.NotZipFileException;
+
+/**
+ * Classe che contiene l'implementazione dei possibili comandi.
+ */
+public final class CommandManager {
+	/**
+	 * Attributo di classe che rappresenta la stringa di errore di un comando non
+	 * valido.
+	 */
+	public static final String NOTVALIDCOMMAND = &quot; is not a valid command, see 'help'.&quot;;
+	/**
+	 * Attributo di classe che rappresenta la stringa del comando mentions.
+	 */
+	public static final String MENTIONSCOMMAND = &quot;mentions&quot;;
+	/**
+	 * Attributo di classe che rappresenta la stringa del parametro -ch.
+	 */
+	public static final String CHPARAMETER = &quot;-ch&quot;;
+	/**
+	 * Attributo di classe che rappresenta la stringa del parametro -from.
+	 */
+	public static final String FROMPARAMETER = &quot;-from&quot;;
+	/**
+	 * Attributo di classe che rappresenta la stringa del parametro -ch.
+	 */
+	public static final String TOPARAMETER = &quot;-to&quot;;
+	/**
+	 * Attributo di classe che rappresenta la stringa &quot;not found&quot;.
+	 */
+	private static final String NOTFOUND = &quot; not found&quot;;
+	/**
+	 * Attributo di classe che rappresenta il valore 0.
+	 */
+	private static final int ZERO = 0;
+	/**
+	 * Attributo di classe che rappresenta il valore 1.
+	 */
+	private static final int ONE = 1;
+	/**
+	 * Attributo di classe che rappresenta il valore 2.
+	 */
+	private static final int TWO = 2;
+	/**
+	 * Attributo di classe che rappresenta il valore 3.
+	 */
+	private static final int THREE = 3;
+	/**
+	 * Attributo di classe che rappresenta il valore 4.
+	 */
+	private static final int FOUR = 4;
+	/**
+	 * Attributo di classe che rappresenta il valore 5.
+	 */
+	private static final int FIVE = 5;
+	/**
+	 * Attributo di classe che rappresenta il valore 6.
+	 */
+	private static final int SIX = 6;
+	/**
+	 * Attributo di classe che rappresenta il valore 7.
+	 */
+	private static final int SEVEN = 7;
+	/**
+	 * Attributo di classe che rappresenta il valore 8.
+	 */
+	private static final int EIGHT = 8;
+
+	/**
+	 * Metodo costruttore della classe CommandManager, permette di costruire oggetti
+	 * istanze della classe CommandManager.
+	 */
+	private CommandManager() {
+	}
+
+	/**
+	 * Scrive sullo standard output stream la lista di tutti i possibili comandi.
+	 */
+	public static void help() {
+<span class="fc" id="L102">		final Commands commands = new Commands();</span>
+<span class="fc" id="L103">		int maxNumCharCommand = ZERO;</span>
+<span class="fc" id="L104">		int maxNCharDesc = ZERO;</span>
+<span class="fc" id="L105">		final LinkedList&lt;Command&gt; commandList = (LinkedList&lt;Command&gt;) commands.getCommands();</span>
+<span class="fc" id="L106">		ListIterator&lt;Command&gt; commandsIterator = (ListIterator&lt;Command&gt;) getCommandIterator(commandList);</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">		while (commandsIterator.hasNext()) {</span>
+<span class="fc" id="L108">			final Command curr = commandsIterator.next();</span>
+<span class="fc" id="L109">			final int currCommLength = (getCommandName(curr) + &quot; &quot; + getCommandOptions(curr)).length();</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">			if (currCommLength &gt;= maxNumCharCommand) {</span>
+<span class="fc" id="L111">				maxNumCharCommand = currCommLength;</span>
+			}
+<span class="fc" id="L113">			final String currDesc = getCommandDescription(curr);</span>
+<span class="fc" id="L114">			final int currDescLength = getLength(currDesc);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">			if (currDescLength &gt;= maxNCharDesc) {</span>
+<span class="fc" id="L116">				maxNCharDesc = currDescLength;</span>
+			}
+<span class="fc" id="L118">		}</span>
+<span class="fc" id="L119">		System.out.format(&quot;%&quot; + maxNumCharCommand + &quot;s\t%&quot; + maxNCharDesc + &quot;s&quot;, &quot;COMMAND&quot;, &quot;DESCRIPTION&quot;);</span>
+<span class="fc" id="L120">		System.out.println();</span>
+<span class="fc" id="L121">		System.out.println();</span>
+<span class="fc" id="L122">		commandsIterator = (ListIterator&lt;Command&gt;) getCommandIterator(commandList);</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">		while (commandsIterator.hasNext()) {</span>
+<span class="fc" id="L124">			final Command curr = commandsIterator.next();</span>
+<span class="fc" id="L125">			System.out.format(&quot;%&quot; + maxNumCharCommand + &quot;s\t%&quot; + maxNCharDesc + &quot;s&quot;,</span>
+<span class="fc" id="L126">					getCommandName(curr) + &quot; &quot; + getCommandOptions(curr), getCommandDescription(curr));</span>
+<span class="fc" id="L127">			System.out.println();</span>
+<span class="fc" id="L128">		}</span>
+<span class="fc" id="L129">	}</span>
+
+	private static Iterator&lt;Command&gt; getCommandIterator(final List&lt;Command&gt; commandList) {
+<span class="fc" id="L132">		return commandList.iterator();</span>
+	}
+
+	private static String getCommandName(final Command curr) {
+<span class="fc" id="L136">		return curr.getName();</span>
+	}
+
+	private static String getCommandOptions(final Command curr) {
+<span class="fc" id="L140">		return curr.getOptions();</span>
+	}
+
+	private static String getCommandDescription(final Command curr) {
+<span class="fc" id="L144">		return curr.getDescription();</span>
+	}
+
+	private static int getLength(final String stringa) {
+<span class="fc" id="L148">		return stringa.length();</span>
+	}
+
+	/**
+	 * Scrive sullo standard output stream tutti i channels presenti nel workspace
+	 * passatogli in input.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getChannels(final String workspace) {
+		try {
+<span class="fc" id="L160">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L161">			final LinkedHashMap&lt;String, Channel&gt; workspaceChannels = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L162">					.getAllChannels();</span>
+<span class="fc" id="L163">			final Collection&lt;Channel&gt; channels = getChannelCollection(workspaceChannels);</span>
+<span class="fc" id="L164">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(channels);</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">			while (channelsIterator.hasNext()) {</span>
+<span class="fc" id="L166">				final Channel currChannel = channelsIterator.next();</span>
+<span class="fc" id="L167">				System.out.println(getChannelName(currChannel));</span>
+<span class="fc" id="L168">			}</span>
+<span class="fc" id="L169">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L170">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L171">		} catch (IOException e) {</span>
+<span class="nc" id="L172">			e.printStackTrace();</span>
+<span class="fc" id="L173">		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {</span>
+<span class="fc" id="L174">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L175">		}</span>
+<span class="fc" id="L176">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream tutti i members presenti nel workspace
+	 * pasatogli in input.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMembers(final String workspace) {
+		try {
+<span class="fc" id="L187">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L188">			final LinkedHashMap&lt;String, Member&gt; workspaceMembers = (LinkedHashMap&lt;String, Member&gt;) slackWorkspace</span>
+<span class="fc" id="L189">					.getAllMembers();</span>
+<span class="fc" id="L190">			final Collection&lt;Member&gt; members = getMemberCollection(workspaceMembers);</span>
+<span class="fc" id="L191">			final Iterator&lt;Member&gt; membersIterator = getMemberIterator(members);</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">			while (membersIterator.hasNext()) {</span>
+<span class="fc" id="L193">				final Member currMember = membersIterator.next();</span>
+<span class="fc" id="L194">				System.out.println(getMemberName(currMember));</span>
+<span class="fc" id="L195">			}</span>
+<span class="fc" id="L196">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L197">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L198">		} catch (IOException e) {</span>
+<span class="nc" id="L199">			e.printStackTrace();</span>
+<span class="fc" id="L200">		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {</span>
+<span class="fc" id="L201">			System.out.println(e.getMessage());</span>
+
+<span class="pc" id="L203">		}</span>
+<span class="fc" id="L204">	}</span>
+
+	private static Collection&lt;Member&gt; getMemberCollection(final Map&lt;String, Member&gt; workspaceMembers) {
+<span class="fc" id="L207">		return workspaceMembers.values();</span>
+	}
+
+	private static Iterator&lt;Member&gt; getMemberIterator(final Collection&lt;Member&gt; members) {
+<span class="fc" id="L211">		return members.iterator();</span>
+	}
+
+	private static String getMemberName(final Member currMember) {
+<span class="fc" id="L215">		return currMember.getName();</span>
+	}
+
+	/**
+	 * Scrive sullo standard output stream tutti i members di uno specifico channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono ottenere i
+	 *            Members.
+	 */
+	public static void getMembersOfChannel(final String workspace, final String channel) {
+		try {
+<span class="fc" id="L229">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L230">			final LinkedList&lt;Member&gt; channelMembers = (LinkedList&lt;Member&gt;) slackWorkspace.getMembersOfChannel(channel);</span>
+<span class="fc" id="L231">			final ListIterator&lt;Member&gt; membersIterator = (ListIterator&lt;Member&gt;) getMemberIterator(channelMembers);</span>
+<span class="fc bfc" id="L232" title="All 2 branches covered.">			while (membersIterator.hasNext()) {</span>
+<span class="fc" id="L233">				final Member currMember = membersIterator.next();</span>
+<span class="fc" id="L234">				System.out.println(getMemberName(currMember));</span>
+<span class="fc" id="L235">			}</span>
+<span class="fc" id="L236">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L237">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L238">		} catch (IOException e) {</span>
+<span class="nc" id="L239">			e.printStackTrace();</span>
+<span class="fc" id="L240">		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException</span>
+				| NotZipFileException e) {
+<span class="fc" id="L242">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L243">		}</span>
+<span class="fc" id="L244">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream tutti i member raggruppati per channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMembersForChannels(final String workspace) {
+		try {
+<span class="fc" id="L254">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L255">			final LinkedHashMap&lt;String, Channel&gt; workspaceChannels = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L256">					.getAllChannels();</span>
+<span class="fc" id="L257">			final Collection&lt;Channel&gt; channels = getChannelCollection(workspaceChannels);</span>
+<span class="fc" id="L258">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(channels);</span>
+<span class="fc bfc" id="L259" title="All 2 branches covered.">			while (channelsIterator.hasNext()) {</span>
+<span class="fc" id="L260">				final Channel currChannel = channelsIterator.next();</span>
+<span class="fc" id="L261">				final LinkedList&lt;Member&gt; channelMembers = (LinkedList&lt;Member&gt;) slackWorkspace</span>
+<span class="fc" id="L262">						.getMembersOfChannel(getChannelName(currChannel));</span>
+<span class="fc" id="L263">				final ListIterator&lt;Member&gt; membersIterator = (ListIterator&lt;Member&gt;) getMemberIterator(channelMembers);</span>
+<span class="fc" id="L264">				System.out.println(&quot;Members of \&quot;&quot; + getChannelName(currChannel) + &quot;\&quot;:&quot;);</span>
+<span class="fc bfc" id="L265" title="All 2 branches covered.">				while (membersIterator.hasNext()) {</span>
+<span class="fc" id="L266">					final Member currMember = membersIterator.next();</span>
+<span class="fc" id="L267">					System.out.println(&quot;\t&quot; + getMemberName(currMember));</span>
+<span class="fc" id="L268">				}</span>
+<span class="fc bfc" id="L269" title="All 2 branches covered.">				if (channelsIterator.hasNext()) {</span>
+<span class="fc" id="L270">					System.out.println();</span>
+				}
+<span class="fc" id="L272">			}</span>
+<span class="fc" id="L273">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L274">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L275">		} catch (IOException e) {</span>
+<span class="nc" id="L276">			e.printStackTrace();</span>
+<span class="fc" id="L277">		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {</span>
+<span class="fc" id="L278">			System.out.println(e.getMessage());</span>
+<span class="nc" id="L279">		} catch (ChannelNotValidException e) {</span>
+<span class="nc" id="L280">			e.printStackTrace();</span>
+<span class="pc" id="L281">		}</span>
+<span class="fc" id="L282">	}</span>
+
+	private static Iterator&lt;Member&gt; getMemberIterator(final List&lt;Member&gt; channelMembers) {
+<span class="fc" id="L285">		return channelMembers.iterator();</span>
+	}
+
+	/**
+	 * Scrive sullo standard output stream tutte le mentions effettuate da uno
+	 * specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUser(final String workspace, final String member) {
+		try {
+<span class="fc" id="L300">			final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+<span class="fc" id="L301">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L302">			final LinkedHashMap&lt;String, Channel&gt; chList = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L303">					.getAllChannels();</span>
+<span class="fc" id="L304">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(chList);</span>
+<span class="fc" id="L305">			final Iterator&lt;Channel&gt; channelsIeretor = getChannelIterator(chCollection);</span>
+<span class="fc bfc" id="L306" title="All 2 branches covered.">			while (channelsIeretor.hasNext()) {</span>
+<span class="fc" id="L307">				final Channel currChannel = channelsIeretor.next();</span>
+<span class="fc" id="L308">				final LinkedList&lt;Mention&gt; currChMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L309">						.getMentionsFromUser(getChannelName(currChannel), member);</span>
+<span class="fc" id="L310">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+						currChMentions);
+<span class="fc bfc" id="L312" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L313">					final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L314">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="fc bfc" id="L315" title="All 2 branches covered.">					if (!out.containsKey(currMentionKey)) {</span>
+<span class="fc" id="L316">						out.put(currMentionKey, currMention);</span>
+<span class="fc" id="L317">						System.out.println(currMention);</span>
+					}
+<span class="fc" id="L319">				}</span>
+<span class="fc" id="L320">			}</span>
+<span class="fc" id="L321">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L322">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L323">		} catch (IOException | ChannelNotValidException e) {</span>
+<span class="nc" id="L324">			e.printStackTrace();</span>
+<span class="fc" id="L325">		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {</span>
+<span class="fc" id="L326">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L327">		}</span>
+<span class="fc" id="L328">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di mentions effettuate da
+	 * uno specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUserWeighed(final String workspace, final String member) {
+		try {
+<span class="fc" id="L342">			final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+<span class="fc" id="L343">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L344">			final LinkedHashMap&lt;String, Channel&gt; channelList = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L345">					.getAllChannels();</span>
+<span class="fc" id="L346">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(channelList);</span>
+<span class="fc" id="L347">			final Iterator&lt;Channel&gt; channelsIeretor = getChannelIterator(chCollection);</span>
+<span class="fc bfc" id="L348" title="All 2 branches covered.">			while (channelsIeretor.hasNext()) {</span>
+<span class="fc" id="L349">				final Channel currChannel = channelsIeretor.next();</span>
+<span class="fc" id="L350">				final LinkedList&lt;Mention&gt; currChMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L351">						.getMentionsFromUser(getChannelName(currChannel), member);</span>
+<span class="fc" id="L352">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+						currChMentions);
+<span class="fc bfc" id="L354" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L355">					final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L356">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="fc bfc" id="L357" title="All 2 branches covered.">					if (out.containsKey(currMentionKey)) {</span>
+<span class="fc" id="L358">						final Mention outMent = out.get(currMentionKey);</span>
+<span class="fc" id="L359">						setMentionWeight(outMent, getMentionWeight(currMention) + getMentionWeight(outMent));</span>
+<span class="fc" id="L360">					} else {</span>
+<span class="fc" id="L361">						out.put(currMentionKey, currMention);</span>
+					}
+<span class="fc" id="L363">				}</span>
+<span class="fc" id="L364">			}</span>
+<span class="fc" id="L365">			final Collection&lt;Mention&gt; mentCollection = out.values();</span>
+<span class="fc" id="L366">			final Iterator&lt;Mention&gt; outIterator = getMentionIterator(mentCollection);</span>
+<span class="fc bfc" id="L367" title="All 2 branches covered.">			while (outIterator.hasNext()) {</span>
+<span class="fc" id="L368">				final Mention currMent = outIterator.next();</span>
+<span class="fc" id="L369">				System.out.println(mentionToFullString(currMent));</span>
+<span class="fc" id="L370">			}</span>
+<span class="fc" id="L371">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L372">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L373">		} catch (IOException | ChannelNotValidException e) {</span>
+<span class="nc" id="L374">			e.printStackTrace();</span>
+<span class="fc" id="L375">		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {</span>
+<span class="fc" id="L376">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L377">		}</span>
+<span class="fc" id="L378">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista di mentions effettuate da uno
+	 * specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUser(final String workspace, final String channel, final String member) {
+		try {
+<span class="fc" id="L395">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L396">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L397">					.getMentionsFromUser(channel, member);</span>
+<span class="fc" id="L398">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+					workspaceMentions);
+<span class="fc bfc" id="L400" title="All 2 branches covered.">			while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L401">				System.out.println(mentionsIterator.next());</span>
+			}
+<span class="fc" id="L403">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L404">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L405">		} catch (IOException e) {</span>
+<span class="nc" id="L406">			e.printStackTrace();</span>
+<span class="fc" id="L407">		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException</span>
+				| NotZipFileException e) {
+<span class="fc" id="L409">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L410">		}</span>
+<span class="fc" id="L411">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di mentions effettuate da
+	 * uno specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsFromUserWeighed(final String workspace, final String channel, final String member) {
+		try {
+<span class="fc" id="L428">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L429">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L430">					.getMentionsFromUser(channel, member);</span>
+<span class="fc" id="L431">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+					workspaceMentions);
+<span class="fc bfc" id="L433" title="All 2 branches covered.">			while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L434">				final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L435">				System.out.println(mentionToFullString(currMention));</span>
+<span class="fc" id="L436">			}</span>
+<span class="fc" id="L437">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L438">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L439">		} catch (IOException e) {</span>
+<span class="nc" id="L440">			e.printStackTrace();</span>
+<span class="fc" id="L441">		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException</span>
+				| NotZipFileException e) {
+<span class="fc" id="L443">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L444">		}</span>
+<span class="fc" id="L445">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista di mentions riferite ad uno
+	 * specifico member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsToUser(final String workspace, final String member) {
+		try {
+<span class="fc" id="L459">			final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+<span class="fc" id="L460">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L461">			final LinkedHashMap&lt;String, Channel&gt; channelMap = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L462">					.getAllChannels();</span>
+<span class="fc" id="L463">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(channelMap);</span>
+<span class="fc" id="L464">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(chCollection);</span>
+<span class="fc bfc" id="L465" title="All 2 branches covered.">			while (channelsIterator.hasNext()) {</span>
+<span class="fc" id="L466">				final Channel currChannel = channelsIterator.next();</span>
+<span class="fc" id="L467">				final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L468">						.getMentionsToUser(getChannelName(currChannel), member);</span>
+<span class="fc" id="L469">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+						workspaceMentions);
+<span class="fc bfc" id="L471" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L472">					final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L473">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="fc bfc" id="L474" title="All 2 branches covered.">					if (!out.containsKey(currMentionKey)) {</span>
+<span class="fc" id="L475">						out.put(currMentionKey, currMention);</span>
+<span class="fc" id="L476">						System.out.println(currMention);</span>
+					}
+<span class="fc" id="L478">				}</span>
+<span class="fc" id="L479">			}</span>
+<span class="fc" id="L480">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L481">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L482">		} catch (IOException | ChannelNotValidException e) {</span>
+<span class="nc" id="L483">			e.printStackTrace();</span>
+<span class="fc" id="L484">		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {</span>
+<span class="fc" id="L485">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L486">		}</span>
+<span class="fc" id="L487">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista di mentions riferite ad uno
+	 * specifico member in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 * @param member
+	 *            String che rappresenta il member di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsToUser(final String workspace, final String channel, final String member) {
+		try {
+<span class="fc" id="L504">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L505">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L506">					.getMentionsToUser(channel, member);</span>
+<span class="fc" id="L507">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+					workspaceMentions);
+<span class="fc bfc" id="L509" title="All 2 branches covered.">			while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L510">				System.out.println(mentionsIterator.next());</span>
+			}
+<span class="fc" id="L512">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L513">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L514">		} catch (IOException e) {</span>
+<span class="nc" id="L515">			e.printStackTrace();</span>
+<span class="fc" id="L516">		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException</span>
+				| NotZipFileException e) {
+<span class="fc" id="L518">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L519">		}</span>
+<span class="fc" id="L520">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista di mentions in un determinato
+	 * channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere lee
+	 *            mention.
+	 */
+	public static void getMentions(final String workspace, final String channel) {
+		try {
+<span class="fc" id="L534">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L535">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace.getMentions(channel);</span>
+<span class="fc" id="L536">			final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
+<span class="fc bfc" id="L537" title="All 2 branches covered.">			while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L538">				System.out.println(mentionsIterator.next());</span>
+			}
+<span class="fc" id="L540">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L541">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L542">		} catch (IOException e) {</span>
+<span class="nc" id="L543">			e.printStackTrace();</span>
+<span class="fc" id="L544">		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException</span>
+				| NotZipFileException e) {
+<span class="fc" id="L546">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L547">		}</span>
+<span class="fc" id="L548">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista di tutte le mentions.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMentions(final String workspace) {
+		try {
+<span class="fc" id="L558">			final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+<span class="fc" id="L559">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L560">			final LinkedHashMap&lt;String, Channel&gt; channelMap = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L561">					.getAllChannels();</span>
+<span class="fc" id="L562">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(channelMap);</span>
+<span class="fc" id="L563">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(chCollection);</span>
+<span class="fc bfc" id="L564" title="All 2 branches covered.">			while (channelsIterator.hasNext()) {</span>
+<span class="fc" id="L565">				final Channel currchannel = channelsIterator.next();</span>
+<span class="fc" id="L566">				final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L567">						.getMentions(getChannelName(currchannel));</span>
+<span class="fc" id="L568">				final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
+<span class="fc bfc" id="L569" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L570">					final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L571">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="fc bfc" id="L572" title="All 2 branches covered.">					if (!out.containsKey(currMentionKey)) {</span>
+<span class="fc" id="L573">						out.put(currMentionKey, currMention);</span>
+<span class="fc" id="L574">						System.out.println(currMention);</span>
+					}
+<span class="fc" id="L576">				}</span>
+<span class="fc" id="L577">			}</span>
+<span class="fc" id="L578">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L579">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L580">		} catch (IOException e) {</span>
+<span class="nc" id="L581">			e.printStackTrace();</span>
+<span class="fc" id="L582">		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {</span>
+<span class="fc" id="L583">			System.out.println(e.getMessage());</span>
+<span class="nc" id="L584">		} catch (ChannelNotValidException e) {</span>
+<span class="nc" id="L585">			e.printStackTrace();</span>
+<span class="pc" id="L586">		}</span>
+<span class="fc" id="L587">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 */
+	public static void getMentionsWeighed(final String workspace) {
+<span class="fc" id="L596">		final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+		try {
+<span class="fc" id="L598">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L599">			final LinkedHashMap&lt;String, Channel&gt; channelMap = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L600">					.getAllChannels();</span>
+<span class="fc" id="L601">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(channelMap);</span>
+<span class="fc" id="L602">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(chCollection);</span>
+<span class="fc bfc" id="L603" title="All 2 branches covered.">			while (channelsIterator.hasNext()) {</span>
+<span class="fc" id="L604">				final Channel currChannel = channelsIterator.next();</span>
+<span class="fc" id="L605">				final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L606">						.getMentions(getChannelName(currChannel));</span>
+<span class="fc" id="L607">				final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
+<span class="fc bfc" id="L608" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L609">					final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L610">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="fc bfc" id="L611" title="All 2 branches covered.">					if (out.containsKey(currMentionKey)) {</span>
+<span class="fc" id="L612">						final Mention outMent = out.get(currMentionKey);</span>
+<span class="fc" id="L613">						setMentionWeight(outMent, getMentionWeight(currMention) + getMentionWeight(outMent));</span>
+<span class="fc" id="L614">					} else {</span>
+<span class="fc" id="L615">						out.put(currMentionKey, currMention);</span>
+					}
+<span class="fc" id="L617">				}</span>
+<span class="fc" id="L618">			}</span>
+<span class="fc" id="L619">			final Collection&lt;Mention&gt; mentionColl = out.values();</span>
+<span class="fc" id="L620">			final Iterator&lt;Mention&gt; outIterator = getMentionIterator(mentionColl);</span>
+<span class="fc bfc" id="L621" title="All 2 branches covered.">			while (outIterator.hasNext()) {</span>
+<span class="fc" id="L622">				final Mention currMention = outIterator.next();</span>
+<span class="fc" id="L623">				System.out.println(mentionToFullString(currMention));</span>
+<span class="fc" id="L624">			}</span>
+<span class="fc" id="L625">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L626">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L627">		} catch (IOException e) {</span>
+<span class="nc" id="L628">			e.printStackTrace();</span>
+<span class="fc" id="L629">		} catch (FileNotInZipException | NotValidWorkspaceException | NotZipFileException e) {</span>
+<span class="fc" id="L630">			System.out.println(e.getMessage());</span>
+<span class="nc" id="L631">		} catch (ChannelNotValidException e) {</span>
+<span class="nc" id="L632">			e.printStackTrace();</span>
+<span class="pc" id="L633">		}</span>
+<span class="fc" id="L634">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions
+	 * prenti in un determinato channel.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta il channel di cui si vogliono conoscere le
+	 *            mention.
+	 */
+	public static void getMentionsWeighed(final String workspace, final String channel) {
+<span class="fc" id="L647">		final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+		try {
+<span class="fc" id="L649">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L650">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace.getMentions(channel);</span>
+<span class="fc" id="L651">			final Iterator&lt;Mention&gt; mentionsIterator = getMentionIterator(workspaceMentions);</span>
+<span class="fc bfc" id="L652" title="All 2 branches covered.">			while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L653">				final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L654">				final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="fc" id="L655">				out.put(currMentionKey, currMention);</span>
+<span class="fc" id="L656">			}</span>
+<span class="fc" id="L657">			final Collection&lt;Mention&gt; mentionColl = out.values();</span>
+<span class="fc" id="L658">			final Iterator&lt;Mention&gt; outIterator = getMentionIterator(mentionColl);</span>
+<span class="fc bfc" id="L659" title="All 2 branches covered.">			while (outIterator.hasNext()) {</span>
+<span class="fc" id="L660">				final Mention currMention = outIterator.next();</span>
+<span class="fc" id="L661">				System.out.println(mentionToFullString(currMention));</span>
+<span class="fc" id="L662">			}</span>
+<span class="fc" id="L663">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L664">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L665">		} catch (IOException e) {</span>
+<span class="nc" id="L666">			e.printStackTrace();</span>
+<span class="fc" id="L667">		} catch (ChannelNotValidException | FileNotInZipException | NotValidWorkspaceException</span>
+				| NotZipFileException e) {
+<span class="fc" id="L669">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L670">		}</span>
+<span class="fc" id="L671">	}</span>
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentios
+	 * riferite ad un particolare member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param member
+	 *            String che rappresenta un particolare member di cui si vogliono
+	 *            conoscere le mention.
+	 */
+	public static void getMentionsToUserWeighed(final String workspace, final String member) {
+		try {
+<span class="fc" id="L685">			final LinkedHashMap&lt;String, Mention&gt; out = new LinkedHashMap&lt;String, Mention&gt;();</span>
+<span class="fc" id="L686">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L687">			final LinkedHashMap&lt;String, Channel&gt; channelMap = (LinkedHashMap&lt;String, Channel&gt;) slackWorkspace</span>
+<span class="fc" id="L688">					.getAllChannels();</span>
+<span class="fc" id="L689">			final Collection&lt;Channel&gt; chCollection = getChannelCollection(channelMap);</span>
+<span class="fc" id="L690">			final Iterator&lt;Channel&gt; channelsIterator = getChannelIterator(chCollection);</span>
+<span class="fc bfc" id="L691" title="All 2 branches covered.">			while (channelsIterator.hasNext()) {</span>
+<span class="fc" id="L692">				final Channel currChannel = channelsIterator.next();</span>
+<span class="fc" id="L693">				final LinkedList&lt;Mention&gt; currChMentions = (LinkedList&lt;Mention&gt;) getMentionsToUser(slackWorkspace,</span>
+<span class="fc" id="L694">						getChannelName(currChannel), member);</span>
+<span class="fc" id="L695">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+						currChMentions);
+<span class="fc bfc" id="L697" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L698">					final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L699">					final String currMentionKey = getMentionFromID(currMention) + &quot;,&quot; + getMentionToID(currMention);</span>
+<span class="fc bfc" id="L700" title="All 2 branches covered.">					if (out.containsKey(currMentionKey)) {</span>
+<span class="fc" id="L701">						final Mention outMent = out.get(currMentionKey);</span>
+<span class="fc" id="L702">						setMentionWeight(outMent, getMentionWeight(outMent) + getMentionWeight(currMention));</span>
+<span class="fc" id="L703">					} else {</span>
+<span class="fc" id="L704">						out.put(currMentionKey, currMention);</span>
+					}
+<span class="fc" id="L706">				}</span>
+<span class="fc" id="L707">			}</span>
+<span class="fc" id="L708">			final Collection&lt;Mention&gt; mentionColl = out.values();</span>
+<span class="fc" id="L709">			final Iterator&lt;Mention&gt; outIterator = getMentionIterator(mentionColl);</span>
+<span class="fc bfc" id="L710" title="All 2 branches covered.">			while (outIterator.hasNext()) {</span>
+<span class="fc" id="L711">				final Mention currMent = outIterator.next();</span>
+<span class="fc" id="L712">				System.out.println(mentionToFullString(currMent));</span>
+<span class="fc" id="L713">			}</span>
+<span class="fc" id="L714">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L715">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L716">		} catch (IOException | ChannelNotValidException e) {</span>
+<span class="nc" id="L717">			e.printStackTrace();</span>
+<span class="fc" id="L718">		} catch (MemberNotValidException | NotValidWorkspaceException | FileNotInZipException | NotZipFileException e) {</span>
+<span class="fc" id="L719">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L720">		}</span>
+<span class="fc" id="L721">	}</span>
+
+	private static String getMentionToID(final Mention currMention) {
+<span class="fc" id="L724">		return currMention.getToId();</span>
+	}
+
+	private static Collection&lt;Channel&gt; getChannelCollection(final Map&lt;String, Channel&gt; channelMap) {
+<span class="fc" id="L728">		return channelMap.values();</span>
+	}
+
+	private static Iterator&lt;Channel&gt; getChannelIterator(final Collection&lt;Channel&gt; chCollection) {
+<span class="fc" id="L732">		return chCollection.iterator();</span>
+	}
+
+	private static List&lt;Mention&gt; getMentionsToUser(final Workspace slackWorkspace, final String currChannel,
+			final String member) throws ChannelNotValidException, MemberNotValidException {
+<span class="fc" id="L737">		return slackWorkspace.getMentionsToUser(currChannel, member);</span>
+	}
+
+	private static String getChannelName(final Channel currChannel) {
+<span class="fc" id="L741">		return currChannel.getName();</span>
+	}
+
+	private static void setMentionWeight(final Mention outMent, final int newWeight) {
+<span class="fc" id="L745">		outMent.setWeight(newWeight);</span>
+<span class="fc" id="L746">	}</span>
+
+	private static String getMentionFromID(final Mention currMention) {
+<span class="fc" id="L749">		return currMention.getFromId();</span>
+	}
+
+	private static int getMentionWeight(final Mention inMention) {
+<span class="fc" id="L753">		return inMention.getWeight();</span>
+	}
+
+	/**
+	 * Scrive sullo standard output stream la lista pesata di tutte le mentions
+	 * prenti in un determinato channel riferite ad un detereminato member.
+	 * 
+	 * @param workspace
+	 *            String che rappresenta il percorso del workspace.
+	 * @param channel
+	 *            String che rappresenta un particolare channel di cui si vogliono
+	 *            conoscere le mention.
+	 * @param member
+	 *            String che rappresenta un particolare member di cui si vogliono
+	 *            conoscere le mention.
+	 */
+	public static void getMentionsToUserWeighed(final String workspace, final String channel, final String member) {
+		try {
+<span class="fc" id="L771">			final Workspace slackWorkspace = new Workspace(PathManager.getAbsolutePath(workspace));</span>
+<span class="fc" id="L772">			final LinkedList&lt;Mention&gt; workspaceMentions = (LinkedList&lt;Mention&gt;) slackWorkspace</span>
+<span class="fc" id="L773">					.getMentionsToUser(channel, member);</span>
+<span class="fc" id="L774">			final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionIterator(</span>
+					workspaceMentions);
+<span class="fc bfc" id="L776" title="All 2 branches covered.">			while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L777">				final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L778">				System.out.println(mentionToFullString(currMention));</span>
+<span class="fc" id="L779">			}</span>
+<span class="fc" id="L780">		} catch (FileNotFoundException | NoSuchFileException e) {</span>
+<span class="fc" id="L781">			System.out.println(PathManager.getAbsolutePath(workspace) + NOTFOUND);</span>
+<span class="nc" id="L782">		} catch (IOException e) {</span>
+<span class="nc" id="L783">			e.printStackTrace();</span>
+<span class="fc" id="L784">		} catch (ChannelNotValidException | MemberNotValidException | NotValidWorkspaceException | FileNotInZipException</span>
+				| NotZipFileException e) {
+<span class="fc" id="L786">			System.out.println(e.getMessage());</span>
+<span class="pc" id="L787">		}</span>
+<span class="fc" id="L788">	}</span>
+
+	private static Iterator&lt;Mention&gt; getMentionIterator(final List&lt;Mention&gt; workspaceMentions) {
+<span class="fc" id="L791">		return workspaceMentions.iterator();</span>
+	}
+
+	private static Iterator&lt;Mention&gt; getMentionIterator(final Collection&lt;Mention&gt; workspaceMentions) {
+<span class="fc" id="L795">		return workspaceMentions.iterator();</span>
+	}
+
+	private static String mentionToFullString(final Mention currMention) {
+<span class="fc" id="L799">		return currMention.toFullString();</span>
+	}
+
+	/**
+	 * Permette di richiamare il giusto metodo associato al comando specificato
+	 * dall'utente attraverso la riga di comando.
+	 * 
+	 * @param args
+	 *            array di String ciascuno dei quali contiene un singolo elemento
+	 *            del comando digitato dall'utente da riga di comando.
+	 */
+	public static void manage(final String... args) {
+<span class="fc bfc" id="L811" title="All 10 branches covered.">		switch (args.length) {</span>
+		case ZERO:
+<span class="fc" id="L813">			help();</span>
+<span class="fc" id="L814">			break;</span>
+		case ONE:
+<span class="fc" id="L816">			oneArgs(args);</span>
+<span class="fc" id="L817">			break;</span>
+		case TWO:
+<span class="fc" id="L819">			twoArgs(args);</span>
+<span class="fc" id="L820">			break;</span>
+		case THREE:
+<span class="fc" id="L822">			threeArgs(args);</span>
+<span class="fc" id="L823">			break;</span>
+		case FOUR:
+<span class="fc" id="L825">			fourArgs(args);</span>
+<span class="fc" id="L826">			break;</span>
+		case FIVE:
+<span class="fc" id="L828">			fiveArgs(args);</span>
+<span class="fc" id="L829">			break;</span>
+		case SIX:
+<span class="fc" id="L831">			sixArgs(args);</span>
+<span class="fc" id="L832">			break;</span>
+		case SEVEN:
+<span class="fc" id="L834">			sevenArgs(args);</span>
+<span class="fc" id="L835">			break;</span>
+		case EIGHT:
+<span class="fc" id="L837">			eightArgs(args);</span>
+<span class="fc" id="L838">			break;</span>
+		default:
+<span class="fc" id="L840">			System.out.println(&quot;Command not found, see 'help'.&quot;);</span>
+			break;
+		}
+<span class="fc" id="L843">	}</span>
+
+	private static void oneArgs(final String... args) {
+		final String first;
+<span class="fc" id="L847">		first = args[ZERO];</span>
+<span class="fc bfc" id="L848" title="All 2 branches covered.">		if (&quot;help&quot;.equals(first)) {</span>
+<span class="fc" id="L849">			help();</span>
+		} else {
+<span class="fc" id="L851">			System.out.println(&quot;'&quot; + first + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+		}
+<span class="fc" id="L853">	}</span>
+
+	private static void twoArgs(final String... args) {
+		final String first, second;
+<span class="fc" id="L857">		first = args[ZERO];</span>
+<span class="fc" id="L858">		second = args[ONE];</span>
+<span class="fc" id="L859">		System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+<span class="fc" id="L860">	}</span>
+
+	private static void threeArgs(final String... args) {
+		final String first, second, third;
+<span class="fc" id="L864">		first = args[ZERO];</span>
+<span class="fc" id="L865">		second = args[ONE];</span>
+<span class="fc" id="L866">		third = args[TWO];</span>
+<span class="pc bpc" id="L867" title="1 of 4 branches missed.">		if (&quot;members&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="fc" id="L868">			getMembers(third);</span>
+<span class="pc bpc" id="L869" title="1 of 4 branches missed.">		} else if (&quot;channels&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="fc" id="L870">			getChannels(third);</span>
+<span class="pc bpc" id="L871" title="1 of 4 branches missed.">		} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="fc" id="L872">			getMentions(third);</span>
+		} else {
+<span class="fc" id="L874">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+		}
+<span class="fc" id="L876">	}</span>
+
+	private static void fourArgs(final String... args) {
+		final String first, second, third, fourth;
+<span class="fc" id="L880">		first = args[ZERO];</span>
+<span class="fc" id="L881">		second = args[ONE];</span>
+<span class="fc" id="L882">		third = args[TWO];</span>
+<span class="fc" id="L883">		fourth = args[THREE];</span>
+<span class="pc bpc" id="L884" title="2 of 6 branches missed.">		if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
+<span class="fc" id="L885">			getMembersForChannels(fourth);</span>
+<span class="pc bpc" id="L886" title="2 of 6 branches missed.">		} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
+<span class="fc" id="L887">			getMentionsWeighed(fourth);</span>
+		} else {
+<span class="fc" id="L889">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+		}
+<span class="fc" id="L891">	}</span>
+
+	private static void fiveArgs(final String... args) {
+		final String first, second, third, fourth, fifth;
+<span class="fc" id="L895">		first = args[ZERO];</span>
+<span class="fc" id="L896">		second = args[ONE];</span>
+<span class="fc" id="L897">		third = args[TWO];</span>
+<span class="fc" id="L898">		fourth = args[THREE];</span>
+<span class="fc" id="L899">		fifth = args[FOUR];</span>
+<span class="fc bfc" id="L900" title="All 2 branches covered.">		if (&quot;-f&quot;.equals(fourth)) {</span>
+<span class="fc bfc" id="L901" title="All 2 branches covered.">			if (CHPARAMETER.equals(second)) {</span>
+<span class="fc bfc" id="L902" title="All 2 branches covered.">				if (&quot;members&quot;.equals(first)) {</span>
+<span class="fc" id="L903">					getMembersOfChannel(fifth, third);</span>
+<span class="pc bpc" id="L904" title="1 of 2 branches missed.">				} else if (MENTIONSCOMMAND.equals(first)) {</span>
+<span class="fc" id="L905">					getMentions(fifth, third);</span>
+				} else {
+<span class="nc" id="L907">					System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot;</span>
+							+ NOTVALIDCOMMAND);
+				}
+<span class="pc bpc" id="L910" title="1 of 2 branches missed.">			} else if (MENTIONSCOMMAND.equals(first)) {</span>
+<span class="fc bfc" id="L911" title="All 2 branches covered.">				if (TOPARAMETER.equals(second)) {</span>
+<span class="fc" id="L912">					getMentionsToUser(fifth, third);</span>
+<span class="pc bpc" id="L913" title="1 of 2 branches missed.">				} else if (FROMPARAMETER.equals(second)) {</span>
+<span class="fc" id="L914">					getMentionsFromUser(fifth, third);</span>
+				} else {
+<span class="nc" id="L916">					System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot;</span>
+							+ NOTVALIDCOMMAND);
+				}
+			}
+		} else {
+<span class="fc" id="L921">			System.out.println(</span>
+					&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + NOTVALIDCOMMAND);
+		}
+<span class="fc" id="L924">	}</span>
+
+	private static void sixArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth;
+<span class="fc" id="L928">		first = args[ZERO];</span>
+<span class="fc" id="L929">		second = args[ONE];</span>
+<span class="fc" id="L930">		third = args[TWO];</span>
+<span class="fc" id="L931">		fourth = args[THREE];</span>
+<span class="fc" id="L932">		fifth = args[FOUR];</span>
+<span class="fc" id="L933">		sixth = args[FIVE];</span>
+<span class="pc bpc" id="L934" title="2 of 6 branches missed.">		if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
+<span class="fc bfc" id="L935" title="All 2 branches covered.">			if (FROMPARAMETER.equals(third)) {</span>
+<span class="fc" id="L936">				getMentionsFromUserWeighed(sixth, fourth);</span>
+<span class="fc bfc" id="L937" title="All 2 branches covered.">			} else if (CHPARAMETER.equals(third)) {</span>
+<span class="fc" id="L938">				getMentionsWeighed(sixth, fourth);</span>
+<span class="pc bpc" id="L939" title="1 of 2 branches missed.">			} else if (TOPARAMETER.equals(third)) {</span>
+<span class="fc" id="L940">				getMentionsToUserWeighed(sixth, fourth);</span>
+			} else {
+<span class="nc" id="L942">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth</span>
+						+ &quot;'&quot; + NOTVALIDCOMMAND);
+			}
+		} else {
+<span class="fc" id="L946">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth + &quot;'&quot;</span>
+					+ NOTVALIDCOMMAND);
+		}
+<span class="fc" id="L949">	}</span>
+
+	private static void sevenArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth, seventh;
+<span class="fc" id="L953">		first = args[ZERO];</span>
+<span class="fc" id="L954">		second = args[ONE];</span>
+<span class="fc" id="L955">		third = args[TWO];</span>
+<span class="fc" id="L956">		fourth = args[THREE];</span>
+<span class="fc" id="L957">		fifth = args[FOUR];</span>
+<span class="fc" id="L958">		sixth = args[FIVE];</span>
+<span class="fc" id="L959">		seventh = args[SIX];</span>
+<span class="pc bpc" id="L960" title="1 of 6 branches missed.">		if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
+<span class="pc bpc" id="L961" title="1 of 2 branches missed.">				&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
+<span class="fc" id="L962">			getMentionsToUser(seventh, fifth, third);</span>
+<span class="pc bpc" id="L963" title="2 of 6 branches missed.">		} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
+<span class="pc bpc" id="L964" title="1 of 2 branches missed.">				&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
+<span class="fc" id="L965">			getMentionsFromUser(seventh, fifth, third);</span>
+		} else {
+<span class="fc" id="L967">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth + &quot; &quot;</span>
+					+ seventh + &quot;'&quot; + NOTVALIDCOMMAND);
+		}
+<span class="fc" id="L970">	}</span>
+
+	private static void eightArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth, seventh, eighth;
+<span class="fc" id="L974">		first = args[ZERO];</span>
+<span class="fc" id="L975">		second = args[ONE];</span>
+<span class="fc" id="L976">		third = args[TWO];</span>
+<span class="fc" id="L977">		fourth = args[THREE];</span>
+<span class="fc" id="L978">		fifth = args[FOUR];</span>
+<span class="fc" id="L979">		sixth = args[FIVE];</span>
+<span class="fc" id="L980">		seventh = args[SIX];</span>
+<span class="fc" id="L981">		eighth = args[SEVEN];</span>
+<span class="pc bpc" id="L982" title="3 of 8 branches missed.">		if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
+<span class="fc bfc" id="L983" title="All 2 branches covered.">			if (TOPARAMETER.equals(third)) {</span>
+<span class="fc" id="L984">				getMentionsToUserWeighed(eighth, sixth, fourth);</span>
+<span class="pc bpc" id="L985" title="1 of 2 branches missed.">			} else if (FROMPARAMETER.equals(third)) {</span>
+<span class="fc" id="L986">				getMentionsFromUserWeighed(eighth, sixth, fourth);</span>
+			} else {
+<span class="nc" id="L988">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
+						+ &quot; &quot; + seventh + &quot; &quot; + eighth + &quot;'&quot; + NOTVALIDCOMMAND);
+			}
+		} else {
+<span class="fc" id="L992">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth + &quot; &quot;</span>
+					+ seventh + &quot; &quot; + eighth + &quot;'&quot; + NOTVALIDCOMMAND);
+		}
+<span class="fc" id="L995">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-06-01T17:09:45.109">
-<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/cli/CommandManager.java">
-<violation beginline="1" endline="984" begincolumn="1" endcolumn="2" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
+<pmd version="5.8.1" timestamp="2018-06-01T20:09:57.396">
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\CommandManager.java">
+<violation beginline="1" endline="996" begincolumn="1" endcolumn="3" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
 Possible God class (WMC=176, ATFD=95, TCC=0.12162162162162163)
 </violation>
-<violation beginline="28" endline="984" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+<violation beginline="28" endline="996" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The class 'CommandManager' has a Cyclomatic Complexity of 4 (Highest = 10).
 </violation>
-<violation beginline="28" endline="984" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+<violation beginline="28" endline="996" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
 The class 'CommandManager' has a Standard Cyclomatic Complexity of 4 (Highest = 10).
 </violation>
-<violation beginline="28" endline="984" begincolumn="35" endcolumn="1" rule="TooManyMethods" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#TooManyMethods" priority="3">
+<violation beginline="28" endline="996" begincolumn="35" endcolumn="1" rule="TooManyMethods" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#TooManyMethods" priority="3">
 This class has too many methods, consider refactoring it.
 </violation>
 <violation beginline="810" endline="843" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
@@ -20,8 +20,8 @@ The method 'manage' has a Cyclomatic Complexity of 10.
 The method 'manage' has a Standard Cyclomatic Complexity of 10.
 </violation>
 </file>
-<file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/entity/Workspace.java">
-<violation beginline="1" endline="369" begincolumn="1" endcolumn="2" rule="GodClass" ruleset="Design" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
+<file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\entity\Workspace.java">
+<violation beginline="1" endline="369" begincolumn="1" endcolumn="3" rule="GodClass" ruleset="Design" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
 Possible God class (WMC=55, ATFD=39, TCC=0.0)
 </violation>
 <violation beginline="28" endline="369" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">

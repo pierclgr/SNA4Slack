@@ -58,7 +58,7 @@ public final class Commands {
 	/**
 	 * Restituisce la lista contenente i comandi possibili.
 	 * 
-	 * @return riferimento ad una LinkedList<Command> ovvero la lista di comandi
+	 * @return riferimento ad una LinkedList di Command ovvero la lista di comandi
 	 *         possibili.
 	 */
 	public List<Command> getCommands() {
