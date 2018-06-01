@@ -53,6 +53,13 @@ public class MentionTests {
 	}
 
 	@Test
+	@DisplayName("Test getFromId() di Mention")
+	void getFromIdTest() {
+		final String failMsg = "getFromId() is failed";
+		assertNotNull(ment.getFromId(), failMsg);
+	}
+	
+	@Test
 	@DisplayName("Test getTo() di Mention")
 	void getToTest() {
 		final String failMsg = "getTo() is failed";
@@ -119,6 +126,13 @@ public class MentionTests {
 		int weight = 1;
 		ment.setWeight(weight);
 		assertEquals(ment.getWeight(), weight, failMsg);
+	}
+	
+	@Test
+	@DisplayName("Test getToId() di Mention")
+	void getToIdTest() {
+		final String failMsg = "getToId() is failed";
+		assertNotNull(ment.getToId(), failMsg);
 	}
 
 }

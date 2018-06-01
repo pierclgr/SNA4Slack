@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Workspace.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Workspace.java</span></div><h1>Workspace.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Workspace.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SNA4Slack</a> &gt; <a href="index.source.html" class="el_package">it.uniba.entity</a> &gt; <span class="el_source">Workspace.java</span></div><h1>Workspace.java</h1><pre class="source lang-java linenums">package it.uniba.entity;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -51,12 +51,12 @@ public final class Workspace {
 	 *             Lancia IOException se ci sono errori di input/output.
 	 * @throws NotValidWorkspaceException
 	 *             Lancia NotValidWorkspaceException quando il workspace specificato
-	 *             non � valido.
+	 *             non ï¿½ valido.
 	 * @throws FileNotInZipException
-	 *             Lancia FileNotInZipException quando il file specificato non �
+	 *             Lancia FileNotInZipException quando il file specificato non ï¿½
 	 *             all'interno dello zip file.
 	 * @throws NotZipFileException
-	 *             Lancia NotZipFileException quando il file zip specificato non �
+	 *             Lancia NotZipFileException quando il file zip specificato non ï¿½
 	 *             valido.
 	 */
 	public Workspace(final String workspaceZipFile)
@@ -187,7 +187,7 @@ public final class Workspace {
 	 * @return riferimento ad una LinkedList&lt;Member&gt; che rappresenta la lista di
 	 *         member di un determinato channel.
 	 * @throws ChannelNotValidException
-	 *             Lancia un eccezione quando il channel specificato non � valido.
+	 *             Lancia un eccezione quando il channel specificato non ï¿½ valido.
 	 */
 	public List&lt;Member&gt; getMembersOfChannel(final String channelName) throws ChannelNotValidException {
 <span class="fc bfc" id="L193" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
@@ -213,9 +213,9 @@ public final class Workspace {
 	 * @return riferimento ad un LinkedList&lt;Mention&gt; che rappresenta la lista di
 	 *         mention fatte da un determinato member in un detrminato channel.
 	 * @throws ChannelNotValidException
-	 *             Lancia un eccezione quando il channel specificato non � valido.
+	 *             Lancia un eccezione quando il channel specificato non ï¿½ valido.
 	 * @throws MemberNotValidException
-	 *             Lancia un eccezione quando il member specificato non � valido.
+	 *             Lancia un eccezione quando il member specificato non ï¿½ valido.
 	 */
 	public List&lt;Mention&gt; getMentionsFromUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
@@ -275,9 +275,9 @@ public final class Workspace {
 	 * @return riferimento ad un LinkedList&lt;Mention&gt; che rappresenta la lista di
 	 *         mention fatte in uno specifico channel ad un particolare member.
 	 * @throws ChannelNotValidException
-	 *             Lancia un eccezione quando il channel specificato non � valido.
+	 *             Lancia un eccezione quando il channel specificato non ï¿½ valido.
 	 * @throws MemberNotValidException
-	 *             Lancia un eccezione quando il member specificato non � valido.
+	 *             Lancia un eccezione quando il member specificato non ï¿½ valido.
 	 */
 	public List&lt;Mention&gt; getMentionsToUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
@@ -342,7 +342,7 @@ public final class Workspace {
 	 * @return riferimento ad un LinkedList&lt;Mention&gt; che rappresenta la lista di
 	 *         mention fatte in un determinato channel.
 	 * @throws ChannelNotValidException
-	 *             Lancia un eccezione quando il channel specificato non � valido.
+	 *             Lancia un eccezione quando il channel specificato non ï¿½ valido.
 	 */
 	public List&lt;Mention&gt; getMentions(final String channelName) throws ChannelNotValidException {
 <span class="fc bfc" id="L348" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
