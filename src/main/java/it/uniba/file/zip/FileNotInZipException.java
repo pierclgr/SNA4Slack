@@ -2,7 +2,7 @@ package it.uniba.file.zip;
 
 /**
  * Classe che modella un eccezione generata ogni qualvolta il file specificato
- * non � presente all'interno dello zip.
+ * non è presente all'interno dello zip.
  */
 public final class FileNotInZipException extends Exception {
 
