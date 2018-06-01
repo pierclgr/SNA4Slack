@@ -9,7 +9,7 @@ public final class Mention {
 	 */
 	private final Member fromUser;
 	/**
-	 * Member a cui � riferita la mention corrente.
+	 * Member a cui è riferita la mention corrente.
 	 */
 	private final Member toUser;
 	/**
@@ -23,10 +23,10 @@ public final class Mention {
 	 * 
 	 * @param mentionFrom
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member da cui � effettuata la mention corrente.
+	 *            rappresenta il member da cui è effettuata la mention corrente.
 	 * @param mentionTo
 	 *            riferimento ad un oggetto istanza della classe Member che
-	 *            rappresenta il member a cui � riferita la mention corrente.
+	 *            rappresenta il member a cui è riferita la mention corrente.
 	 */
 	public Mention(final Member mentionFrom, final Member mentionTo) {
 		this.fromUser = mentionFrom;
@@ -35,30 +35,30 @@ public final class Mention {
 	}
 
 	/**
-	 * Restituisce il member da cui � effettuata la mention corrente.
+	 * Restituisce il member da cui è effettuata la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member da cui � effettuata la mention corrente.
+	 *         il member da cui è effettuata la mention corrente.
 	 */
 	public Member getFrom() {
 		return fromUser;
 	}
 
 	/**
-	 * Restituisce l'id del member da cui � effettuata la mention corrente.
+	 * Restituisce l'id del member da cui è effettuata la mention corrente.
 	 * 
 	 * @return riferimento ad una stringa della classe Member che rappresenta il
-	 *         member id da cui � effettuata la mention corrente.
+	 *         member id da cui è effettuata la mention corrente.
 	 */
 	public String getFromId() {
 		return fromUser.getId();
 	}
 
 	/**
-	 * Restituisce il member a cui � riferita la mention corrente.
+	 * Restituisce il member a cui è riferita la mention corrente.
 	 * 
 	 * @return riferimento ad un oggetto istanza della classe Member che rappresenta
-	 *         il member a cui � riferita la mention corrente.
+	 *         il member a cui è riferita la mention corrente.
 	 */
 	public Member getTo() {
 		return toUser;
@@ -109,7 +109,7 @@ public final class Mention {
 	 * corrente escludendo il peso.
 	 * 
 	 * @return String che rappresenta il member da cui parte la mention corrente ed
-	 *         il member a cui � riferita la mention corrente.
+	 *         il member a cui è riferita la mention corrente.
 	 */
 	@Override
 	public String toString() {
@@ -121,7 +121,7 @@ public final class Mention {
 	 * corrente includendo anche il peso.
 	 * 
 	 * @return String che rappresenta lo stato della mention corrente che include il
-	 *         member da cui parte la mention, il member a cui � riferita la mention
+	 *         member da cui parte la mention, il member a cui è riferita la mention
 	 *         e il peso della mention.
 	 */
 	public String toFullString() {
@@ -148,10 +148,10 @@ public final class Mention {
 	}
 
 	/**
-	 * Restituisce l'id del member a cui � riferita la mention corrente.
+	 * Restituisce l'id del member a cui è riferita la mention corrente.
 	 * 
 	 * @return riferimento ad una stringa della classe Member che rappresenta l'id
-	 *         del member a cui � riferita la mention corrente.
+	 *         del member a cui è riferita la mention corrente.
 	 */
 	public String getToId() {
 		return toUser.getId();

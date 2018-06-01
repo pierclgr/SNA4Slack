@@ -1,301 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-05-29T16:03:43.786">
+<pmd version="5.8.1" timestamp="2018-06-01T17:09:45.109">
 <file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/cli/CommandManager.java">
-<violation beginline="25" endline="847" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The class 'CommandManager' has a Cyclomatic Complexity of 9 (Highest = 65).
+<violation beginline="1" endline="984" begincolumn="1" endcolumn="2" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
+Possible God class (WMC=176, ATFD=95, TCC=0.12162162162162163)
 </violation>
-<violation beginline="25" endline="847" begincolumn="14" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The class 'CommandManager' has a Modified Cyclomatic Complexity of 7 (Highest = 19).
+<violation beginline="28" endline="984" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'CommandManager' has a Cyclomatic Complexity of 4 (Highest = 10).
 </violation>
-<violation beginline="25" endline="847" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The class 'CommandManager' has a Standard Cyclomatic Complexity of 7 (Highest = 27).
+<violation beginline="28" endline="984" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'CommandManager' has a Standard Cyclomatic Complexity of 4 (Highest = 10).
 </violation>
-<violation beginline="103" endline="103" begincolumn="82" endcolumn="103" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
+<violation beginline="28" endline="984" begincolumn="35" endcolumn="1" rule="TooManyMethods" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
 </violation>
-<violation beginline="106" endline="106" begincolumn="53" endcolumn="66" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
+<violation beginline="810" endline="843" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The method 'manage' has a Cyclomatic Complexity of 10.
 </violation>
-<violation beginline="106" endline="106" begincolumn="76" endcolumn="92" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="110" endline="110" begincolumn="52" endcolumn="81" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (method chain calls)
-</violation>
-<violation beginline="110" endline="110" begincolumn="52" endcolumn="81" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="118" endline="118" begincolumn="60" endcolumn="81" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="122" endline="122" begincolumn="41" endcolumn="54" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="122" endline="122" begincolumn="64" endcolumn="80" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="122" endline="122" begincolumn="83" endcolumn="103" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="help" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="139" endline="139" begincolumn="62" endcolumn="87" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="140" endline="140" begincolumn="68" endcolumn="86" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="143" endline="143" begincolumn="52" endcolumn="72" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="166" endline="166" begincolumn="60" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="167" endline="167" begincolumn="66" endcolumn="83" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="170" endline="170" begincolumn="52" endcolumn="71" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembers" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="195" endline="195" begincolumn="93" endcolumn="117" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="198" endline="198" begincolumn="52" endcolumn="71" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="221" endline="221" begincolumn="62" endcolumn="87" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="222" endline="222" begincolumn="68" endcolumn="86" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="226" endline="226" begincolumn="70" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="227" endline="227" begincolumn="101" endcolumn="125" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="228" endline="228" begincolumn="70" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="231" endline="231" begincolumn="67" endcolumn="86" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMembersForChannels" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="264" endline="264" begincolumn="66" endcolumn="80" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="265" endline="265" begincolumn="67" endcolumn="89" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="269" endline="269" begincolumn="70" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="270" endline="270" begincolumn="104" endcolumn="128" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="273" endline="273" begincolumn="71" endcolumn="93" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="273" endline="273" begincolumn="103" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="305" endline="305" begincolumn="66" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="306" endline="306" begincolumn="67" endcolumn="89" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="310" endline="310" begincolumn="70" endcolumn="89" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="311" endline="311" begincolumn="104" endcolumn="128" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="314" endline="314" begincolumn="71" endcolumn="93" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="314" endline="314" begincolumn="103" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="317" endline="317" begincolumn="49" endcolumn="112" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="317" endline="317" begincolumn="67" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="317" endline="317" begincolumn="89" endcolumn="111" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="324" endline="324" begincolumn="63" endcolumn="81" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="327" endline="327" begincolumn="52" endcolumn="74" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="356" endline="356" begincolumn="96" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="388" endline="388" begincolumn="96" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="391" endline="391" begincolumn="52" endcolumn="77" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsFromUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="419" endline="419" begincolumn="66" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="420" endline="420" begincolumn="68" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="424" endline="424" begincolumn="68" endcolumn="88" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="425" endline="425" begincolumn="104" endcolumn="131" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="428" endline="428" begincolumn="71" endcolumn="93" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="428" endline="428" begincolumn="103" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="462" endline="462" begincolumn="96" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="490" endline="490" begincolumn="68" endcolumn="95" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="516" endline="516" begincolumn="66" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="517" endline="517" begincolumn="68" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="521" endline="521" begincolumn="62" endcolumn="82" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="522" endline="522" begincolumn="76" endcolumn="103" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="525" endline="525" begincolumn="71" endcolumn="93" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="525" endline="525" begincolumn="103" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="555" endline="555" begincolumn="66" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="556" endline="556" begincolumn="68" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="560" endline="560" begincolumn="62" endcolumn="82" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="561" endline="561" begincolumn="76" endcolumn="103" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="564" endline="564" begincolumn="71" endcolumn="93" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="564" endline="564" begincolumn="103" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="567" endline="567" begincolumn="49" endcolumn="112" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="567" endline="567" begincolumn="67" endcolumn="89" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="567" endline="567" begincolumn="93" endcolumn="111" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="574" endline="574" begincolumn="63" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="577" endline="577" begincolumn="52" endcolumn="77" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="605" endline="605" begincolumn="68" endcolumn="95" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="608" endline="608" begincolumn="63" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="608" endline="608" begincolumn="95" endcolumn="115" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="612" endline="612" begincolumn="63" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="615" endline="615" begincolumn="52" endcolumn="77" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="643" endline="643" begincolumn="66" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="644" endline="644" begincolumn="68" endcolumn="90" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="648" endline="648" begincolumn="68" endcolumn="88" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="649" endline="649" begincolumn="104" endcolumn="128" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="652" endline="652" begincolumn="71" endcolumn="93" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="652" endline="652" begincolumn="103" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="655" endline="655" begincolumn="49" endcolumn="112" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="655" endline="655" begincolumn="67" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="655" endline="655" begincolumn="89" endcolumn="111" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="662" endline="662" begincolumn="63" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="665" endline="665" begincolumn="52" endcolumn="74" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="694" endline="694" begincolumn="96" endcolumn="123" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="697" endline="697" begincolumn="52" endcolumn="77" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMentionsToUserWeighed" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="717" endline="846" begincolumn="23" endcolumn="9" rule="ExcessiveMethodLength" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ExcessiveMethodLength" priority="3">
-Avoid really long methods.
-</violation>
-<violation beginline="717" endline="846" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The method 'manage' has a Cyclomatic Complexity of 65.
-</violation>
-<violation beginline="717" endline="846" begincolumn="23" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The method 'manage' has a Modified Cyclomatic Complexity of 19.
-</violation>
-<violation beginline="717" endline="846" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The method 'manage' has a Standard Cyclomatic Complexity of 27.
-</violation>
-<violation beginline="717" endline="846" begincolumn="23" endcolumn="9" rule="NcssMethodCount" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#NcssMethodCount" priority="3">
-The method manage() has an NCSS line count of 120
-</violation>
-<violation beginline="719" endline="845" begincolumn="17" endcolumn="17" rule="SwitchDensity" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#SwitchDensity" priority="3">
-A high ratio of statements to labels in a switch statement.  Consider refactoring.
+<violation beginline="810" endline="843" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The method 'manage' has a Standard Cyclomatic Complexity of 10.
 </violation>
 </file>
 <file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/entity/Workspace.java">
-<violation beginline="28" endline="326" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The class 'Workspace' has a Cyclomatic Complexity of 6 (Highest = 23).
+<violation beginline="1" endline="369" begincolumn="1" endcolumn="2" rule="GodClass" ruleset="Design" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
+Possible God class (WMC=55, ATFD=39, TCC=0.0)
 </violation>
-<violation beginline="28" endline="326" begincolumn="14" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The class 'Workspace' has a Modified Cyclomatic Complexity of 5 (Highest = 19).
+<violation beginline="28" endline="369" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'Workspace' has a Cyclomatic Complexity of 3 (Highest = 23).
 </violation>
-<violation beginline="28" endline="326" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The class 'Workspace' has a Standard Cyclomatic Complexity of 5 (Highest = 19).
+<violation beginline="28" endline="369" begincolumn="14" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
+The class 'Workspace' has a Modified Cyclomatic Complexity of 3 (Highest = 19).
+</violation>
+<violation beginline="28" endline="369" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'Workspace' has a Standard Cyclomatic Complexity of 3 (Highest = 19).
 </violation>
 <violation beginline="62" endline="156" begincolumn="16" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.entity" class="Workspace" method="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
 The constructor 'Workspace' has a Cyclomatic Complexity of 23.
@@ -323,54 +59,6 @@ Avoid instantiating new objects inside loops
 </violation>
 <violation beginline="132" endline="143" begincolumn="81" endcolumn="81" rule="AvoidDeeplyNestedIfStmts" ruleset="Design" package="it.uniba.entity" class="Workspace" method="Workspace" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#AvoidDeeplyNestedIfStmts" priority="3">
 Deeply nested if..then statements are hard to read
-</violation>
-<violation beginline="191" endline="191" begincolumn="53" endcolumn="75" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMembersOfChannel" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="216" endline="216" begincolumn="58" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="220" endline="220" begincolumn="29" endcolumn="55" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="221" endline="221" begincolumn="44" endcolumn="61" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="229" endline="229" begincolumn="92" endcolumn="115" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="230" endline="230" begincolumn="104" endcolumn="122" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="233" endline="233" begincolumn="67" endcolumn="86" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="234" endline="234" begincolumn="45" endcolumn="84" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsFromUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="267" endline="267" begincolumn="58" endcolumn="85" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="271" endline="271" begincolumn="29" endcolumn="55" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="272" endline="272" begincolumn="44" endcolumn="61" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="280" endline="280" begincolumn="92" endcolumn="115" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="281" endline="281" begincolumn="104" endcolumn="122" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="284" endline="284" begincolumn="65" endcolumn="82" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="285" endline="285" begincolumn="45" endcolumn="82" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentionsToUser" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
-</violation>
-<violation beginline="311" endline="311" begincolumn="54" endcolumn="78" rule="LawOfDemeter" ruleset="Coupling" package="it.uniba.entity" class="Workspace" method="getMentions" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LawOfDemeter" priority="3">
-Potential violation of Law of Demeter (object not created locally)
 </violation>
 </file>
 </pmd>

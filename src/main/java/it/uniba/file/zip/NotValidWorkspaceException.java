@@ -2,7 +2,7 @@ package it.uniba.file.zip;
 
 /**
  * Classe che modella l'eccezione generata ogni qualvolta il workspace
- * specificato non � valido.
+ * specificato non è valido.
  */
 public final class NotValidWorkspaceException extends Exception {
 

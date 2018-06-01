@@ -2,7 +2,7 @@ package it.uniba.entity;
 
 /**
  * Classe che modella l'eccezione da generare ogni qualvolta il channel
- * specificato non � valido.
+ * specificato non è valido.
  */
 public final class ChannelNotValidException extends Exception {
 	/**

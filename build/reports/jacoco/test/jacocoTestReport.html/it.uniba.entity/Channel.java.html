@@ -87,7 +87,7 @@ public final class Channel {
 	 *            riferimento ad un oggetto istanza della classe Mention che
 	 *            rappresenta la mention di cui si vuole verificare la presenza
 	 *            all'interno del channel corrente.
-	 * @return boolean che risulta essere true se la mention in input � presente
+	 * @return boolean che risulta essere true se la mention in input è presente
 	 *         all'interno del channel, false altrimenti.
 	 */
 	public boolean containsMention(final Mention mentionIn) {

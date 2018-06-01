@@ -155,14 +155,18 @@ public final class Workspace {
 <span class="fc" id="L155">		}</span>
 <span class="fc" id="L156">	}</span>
 
+	private Iterator&lt;Member&gt; getMembersIterator(final Collection&lt;Member&gt; membersCollection) {
+<span class="fc" id="L159">		return membersCollection.iterator();</span>
+	}
+
 	/**
-	 * Restituisce la lista di tutti i channels nel workspace corrente.
+	 * Restituisce la hashmap di tutti i channels nel workspace corrente.
 	 * 
 	 * @return riferimento ad una LinkedHashMap&lt;String, Channel&gt; che rappresenta la
 	 *         lista di tutti i channels del workspace corrente.
 	 */
 	public Map&lt;String, Channel&gt; getAllChannels() {
-<span class="fc" id="L165">		return (LinkedHashMap&lt;String, Channel&gt;) this.channels;</span>
+<span class="fc" id="L169">		return (LinkedHashMap&lt;String, Channel&gt;) this.channels;</span>
 	}
 
 	/**
@@ -172,7 +176,7 @@ public final class Workspace {
 	 *         lista di tutti i members del workspace corrente.
 	 */
 	public Map&lt;String, Member&gt; getAllMembers() {
-<span class="fc" id="L175">		return (LinkedHashMap&lt;String, Member&gt;) this.members;</span>
+<span class="fc" id="L179">		return (LinkedHashMap&lt;String, Member&gt;) this.members;</span>
 	}
 
 	/**
@@ -186,12 +190,16 @@ public final class Workspace {
 	 *             Lancia un eccezione quando il channel specificato non � valido.
 	 */
 	public List&lt;Member&gt; getMembersOfChannel(final String channelName) throws ChannelNotValidException {
-<span class="fc bfc" id="L189" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
-<span class="fc" id="L190">			final Channel curChannel = channels.get(channelName);</span>
-<span class="fc" id="L191">			return (LinkedList&lt;Member&gt;) curChannel.getMembers();</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
+<span class="fc" id="L194">			final Channel curChannel = channels.get(channelName);</span>
+<span class="fc" id="L195">			return (LinkedList&lt;Member&gt;) getMemberFromChannel(curChannel);</span>
 		} else {
-<span class="fc" id="L193">			throw new ChannelNotValidException(channelName);</span>
+<span class="fc" id="L197">			throw new ChannelNotValidException(channelName);</span>
 		}
+	}
+
+	private List&lt;Member&gt; getMemberFromChannel(final Channel curChannel) {
+<span class="fc" id="L202">		return curChannel.getMembers();</span>
 	}
 
 	/**
@@ -211,38 +219,49 @@ public final class Workspace {
 	 */
 	public List&lt;Mention&gt; getMentionsFromUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
-<span class="fc" id="L214">		String memberID = memberInput;</span>
-<span class="fc" id="L215">		final Collection&lt;Member&gt; membersCollection = members.values();</span>
-<span class="fc" id="L216">		final Iterator&lt;Member&gt; membersIterator = membersCollection.iterator();</span>
-<span class="fc" id="L217">		boolean found = false;</span>
-<span class="fc bfc" id="L218" title="All 4 branches covered.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
-<span class="fc" id="L219">			final Member currMember = membersIterator.next();</span>
-<span class="fc bfc" id="L220" title="All 2 branches covered.">			if (currMember.isUser(memberID)) {</span>
-<span class="fc" id="L221">				memberID = currMember.getId();</span>
-<span class="fc" id="L222">				found = true;</span>
+<span class="fc" id="L222">		String memberID = memberInput;</span>
+<span class="fc" id="L223">		final Collection&lt;Member&gt; membersCollection = members.values();</span>
+<span class="fc" id="L224">		final Iterator&lt;Member&gt; membersIterator = getMembersIterator(membersCollection);</span>
+<span class="fc" id="L225">		boolean found = false;</span>
+<span class="fc bfc" id="L226" title="All 4 branches covered.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
+<span class="fc" id="L227">			final Member currMember = membersIterator.next();</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">			if (memberIsUser(currMember, memberID)) {</span>
+<span class="fc" id="L229">				memberID = getMemberID(currMember);</span>
+<span class="fc" id="L230">				found = true;</span>
 			}
-<span class="fc" id="L224">		}</span>
-<span class="fc bfc" id="L225" title="All 2 branches covered.">		if (found) {</span>
-<span class="fc bfc" id="L226" title="All 2 branches covered.">			if (channels.containsKey(channelInput)) {</span>
-<span class="fc" id="L227">				final LinkedList&lt;Mention&gt; out = new LinkedList&lt;Mention&gt;();</span>
-<span class="fc" id="L228">				final Channel curChannel = channels.get(channelInput);</span>
-<span class="fc" id="L229">				final LinkedList&lt;Mention&gt; mentions = (LinkedList&lt;Mention&gt;) curChannel.getMentions();</span>
-<span class="fc" id="L230">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) mentions.iterator();</span>
-<span class="fc bfc" id="L231" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
-<span class="fc" id="L232">					final Mention curMention = mentionsIterator.next();</span>
-<span class="fc" id="L233">					final Member fromMember = curMention.getFrom();</span>
-<span class="fc bfc" id="L234" title="All 2 branches covered.">					if (fromMember.equals(members.get(memberID))) {</span>
-<span class="fc" id="L235">						out.add(curMention);</span>
+<span class="fc" id="L232">		}</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">		if (found) {</span>
+<span class="fc bfc" id="L234" title="All 2 branches covered.">			if (channels.containsKey(channelInput)) {</span>
+<span class="fc" id="L235">				final LinkedList&lt;Mention&gt; out = new LinkedList&lt;Mention&gt;();</span>
+<span class="fc" id="L236">				final Channel curChannel = channels.get(channelInput);</span>
+<span class="fc" id="L237">				final LinkedList&lt;Mention&gt; mentions = (LinkedList&lt;Mention&gt;) getMentions(curChannel);</span>
+<span class="fc" id="L238">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionsIterator(mentions);</span>
+<span class="fc bfc" id="L239" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L240">					final Mention currMention = mentionsIterator.next();</span>
+<span class="fc" id="L241">					final Member fromMember = getMentionFrom(currMention);</span>
+<span class="fc bfc" id="L242" title="All 2 branches covered.">					if (memberEquals(fromMember, members.get(memberID))) {</span>
+<span class="fc" id="L243">						out.add(currMention);</span>
 					}
-<span class="fc" id="L237">				}</span>
-<span class="fc" id="L238">				return out;</span>
+<span class="fc" id="L245">				}</span>
+<span class="fc" id="L246">				return out;</span>
 			} else {
-<span class="fc" id="L240">				throw new ChannelNotValidException(channelInput);</span>
+<span class="fc" id="L248">				throw new ChannelNotValidException(channelInput);</span>
 			}
 		} else {
-<span class="fc" id="L243">			throw new MemberNotValidException(memberID);</span>
+<span class="fc" id="L251">			throw new MemberNotValidException(memberID);</span>
 		}
+	}
 
+	private Member getMentionFrom(final Mention currMention) {
+<span class="fc" id="L256">		return currMention.getFrom();</span>
+	}
+
+	private String getMemberID(final Member currMember) {
+<span class="fc" id="L260">		return currMember.getId();</span>
+	}
+
+	private boolean memberIsUser(final Member currMember, final String memberID) {
+<span class="fc" id="L264">		return currMember.isUser(memberID);</span>
 	}
 
 	/**
@@ -262,37 +281,57 @@ public final class Workspace {
 	 */
 	public List&lt;Mention&gt; getMentionsToUser(final String channelInput, final String memberInput)
 			throws ChannelNotValidException, MemberNotValidException {
-<span class="fc" id="L265">		String memberID = memberInput;</span>
-<span class="fc" id="L266">		final Collection&lt;Member&gt; membersCollection = members.values();</span>
-<span class="fc" id="L267">		final Iterator&lt;Member&gt; membersIterator = membersCollection.iterator();</span>
-<span class="fc" id="L268">		boolean found = false;</span>
-<span class="fc bfc" id="L269" title="All 4 branches covered.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
-<span class="fc" id="L270">			final Member currMember = membersIterator.next();</span>
-<span class="fc bfc" id="L271" title="All 2 branches covered.">			if (currMember.isUser(memberID)) {</span>
-<span class="fc" id="L272">				memberID = currMember.getId();</span>
-<span class="fc" id="L273">				found = true;</span>
+<span class="fc" id="L284">		String memberID = memberInput;</span>
+<span class="fc" id="L285">		final Collection&lt;Member&gt; membersCollection = members.values();</span>
+<span class="fc" id="L286">		final Iterator&lt;Member&gt; membersIterator = getMembersIterator(membersCollection);</span>
+<span class="fc" id="L287">		boolean found = false;</span>
+<span class="fc bfc" id="L288" title="All 4 branches covered.">		while (membersIterator.hasNext() &amp;&amp; !found) {</span>
+<span class="fc" id="L289">			final Member currMember = membersIterator.next();</span>
+<span class="fc bfc" id="L290" title="All 2 branches covered.">			if (memberIsUser(currMember, memberID)) {</span>
+<span class="fc" id="L291">				memberID = getMemberID(currMember);</span>
+<span class="fc" id="L292">				found = true;</span>
 			}
-<span class="fc" id="L275">		}</span>
-<span class="fc bfc" id="L276" title="All 2 branches covered.">		if (found) {</span>
-<span class="fc bfc" id="L277" title="All 2 branches covered.">			if (channels.containsKey(channelInput)) {</span>
-<span class="fc" id="L278">				final LinkedList&lt;Mention&gt; out = new LinkedList&lt;Mention&gt;();</span>
-<span class="fc" id="L279">				final Channel curChannel = channels.get(channelInput);</span>
-<span class="fc" id="L280">				final LinkedList&lt;Mention&gt; mentions = (LinkedList&lt;Mention&gt;) curChannel.getMentions();</span>
-<span class="fc" id="L281">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) mentions.iterator();</span>
-<span class="fc bfc" id="L282" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
-<span class="fc" id="L283">					final Mention curMention = mentionsIterator.next();</span>
-<span class="fc" id="L284">					final Member toMember = curMention.getTo();</span>
-<span class="fc bfc" id="L285" title="All 2 branches covered.">					if (toMember.equals(members.get(memberID))) {</span>
-<span class="fc" id="L286">						out.add(curMention);</span>
+<span class="fc" id="L294">		}</span>
+<span class="fc bfc" id="L295" title="All 2 branches covered.">		if (found) {</span>
+<span class="fc bfc" id="L296" title="All 2 branches covered.">			if (channels.containsKey(channelInput)) {</span>
+<span class="fc" id="L297">				final LinkedList&lt;Mention&gt; out = new LinkedList&lt;Mention&gt;();</span>
+<span class="fc" id="L298">				final Channel currChannel = channels.get(channelInput);</span>
+<span class="fc" id="L299">				final LinkedList&lt;Mention&gt; mentions = (LinkedList&lt;Mention&gt;) getMentions(currChannel);</span>
+<span class="fc" id="L300">				final ListIterator&lt;Mention&gt; mentionsIterator = (ListIterator&lt;Mention&gt;) getMentionsIterator(mentions);</span>
+<span class="fc bfc" id="L301" title="All 2 branches covered.">				while (mentionsIterator.hasNext()) {</span>
+<span class="fc" id="L302">					final Mention curMention = mentionsIterator.next();</span>
+<span class="fc" id="L303">					final Member toMember = getMentionTo(curMention);</span>
+<span class="fc bfc" id="L304" title="All 2 branches covered.">					if (memberEquals(toMember, getMemberByID(members, memberID))) {</span>
+<span class="fc" id="L305">						out.add(curMention);</span>
 					}
-<span class="fc" id="L288">				}</span>
-<span class="fc" id="L289">				return out;</span>
+<span class="fc" id="L307">				}</span>
+<span class="fc" id="L308">				return out;</span>
 			} else {
-<span class="fc" id="L291">				throw new ChannelNotValidException(channelInput);</span>
+<span class="fc" id="L310">				throw new ChannelNotValidException(channelInput);</span>
 			}
 		} else {
-<span class="fc" id="L294">			throw new MemberNotValidException(memberID);</span>
+<span class="fc" id="L313">			throw new MemberNotValidException(memberID);</span>
 		}
+	}
+
+	private List&lt;Mention&gt; getMentions(final Channel currChannel) {
+<span class="fc" id="L318">		return currChannel.getMentions();</span>
+	}
+
+	private Iterator&lt;Mention&gt; getMentionsIterator(final List&lt;Mention&gt; mentions) {
+<span class="fc" id="L322">		return mentions.iterator();</span>
+	}
+
+	private Member getMentionTo(final Mention curMention) {
+<span class="fc" id="L326">		return curMention.getTo();</span>
+	}
+
+	private boolean memberEquals(final Member firstMember, final Member secondMember) {
+<span class="fc" id="L330">		return firstMember.equals(secondMember);</span>
+	}
+
+	private Member getMemberByID(final Map&lt;String, Member&gt; membersMap, final String memberID) {
+<span class="fc" id="L334">		return membersMap.get(memberID);</span>
 	}
 
 	/**
@@ -306,12 +345,16 @@ public final class Workspace {
 	 *             Lancia un eccezione quando il channel specificato non � valido.
 	 */
 	public List&lt;Mention&gt; getMentions(final String channelName) throws ChannelNotValidException {
-<span class="fc bfc" id="L309" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
-<span class="fc" id="L310">			final Channel currChannel = channels.get(channelName);</span>
-<span class="fc" id="L311">			return (LinkedList&lt;Mention&gt;) currChannel.getMentions();</span>
+<span class="fc bfc" id="L348" title="All 2 branches covered.">		if (channels.containsKey(channelName)) {</span>
+<span class="fc" id="L349">			final Channel currChannel = channels.get(channelName);</span>
+<span class="fc" id="L350">			return getMentionFromChannel(currChannel);</span>
 		} else {
-<span class="fc" id="L313">			throw new ChannelNotValidException(channelName);</span>
+<span class="fc" id="L352">			throw new ChannelNotValidException(channelName);</span>
 		}
+	}
+
+	private List&lt;Mention&gt; getMentionFromChannel(final Channel currChannel) {
+<span class="fc" id="L357">		return currChannel.getMentions();</span>
 	}
 
 	/**
@@ -321,7 +364,7 @@ public final class Workspace {
 	 *         workspace corrente.
 	 */
 	public FileZip getWorkspaceZip() {
-<span class="fc" id="L324">		return workspaceZip;</span>
+<span class="fc" id="L367">		return workspaceZip;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>
