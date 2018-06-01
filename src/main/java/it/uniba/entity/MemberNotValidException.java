@@ -2,7 +2,7 @@ package it.uniba.entity;
 
 /**
  * Classe che modella l'eccezione da generare ogni qualvolta il member
- * specificato non � valido.
+ * specificato non è valido.
  */
 public final class MemberNotValidException extends Exception {
 	/**
