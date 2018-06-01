@@ -281,7 +281,7 @@ public final class CommandManager {
 <span class="nc" id="L281">		}</span>
 <span class="nc" id="L282">	}</span>
 
-	private static Iterator&lt;Member&gt; getMemberIterator(final LinkedList&lt;Member&gt; channelMembers) {
+	private static Iterator&lt;Member&gt; getMemberIterator(final List&lt;Member&gt; channelMembers) {
 <span class="nc" id="L285">		return channelMembers.iterator();</span>
 	}
 
@@ -808,134 +808,178 @@ public final class CommandManager {
 	 *            del comando digitato dall'utente da riga di comando.
 	 */
 	public static void manage(final String... args) {
-		final String first, second, third, fourth, fifth, sixth, seventh, eighth;
-<span class="nc bnc" id="L812" title="All 10 branches missed.">		switch (args.length) {</span>
+<span class="nc bnc" id="L811" title="All 10 branches missed.">		switch (args.length) {</span>
 		case ZERO:
-<span class="nc" id="L814">			help();</span>
-<span class="nc" id="L815">			break;</span>
+<span class="nc" id="L813">			help();</span>
+<span class="nc" id="L814">			break;</span>
 		case ONE:
-<span class="nc" id="L817">			first = args[ZERO];</span>
-<span class="nc bnc" id="L818" title="All 2 branches missed.">			if (&quot;help&quot;.equals(first)) {</span>
-<span class="nc" id="L819">				help();</span>
-			} else {
-<span class="nc" id="L821">				System.out.println(&quot;'&quot; + first + &quot;'&quot; + NOTVALIDCOMMAND);</span>
-			}
-<span class="nc" id="L823">			break;</span>
+<span class="nc" id="L816">			oneArgs(args);</span>
+<span class="nc" id="L817">			break;</span>
 		case TWO:
-<span class="nc" id="L825">			first = args[ZERO];</span>
-<span class="nc" id="L826">			second = args[ONE];</span>
-<span class="nc" id="L827">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot;'&quot; + NOTVALIDCOMMAND);</span>
-<span class="nc" id="L828">			break;</span>
+<span class="nc" id="L819">			twoArgs(args);</span>
+<span class="nc" id="L820">			break;</span>
 		case THREE:
-<span class="nc" id="L830">			first = args[ZERO];</span>
-<span class="nc" id="L831">			second = args[ONE];</span>
-<span class="nc" id="L832">			third = args[TWO];</span>
-<span class="nc bnc" id="L833" title="All 4 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
-<span class="nc" id="L834">				getMembers(third);</span>
-<span class="nc bnc" id="L835" title="All 4 branches missed.">			} else if (&quot;channels&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
-<span class="nc" id="L836">				getChannels(third);</span>
-<span class="nc bnc" id="L837" title="All 4 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
-<span class="nc" id="L838">				getMentions(third);</span>
-			} else {
-<span class="nc" id="L840">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot;'&quot; + NOTVALIDCOMMAND);</span>
-			}
-<span class="nc" id="L842">			break;</span>
+<span class="nc" id="L822">			threeArgs(args);</span>
+<span class="nc" id="L823">			break;</span>
 		case FOUR:
-<span class="nc" id="L844">			first = args[ZERO];</span>
-<span class="nc" id="L845">			second = args[ONE];</span>
-<span class="nc" id="L846">			third = args[TWO];</span>
-<span class="nc" id="L847">			fourth = args[THREE];</span>
-<span class="nc bnc" id="L848" title="All 6 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
-<span class="nc" id="L849">				getMembersForChannels(fourth);</span>
-<span class="nc bnc" id="L850" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
-<span class="nc" id="L851">				getMentionsWeighed(fourth);</span>
-			} else {
-<span class="nc" id="L853">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot;'&quot; + NOTVALIDCOMMAND);</span>
-			}
-<span class="nc" id="L855">			break;</span>
+<span class="nc" id="L825">			fourArgs(args);</span>
+<span class="nc" id="L826">			break;</span>
 		case FIVE:
-<span class="nc" id="L857">			first = args[ZERO];</span>
-<span class="nc" id="L858">			second = args[ONE];</span>
-<span class="nc" id="L859">			third = args[TWO];</span>
-<span class="nc" id="L860">			fourth = args[THREE];</span>
-<span class="nc" id="L861">			fifth = args[FOUR];</span>
-<span class="nc bnc" id="L862" title="All 6 branches missed.">			if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L863">				getMembersOfChannel(fifth, third);</span>
-<span class="nc bnc" id="L864" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L865">				getMentions(fifth, third);</span>
-<span class="nc bnc" id="L866" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L867">				getMentionsToUser(fifth, third);</span>
-<span class="nc bnc" id="L868" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(fourth)) {</span>
-<span class="nc" id="L869">				getMentionsFromUser(fifth, third);</span>
-			} else {
-<span class="nc" id="L871">				System.out.println(</span>
-						&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + NOTVALIDCOMMAND);
-			}
-<span class="nc" id="L874">			break;</span>
+<span class="nc" id="L828">			fiveArgs(args);</span>
+<span class="nc" id="L829">			break;</span>
 		case SIX:
-<span class="nc" id="L876">			first = args[ZERO];</span>
-<span class="nc" id="L877">			second = args[ONE];</span>
-<span class="nc" id="L878">			third = args[TWO];</span>
-<span class="nc" id="L879">			fourth = args[THREE];</span>
-<span class="nc" id="L880">			fifth = args[FOUR];</span>
-<span class="nc" id="L881">			sixth = args[FIVE];</span>
-<span class="nc bnc" id="L882" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; FROMPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L883" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
-<span class="nc" id="L884">				getMentionsFromUserWeighed(sixth, fourth);</span>
-<span class="nc bnc" id="L885" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; CHPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L886" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
-<span class="nc" id="L887">				getMentionsWeighed(sixth, fourth);</span>
-<span class="nc bnc" id="L888" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; TOPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L889" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
-<span class="nc" id="L890">				getMentionsToUserWeighed(sixth, fourth);</span>
-			} else {
-<span class="nc" id="L892">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth</span>
-						+ &quot;'&quot; + NOTVALIDCOMMAND);
-			}
-<span class="nc" id="L895">			break;</span>
+<span class="nc" id="L831">			sixArgs(args);</span>
+<span class="nc" id="L832">			break;</span>
 		case SEVEN:
-<span class="nc" id="L897">			first = args[ZERO];</span>
-<span class="nc" id="L898">			second = args[ONE];</span>
-<span class="nc" id="L899">			third = args[TWO];</span>
-<span class="nc" id="L900">			fourth = args[THREE];</span>
-<span class="nc" id="L901">			fifth = args[FOUR];</span>
-<span class="nc" id="L902">			sixth = args[FIVE];</span>
-<span class="nc" id="L903">			seventh = args[SIX];</span>
-<span class="nc bnc" id="L904" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
-<span class="nc bnc" id="L905" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
-<span class="nc" id="L906">				getMentionsToUser(seventh, fifth, third);</span>
-<span class="nc bnc" id="L907" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
-<span class="nc bnc" id="L908" title="All 2 branches missed.">					&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
-<span class="nc" id="L909">				getMentionsFromUser(seventh, fifth, third);</span>
-			} else {
-<span class="nc" id="L911">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
-						+ &quot; &quot; + seventh + &quot;'&quot; + NOTVALIDCOMMAND);
-			}
-<span class="nc" id="L914">			break;</span>
+<span class="nc" id="L834">			sevenArgs(args);</span>
+<span class="nc" id="L835">			break;</span>
 		case EIGHT:
-<span class="nc" id="L916">			first = args[ZERO];</span>
-<span class="nc" id="L917">			second = args[ONE];</span>
-<span class="nc" id="L918">			third = args[TWO];</span>
-<span class="nc" id="L919">			fourth = args[THREE];</span>
-<span class="nc" id="L920">			fifth = args[FOUR];</span>
-<span class="nc" id="L921">			sixth = args[FIVE];</span>
-<span class="nc" id="L922">			seventh = args[SIX];</span>
-<span class="nc" id="L923">			eighth = args[SEVEN];</span>
-<span class="nc bnc" id="L924" title="All 6 branches missed.">			if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; TOPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L925" title="All 4 branches missed.">					&amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
-<span class="nc" id="L926">				getMentionsToUserWeighed(eighth, sixth, fourth);</span>
-<span class="nc bnc" id="L927" title="All 6 branches missed.">			} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; FROMPARAMETER.equals(third)</span>
-<span class="nc bnc" id="L928" title="All 4 branches missed.">					&amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
-<span class="nc" id="L929">				getMentionsFromUserWeighed(eighth, sixth, fourth);</span>
-			} else {
-<span class="nc" id="L931">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
-						+ &quot; &quot; + seventh + &quot; &quot; + eighth + &quot;'&quot; + NOTVALIDCOMMAND);
-			}
-<span class="nc" id="L934">			break;</span>
+<span class="nc" id="L837">			eightArgs(args);</span>
+<span class="nc" id="L838">			break;</span>
 		default:
-<span class="nc" id="L936">			System.out.println(&quot;Command not found, see 'help'.&quot;);</span>
+<span class="nc" id="L840">			System.out.println(&quot;Command not found, see 'help'.&quot;);</span>
 			break;
 		}
-<span class="nc" id="L939">	}</span>
+<span class="nc" id="L843">	}</span>
+
+	private static void oneArgs(final String... args) {
+		final String first;
+<span class="nc" id="L847">		first = args[ZERO];</span>
+<span class="nc bnc" id="L848" title="All 2 branches missed.">		if (&quot;help&quot;.equals(first)) {</span>
+<span class="nc" id="L849">			help();</span>
+		} else {
+<span class="nc" id="L851">			System.out.println(&quot;'&quot; + first + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+		}
+<span class="nc" id="L853">	}</span>
+
+	private static void twoArgs(final String... args) {
+		final String first, second;
+<span class="nc" id="L857">		first = args[ZERO];</span>
+<span class="nc" id="L858">		second = args[ONE];</span>
+<span class="nc" id="L859">		System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+<span class="nc" id="L860">	}</span>
+
+	private static void threeArgs(final String... args) {
+		final String first, second, third;
+<span class="nc" id="L864">		first = args[ZERO];</span>
+<span class="nc" id="L865">		second = args[ONE];</span>
+<span class="nc" id="L866">		third = args[TWO];</span>
+<span class="nc bnc" id="L867" title="All 4 branches missed.">		if (&quot;members&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="nc" id="L868">			getMembers(third);</span>
+<span class="nc bnc" id="L869" title="All 4 branches missed.">		} else if (&quot;channels&quot;.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="nc" id="L870">			getChannels(third);</span>
+<span class="nc bnc" id="L871" title="All 4 branches missed.">		} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-f&quot;.equals(second)) {</span>
+<span class="nc" id="L872">			getMentions(third);</span>
+		} else {
+<span class="nc" id="L874">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+		}
+<span class="nc" id="L876">	}</span>
+
+	private static void fourArgs(final String... args) {
+		final String first, second, third, fourth;
+<span class="nc" id="L880">		first = args[ZERO];</span>
+<span class="nc" id="L881">		second = args[ONE];</span>
+<span class="nc" id="L882">		third = args[TWO];</span>
+<span class="nc" id="L883">		fourth = args[THREE];</span>
+<span class="nc bnc" id="L884" title="All 6 branches missed.">		if (&quot;members&quot;.equals(first) &amp;&amp; CHPARAMETER.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
+<span class="nc" id="L885">			getMembersForChannels(fourth);</span>
+<span class="nc bnc" id="L886" title="All 6 branches missed.">		} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; &quot;-f&quot;.equals(third)) {</span>
+<span class="nc" id="L887">			getMentionsWeighed(fourth);</span>
+		} else {
+<span class="nc" id="L889">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot;'&quot; + NOTVALIDCOMMAND);</span>
+		}
+<span class="nc" id="L891">	}</span>
+
+	private static void fiveArgs(final String... args) {
+		final String first, second, third, fourth, fifth;
+<span class="nc" id="L895">		first = args[ZERO];</span>
+<span class="nc" id="L896">		second = args[ONE];</span>
+<span class="nc" id="L897">		third = args[TWO];</span>
+<span class="nc" id="L898">		fourth = args[THREE];</span>
+<span class="nc" id="L899">		fifth = args[FOUR];</span>
+<span class="nc bnc" id="L900" title="All 2 branches missed.">		if (&quot;-f&quot;.equals(fourth)) {</span>
+<span class="nc bnc" id="L901" title="All 2 branches missed.">			if (CHPARAMETER.equals(second)) {</span>
+<span class="nc bnc" id="L902" title="All 2 branches missed.">				if (&quot;members&quot;.equals(first)) {</span>
+<span class="nc" id="L903">					getMembersOfChannel(fifth, third);</span>
+<span class="nc bnc" id="L904" title="All 2 branches missed.">				} else if (MENTIONSCOMMAND.equals(first)) {</span>
+<span class="nc" id="L905">					getMentions(fifth, third);</span>
+				}
+<span class="nc bnc" id="L907" title="All 2 branches missed.">			} else if (MENTIONSCOMMAND.equals(first)) {</span>
+<span class="nc bnc" id="L908" title="All 2 branches missed.">				if (TOPARAMETER.equals(second)) {</span>
+<span class="nc" id="L909">					getMentionsToUser(fifth, third);</span>
+<span class="nc bnc" id="L910" title="All 2 branches missed.">				} else if (FROMPARAMETER.equals(second)) {</span>
+<span class="nc" id="L911">					getMentionsFromUser(fifth, third);</span>
+				}
+			}
+		} else {
+<span class="nc" id="L915">			System.out.println(</span>
+					&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + NOTVALIDCOMMAND);
+		}
+<span class="nc" id="L918">	}</span>
+
+	private static void sixArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth;
+<span class="nc" id="L922">		first = args[ZERO];</span>
+<span class="nc" id="L923">		second = args[ONE];</span>
+<span class="nc" id="L924">		third = args[TWO];</span>
+<span class="nc" id="L925">		fourth = args[THREE];</span>
+<span class="nc" id="L926">		fifth = args[FOUR];</span>
+<span class="nc" id="L927">		sixth = args[FIVE];</span>
+<span class="nc bnc" id="L928" title="All 6 branches missed.">		if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; &quot;-f&quot;.equals(fifth)) {</span>
+<span class="nc bnc" id="L929" title="All 2 branches missed.">			if (FROMPARAMETER.equals(third)) {</span>
+<span class="nc" id="L930">				getMentionsFromUserWeighed(sixth, fourth);</span>
+<span class="nc bnc" id="L931" title="All 2 branches missed.">			} else if (CHPARAMETER.equals(third)) {</span>
+<span class="nc" id="L932">				getMentionsWeighed(sixth, fourth);</span>
+<span class="nc bnc" id="L933" title="All 2 branches missed.">			} else if (TOPARAMETER.equals(third)) {</span>
+<span class="nc" id="L934">				getMentionsToUserWeighed(sixth, fourth);</span>
+			}
+		} else {
+<span class="nc" id="L937">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth + &quot;'&quot;</span>
+					+ NOTVALIDCOMMAND);
+		}
+<span class="nc" id="L940">	}</span>
+
+	private static void sevenArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth, seventh;
+<span class="nc" id="L944">		first = args[ZERO];</span>
+<span class="nc" id="L945">		second = args[ONE];</span>
+<span class="nc" id="L946">		third = args[TWO];</span>
+<span class="nc" id="L947">		fourth = args[THREE];</span>
+<span class="nc" id="L948">		fifth = args[FOUR];</span>
+<span class="nc" id="L949">		sixth = args[FIVE];</span>
+<span class="nc" id="L950">		seventh = args[SIX];</span>
+<span class="nc bnc" id="L951" title="All 6 branches missed.">		if (MENTIONSCOMMAND.equals(first) &amp;&amp; TOPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
+<span class="nc bnc" id="L952" title="All 2 branches missed.">				&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
+<span class="nc" id="L953">			getMentionsToUser(seventh, fifth, third);</span>
+<span class="nc bnc" id="L954" title="All 6 branches missed.">		} else if (MENTIONSCOMMAND.equals(first) &amp;&amp; FROMPARAMETER.equals(second) &amp;&amp; CHPARAMETER.equals(fourth)</span>
+<span class="nc bnc" id="L955" title="All 2 branches missed.">				&amp;&amp; &quot;-f&quot;.equals(sixth)) {</span>
+<span class="nc" id="L956">			getMentionsFromUser(seventh, fifth, third);</span>
+		} else {
+<span class="nc" id="L958">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth + &quot; &quot;</span>
+					+ seventh + &quot;'&quot; + NOTVALIDCOMMAND);
+		}
+<span class="nc" id="L961">	}</span>
+
+	private static void eightArgs(final String... args) {
+		final String first, second, third, fourth, fifth, sixth, seventh, eighth;
+<span class="nc" id="L965">		first = args[ZERO];</span>
+<span class="nc" id="L966">		second = args[ONE];</span>
+<span class="nc" id="L967">		third = args[TWO];</span>
+<span class="nc" id="L968">		fourth = args[THREE];</span>
+<span class="nc" id="L969">		fifth = args[FOUR];</span>
+<span class="nc" id="L970">		sixth = args[FIVE];</span>
+<span class="nc" id="L971">		seventh = args[SIX];</span>
+<span class="nc" id="L972">		eighth = args[SEVEN];</span>
+<span class="nc bnc" id="L973" title="All 8 branches missed.">		if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
+<span class="nc bnc" id="L974" title="All 2 branches missed.">			if (TOPARAMETER.equals(third)) {</span>
+<span class="nc" id="L975">				getMentionsToUserWeighed(eighth, sixth, fourth);</span>
+<span class="nc bnc" id="L976" title="All 2 branches missed.">			} else if (FROMPARAMETER.equals(third)) {</span>
+<span class="nc" id="L977">				getMentionsFromUserWeighed(eighth, sixth, fourth);</span>
+			}
+		} else {
+<span class="nc" id="L980">			System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth + &quot; &quot;</span>
+					+ seventh + &quot; &quot; + eighth + &quot;'&quot; + NOTVALIDCOMMAND);
+		}
+<span class="nc" id="L983">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

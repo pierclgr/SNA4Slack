@@ -1,41 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-06-01T14:21:09.862">
+<pmd version="5.8.1" timestamp="2018-06-01T17:00:18.267">
 <file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/cli/CommandManager.java">
-<violation beginline="1" endline="940" begincolumn="1" endcolumn="2" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
-Possible God class (WMC=170, ATFD=95, TCC=0.09113300492610837)
+<violation beginline="1" endline="984" begincolumn="1" endcolumn="1" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
+Possible God class (WMC=176, ATFD=95, TCC=0.12162162162162163)
 </violation>
-<violation beginline="28" endline="940" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The class 'CommandManager' has a Cyclomatic Complexity of 5 (Highest = 65).
+<violation beginline="28" endline="984" begincolumn="14" endcolumn="1" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The class 'CommandManager' has a Cyclomatic Complexity of 4 (Highest = 10).
 </violation>
-<violation beginline="28" endline="940" begincolumn="14" endcolumn="1" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The class 'CommandManager' has a Modified Cyclomatic Complexity of 4 (Highest = 19).
+<violation beginline="28" endline="984" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The class 'CommandManager' has a Standard Cyclomatic Complexity of 4 (Highest = 10).
 </violation>
-<violation beginline="28" endline="940" begincolumn="14" endcolumn="1" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The class 'CommandManager' has a Standard Cyclomatic Complexity of 4 (Highest = 27).
+<violation beginline="28" endline="984" begincolumn="35" endcolumn="1" rule="TooManyMethods" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
 </violation>
-<violation beginline="284" endline="284" begincolumn="65" endcolumn="82" rule="LooseCoupling" ruleset="Type Resolution" package="it.uniba.cli" class="CommandManager" method="getMemberIterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/typeresolution.html#LooseCoupling" priority="3">
-Avoid using implementation types like 'LinkedList'; use the interface instead
+<violation beginline="810" endline="843" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
+The method 'manage' has a Cyclomatic Complexity of 10.
 </violation>
-<violation beginline="284" endline="284" begincolumn="65" endcolumn="82" rule="LooseCoupling" ruleset="Coupling" package="it.uniba.cli" class="CommandManager" method="getMemberIterator" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/coupling.html#LooseCoupling" priority="3">
-Avoid using implementation types like 'LinkedList'; use the interface instead
-</violation>
-<violation beginline="810" endline="939" begincolumn="23" endcolumn="9" rule="ExcessiveMethodLength" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ExcessiveMethodLength" priority="3">
-Avoid really long methods.
-</violation>
-<violation beginline="810" endline="939" begincolumn="23" endcolumn="9" rule="CyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#CyclomaticComplexity" priority="3">
-The method 'manage' has a Cyclomatic Complexity of 65.
-</violation>
-<violation beginline="810" endline="939" begincolumn="23" endcolumn="9" rule="ModifiedCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#ModifiedCyclomaticComplexity" priority="3">
-The method 'manage' has a Modified Cyclomatic Complexity of 19.
-</violation>
-<violation beginline="810" endline="939" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
-The method 'manage' has a Standard Cyclomatic Complexity of 27.
-</violation>
-<violation beginline="810" endline="939" begincolumn="23" endcolumn="9" rule="NcssMethodCount" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#NcssMethodCount" priority="3">
-The method manage() has an NCSS line count of 120
-</violation>
-<violation beginline="812" endline="938" begincolumn="17" endcolumn="17" rule="SwitchDensity" ruleset="Design" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#SwitchDensity" priority="3">
-A high ratio of statements to labels in a switch statement.  Consider refactoring.
+<violation beginline="810" endline="843" begincolumn="23" endcolumn="9" rule="StdCyclomaticComplexity" ruleset="Code Size" package="it.uniba.cli" class="CommandManager" method="manage" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/codesize.html#StdCyclomaticComplexity" priority="3">
+The method 'manage' has a Standard Cyclomatic Complexity of 10.
 </violation>
 </file>
 <file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/entity/Workspace.java">
