@@ -17,6 +17,9 @@
 <file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/entity/Mention.java">
 </file>
 <file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/entity/Workspace.java">
+<error line="270" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="403" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="406" column="60" severity="error" message="&apos;members&apos; hides a field." source="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"/>
 </file>
 <file name="/Users/roccodeb/Drive/UNIBA/2a_2s_Ingegneria del software/progetto1718-ritchie/src/main/java/it/uniba/file/PathManager.java">
 </file>
