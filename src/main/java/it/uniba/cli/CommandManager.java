@@ -306,7 +306,7 @@ public final class CommandManager {
 			while (channelsIeretor.hasNext()) {
 				final Channel currChannel = channelsIeretor.next();
 				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
-						.getMentionsToUser(getChannelName(currChannel), member);
+						.getMentionsFromUser(getChannelName(currChannel), member);
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) getMentionIterator(
 						currChMentions);
 				while (mentionsIterator.hasNext()) {
@@ -348,7 +348,7 @@ public final class CommandManager {
 			while (channelsIeretor.hasNext()) {
 				final Channel currChannel = channelsIeretor.next();
 				final LinkedList<Mention> currChMentions = (LinkedList<Mention>) slackWorkspace
-						.getMentionsToUser(getChannelName(currChannel), member);
+						.getMentionsFromUser(getChannelName(currChannel), member);
 				final ListIterator<Mention> mentionsIterator = (ListIterator<Mention>) getMentionIterator(
 						currChMentions);
 				while (mentionsIterator.hasNext()) {
@@ -903,12 +903,18 @@ public final class CommandManager {
 					getMembersOfChannel(fifth, third);
 				} else if (MENTIONSCOMMAND.equals(first)) {
 					getMentions(fifth, third);
+				} else {
+					System.out.println(
+							"'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + NOTVALIDCOMMAND);
 				}
 			} else if (MENTIONSCOMMAND.equals(first)) {
 				if (TOPARAMETER.equals(second)) {
 					getMentionsToUser(fifth, third);
 				} else if (FROMPARAMETER.equals(second)) {
 					getMentionsFromUser(fifth, third);
+				} else {
+					System.out.println(
+							"'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + NOTVALIDCOMMAND);
 				}
 			}
 		} else {
@@ -932,6 +938,9 @@ public final class CommandManager {
 				getMentionsWeighed(sixth, fourth);
 			} else if (TOPARAMETER.equals(third)) {
 				getMentionsToUserWeighed(sixth, fourth);
+			} else {
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth + "'"
+						+ NOTVALIDCOMMAND);
 			}
 		} else {
 			System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + "'" + sixth + "'"
@@ -975,6 +984,9 @@ public final class CommandManager {
 				getMentionsToUserWeighed(eighth, sixth, fourth);
 			} else if (FROMPARAMETER.equals(third)) {
 				getMentionsFromUserWeighed(eighth, sixth, fourth);
+			} else {
+				System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth + " "
+						+ seventh + " " + eighth + "'" + NOTVALIDCOMMAND);
 			}
 		} else {
 			System.out.println("'" + first + " " + second + " " + third + " " + fourth + " " + fifth + " " + sixth + " "
