@@ -1,14 +1,7 @@
 package it.uniba.cli;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.io.*;
-
 import org.junit.jupiter.api.*;
-
-import it.uniba.entity.Workspace;
 import it.uniba.file.PathManager;
-import it.uniba.file.zip.NotZipFileException;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class CommandManagerTests {
@@ -31,7 +24,7 @@ public class CommandManagerTests {
 
 	@Test
 	@DisplayName("Test getChannels() di CommandManager")
-	void getChannelsTest() throws IOException{
+	void getChannelsTest() {
 		CommandManager.getChannels(workspace);
         CommandManager.getChannels(notvalidworkspace);
         CommandManager.getChannels(wrongfile);
