@@ -3,7 +3,6 @@ package it.uniba.file.zip;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
-import it.uniba.entity.ChannelNotValidException;
 import it.uniba.file.PathManager;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
