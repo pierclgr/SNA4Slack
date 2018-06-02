@@ -901,19 +901,19 @@ public final class CommandManager {
 <span class="fc bfc" id="L901" title="All 2 branches covered.">			if (CHPARAMETER.equals(second)) {</span>
 <span class="fc bfc" id="L902" title="All 2 branches covered.">				if (&quot;members&quot;.equals(first)) {</span>
 <span class="fc" id="L903">					getMembersOfChannel(fifth, third);</span>
-<span class="pc bpc" id="L904" title="1 of 2 branches missed.">				} else if (MENTIONSCOMMAND.equals(first)) {</span>
+<span class="fc bfc" id="L904" title="All 2 branches covered.">				} else if (MENTIONSCOMMAND.equals(first)) {</span>
 <span class="fc" id="L905">					getMentions(fifth, third);</span>
 				} else {
-<span class="nc" id="L907">					System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot;</span>
+<span class="fc" id="L907">					System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot;</span>
 							+ NOTVALIDCOMMAND);
 				}
 <span class="pc bpc" id="L910" title="1 of 2 branches missed.">			} else if (MENTIONSCOMMAND.equals(first)) {</span>
 <span class="fc bfc" id="L911" title="All 2 branches covered.">				if (TOPARAMETER.equals(second)) {</span>
 <span class="fc" id="L912">					getMentionsToUser(fifth, third);</span>
-<span class="pc bpc" id="L913" title="1 of 2 branches missed.">				} else if (FROMPARAMETER.equals(second)) {</span>
+<span class="fc bfc" id="L913" title="All 2 branches covered.">				} else if (FROMPARAMETER.equals(second)) {</span>
 <span class="fc" id="L914">					getMentionsFromUser(fifth, third);</span>
 				} else {
-<span class="nc" id="L916">					System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot;</span>
+<span class="fc" id="L916">					System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot;</span>
 							+ NOTVALIDCOMMAND);
 				}
 			}
@@ -936,10 +936,10 @@ public final class CommandManager {
 <span class="fc" id="L936">				getMentionsFromUserWeighed(sixth, fourth);</span>
 <span class="fc bfc" id="L937" title="All 2 branches covered.">			} else if (CHPARAMETER.equals(third)) {</span>
 <span class="fc" id="L938">				getMentionsWeighed(sixth, fourth);</span>
-<span class="pc bpc" id="L939" title="1 of 2 branches missed.">			} else if (TOPARAMETER.equals(third)) {</span>
+<span class="fc bfc" id="L939" title="All 2 branches covered.">			} else if (TOPARAMETER.equals(third)) {</span>
 <span class="fc" id="L940">				getMentionsToUserWeighed(sixth, fourth);</span>
 			} else {
-<span class="nc" id="L942">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth</span>
+<span class="fc" id="L942">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot;'&quot; + sixth</span>
 						+ &quot;'&quot; + NOTVALIDCOMMAND);
 			}
 		} else {
@@ -982,10 +982,10 @@ public final class CommandManager {
 <span class="pc bpc" id="L982" title="3 of 8 branches missed.">		if (MENTIONSCOMMAND.equals(first) &amp;&amp; &quot;-w&quot;.equals(second) &amp;&amp; CHPARAMETER.equals(fifth) &amp;&amp; &quot;-f&quot;.equals(seventh)) {</span>
 <span class="fc bfc" id="L983" title="All 2 branches covered.">			if (TOPARAMETER.equals(third)) {</span>
 <span class="fc" id="L984">				getMentionsToUserWeighed(eighth, sixth, fourth);</span>
-<span class="pc bpc" id="L985" title="1 of 2 branches missed.">			} else if (FROMPARAMETER.equals(third)) {</span>
+<span class="fc bfc" id="L985" title="All 2 branches covered.">			} else if (FROMPARAMETER.equals(third)) {</span>
 <span class="fc" id="L986">				getMentionsFromUserWeighed(eighth, sixth, fourth);</span>
 			} else {
-<span class="nc" id="L988">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
+<span class="fc" id="L988">				System.out.println(&quot;'&quot; + first + &quot; &quot; + second + &quot; &quot; + third + &quot; &quot; + fourth + &quot; &quot; + fifth + &quot; &quot; + sixth</span>
 						+ &quot; &quot; + seventh + &quot; &quot; + eighth + &quot;'&quot; + NOTVALIDCOMMAND);
 			}
 		} else {

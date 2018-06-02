@@ -22,7 +22,6 @@ public class CommandManagerTests {
 	static String filenotfound = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip/Schermata1.png");
     static String wrongchannel = "wrongchannel";
     static String wrongmember = "wrongmember";
-    static String file = "path.zip";
     
 	@Test
 	@DisplayName("Test Help() di CommandManager")
@@ -183,38 +182,46 @@ public class CommandManagerTests {
 		CommandManager.manage(sk);
 		final String[] sl = {"mentions", "-ch", "", "-f", ""};
 		CommandManager.manage(sl);
-		final String[] sm = {"mentions", "-to", "", "-f", ""};
+		final String[] sm = {"wrong", "-ch", "", "-f", ""};
 		CommandManager.manage(sm);
-		final String[] sn = {"mentions", "-from", "", "-f", ""};
+		final String[] sn = {"mentions", "-to", "", "-f", ""};
 		CommandManager.manage(sn);
-		final String[] so = {"wrong", "", "", "", ""};
+		final String[] so = {"mentions", "-from", "", "-f", ""};
 		CommandManager.manage(so);
-		
-		final String[] sp = {"mentions", "-w", "-from", "", "-f", ""};
+		final String[] sp = {"mentions", "wrong", "", "-f", ""};
 		CommandManager.manage(sp);
-		final String[] sq = {"mentions", "-w", "-ch", "", "-f", ""};
+		final String[] sq = {"", "", "", "wrong", ""};
 		CommandManager.manage(sq);
-		final String[] sr = {"mentions", "-w", "-to", "", "-f", ""};
-		CommandManager.manage(sr);
-		final String[] ss = {"wrong", "", "", "", "", ""};
-		CommandManager.manage(ss);
 		
-		final String[] st = {"mentions", "-to", "", "-ch", "", "-f", ""};
+		final String[] sr = {"mentions", "-w", "-from", "", "-f", ""};
+		CommandManager.manage(sr);
+		final String[] ss = {"mentions", "-w", "-ch", "", "-f", ""};
+		CommandManager.manage(ss);
+		final String[] st = {"mentions", "-w", "-to", "", "-f", ""};
 		CommandManager.manage(st);
-		final String[] su = {"mentions", "-from", "", "-ch", "", "-f", ""};
+		final String[] su = {"mentions", "-w", "wrong", "", "-f", ""};
 		CommandManager.manage(su);
-		final String[] sv = {"wrong", "", "", "", "", "", ""};
+		final String[] sv = {"wrong", "", "", "", "", ""};
 		CommandManager.manage(sv);
 		
-		final String[] sw = {"mentions", "-w", "-to", "", "-ch", "", "-f", ""};
+		final String[] sw = {"mentions", "-to", "", "-ch", "", "-f", ""};
 		CommandManager.manage(sw);
-		final String[] sx = {"mentions", "-w", "-from", "", "-ch", "", "-f", ""};
+		final String[] sx = {"mentions", "-from", "", "-ch", "", "-f", ""};
 		CommandManager.manage(sx);
-		final String[] sy = {"wrong", "", "", "", "", "", "", ""};
+		final String[] sy = {"wrong", "", "", "", "", "", ""};
 		CommandManager.manage(sy);
+		
+		final String[] sz = {"mentions", "-w", "-to", "", "-ch", "", "-f", ""};
+		CommandManager.manage(sz);
+		final String[] saa = {"mentions", "-w", "-from", "", "-ch", "", "-f", ""};
+		CommandManager.manage(saa);
+		final String[] sab = {"mentions", "-w", "wrong", "", "-ch", "", "-f", ""};
+		CommandManager.manage(sab);
+		final String[] sac = {"wrong", "", "", "", "", "", "", ""};
+		CommandManager.manage(sac);
 
-		final String[] sz = {"wrong", "", "", "", "", "", "", "", ""};
-		CommandManager.manage(sz);		
+		final String[] sad = {"wrong", "", "", "", "", "", "", "", ""};
+		CommandManager.manage(sad);
 	}
 
 }
