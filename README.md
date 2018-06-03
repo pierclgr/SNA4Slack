@@ -8,7 +8,7 @@ La struttura della repository si presenta nel seguente modo:
 |–– doc
 |    |–– drawings
 |    |–– javadoc 
-|	 |–– reports
+|    |–– reports
 |    |–– Report.md
 |–– gradle
 |–– lib
