@@ -8,6 +8,7 @@ La struttura della repository si presenta nel seguente modo:
 |–– doc
 |    |–– drawings
 |    |–– javadoc 
+|	 |–– reports
 |    |–– Report.md
 |–– gradle
 |–– lib
@@ -30,7 +31,7 @@ La struttura della repository si presenta nel seguente modo:
 Nel seguito si dettagliano i ruoli dei diversi componenti:
 - **build**: ospita la sottocartella *reports*, contenente gli output dei tool automatici di test e controllo di qualità;
 - **config**: ospita i file di configurazione. L’unica configurazione di base richiesta è quella per il tool checkstyle;
-- **doc**: in questa cartella deve essere inserita tutta la documentazione relativa al progetto. In particolare, in *drawings* dovranno essere salvati i diagrammi UML e *javadoc* ospiterà la documentazione generata automaticamente per il codice Java. Il file *Report.md* rappresenta la relazione finale del progetto;
+- **doc**: in questa cartella deve essere inserita tutta la documentazione relativa al progetto. In particolare, in *drawings* dovranno essere salvati i diagrammi UML e *javadoc* ospiterà la documentazione generata automaticamente per il codice Java. Il file *Report.md* rappresenta la relazione finale del progetto; all'interno della cartella *reports* sono invece salvate le immagini corrispondenti ai vari report di Jacoco, PMD ecc.
 - **gradle**: contiene il jar per il sistema di gestione delle dipendenze *Gradle*.
 - **lib**: creata per includere eventuali *jar* di librerie esterne utilizzate dal progetto.
 - **res**: la cartella deve contenere tutte le risorse usate dal sistema (immagini, testi ecc.)
