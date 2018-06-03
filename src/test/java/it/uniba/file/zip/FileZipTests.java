@@ -1,69 +1,77 @@
 package it.uniba.file.zip;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.IOException;
+import java.util.zip.ZipException;
+
 import org.junit.jupiter.api.*;
 
 import it.uniba.file.PathManager;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class FileZipTests {
-	static FileZip z;
+	static FileZip zipFile;
 
 	@BeforeAll
-	static void setUpAll() throws Exception {
-		String file = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
-		z = new FileZip(file);
+	static void setUpAll() throws IOException {
+		final String file = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
+		zipFile = new FileZip(file);
 	}
 
 	@AfterAll
-	static void tearDownAll() throws Exception {
-		z.close();
+	static void tearDownAll() throws IOException {
+		zipFile.close();
 	}
 
 	@Test
 	@DisplayName("Test FileZip() di FileZip")
-	void FileZipTest() throws Exception {
+	void fileZipTest() throws IOException {
 		final String failMsg = "FileZip() is failed";
-		String file = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
+		final String file = PathManager.getAbsolutePath("res/ingsw1718 Slack export May 16 2018.zip");
 		assertNotNull(new FileZip(file), failMsg);
 	}
 
 	@Test
 	@DisplayName("Test getFileContent() di FileZip")
-	void getFileContentTest() throws Exception {
+	void getFileContentTest1() throws ZipException, IOException, FileNotInZipException {
 		final String failMsg = "getFileContent() is failed";
-		String file = "users.json";
-		assertAll("Check content of a file in zip with lambdas", () -> {
-		    assertNotNull(z.getFileContent(file), failMsg);
-			assertThrows(FileNotInZipException.class, () -> {
-			    z.getFileContent("wrongchannel.json");
-			});
+		final String file = "users.json";
+		assertNotNull(zipFile.getFileContent(file), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test getFileContent() di FileZip")
+	void getFileContentTest2() {
+		assertThrows(FileNotInZipException.class, () -> {
+			zipFile.getFileContent("wrongchannel.json");
 		});
 	}
 
 	@Test
 	@DisplayName("Test contains() di FileZip")
-	void containsTest() {
+	void containsTest1() {
 		final String failMsg = "contains() is failed";
-		String file = "users.json";
-		assertAll("Check if zip contains a file with lambdas", () -> {
-			assertNotNull(z.contains(file), failMsg);
-			assertTrue(z.contains(file), failMsg);
-			assertFalse(z.contains("wrongchannel.json"), failMsg);
-		});
+		final String file = "users.json";
+		assertNotNull(zipFile.contains(file), failMsg);
 	}
 
-	@Test
-	@DisplayName("Test close() di FileZip")
-	void closeTest() throws Exception {
+	void containsTest2() {
+		final String failMsg = "contains() is failed";
+		final String file = "users.json";
+		assertTrue(zipFile.contains(file), failMsg);
+	}
 
+	void containsTest3() {
+		final String failMsg = "contains() is failed";
+		assertFalse(zipFile.contains("wrongchannel.json"), failMsg);
 	}
 
 	@Test
 	@DisplayName("Test getZipFile() di FileZip")
 	void getZipFileTest() {
 		final String failMsg = "getZipFile() is failed";
-		assertNotNull(z.getZipFile(), failMsg);
+		assertNotNull(zipFile.getZipFile(), failMsg);
 	}
 
 }

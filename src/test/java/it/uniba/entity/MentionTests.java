@@ -6,43 +6,44 @@ import org.junit.jupiter.api.*;
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class MentionTests {
 	static Mention ment, ment2, ment3;
+	static final String DEFNAMEUSR = "Luciano Bruno";
 
 	@BeforeAll
 	static void setUpAll() {
-		String id1 = "U9QLDMNDV";
-		String name1 = "luciano_bruno";
-		String realName1 = "Luciano Bruno";
-		String displayName1 = "Luciano Bruno";
-		Member from = new Member(id1, name1, realName1, displayName1);
+		final String id1 = "U9QLDMNDV";
+		final String name1 = "luciano_bruno";
+		final String realName1 = DEFNAMEUSR;
+		final String displayName1 = DEFNAMEUSR;
+		final Member from = new Member(id1, name1, realName1, displayName1);
 
-		String id2 = "U9BD7NMPC";
-		String name2 = "filippo.lanubile";
-		String realName2 = "Filippo";
-		String displayName2 = "Lanubile";
-		Member to = new Member(id2, name2, realName2, displayName2);
+		final String id2 = "U9BD7NMPC";
+		final String name2 = "filippo.lanubile";
+		final String realName2 = "Filippo";
+		final String displayName2 = "Lanubile";
+		final Member toUser = new Member(id2, name2, realName2, displayName2);
 
-		ment = new Mention(from, to);
-		ment2 = new Mention(null,to);
-		ment3 = new Mention(from,null);
+		ment = new Mention(from, toUser);
+		ment2 = new Mention(null, toUser);
+		ment3 = new Mention(from, null);
 	}
 
 	@Test
 	@DisplayName("Test Mention() di Mention")
-	void MentionTest() {
+	void mentionTest() {
 		final String failMsg = "Member() is failed";
 
-		String id1 = "U9QLDMNDV";
-		String name1 = "luciano_bruno";
-		String realName1 = "Luciano Bruno";
-		String displayName1 = "Luciano Bruno";
-		Member from = new Member(id1, name1, realName1, displayName1);
+		final String id1 = "U9QLDMNDV";
+		final String name1 = "luciano_bruno";
+		final String realName1 = DEFNAMEUSR;
+		final String displayName1 = DEFNAMEUSR;
+		final Member from = new Member(id1, name1, realName1, displayName1);
 
-		String id2 = "U9BD7NMPC";
-		String name2 = "filippo.lanubile";
-		String realName2 = "Filippo";
-		String displayName2 = "Lanubile";
-		Member to = new Member(id2, name2, realName2, displayName2);
-		assertNotNull(new Mention(from, to), failMsg);
+		final String id2 = "U9BD7NMPC";
+		final String name2 = "filippo.lanubile";
+		final String realName2 = "Filippo";
+		final String displayName2 = "Lanubile";
+		final Member toUser = new Member(id2, name2, realName2, displayName2);
+		assertNotNull(new Mention(from, toUser), failMsg);
 	}
 
 	@Test
@@ -58,7 +59,7 @@ public class MentionTests {
 		final String failMsg = "getFromId() is failed";
 		assertNotNull(ment.getFromId(), failMsg);
 	}
-	
+
 	@Test
 	@DisplayName("Test getTo() di Mention")
 	void getToTest() {
@@ -68,13 +69,23 @@ public class MentionTests {
 
 	@Test
 	@DisplayName("Test hashCode() di Mention")
-	void hashCodeTest() {
+	void hashCodeTest1() {
 		final String failMsg = "hashCode() is failed";
-		assertAll("Check hashcode with lambdas", () -> {
-			assertNotNull(ment.hashCode(), failMsg);
-			assertNotNull(ment2.hashCode(), failMsg);
-			assertNotNull(ment3.hashCode(), failMsg);
-		});
+		assertNotNull(ment.hashCode(), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test hashCode() di Mention")
+	void hashCodeTest2() {
+		final String failMsg = "hashCode() is failed";
+		assertNotNull(ment2.hashCode(), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test hashCode() di Mention")
+	void hashCodeTest3() {
+		final String failMsg = "hashCode() is failed";
+		assertNotNull(ment3.hashCode(), failMsg);
 	}
 
 	@Test
@@ -82,19 +93,19 @@ public class MentionTests {
 	void equalsTest() {
 		final String failMsg = "equals() is failed";
 
-		String id1 = "U9QLDMNDV";
-		String name1 = "luciano_bruno";
-		String realName1 = "Luciano Bruno";
-		String displayName1 = "Luciano Bruno";
-		Member from = new Member(id1, name1, realName1, displayName1);
+		final String id1 = "U9QLDMNDV";
+		final String name1 = "luciano_bruno";
+		final String realName1 = DEFNAMEUSR;
+		final String displayName1 = DEFNAMEUSR;
+		final Member from = new Member(id1, name1, realName1, displayName1);
 
-		String id2 = "U9W4FCFEH";
-		String name2 = "domenicolovino0";
-		String realName2 = "Domenico Lovino";
-		String displayName2 = "Domenico";
-		Member to = new Member(id2, name2, realName2, displayName2);
+		final String id2 = "U9W4FCFEH";
+		final String name2 = "domenicolovino0";
+		final String realName2 = "Domenico Lovino";
+		final String displayName2 = "Domenico";
+		final Member toUser = new Member(id2, name2, realName2, displayName2);
 
-		Mention ment2 = new Mention(from, to);
+		final Mention ment2 = new Mention(from, toUser);
 		assertFalse(ment.equals(ment2), failMsg);
 	}
 
@@ -123,11 +134,11 @@ public class MentionTests {
 	@DisplayName("Test setWeight() di Mention")
 	void setWeightTest() {
 		final String failMsg = "setWeight() is failed";
-		int weight = 1;
+		final int weight = 1;
 		ment.setWeight(weight);
 		assertEquals(ment.getWeight(), weight, failMsg);
 	}
-	
+
 	@Test
 	@DisplayName("Test getToId() di Mention")
 	void getToIdTest() {

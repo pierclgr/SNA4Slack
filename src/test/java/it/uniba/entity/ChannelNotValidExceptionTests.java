@@ -4,19 +4,19 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 public class ChannelNotValidExceptionTests {
-	static ChannelNotValidException e;
+	static ChannelNotValidException chNotValidEx;
 
 	@BeforeAll
 	static void setUpAll() {
-		String channel = "ritchie";
-		e = new ChannelNotValidException(channel);
+		final String channel = "ritchie";
+		chNotValidEx = new ChannelNotValidException(channel);
 	}
 
 	@Test
 	@DisplayName("Test ChannelNotValidException() di ChannelNotValidException")
-	void ChannelNotValidExceptionTest() {
+	void channelNotValidExceptionTest() {
 		final String failMsg = "ChannelNotValidException() is failed";
-		String channel = "ritchie";
+		final String channel = "ritchie";
 		assertNotNull(new ChannelNotValidException(channel), failMsg);
 	}
 
@@ -24,7 +24,7 @@ public class ChannelNotValidExceptionTests {
 	@DisplayName("Test getMessage() di ChannelNotValidException")
 	void getMessageTest() {
 		final String failMsg = "ChannelNotValidException() is failed";
-		assertNotEquals(e.getMessage(), "wrongchannel is not a valid channel", failMsg);
+		assertNotEquals(chNotValidEx.getMessage(), "wrongchannel is not a valid channel", failMsg);
 	}
 
 }

@@ -8,32 +8,34 @@ import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class NotValidWorkspaceExceptionTests {
-	static NotValidWorkspaceException e;
+	static NotValidWorkspaceException exception;
 
 	@BeforeAll
 	static void setUpAll() {
-		String file = "Path";
-		e = new NotValidWorkspaceException(file);
+		final String file = "Path";
+		exception = new NotValidWorkspaceException(file);
 	}
 
 	@Test
 	@DisplayName("Test NotValidWorkspaceException() di NotValidWorkspaceException")
-	void NotValidWorkspaceExceptionTest() {
+	void notValidWorkspaceExceptionTest1() {
 		final String failMsg = "NotValidWorkspaceException() is failed";
-		String file = "Path";
-		assertAll("Check if workspace is valid with lambdas", () -> {
-			assertNotNull(new NotValidWorkspaceException(file), failMsg);
-			assertNotNull(new NotValidWorkspaceException(null));
-		});
+		final String file = "Path";
+		assertNotNull(new NotValidWorkspaceException(file), failMsg);
+	}
 
+	@Test
+	@DisplayName("Test NotValidWorkspaceException() di NotValidWorkspaceException")
+	void notValidWorkspaceExceptionTest2() {
+		assertNotNull(new NotValidWorkspaceException(null));
 	}
 
 	@Test
 	@DisplayName("Test getMessage() di NotValidWorkspaceException")
 	void getMessageTest() {
 		final String failMsg = "getMessage() is failed";
-		String file = "Path";
-		assertEquals(e.getMessage(), file + " is not a valid Slack workspace", failMsg);
+		final String file = "Path";
+		assertEquals(exception.getMessage(), file + " is not a valid Slack workspace", failMsg);
 	}
 
 }
