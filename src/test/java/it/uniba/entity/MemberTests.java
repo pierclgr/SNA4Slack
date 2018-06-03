@@ -5,81 +5,118 @@ import org.junit.jupiter.api.*;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 public class MemberTests {
-	static Member m1, m2, m3, m4;
+	static final String DEFIDUSR = "U9QLDMNDV";
+	static final String DEFNAMEUSR = "luciano_bruno";
+	static final String DEFRLNAMEUSR = "Luciano Bruno";
+	static Member member1, member2, member3, member4;
 
 	@BeforeAll
 	static void setUpAll() {
-		String id = "U9QLDMNDV";
-		String name = "luciano_bruno";
-		String realName = "Luciano Bruno";
-		String displayName = "Luciano Bruno";
-		m1 = new Member(id, name, realName, displayName);
-		m2 = new Member(id, name, realName, "");
-		m3 = new Member(id, name, "", "");
-		m4 = new Member(id, "", "", "");
+		final String idUser = DEFIDUSR;
+		final String name = DEFNAMEUSR;
+		final String realName = DEFRLNAMEUSR;
+		final String displayName = DEFRLNAMEUSR;
+		member1 = new Member(idUser, name, realName, displayName);
+		member2 = new Member(idUser, name, realName, "");
+		member3 = new Member(idUser, name, "", "");
+		member4 = new Member(idUser, "", "", "");
 	}
 
 	@Test
 	@DisplayName("Test Member() di Member")
-	void MemberTest() {
+	void memberTest() {
 		final String failMsg = "Member() is failed";
-		String id = "U9QLDMNDV";
-		String name = "luciano_bruno";
-		String realName = "Luciano Bruno";
-		String displayName = "Luciano Bruno";
-		assertNotNull(new Member(id, name, realName, displayName), failMsg);
+		final String idUser = DEFIDUSR;
+		final String name = DEFNAMEUSR;
+		final String realName = DEFRLNAMEUSR;
+		final String displayName = DEFRLNAMEUSR;
+		assertNotNull(new Member(idUser, name, realName, displayName), failMsg);
 	}
 
 	@Test
 	@DisplayName("Test getId() di Member")
-	void getIdTest() {
+	void getIdTest1() {
 		final String failMsg = "getId() is failed";
-		assertAll("Check member ID with lambdas", () -> {
-			assertEquals("U9QLDMNDV", m1.getId(), failMsg);
-			assertNotEquals("CA3EZFFGR", m1.getId(), failMsg);
-		});
+		assertEquals(DEFIDUSR, member1.getId(), failMsg);
 	}
 
 	@Test
-	@DisplayName("Test getName() di Member")
-	void getNameTest() {	
-		final String failMsg = "getName() is failed";
-		assertAll("Check member displayName, realName, name or ID with lambdas", () -> {
-			assertEquals("Luciano Bruno", m1.getName(), failMsg);
-			assertEquals("Luciano Bruno", m2.getName(), failMsg);
-			assertEquals("luciano_bruno", m3.getName(), failMsg);
-			assertEquals("U9QLDMNDV", m4.getName(), failMsg);
-		});
+	@DisplayName("Test getId() di Member")
+	void getIdTest2() {
+		final String failMsg = "getId() is failed";
+		assertNotEquals("CA3EZFFGR", member1.getId(), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test getName() di Member1")
+	void getNameTest1() {
+		final String failMsg = "getName() for member 1 is failed";
+		assertEquals(DEFRLNAMEUSR, member1.getName(), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test getName() di Member2")
+	void getNameTest2() {
+		final String failMsg = "getName() for member 2 is failed";
+		assertEquals(DEFRLNAMEUSR, member2.getName(), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test getName() di Member3")
+	void getNameTest3() {
+		final String failMsg = "getName() for member 3 is failed";
+		assertEquals(DEFNAMEUSR, member3.getName(), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test getName() di Member4")
+	void getNameTest4() {
+		final String failMsg = "getName() for member 4 is failed";
+		assertEquals(DEFIDUSR, member4.getName(), failMsg);
 	}
 
 	@Test
 	@DisplayName("Test isUser() di Member")
-	void isUserTest() {
+	void isUserTest1() {
 		final String failMsg = "isUser() is failed";
-		assertAll("Check if m1 is a user with lambdas", () -> {
-			assertTrue(m1.getName().equals("Luciano Bruno"), failMsg);
-			assertFalse(m1.getName().equals("Nunzia Andrulli"), failMsg);
-		});
+		final String member1Name = new String(member1.getName());
+		assertTrue(member1Name.equals(DEFRLNAMEUSR), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test isUser() di Member")
+	void isUserTest2() {
+		final String failMsg = "isUser() is failed";
+		final String member1Name = new String(member1.getName());
+		final String nunziaName = "Nunzia Andrulli";
+		assertFalse(member1Name.equals(nunziaName), failMsg);
 	}
 
 	@Test
 	@DisplayName("Test getUserName() di Member")
-	void getUserNameTest() {
+	void getUserNameTest1() {
 		final String failMsg = "getUserName() is failed";
-		assertAll("Check member name with lambdas", () -> {
-			assertEquals("luciano_bruno", m1.getUserName(), failMsg);
-			assertNotEquals("nunziaandrulli", m1.getUserName(), failMsg);
-		});
+		assertEquals(DEFNAMEUSR, member1.getUserName(), failMsg);
+	}
+
+	@Test
+	@DisplayName("Test getUserName() di Member")
+	void getUserNameTest2() {
+		final String failMsg = "getUserName() is failed";
+		assertNotEquals("nunziaandrulli", member1.getUserName(), failMsg);
 	}
 
 	@Test
 	@DisplayName("Test getChannels() di Member")
-	void getChannelsTest() {
+	void getChannelsTest1() {
 		final String failMsg = "getChannels() is failed";
-		assertAll("Check channels in which a member is subscribed with lambdas", () -> {
-			assertNotNull(m1.getChannels(), failMsg);
-			assertNotNull(m1.getChannels(), failMsg);
-		});
+		assertNotNull(member1.getChannels(), failMsg);
 	}
 
+	@Test
+	@DisplayName("Test getChannels() di Member")
+	void getChannelsTest2() {
+		final String failMsg = "getChannels() is failed";
+		assertNotNull(member1.getChannels(), failMsg);
+	}
 }

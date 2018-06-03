@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2018-06-01T20:09:57.396">
+<pmd version="5.8.1" timestamp="2018-06-02T19:01:33.958">
 <file name="C:\Users\Pier\progetto1718-ritchie\src\main\java\it\uniba\cli\CommandManager.java">
 <violation beginline="1" endline="996" begincolumn="1" endcolumn="3" rule="GodClass" ruleset="Design" package="it.uniba.cli" class="CommandManager" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#GodClass" priority="3">
 Possible God class (WMC=176, ATFD=95, TCC=0.12162162162162163)

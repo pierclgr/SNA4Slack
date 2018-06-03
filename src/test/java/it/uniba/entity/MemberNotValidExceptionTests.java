@@ -4,19 +4,19 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 public class MemberNotValidExceptionTests {
-	static MemberNotValidException e;
+	static MemberNotValidException membNotValidEx;
 
 	@BeforeAll
 	static void setUpAll() {
-		String member = "U9W4FCFEH";
-		e = new MemberNotValidException(member);
+		final String member = "U9W4FCFEH";
+		membNotValidEx = new MemberNotValidException(member);
 	}
 
 	@Test
 	@DisplayName("Test MemberNotValidException() di MemberNotValidException")
-	void MemberNotValidExceptionTest() {
+	void memberNotValidExceptionTest() {
 		final String failMsg = "MemberNotValidException() is failed";
-		String member = "U9W4FCFEH";
+		final String member = "U9W4FCFEH";
 		assertNotNull(new ChannelNotValidException(member), failMsg);
 	}
 
@@ -24,7 +24,7 @@ public class MemberNotValidExceptionTests {
 	@DisplayName("Test getMessage() di MemberNotValidException")
 	void getMessageTest() {
 		final String failMsg = "MemberNotValidException() is failed";
-		assertNotEquals(e.getMessage(), "wrongmember is not a valid member", failMsg);
+		assertNotEquals(membNotValidEx.getMessage(), "wrongmember is not a valid member", failMsg);
 	}
 
 }
