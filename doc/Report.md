@@ -507,7 +507,7 @@ Il progetto SNA4Slack non ha requisiti non funzionali.
 # 4. Architettura
 
 ## Stile architetturale adottato
-Non è stato utilizzato alcuno stile architetturale in quanto il sistema è stato progettato sulla base del riutilizzo del codice scritto in precedenza; infatti, la realizzazione di nuove issue è stata realizzata "riciclando" il codice scritto nelle issue precedenti oppure richiamando metodi realizzati per issue svolte in precedenza. Lo stile architetturale utilizzato può somigliare ad uno sile a livelli in quanto abbiamo un livello che si occupa della CLI, un livello che si occupa della gestione delle classi entity e delle funzioni principali ed un ultimo livello più sottostante che si occupa della gestione dei file JSON e dei file Zip, ma questa scelta è stata più casuale che pensata.
+Non è stato utilizzato alcuno stile architetturale in quanto il sistema è stato progettato sulla base del riutilizzo del codice scritto in precedenza; infatti, la realizzazione di nuove issue è stata realizzata "riciclando" il codice scritto nelle issue precedenti oppure richiamando metodi realizzati per issue svolte in precedenza. Lo stile architetturale utilizzato può somigliare ad uno stile a livelli in quanto abbiamo un livello che si occupa della CLI, un livello che si occupa della gestione delle classi entity e delle funzioni principali ed un ultimo livello più sottostante che si occupa della gestione dei file JSON e dei file Zip, ma questa scelta è stata più casuale che pensata.
 
 ## Diagramma dei package
 ![Diagramma dei package](drawings/package.jpg)
@@ -689,7 +689,7 @@ In Sna4Slack è stato adottato uno stile di processo di tipo scrum e quindi iter
 
 ## Metodologia utilizzata per strutturare lo sviluppo dell'applicazione
 
-Non esiste un modo unico per strutturare lo sviluppo del software fondamentalmente abbiamo sviluppo ad hoc, sviluppo pianificato e sviluppo agile.
+Non esiste un modo unico per strutturare lo sviluppo del software. Fondamentalmente abbiamo: sviluppo ad hoc, sviluppo pianificato e sviluppo agile.
 Lo sviluppo di Sna4Slack è stato strutturato utilizzando lo sviluppo agile cercando di essere il più fedeli possibili a quanto riportato nel Manifesto per lo sviluppo agile. Il progetto è stato diviso in quattro sprint, ciascuno della durata di massimo 10 giorni, in cui sono stati definiti diversi obiettivi, anche detti goals, che prevedono il completamento di una lista di storie dette User-Story. L'assegnazione di ciascuna User-Story è avvenuta senza seguire un preciso schema. Principalmente abbiamo cercato di assegnare ad ogni sottogruppo la stessa tipologia di funzionalità nei vari sprint. Ogni sottogruppo era composto da massimo due persone. Inoltre, ogni sottogruppo poteva creare nuove issue relative ad una suddivisione in task delle User-Story o alla correzione e/o miglioria di funzionalità implementate precedentemente. Abbiamo utilizzato la board di GitHub per tracciare lo stato di ogni issue, utilizzando come struttura della board quella prevista da Scrum.
 La board era suddivisa in quattro fasi, ognuna relativa ad una fase della realizzazione di ciascuna issue:
 - **To do**: indica che l'issue è stata presa in carico da uno sviluppatore o da un sottogruppo, ma non ancora in fase di realizzazione;
